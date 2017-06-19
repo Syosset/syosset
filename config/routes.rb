@@ -2,4 +2,6 @@
 Rails.application.routes.draw do
   get 'welcome/index'
   root 'welcome#index'
+
+  get 'day_color', controller: 'day_color', action: 'day_color'
 end
