@@ -8,8 +8,10 @@ end
 gem 'dotenv-rails', groups: [:development, :test]
 
 gem 'clockwork', github: "Rykian/clockwork"
-gem 'capybara'
-gem 'selenium-webdriver'
+gem 'capybara', '~> 2.7', '>= 2.7.1'
+#gem 'selenium-webdriver'
+gem 'poltergeist', '~> 1.15'
+gem 'launchy', '~> 2.4', '>= 2.4.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.1'

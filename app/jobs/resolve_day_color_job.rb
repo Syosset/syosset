@@ -2,8 +2,6 @@ class ResolveDayColorJob < ApplicationJob
   queue_as :default
 
   def perform(*args)
-    Capybara.javascript_driver = :selenium
-    Capybara.current_driver = Capybara.javascript_driver
     browser = Capybara.current_session
     browser.visit "https://ic.syosset.k12.ny.us/"
     browser.find("#username").set(ENV['IC_USERNAME'])
