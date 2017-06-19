@@ -1,3 +1,5 @@
+# Simulates a browser logging into infinite campus using ENV variables
+# Parses out the current day color from the attendance tab and sets redis key `current_day_color`
 class ResolveDayColorJob < ApplicationJob
   queue_as :default
 
@@ -16,16 +18,18 @@ class ResolveDayColorJob < ApplicationJob
         browser.find(:xpath, "//span[contains(text(),\'#{Date.today.strftime("%B")}\')]/../../..").first("a", text: "#{Date.today.day}").click()
       rescue NoMethodError
         puts "ResolveDayColorJob | Unable to find element for current date on infinite campus. School is likely not in session today."
-        browser.driver.quit()
+        Capybara.current_session.reset!
+        $redis.del("current_day_color")
         return
-        # TODO: Set redis current-day to none
       ensure
       end
     end
 
     browser.within_frame 'frameDetail' do
-      puts "ResolveDayColorJob | Today was determined to be a " + browser.find("td", id: "dow").text.split("(")[1].chomp(")")
-      # TODO: Set redis current-day to the found type
+      color = browser.find("td", id: "dow").text.split("(")[1].chomp(")") # Ex: "Friday (W Day)" -> W Day
+      puts "ResolveDayColorJob | Today was determined to be a " + color
+      $redis.set("current_day_color", color)
     end
+    Capybara.current_session.reset!
   end
 end

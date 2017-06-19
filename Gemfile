@@ -9,7 +9,6 @@ gem 'dotenv-rails', groups: [:development, :test]
 
 gem 'clockwork', github: "Rykian/clockwork"
 gem 'capybara', '~> 2.7', '>= 2.7.1'
-#gem 'selenium-webdriver'
 gem 'poltergeist', '~> 1.15'
 gem 'launchy', '~> 2.4', '>= 2.4.3'
 
@@ -40,6 +39,8 @@ gem 'jbuilder', '~> 2.5'
 
 # Use Mongoid for ODM
 gem 'mongoid', '~> 6.1.0'
+# Use Redis for caching
+gem 'redis'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
