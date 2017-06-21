@@ -2,7 +2,10 @@
   "name": "web",
   "private": true,
   "dependencies": {
-    "bootstrap": "^3.3.7",
-    "font-awesome": "^4.7.0"
+    "bootstrap": "^3.3.7"
+  },
+  "engines": {
+    "node": "^6.9",
+    "yarn": "^0.21"
   }
 }

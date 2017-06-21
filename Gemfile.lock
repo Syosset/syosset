@@ -77,6 +77,8 @@ GEM
     erubis (2.7.0)
     execjs (2.7.0)
     ffi (1.9.18)
+    font-awesome-rails (4.7.0.2)
+      railties (>= 3.2, < 5.2)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
     haml (4.0.7)
@@ -211,6 +213,7 @@ DEPENDENCIES
   clockwork!
   coffee-rails (~> 4.2)
   dotenv-rails
+  font-awesome-rails
   haml-rails (~> 0.9)
   jbuilder (~> 2.5)
   launchy (~> 2.4, >= 2.4.3)
