@@ -1,0 +1,4 @@
+%h1 Welcome#index
+%p Find me in app/views/welcome/index.html.erb
+- if $redis.get("current_day_color")
+  = $redis.get("current_day_color")

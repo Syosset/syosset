@@ -1,0 +1,16 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title= content_for?(:title) ? "#{t('name.abbr')} » #{yield(:title)}" : t('name.full')
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    %meta{name: "viewport", content: "width=device-width", "initial-scale" => 1.0}
+  %body{"data-no-turbolink" => yield(:disable_turbolinks)}
+    .wrapper
+      = render 'partials/navbar'
+      .content.container
+        = render 'partials/flash'
+        = yield
+    = render 'partials/footer'
