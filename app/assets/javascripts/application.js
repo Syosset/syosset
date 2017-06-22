@@ -12,4 +12,6 @@
 //
 //= require rails-ujs
 //= require turbolinks
+//= require jquery
+//= require college_green/bootstrap-hover-dropdown
 //= require_tree .

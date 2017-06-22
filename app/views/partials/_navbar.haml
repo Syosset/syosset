@@ -2,19 +2,39 @@
   .header-main.container
     %h1.logo.col-md-6.col-sm-6
       %b
-        =link_to t('name.abbr'), root_path
-      =link_to t('name.full'), root_path
+        = link_to t('name.abbr'), root_path
+      = link_to t('name.full'), root_path
     .info.col-md-6-col-sm-6
       %ul.menu-top.navbar-right
         %li.divider
-          =link_to t('nav.home'), root_path
+          = link_to t('nav.home'), root_path
         %li
-          =link_to t('nav.contact'), root_path #TODO: link
+          = link_to t('nav.contact'), root_path #TODO: link
       %br
       .contact.pull-right
         %p.phone
           %i.fa.fa-phone
-          =t('contact.phone')
+          = t('contact.phone')
         %p.email
           %i.fa.fa-envelope
-          =t('contact.email')
+          = t('contact.email')
+
+%nav.main-nav{role: :navigation}
+  .container
+    .navbar-header
+      %button.navbar-toggle{"data-target" => "#navbar-collapse", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+    #navbar-collapse.navbar-collapse.collapse
+      %ul.nav.navbar-nav
+        %li.active.nav-item
+          = link_to t('nav.home'), root_path
+        %li.nav-item.dropdown
+          %a.dropdown-toggle{"data-close-others" => "false", "data-delay" => "0", "data-hover" => "dropdown", "data-toggle" => "dropdown", :href => "#"}
+            = t('nav.courses')
+            %i.fa.fa-angle-down
+          %ul.dropdown-menu
+            %li
+              %a{href: "#"} Course list

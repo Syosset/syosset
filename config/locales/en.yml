@@ -36,6 +36,7 @@ en:
   nav:
     home: "Home"
     contact: "Contact"
+    courses: "Courses"
   contact:
     phone: "(516) 364-5675"
     email: "admin@syosseths.com" #TODO: email
