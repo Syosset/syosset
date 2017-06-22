@@ -39,6 +39,11 @@ en:
     contact: "Contact"
     departments: "Departments"
     extracurriculars: "Clubs"
+  welcome:
+    slider:
+      hero:
+        first: "A BLUE RIBBON SCHOOL"
+        second: "DEDICATED STAFF"
   contact:
     phone: "Call us today (516) 364-5675"
     email: "admin@syosseths.com" #TODO: email

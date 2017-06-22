@@ -1,14 +1,16 @@
 .slider.flexslider#promo-slider
   %ul.slides
     %li
-      %img{alt: "Some Image", src: "https://www.ius.edu/education/images/education-header.jpg"}/
-      %p.flex-caption
-        %span.main Welcome to Syosset High School
-        %br/
-        %span.secondary.clearfix A Blue Ribbon winning school of excellence
+      .super-hero-unit
+        %figure
+          %img.center-block.img-responsive{:alt => "some image", :src => "https://www.ius.edu/education/images/education-header.jpg"}/
+          %figcaption.flex-caption
+            %h1.super
+              %b=t('.hero.first')
     %li
-      %img{alt: "Some Image", src: "http://www.atdi.com/wp-content/uploads/2013/04/banner_atdi_education.jpg"}/
-      %p.flex-caption
-        %span.main Dedicated Staff
-        %br/
-        %span.secondary.clearfix Delivering quality education since 1956
+      .super-hero-unit
+        %figure
+          %img.center-block.img-responsive{:alt => "some image", :src => "http://www.atdi.com/wp-content/uploads/2013/04/banner_atdi_education.jpg"}/
+          %figcaption.flex-caption
+            %h1.super
+              %b=t('.hero.second')
