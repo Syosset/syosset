@@ -1,4 +1,8 @@
-%h1 Welcome#index
-%p Find me in app/views/welcome/index.html.erb
-- if $redis.get("current_day_color")
-  = $redis.get("current_day_color")
+.slider.flexslider#promo-slider
+  %ul.slides
+    %li
+      %img{alt: "Some Image", src: "https://www.ius.edu/education/images/education-header.jpg"}/
+      %p.flex-caption
+        %span.main Welcome to Syosset High School
+        %br/
+        %span.secondary.clearfix A Blue Ribbon winning school of excellence

@@ -11,7 +11,8 @@
 // about supported directives.
 //
 //= require rails-ujs
-//= require turbolinks
 //= require jquery
+//= require turbolinks
+//= require flexslider/jquery.flexslider
 //= require college_green/bootstrap-hover-dropdown
 //= require_tree .
