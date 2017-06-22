@@ -46,10 +46,10 @@ en:
         second: "DEDICATED STAFF"
     about:
       title: "About Us"
+      principal:
+        name: "Giovanni Durante"
+        statement: "TODO"
       info:
-        principal:
-          name: "Giovanni Durante"
-          statement: "TODO"
         title: "Philosophy"
         text: "At Syosset High School, we strive to provide an education that is
         challenging, thorough and useful, in an environment where students find
