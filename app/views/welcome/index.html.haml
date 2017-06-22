@@ -1,3 +1,5 @@
+= content_for :body_class, "home-page" # College Green theme
+
 .slider.flexslider#promo-slider
   %ul.slides
     %li
@@ -6,3 +8,64 @@
         %span.main Welcome to Syosset High School
         %br/
         %span.secondary.clearfix A Blue Ribbon winning school of excellence
+    %li
+      %img{alt: "Some Image", src: "http://www.atdi.com/wp-content/uploads/2013/04/banner_atdi_education.jpg"}/
+      %p.flex-caption
+        %span.main Dedicated Staff
+        %br/
+        %span.secondary.clearfix Delivering quality education since 1956
+%section.news
+  %h1.section-heading.text-highlight
+    %span.line Latest News
+  .carousel-controls
+    %a.prev{"data-slide" => "prev", :href => "#news-carousel"}
+      %i.fa.fa-caret-left
+    %a.next{"data-slide" => "next", :href => "#news-carousel"}
+      %i.fa.fa-caret-right
+  .section-content.clearfix
+    #news-carousel.news-carousel.carousel.slide
+      .carousel-inner
+        .item.active
+          .col-md-4.news-item
+            %h2.title
+              %a{href: "#"} Some announcement!
+            %p Some long and boring announcement.
+            %a.read-more{:href => "news-single.html"}
+              Read more
+              %i.fa.fa-chevron-right
+          .col-md-4.news-item
+            %h2.title
+              %a{href: "#"} Another announcement!
+            %p Some long and boring announcement.
+            %a.read-more{:href => "news-single.html"}
+              Read more
+              %i.fa.fa-chevron-right
+          .col-md-4.news-item
+            %h2.title
+              %a{href: "#"} Yet another announcement!
+            %p Some long and boring announcement.
+            %a.read-more{:href => "news-single.html"}
+              Read more
+              %i.fa.fa-chevron-right
+        .item
+          .col-md-4.news-item
+            %h2.title
+              %a{href: "#"} No way, another announcement!
+            %p Some long and boring announcement.
+            %a.read-more{:href => "news-single.html"}
+              Read more
+              %i.fa.fa-chevron-right
+          .col-md-4.news-item
+            %h2.title
+              %a{href: "#"} Another announcement!
+            %p Some long and boring announcement.
+            %a.read-more{:href => "news-single.html"}
+              Read more
+              %i.fa.fa-chevron-right
+          .col-md-4.news-item
+            %h2.title
+              %a{href: "#"} Yet another announcement!
+            %p Some long and boring announcement.
+            %a.read-more{:href => "news-single.html"}
+              Read more
+              %i.fa.fa-chevron-right

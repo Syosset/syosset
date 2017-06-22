@@ -7,7 +7,7 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
     %meta{name: "viewport", content: "width=device-width", "initial-scale" => 1.0}
-  %body{"data-no-turbolink" => yield(:disable_turbolinks)}
+  %body{:class => yield(:body_class), "data-no-turbolink" => yield(:disable_turbolinks)}
     .wrapper
       = render 'partials/navbar'
       .content.container
