@@ -32,10 +32,10 @@
         %span.icon-bar
     #navbar-collapse.navbar-collapse.collapse
       %ul.nav.navbar-nav
-        %li.active.nav-item
+        %li.nav-item{class: active_controller('welcome', 'index')}
           = link_to t('nav.home'), root_path
-        %li.nav-item
-          = link_to t('nav.about'), "#"
+        %li.nav-item{class: active_controller('welcome', 'about')}
+          = link_to t('nav.about'), about_path
         %li.nav-item.dropdown
           %a.dropdown-toggle{"data-close-others" => "false", "data-delay" => "0", "data-hover" => "dropdown", "data-toggle" => "dropdown", :href => "#"}
             = t('nav.departments')
