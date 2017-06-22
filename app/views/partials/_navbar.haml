@@ -47,11 +47,12 @@
           %ul.dropdown-menu
             %li= link_to "All #{t('nav.extracurriculars')}", "#"
       %ul.nav.navbar-nav.pull-right
-        %li.nav-item
+        %li.nav-item.red-white-display
           %a{href: "#"}
-            - color = $redis.get("current_day_color")
-            - if color
+            - if color = $redis.get("current_day_color")
+              %i.fa{class: "#{color == "Red Day" ? "fa-map-o" : "fa-map"}"}
               Today is a
               = color
             - else
-              No school today!
+              %i.fa.fa-thumbs-up
+              No school today

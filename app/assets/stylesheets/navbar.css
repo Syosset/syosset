@@ -1,0 +1,9 @@
+.red-white-display {
+    margin-top: 15px;
+    border: 1px solid white;
+}
+
+.red-white-display a {
+  padding-top: 1px !important;
+  padding-bottom: 1px !important;
+}
