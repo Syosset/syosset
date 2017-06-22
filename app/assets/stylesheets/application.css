@@ -14,6 +14,7 @@
  *= require bootstrap/dist/css/bootstrap
  *= require font-awesome
  *= require college_green/theme
+ *= require college_green/styles-red
  *= require_tree .
  *= require_self
  */
