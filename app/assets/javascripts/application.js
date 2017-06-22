@@ -14,6 +14,6 @@
 //= require jquery
 //= require turbolinks
 //= require bootstrap/dist/js/bootstrap
-//= require flexslider/jquery.flexslider
+//= require jquery.flexslider
 //= require college_green/bootstrap-hover-dropdown
 //= require_tree .
