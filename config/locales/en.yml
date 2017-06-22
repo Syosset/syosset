@@ -35,8 +35,10 @@ en:
     full: "Syosset High School"
   nav:
     home: "Home"
+    about: "About"
     contact: "Contact"
-    courses: "Courses"
+    departments: "Departments"
+    extracurriculars: "Clubs"
   contact:
     phone: "Call us today (516) 364-5675"
     email: "admin@syosseths.com" #TODO: email
