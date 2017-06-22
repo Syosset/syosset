@@ -38,7 +38,7 @@ en:
     contact: "Contact"
     courses: "Courses"
   contact:
-    phone: "(516) 364-5675"
+    phone: "Call us today (516) 364-5675"
     email: "admin@syosseths.com" #TODO: email
     address: "70 Southwoods Road Syosset, New York 11791"
   copyright: "© Copyright %{year} Syosset High School"
