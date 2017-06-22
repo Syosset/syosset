@@ -1,24 +1,19 @@
-# README
+# Syosset Web
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is the [official website for Syosset High School](https://syosseths.com/). It is written in Ruby on Rails (version 5) currently under ruby 2.3.4.
 
-Things you may want to cover:
+In order to get the red-white day display correct:
 
-* Ruby version
+  * Set the environment variables IC_USERNAME and IC_PASSWORD to your Infinite Campus username and password, respectively.
 
-* System dependencies
+  * Have phantomjs installed on the system
 
-* Configuration
+  * Run clockwork on lib/clock.rb
 
-* Database creation
+The official site is deployed on an EC2 instance running Dokku. To deploy in the same manner, [install Dokku](https://github.com/dokku/dokku), then download and configure:
 
-* Database initialization
+  *  [dokku-mongo](https://github.com/dokku/dokku-mongo)
+  *  [dokku-redis](https://github.com/dokku/dokku-redis)
+  *  [dokku-apt](https://github.com/F4-Group/dokku-apt)
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+After deploying, scale the `clock` process to 1 for clockwork: `dokku ps:scale shs-web clock=1`
