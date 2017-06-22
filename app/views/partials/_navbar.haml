@@ -1,24 +1,25 @@
 %header.header
   .header-main.container
-    %h1.logo.col-md-8.col-sm-8
-      %b
-        = link_to t('name.abbr'), root_path
-      .hidden-xs.visible-sm-inline.visible-md-inline.visible-lg-inline
-        = link_to t('name.full'), root_path
-    .info.col-md-4-col-sm-4
-      %ul.menu-top.navbar-right.hidden-xs
-        %li.divider
-          = link_to t('nav.home'), root_path
-        %li
-          = link_to t('nav.contact'), root_path #TODO: link
-      %br
-      .contact.pull-right
-        %p.phone
-          %i.fa.fa-phone
-          = t('contact.phone')
-        %p.email
-          %i.fa.fa-envelope
-          = t('contact.email')
+    .container
+      %h1.logo.pull-left
+        = svg 'logo'
+        .full-name.pull-right.visible-lg
+          = svg 'full_name'
+      .info.col-md-4-col-sm-4.pull-right
+        %br
+        %br
+        %ul.menu-top.navbar-right.hidden-xs
+          %li.divider
+            = link_to t('nav.home'), root_path
+          %li
+            = link_to t('nav.contact'), root_path #TODO: link
+        .contact
+          %p.phone
+            %i.fa.fa-phone
+            = t('contact.phone')
+          %p.email
+            %i.fa.fa-envelope
+            = t('contact.email')
 
 %nav.main-nav{role: :navigation}
   .container
