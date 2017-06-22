@@ -1,11 +1,12 @@
 %header.header
   .header-main.container
-    %h1.logo.col-md-6.col-sm-6
+    %h1.logo.col-md-8.col-sm-8
       %b
         = link_to t('name.abbr'), root_path
-      = link_to t('name.full'), root_path
-    .info.col-md-6-col-sm-6
-      %ul.menu-top.navbar-right
+      .hidden-xs.visible-sm-inline.visible-md-inline.visible-lg-inline
+        = link_to t('name.full'), root_path
+    .info.col-md-4-col-sm-4
+      %ul.menu-top.navbar-right.hidden-xs
         %li.divider
           = link_to t('nav.home'), root_path
         %li
