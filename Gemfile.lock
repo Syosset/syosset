@@ -77,6 +77,8 @@ GEM
     erubi (1.6.0)
     erubis (2.7.0)
     execjs (2.7.0)
+    factory_girl (4.8.0)
+      activesupport (>= 3.0.0)
     ffi (1.9.18)
     flex-slider-rails (2.6.3)
     font-awesome-rails (4.7.0.2)
@@ -232,6 +234,7 @@ DEPENDENCIES
   clockwork!
   coffee-rails (~> 4.2)
   dotenv-rails
+  factory_girl
   flex-slider-rails (~> 2.6.3)
   font-awesome-rails (~> 4.7.0.2)
   haml-rails (~> 0.9)
