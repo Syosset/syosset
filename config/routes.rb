@@ -6,4 +6,8 @@ Rails.application.routes.draw do
   get 'about' => 'welcome#about'
 
   get 'day_color', controller: 'day_color', action: 'day_color'
+
+  namespace :admin do
+    root :to => "base#index"
+  end
 end
