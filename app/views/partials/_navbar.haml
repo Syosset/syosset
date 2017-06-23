@@ -1,4 +1,3 @@
-=link_to t('menu.account.sign_out'), destroy_user_session_path, :method => :delete
 %header.header
   .header-main.container
     .container
@@ -51,7 +50,7 @@
             %li= link_to "All #{t('nav.extracurriculars')}", "#"
       %ul.nav.navbar-nav.pull-right
         %li.nav-item.red-white-display
-          %a{href: "#"}
+          = link_to "#" do
             - if color = $redis.get("current_day_color")
               %i.fa{class: "#{color == "Red Day" ? "fa-map-o" : "fa-map"}"}
               Today is a
@@ -59,3 +58,22 @@
             - else
               %i.fa.fa-thumbs-up
               No school today
+
+        %li.nav-item.dropdown
+          %a.dropdown-toggle{"data-close-others" => "false", "data-delay" => "0", "data-hover" => "dropdown", "data-toggle" => "dropdown", :href => "#"}
+            - if user_signed_in?
+              = current_user.name
+            - else
+              %i.fa.fa-user
+            %b.caret
+          %ul.dropdown-menu
+            - if user_signed_in?
+              %li
+                =link_to t('menu.account.edit'), edit_user_registration_path
+              %li
+                =link_to t('menu.account.sign_out'), destroy_user_session_path, :method => :delete
+            - else
+              %li
+                =link_to t('menu.account.sign_in'), new_user_session_path
+              %li
+                =link_to t('menu.account.sign_up'), new_user_registration_path

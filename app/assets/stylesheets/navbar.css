@@ -1,11 +1,17 @@
 .red-white-display {
-    margin-top: 15px;
     border: 1px solid white;
 }
 
 .red-white-display a {
   padding-top: 1px !important;
   padding-bottom: 1px !important;
+}
+
+@media (min-width: 576px) {
+  .red-white-display {
+      margin-top: 15px;
+      margin-right: 10px;
+  }
 }
 
 .full-name {
