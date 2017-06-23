@@ -8,4 +8,12 @@ module ApplicationHelper
     return File.read(file_path).html_safe if File.exists?(file_path)
     '(not found)'
   end
+
+  def bootstrap_alert_class(flash_key)
+    case flash_key
+    when "notice"
+      "info"
+    # TODO
+    end
+  end
 end
