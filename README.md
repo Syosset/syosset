@@ -10,6 +10,8 @@ In order to get the red-white day display correct:
 
   * Run clockwork on lib/clock.rb
 
+For sign ins, please set the environment variables `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` to the credentials provided to you from Google APIs.
+
 The official site is deployed on an EC2 instance running Dokku. To deploy in the same manner, [install Dokku](https://github.com/dokku/dokku), then download and configure:
 
   *  [dokku-mongo](https://github.com/dokku/dokku-mongo)
