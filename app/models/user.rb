@@ -4,6 +4,8 @@ class User
   include Mongoid::Document
   include Scram
 
+	groupify :group_member, group_class_name: 'CollaboratorGroup'
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,

@@ -43,10 +43,12 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 # Use Devise for user authentication
-gem 'devise'
-gem 'omniauth-google-oauth2'
+gem 'devise', '~> 4.3'
+gem 'omniauth-google-oauth2', '~> 0.5.0'
 # Use scram for authorization
 gem 'scram', '~> 0.1.1'
+# Use groupify in conjunction with Scram
+gem 'groupify', '~> 0.8.0'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
