@@ -45,6 +45,8 @@ gem 'jbuilder', '~> 2.5'
 # Use Devise for user authentication
 gem 'devise'
 gem 'omniauth-google-oauth2'
+# Use scram for authorization
+gem 'scram', '~> 0.1.1'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

@@ -1,7 +1,13 @@
 module Admin
-  class BaseController < ::ApplicationController
+  class BaseController < ApplicationController
+    before_action :check_admin
+
     def index
-      redirect_to new_user_session_path
+    end
+
+    private
+    def check_admin
+      authorize :admin_panel, :view
     end
   end
 end

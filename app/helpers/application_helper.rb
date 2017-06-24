@@ -13,7 +13,10 @@ module ApplicationHelper
     case flash_key
     when "notice"
       "info"
-    # TODO
+    when "alert"
+      "danger"
+    else
+      flash_key
     end
   end
 end
