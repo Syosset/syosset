@@ -1,4 +1,5 @@
 require "capybara/rspec"
+require 'support/warden'
 require 'support/factory_girl'
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'

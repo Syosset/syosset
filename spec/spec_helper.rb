@@ -16,9 +16,19 @@ require "mongoid"
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
   Mongoid.load!("./spec/config/mongoid.yml", :test)
+
   # Clean/Reset Mongoid DB prior to running each test.
   config.before(:each) do
     Mongoid::Clients.default.collections.select {|c| c.name !~ /system/ }.each(&:drop)
+  end
+
+  # Reset warden after tests
+  config.after(:each) do
+    Warden.test_reset!
+  end
+  
+  config.before(:all) do
+    FactoryGirl.reload
   end
 
   # rspec-expectations config goes here. You can use an alternate
