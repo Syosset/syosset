@@ -7,8 +7,8 @@ module Concerns
       has_one :collaborator_group, as: :collaboratable, dependent: :destroy
 
       scram_define do
-        condition :collaborators do |club|
-          collaborators_list.members
+        condition :collaborators do |collaboratable|
+          User.in_group(collaboratable.collaborator_group).map(&:scram_compare_value).to_a
         end
       end
     end
