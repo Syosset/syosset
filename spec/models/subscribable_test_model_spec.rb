@@ -50,5 +50,15 @@ RSpec.describe "Subscribable Models", type: :model do
     expect(Alert.user(user2).first).to be_truthy
   end
 
+  it "allows overriding the subscription alert class" do
+    subject.subscribe_user(user)
+    subject.alert_subscribers
+    alert = Alert.user(user).first
+
+    expect(alert.link).to eq "i-love-tests"
+    alert.rich_message.each do |element|
+      expect(element[:message]).to eq "The tests went well."
+    end
+  end
 
 end

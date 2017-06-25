@@ -3,6 +3,7 @@ require_dependencies 'user/*'
 class User
   include Mongoid::Document
   include Scram
+  include Alerts
 
 	groupify :group_member, group_class_name: 'CollaboratorGroup'
 

@@ -18,5 +18,15 @@ FactoryGirl.define do
       end
     end
 
+    factory :user_with_alerts do
+      transient do
+        alerts_count 5
+      end
+
+      after(:create) do |user, evaluator|
+        create_list(:alert, evaluator.alerts_count, user: user)
+      end
+    end
+
   end
 end
