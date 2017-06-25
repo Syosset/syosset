@@ -57,6 +57,10 @@ class Subscription
     def alerts
       Alert.in(subscription: all.to_a)
     end
+
+    def cancel!
+      active.update_all(unsubscribed: true)
+    end
   end
 
   delegate :link, :alert_class, to: :subscribable
