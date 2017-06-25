@@ -77,3 +77,19 @@
                 =link_to t('menu.account.sign_in'), new_user_session_path
               %li
                 =link_to t('menu.account.sign_up'), new_user_registration_path
+        %li.nav-item.dropdown
+          %a.dropdown-toggle{"data-close-others" => "false", "data-delay" => "0", "data-hover" => "dropdown", "data-toggle" => "dropdown", :href => "#"}
+            %span.badge.visible-md-inline.visible-lg-inline{class: @alert_count > 0 ? "badge-warning" : ""}= @alert_count
+            .visible-xs.visible-sm
+              %i.fa.fa-exclamation-circle
+              Alerts
+              %b.caret
+          %ul.dropdown-menu.dropdown-menu-right
+            - @alerts.each do |alert|
+              %li= render partial: 'partials/alerts/alert', object: alert
+            - if @alert_count > 25
+              %li
+                %a{:href => alerts_path} And #{@alert_count - 25} more...
+            - if @alert_count == 0
+              %li
+                %a{href: alerts_path} No unread alerts!

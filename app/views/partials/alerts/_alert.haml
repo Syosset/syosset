@@ -1,0 +1,8 @@
+%a{href: alert_path(alert)}
+    - alert.rich_message.each do |element|
+        - if element[:user]
+            = element[:user].name
+        = element[:message].html_safe # TODO sanitize?
+        - if element[:time]
+            = time_ago_in_words(alert.updated_at, false, vague: true)
+            ago

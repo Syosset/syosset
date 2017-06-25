@@ -1,0 +1,4 @@
+%h1 Your alerts
+%ul
+  - @all_alerts.each do |alert|
+    = render partial: 'partials/alerts/alert', object: alert

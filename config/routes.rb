@@ -10,4 +10,10 @@ Rails.application.routes.draw do
   namespace :admin do
     root :to => "base#index"
   end
+  
+  resources :alerts do
+    collection do
+      post "read_all"
+    end
+  end
 end
