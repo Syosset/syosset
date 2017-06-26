@@ -58,6 +58,8 @@ gem 'mongoid', '~> 6.1.0'
 # Use Redis for caching
 gem 'redis'
 
+gem 'aasm', '~> 4.11'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -66,6 +68,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.5'
   gem 'factory_girl'
   gem 'rails-controller-testing'
+  gem 'guard-rspec', require: false
 end
 
 group :development do
