@@ -1,4 +1,15 @@
-%h1 All Departments
-%ul
-  - @departments.each do |department|
-    = link_to department.name, department
+.page-wrapper
+  %header.page-heading.clearfix
+    %h1.heading-title.pull-left Departments
+  .page-content
+    .table-responsive
+      %table.table
+        %thead
+          %tr
+            %th Department Name
+            %th Description
+        %tbody
+          - @departments.each do |department|
+            %tr
+              %td= link_to department.name, department
+              %td= department.short_description

@@ -1,19 +1,18 @@
-.content.container
-  .page-wrapper
-    %header.page-heading.clearfix
-      %h1.heading-title.pull-left= t('.title')
-    .page-content
-      .row.page-row
-        %article.welcome
-          %p= image_tag("shs-picture-1.jpg", class: "blur img-responsive")
-          %h3.title= t('.info.title')
-          %blockquote.custom-quote
-            %p
-              %i.fa.fa-quote-left
-              = t('.principal.statement')
-            %p.people
-              %span.name= t('.principal.name')
-              %br/
-              %span.title Principle, Syosset High School
+.page-wrapper
+  %header.page-heading.clearfix
+    %h1.heading-title.pull-left= t('.title')
+  .page-content
+    .row.page-row
+      %article.welcome.container
+        %p= image_tag("shs-picture-1.jpg", class: "img-responsive")
+        %h3.title= t('.info.title')
+        %blockquote.custom-quote
+          %p
+            %i.fa.fa-quote-left
+            = t('.principal.statement')
+          %p.people
+            %span.name= t('.principal.name')
+            %br/
+            %span.title Principle, Syosset High School
 
-          %p= t('.info.text')
+        %p= t('.info.text')

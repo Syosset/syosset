@@ -1,1 +1,29 @@
-%h1= @department.name
+.page-wrapper
+  %header.page-heading.clearfix
+    %h1.heading-title.pull-left= @department.name
+  .page-content
+    .row.page-row
+      .courses-wrapper.col-md-8.col-sm-7
+        = @department.content.html_safe
+
+      %aside.page-sidebar.col-md-3.col-md-offset-1.col-sm-4.col-sm-offset-1
+        %section.widget.has-divider
+          %h3.title
+            %i.fa.fa-phone
+            Contact Department
+          %p Call us at 000-000-0000
+        %section.widget.has-divider
+          %h3.title
+            %i.fa.fa-bell
+            Announcements
+          %p Donec pulvinar arcu lacus, 20% vel aliquam libero scelerisque a.
+        %section.widget.has-divider
+          %h3.title
+            %i.fa.fa-link
+            Links
+          %p Donec pulvinar arcu lacus, 20% vel aliquam libero scelerisque a.
+        %section.widget.has-divider
+          %h3.title
+            %i.fa.fa-users
+            Teachers
+          %p Donec pulvinar arcu lacus, 20% vel aliquam libero scelerisque a.
