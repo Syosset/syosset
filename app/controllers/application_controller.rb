@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
 
   def autocomplete
     if params[:term]
-      @users = User.any_of({name: /.*#{params[:term]}.*/})
+      @users = User.any_of({name: /.*#{params[:term]}.*/i}, {email: /.*#{params[:term]}.*/i}).limit(5)
     else
       @users = User.all
     end
