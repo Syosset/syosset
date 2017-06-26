@@ -23,12 +23,10 @@ module ScramUtils
     def authorize(holder, action, object)
       # clusters: (new, create), (edit, update)
       automap = {
-        :new => :create,
-        :update => :edit
+        "new" => "create",
+        "update" => "edit"
       }
-
       action = automap[action] if automap[action]
-
       unless holder.can?(action, object)
         raise NotAuthorizedError, action: action, object: object
       end

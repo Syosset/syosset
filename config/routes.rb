@@ -8,9 +8,10 @@ Rails.application.routes.draw do
   get 'day_color', controller: 'day_color', action: 'day_color'
 
   resources :departments, shallow: true
-  
+
   namespace :admin do
     root :to => "base#index"
+    resources :departments, shallow: true, only: [:new, :create, :edit, :update, :destroy]
   end
 
   resources :alerts do

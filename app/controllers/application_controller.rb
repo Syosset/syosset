@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
   def set_navbar_resources
     @departments = Department.all # TODO cache
   end
-  
+
   def find_alerts
     if user_signed_in?
       q = current_user.alerts.unread.desc(:updated_at)

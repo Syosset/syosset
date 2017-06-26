@@ -1,0 +1,17 @@
+= form_for [:admin, @department] do |f|
+  - if @department.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@department.errors.count, "error")} prohibited this group from being saved:"
+      %ul
+        - @department.errors.full_messages.each do |msg|
+          %li= msg
+  .form-group
+    = f.label :name
+    = f.text_field :name, placeholder: "Name"
+    = f.label :short_description
+    = f.text_field :short_description, placeholder: "Short Description"
+    = f.label :content
+    = f.text_area :content, placeholder: "Content", class: "tinymce", rows: 10
+
+  = f.submit "Save", class: "btn btn-default", id: "submit-button"
+/= tinymce

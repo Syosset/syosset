@@ -15,6 +15,21 @@ module Scram
     DEFAULT_POLICIES << test_policy
   end
 
+  # TODO remove admin stuff
+  admin_policy = Policy.new(name: "Admin Information")
+  admin_policy.targets.build(conditions: {equals: {:'*target_name' => "peek_bar"}}, actions: ["view"])
+  admin_policy.targets.build(conditions: {equals: {:'*target_name' => "admin_panel"}}, actions: ["view"])
+
+  department_admin_policy = Policy.new(name: "Admin Department Management", context: Department.to_s)
+  department_admin_policy.targets.build(conditions: {}, actions: ["create", "destroy"])
+
+  DEFAULT_POLICIES << admin_policy
+  DEFAULT_POLICIES << department_admin_policy
+
+  department_default_policy = Policy.new(name: "Collaborator Department Management", context: Department.to_s)
+  department_default_policy.targets.build(conditions: { :includes => { :'*collaborators' =>  "*holder"  } }, actions: ["edit"])
+
+  DEFAULT_POLICIES << department_default_policy
   DEFAULT_POLICIES.freeze
 
   # Class to be a holder with the DEFAULT_POLICIES when a User is not available.
