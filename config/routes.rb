@@ -12,6 +12,9 @@ Rails.application.routes.draw do
   namespace :admin do
     root :to => "base#index"
     resources :departments, shallow: true, only: [:new, :create, :edit, :update, :destroy]
+    resources :collaborator_groups, only: [:edit, :update] do
+      # TODO patch adding members and removing members
+    end
   end
 
   resources :alerts do
