@@ -3,6 +3,9 @@ class DepartmentsController < ApplicationController
 
   def index
     # @departments is set by the application controller (for the navbar listing)
+    actions_builder = ActionsBuilder.new(current_holder)
+    actions_builder.require(:create, @department).add_action("New Department", :get, new_admin_department_path(@department))
+    @actions = actions_builder.actions
   end
 
   def show
