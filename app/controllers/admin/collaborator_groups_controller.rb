@@ -27,7 +27,7 @@ module Admin
 
     private
     def find_user
-      @user = User.find(collaborator_group_params[:user])
+      @user = User.find(collaborator_group_params[:user_id])
     end
 
     def find_collaborator_group

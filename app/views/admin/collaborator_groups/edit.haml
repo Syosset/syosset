@@ -12,7 +12,7 @@
           %li.list-group-item
             = user.name
             %span.pull-right
-              %a.btn.btn-xs.btn-warning{href: admin_collaborator_group_remove_collaborator_path(@collaborator_group, user: user), data: {method: 'post'}}
+              %a.btn.btn-xs.btn-warning{href: admin_collaborator_group_remove_collaborator_path(@collaborator_group, user_id: user), data: {method: 'post'}}
                 %span.glyphicon.glyphicon-trash
       .panel-footer
         %b Search by name or email address
@@ -21,7 +21,7 @@
             %input#search.form-control{:placeholder => "Search", :type => "text",  "data-provide" => "typeahead"}
             %span.input-group-btn
               = f.submit "Add Collaborator", class: "btn btn-default"
-            %input#search_id{:name => "user", :type => "hidden"}/
+            %input#search_id{:name => "user_id", :type => "hidden"}/
 
 :javascript
   $(function() {
