@@ -1,0 +1,10 @@
+%section.section.section-padded
+  .section-header.container-fluid.row-fluid
+    %h3
+      View Escalation Requests
+  .container-fluid
+    .row-fluid
+      %ul.list-group
+        - @escalation_requests.each do |request|
+          %li.list-group-item
+            = request.escalatable

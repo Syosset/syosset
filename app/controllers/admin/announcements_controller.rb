@@ -27,17 +27,17 @@ module Admin
     end
 
     def edit
-      authorize @announceable, :edit
+      authorize @announcement, :edit
     end
 
     def update
-      authorize @announceable, :edit
+      authorize @announcement, :edit
       @announcement.update!(announcement_params)
       redirect_to @announcement, flash: {:success => "Announcement has been updated"}
     end
 
     def destroy
-      authorize @announceable, :edit
+      authorize @announcement, :edit
       @announcement.destroy
       redirect_to @announcement.announceable, flash: {:alert => "Announcement destroyed"}
     end

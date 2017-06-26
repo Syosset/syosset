@@ -1,8 +1,8 @@
 class Announcement
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Scram::DSL::ModelConditions
   include Concerns::Descriptable
-  include Concerns::Collaboratable
   include Concerns::Escalatable
 
   after_create :alert_subscribers
@@ -12,6 +12,16 @@ class Announcement
 
   validates_presence_of :name, :content
 
+  scram_define do
+    condition :collaborators do |announcement|
+      if announcement.announceable.is_a? Concerns::Collaboratable
+        announcement.announceable.send("*collaborators")
+      else
+        User.all.select{ |u| u.can?(:edit, announcement.announceable) }.map(&:scram_compare_value).to_a
+      end
+    end
+  end
+  
   class Alert < Subscription::Alert
       belongs_to :poster, class_name: 'User'
       belongs_to :announcement

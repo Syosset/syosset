@@ -3,6 +3,11 @@ module Admin
     before_action :get_escalatable, only: [:new, :create]
     before_action :get_escalation_request, only: [:update, :destroy, :edit]
 
+    def index
+      authorize EscalationRequest
+      @escalation_requests = EscalationRequest.all
+    end
+
     def create
       authorize @escalatable, :edit
 
@@ -58,7 +63,7 @@ module Admin
     end
 
     def escalation_request_params
-      params.require(:escalation_request).permit!
+      params.permit(:escalation_request).permit!
     end
   end
 end

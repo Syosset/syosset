@@ -26,6 +26,7 @@ module Scram
   }
 
   DEFAULT_POLICIES << collaborator_policy.call(Department)
+  DEFAULT_POLICIES << collaborator_policy.call(Announcement)
 
   DEFAULT_POLICIES.freeze
 
