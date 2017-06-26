@@ -18,6 +18,7 @@ class EscalationRequest
     event :approve, after: Proc.new {|reviewer| self.reviewer = reviewer } do
       after do
         EscalationRequest::Alert::Accepted.create(user: self.requester, escalation_request: self)
+        self.escalatable.update!(escalated: true)
       end
 
       transitions from: :pending, to: :approved

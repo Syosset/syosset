@@ -3,6 +3,7 @@ class Announcement
   include Mongoid::Timestamps
   include Concerns::Descriptable
   include Concerns::Collaboratable
+  include Concerns::Escalatable
 
   after_create :alert_subscribers
 

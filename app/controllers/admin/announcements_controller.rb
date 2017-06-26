@@ -1,10 +1,11 @@
 module Admin
   class AnnouncementsController < BaseController
-    before_action :get_announceable, only: [:new, :create]
+    before_action :get_announceable, only: [:new, :create, :edit, :update]
     before_action :get_announcement, only: [:update, :destroy, :edit]
 
     def create
       authorize @announceable, :edit
+
       @announcement = Announcement.new(announcement_params)
       @announcement.poster = current_user
       @announcement.announceable = @announceable
@@ -26,17 +27,17 @@ module Admin
     end
 
     def edit
-      authorize @announcement.announceable, :edit
+      authorize @announceable, :edit
     end
 
     def update
-      authorize @announcement.announceable, :edit
+      authorize @announceable, :edit
       @announcement.update!(announcement_params)
-      redirect_to @announcement.announceable, flash: {:success => "Announcement has been updated"}
+      redirect_to @announcement, flash: {:success => "Announcement has been updated"}
     end
 
     def destroy
-      authorize @announcement.announceable, :edit
+      authorize @announceable, :edit
       @announcement.destroy
       redirect_to @announcement.announceable, flash: {:alert => "Announcement destroyed"}
     end

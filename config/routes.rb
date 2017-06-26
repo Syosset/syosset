@@ -3,9 +3,12 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   root 'welcome#index'
-  get 'about' => 'welcome#about'
 
+  get 'about' => 'welcome#about'
   get 'day_color', controller: 'day_color', action: 'day_color'
+  get 'autocomplete', :to => 'application#autocomplete'
+
+  resources :announcements
 
   resources :departments, shallow: true do
     member do
@@ -14,15 +17,14 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :announcements
-
-  get 'autocomplete', :to => 'application#autocomplete'
-
   namespace :admin do
     root :to => "base#index"
+
     resources :announcements
 
     resources :departments, shallow: true, only: [:new, :create, :edit, :update, :destroy]
+
+    resources :escalation_requests
 
     resources :collaborator_groups, only: [:edit, :update] do
       post "add_collaborator", action: :add_collaborator, as: :add_collaborator

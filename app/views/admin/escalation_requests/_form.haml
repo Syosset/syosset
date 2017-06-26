@@ -1,0 +1,3 @@
+= form_for [:admin, @escalation_request] do |f|
+  = hidden_field_tag "#{@escalatable.class.to_s.downcase}_id", "#{@escalatable.id}"
+  = f.submit "Save Escalation Request", class: "btn btn-success pull-right", id: "submit-button"

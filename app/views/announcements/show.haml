@@ -1,5 +1,12 @@
-%h1= @announcement.name
-- announceable = @announcement.announceable
-= link_to "Posted under #{announceable.send("name") || "a #{announceable.class.to_s.humanize}"}", announceable
-%p
-  = @announcement.content
+.page-wrapper
+  %header.page-heading.clearfix
+    %h1.heading-title.pull-left
+      = @announcement.name
+      %small
+        - announceable = @announcement.announceable
+        = link_to "Posted under #{announceable.send("name") || "a #{announceable.class.to_s.humanize}"}", announceable
+    = render partial: "partials/modtools", locals: {actions: @actions}
+  .page-content
+    .row-fluid.page-row
+
+      = @announcement.content

@@ -29,9 +29,10 @@
             - @department.announcements.each do |announcement|
               %li.list-group-item
                 = link_to announcement.name, announcement
-                %span.pull-right
-                  %a.btn.btn-xs.btn-warning{href: admin_announcement_path(announcement), data: {method: 'delete', confirm: 'Are you sure?' } }
-                    %span.glyphicon.glyphicon-trash
+                - if user_signed_in? && current_user.can?(:edit, @department)
+                  %span.pull-right
+                    %a.btn.btn-xs.btn-warning{href: admin_announcement_path(announcement), data: {method: 'delete', confirm: 'Are you sure?' } }
+                      %span.glyphicon.glyphicon-trash
         %section.widget.has-divider
           %h3.title
             %i.fa.fa-link
