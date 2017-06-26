@@ -40,4 +40,8 @@ module ScramUtils
     holder = user_signed_in? ? current_user : Scram::DEFAULT_HOLDER
     return ScramUtils.authorize(holder, action, object)
   end
+
+  def current_holder
+    user_signed_in? ? current_user : Scram::DEFAULT_HOLDER
+  end
 end
