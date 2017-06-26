@@ -1,5 +1,5 @@
 class DepartmentsController < ApplicationController
-  before_action :get_department, only: [:show]
+  before_action :get_department, only: [:show, :subscribe, :unsubscribe]
 
   def index
     # @departments is set by the application controller (for the navbar listing)
@@ -14,6 +14,16 @@ class DepartmentsController < ApplicationController
     actions_builder.require(:edit, @department).add_action("Manage Collaborators", :get, edit_admin_collaborator_group_path(@department.collaborator_group))
     actions_builder.require(:destroy, @department).add_action("Destroy Department", :delete, admin_department_path(@department), data: { confirm: 'Are you sure?' })
     @actions = actions_builder.actions
+  end
+
+  def subscribe
+    @department.subscribe_user(current_user)
+    redirect_to department_path(@department), :notice => 'Successfully subscribed to department.'
+  end
+
+  def unsubscribe
+    @department.unsubscribe_user(current_user)
+    redirect_to department_path(@department), :notice => 'Successfully un-subscribed from department.'
   end
 
   private

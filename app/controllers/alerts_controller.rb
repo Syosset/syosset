@@ -13,7 +13,7 @@ class AlertsController < ApplicationController
       if alert.link
         redirect_to alert.link
       else
-        redirect_to_back
+        redirect_back
       end
     end
 
