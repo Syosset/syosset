@@ -7,11 +7,13 @@
           %li= msg
   .form-group
     = f.label :name
-    = f.text_field :name, placeholder: "Name"
+    = f.text_field :name, placeholder: "Name", class: "form-control"
+  .form-group
     = f.label :short_description
-    = f.text_field :short_description, placeholder: "Short Description"
+    = f.text_field :short_description, placeholder: "Short Description", class: "form-control"
+  .form-group
     = f.label :content
-    = f.text_area :content, placeholder: "Content", class: "tinymce", rows: 10
+    = f.text_area :content, placeholder: "Content", class: "tinymce", rows: 10, class: "form-control"
 
-  = f.submit "Save", class: "btn btn-default", id: "submit-button"
+  = f.submit "Save", class: "btn btn-success pull-right", id: "submit-button"
 /= tinymce
