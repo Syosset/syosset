@@ -7,10 +7,12 @@ Rails.application.routes.draw do
 
   get 'day_color', controller: 'day_color', action: 'day_color'
 
+  resources :departments, shallow: true
+  
   namespace :admin do
     root :to => "base#index"
   end
-  
+
   resources :alerts do
     collection do
       post "read_all"

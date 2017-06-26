@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :find_alerts
+  before_action :set_navbar_resources
 
   rescue_from ScramUtils::NotAuthorizedError do |exception|
     respond_to do |format|
@@ -17,6 +18,10 @@ class ApplicationController < ActionController::Base
   end
 
   private
+  def set_navbar_resources
+    @departments = Department.all # TODO cache
+  end
+  
   def find_alerts
     if user_signed_in?
       q = current_user.alerts.unread.desc(:updated_at)

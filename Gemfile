@@ -55,6 +55,8 @@ gem 'groupify', '~> 0.8.0'
 
 # Use Mongoid for ODM
 gem 'mongoid', '~> 6.1.0'
+# Use mongoid-slug for pretty urls
+gem 'mongoid-slug', '~> 5.2'
 # Use Redis for caching
 gem 'redis'
 

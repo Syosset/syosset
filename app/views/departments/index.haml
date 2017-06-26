@@ -1,0 +1,4 @@
+%h1 All Departments
+%ul
+  - @departments.each do |department|
+    = link_to department.name, department
