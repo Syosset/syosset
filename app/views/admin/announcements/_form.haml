@@ -1,16 +1,9 @@
-= form_for [:admin, @department] do |f|
+= form_for [:admin, @announcement] do |f|
+  = hidden_field_tag "#{@announceable.class.to_s.downcase}_id", "#{@announceable.id}"
   .form-group
     = f.label :name
     = f.text_field :name, placeholder: "Name", class: "form-control"
   .form-group
-    = f.label :phone
-    = f.text_field :phone, placeholder: "Phone Number", class: "form-control"
-  .form-group
-    = f.label :short_description
-    = f.text_field :short_description, placeholder: "Short Description", class: "form-control"
-  .form-group
     = f.label :content
     = f.text_area :content, placeholder: "Content", class: "tinymce", rows: 10, class: "form-control"
-
   = f.submit "Save", class: "btn btn-success pull-right", id: "submit-button"
-/= tinymce

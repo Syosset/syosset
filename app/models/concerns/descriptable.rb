@@ -3,9 +3,9 @@ module Concerns
     extend ActiveSupport::Concern
 
     included do
-      field :name, type: String, default: ""
-      field :short_description, type: String, default: ""
-      field :content, type: String, default: ""
+      field :name, type: String
+      field :short_description, type: String
+      field :content, type: String
     end
   end
 end

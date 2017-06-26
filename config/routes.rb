@@ -20,7 +20,10 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root :to => "base#index"
+    resources :announcements
+
     resources :departments, shallow: true, only: [:new, :create, :edit, :update, :destroy]
+
     resources :collaborator_groups, only: [:edit, :update] do
       post "add_collaborator", action: :add_collaborator, as: :add_collaborator
       post "remove_collaborator", action: :remove_collaborator, as: :remove_collaborator

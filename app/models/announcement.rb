@@ -6,6 +6,8 @@ class Announcement
   belongs_to :announceable, polymorphic: true
   belongs_to :poster, class_name: "User"
 
+  validates_presence_of :name, :content
+
   class Alert < Subscription::Alert
       belongs_to :poster, class_name: 'User'
       belongs_to :announcement

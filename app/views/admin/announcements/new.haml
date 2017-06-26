@@ -1,0 +1,8 @@
+%section.section.section-padded
+  .section-header
+    %h3
+      New Announcement
+  .container-fluid
+    .row-fluid
+      = render 'form'
+      = link_to 'Back',  @announceable, class: "btn btn-warning pull-right"
