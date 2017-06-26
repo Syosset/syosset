@@ -1,5 +1,6 @@
 class Announcement
   include Mongoid::Document
+  include Mongoid::Timestamps
   include Concerns::Descriptable
   include Concerns::Collaboratable
 
