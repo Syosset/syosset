@@ -1,0 +1,22 @@
+.page-wrapper
+  %header.page-heading.clearfix
+    %h1.heading-title.pull-left
+      Manage collaborators for
+      = link_to @collaborator_group.collaboratable.name || "resource", @collaborator_group.collaboratable
+  .page-content
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title Collaborators
+      %ul.list-group
+        - User.in_group(@collaborator_group).each do |user|
+          %li.list-group-item
+            = user.name
+            %span.pull-right
+              %a.btn.btn-xs.btn-warning{href: admin_collaborator_group_remove_collaborator_path(@collaborator_group, user: user)}
+                %span.glyphicon.glyphicon-trash
+      .panel-footer
+        %b Search by name or email address
+        .input-group
+          %input.form-control{:placeholder => "Search", :type => "text",  "data-provide" => "typeahead"}
+          %span.input-group-btn
+            %button.btn.btn-default{:type => "button"} Add Collaborator

@@ -2,6 +2,12 @@ module Admin
   class CollaboratorGroupsController < BaseController
     before_action :get_collaborator_group
 
+    def add_collaborator
+    end
+
+    def remove_collaborator
+    end
+
     def edit
       authorize @collaborator_group.collaboratable
     end

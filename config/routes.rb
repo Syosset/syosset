@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     resources :departments, shallow: true, only: [:new, :create, :edit, :update, :destroy]
     resources :collaborator_groups, only: [:edit, :update] do
       # TODO patch adding members and removing members
+      patch "add_collaborator"
+      patch "remove_collaborator"
     end
   end
 

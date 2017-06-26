@@ -8,7 +8,7 @@ class DepartmentsController < ApplicationController
   def show
     actions_builder = ActionsBuilder.new(current_holder)
     actions_builder.require(:edit, @department).add_action("Edit Department", :get, edit_admin_department_path(@department))
-    actions_builder.require(:edit, @department).add_action("Add Collaborator", :get, edit_admin_collaborator_group_path(@department.collaborator_group))
+    actions_builder.require(:edit, @department).add_action("Manage Collaborators", :get, edit_admin_collaborator_group_path(@department.collaborator_group))
     actions_builder.require(:destroy, @department).add_action("Destroy Department", :delete, admin_department_path(@department), data: { confirm: 'Are you sure?' })
     @actions = actions_builder.actions
   end
