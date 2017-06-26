@@ -25,10 +25,13 @@
           %h3.title
             %i.fa.fa-bell
             Announcements
-          %ul.nav.nav-pills.nav-stacked
+          %ul.list-group
             - @department.announcements.each do |announcement|
-              %li= link_to announcement.name, announcement
-
+              %li.list-group-item
+                = link_to announcement.name, announcement
+                %span.pull-right
+                  %a.btn.btn-xs.btn-warning{href: admin_announcement_path(announcement), data: {method: 'delete', confirm: 'Are you sure?' } }
+                    %span.glyphicon.glyphicon-trash
         %section.widget.has-divider
           %h3.title
             %i.fa.fa-link

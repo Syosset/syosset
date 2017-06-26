@@ -4,6 +4,8 @@ class Announcement
   include Concerns::Descriptable
   include Concerns::Collaboratable
 
+  after_create :alert_subscribers
+
   belongs_to :announceable, polymorphic: true
   belongs_to :poster, class_name: "User"
 
@@ -19,13 +21,18 @@ class Announcement
       delegate :link, to: :announcement
 
       def rich_message
-        #binding.pry
         [{user: poster, message: " has posted an announcement in a #{announcement.announceable.class.to_s.humanize} you are subscribed to."}]
       end
   end
 
   def link
     announceable
+  end
+
+  def alert_subscribers
+    if announceable.is_a? Concerns::Subscribable
+      announceable.alert_subscribers(except: [poster], announcement: self, poster: poster)
+    end
   end
 
 end
