@@ -8,14 +8,15 @@ Rails.application.routes.draw do
   get 'day_color', controller: 'day_color', action: 'day_color'
 
   resources :departments, shallow: true
+  get 'autocomplete', :to => 'application#autocomplete'
 
   namespace :admin do
     root :to => "base#index"
     resources :departments, shallow: true, only: [:new, :create, :edit, :update, :destroy]
     resources :collaborator_groups, only: [:edit, :update] do
       # TODO patch adding members and removing members
-      patch "add_collaborator"
-      patch "remove_collaborator"
+      post "add_collaborator"
+      post "remove_collaborator"
     end
   end
 

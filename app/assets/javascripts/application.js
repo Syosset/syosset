@@ -12,6 +12,7 @@
 //
 //= require rails-ujs
 //= require jquery
+//= require jquery-ui
 //= require turbolinks
 //= require bootstrap/dist/js/bootstrap
 //= require jquery.flexslider

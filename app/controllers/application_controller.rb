@@ -12,6 +12,18 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def autocomplete
+    if params[:term]
+      @users = User.any_of({name: /.*#{params[:term]}.*/})
+    else
+      @users = User.all
+    end
+
+    respond_to do |format|
+      format.json { render :json => @users.map{|u| {value: u.id.to_s, label: u.name, desc: u.email} }.to_json }
+      end
+  end
+
   protected
   def valid_user
     redirect_to new_user_session_path, :alert => 'You must be signed in to do this.' unless user_signed_in?

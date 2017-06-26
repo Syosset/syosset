@@ -14,6 +14,8 @@ gem 'capybara', '~> 2.7', '>= 2.7.1'
 gem 'poltergeist', '~> 1.15'
 gem 'launchy', '~> 2.4', '>= 2.4.3'
 
+gem 'jquery-ui-rails', '~> 6.0', '>= 6.0.1'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.1'
 # Use Puma as the app server
