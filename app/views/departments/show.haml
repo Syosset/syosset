@@ -25,7 +25,10 @@
           %h3.title
             %i.fa.fa-bell
             Announcements
-          %p Donec pulvinar arcu lacus, 20% vel aliquam libero scelerisque a.
+          %ul.nav.nav-pills.nav-stacked
+            - @department.announcements.each do |announcement|
+              %li= link_to announcement.name, announcement
+
         %section.widget.has-divider
           %h3.title
             %i.fa.fa-link

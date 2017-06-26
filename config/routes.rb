@@ -13,7 +13,9 @@ Rails.application.routes.draw do
       post :unsubscribe
     end
   end
-  
+
+  resources :announcements
+
   get 'autocomplete', :to => 'application#autocomplete'
 
   namespace :admin do

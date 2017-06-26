@@ -1,0 +1,5 @@
+%h1= @announcement.name
+- announceable = @announcement.announceable
+= link_to "Posted under #{announceable.send("name") || "a #{announceable.class.to_s.humanize}"}", announceable
+%p
+  = @announcement.content
