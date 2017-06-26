@@ -19,4 +19,15 @@ RSpec.describe Admin::DepartmentsController, type: :controller do
     end
   end
 
+  describe "DELETE destroy" do
+    before(:each) do
+        @department = create(:department)
+        @department2 = create(:department)
+        delete :destroy, params: { id: @department.id }
+    end
+
+    it 'should delete the department' do
+        expect(Department.all.to_a).to eq [@department2]
+    end
+  end
 end
