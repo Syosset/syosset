@@ -9,8 +9,10 @@
           %tr
             %th Department Name
             %th Description
+            %th Phone Number
         %tbody
           - @departments.each do |department|
             %tr
               %td= link_to department.name, department
               %td= department.short_description
+              %td= department.phone
