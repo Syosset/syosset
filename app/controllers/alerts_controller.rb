@@ -19,6 +19,6 @@ class AlertsController < ApplicationController
 
     def read_all
       Alert.user(current_user).mark_read!
-      redirect_to_back alerts_path, alert: "Marked all alerts as read"
+      redirect_to alerts_path, alert: "Marked all alerts as read"
     end
 end

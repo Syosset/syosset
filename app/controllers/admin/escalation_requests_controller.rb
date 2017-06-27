@@ -1,11 +1,25 @@
 module Admin
   class EscalationRequestsController < BaseController
     before_action :get_escalatable, only: [:new, :create]
-    before_action :get_escalation_request, only: [:update, :destroy, :edit]
+    before_action :get_escalation_request, only: [:update, :destroy, :edit, :approve, :deny]
+
+    def approve
+      authorize :approve, @escalation_request
+      @escalation_request.approve!(current_user)
+      flash[:notice] = 'Escalation request successfully approved.'
+      redirect_to admin_escalation_requests_path
+    end
+
+    def deny
+      authorize :approve, @escalation_request
+      @escalation_request.deny!(current_user)
+      flash[:notice] = 'Escalation request successfully denied.'
+      redirect_to admin_escalation_requests_path
+    end
 
     def index
       authorize EscalationRequest
-      @escalation_requests = EscalationRequest.all
+      @escalation_requests = EscalationRequest.filter(params.slice(:status)).desc(:updated_at)
     end
 
     def create
@@ -59,7 +73,7 @@ module Admin
     end
 
     def get_escalation_request
-      @escalation_request = EscalationRequest.find(params[:id])
+      @escalation_request = EscalationRequest.find(params[:id] || params[:escalation_request_id])
     end
 
     def escalation_request_params

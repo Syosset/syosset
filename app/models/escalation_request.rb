@@ -1,5 +1,7 @@
 class EscalationRequest
   include Mongoid::Document
+  include Mongoid::Timestamps
+  include Concerns::Filterable
   include AASM
 
   belongs_to :requester, class_name: "User"
@@ -9,6 +11,8 @@ class EscalationRequest
   field :status
 
   validates_presence_of :requester, :escalatable
+
+  scope :status, -> (status) { where status: status }
 
   aasm column: :status do
     state :pending, initial: true
@@ -21,15 +25,16 @@ class EscalationRequest
         self.escalatable.update!(escalated: true)
       end
 
-      transitions from: :pending, to: :approved
+      transitions from: [:pending, :denied], to: :approved
     end
 
     event :deny, after: Proc.new {|reviewer| self.reviewer = reviewer } do
       after do
         EscalationRequest::Alert::Denied.create(user: self.requester, escalation_request: self)
+        self.escalatable.update!(escalated: false)
       end
 
-      transitions from: :pending, to: :denied
+      transitions from: [:pending, :approved], to: :denied
     end
   end
 
@@ -53,13 +58,13 @@ class EscalationRequest
 
     class Accepted < Base
       def rich_message
-          [{user: escalation_request.reviewer}, {message: " denied your escalation request" }]
+          [{user: escalation_request.reviewer}, {message: " accepted your escalation request for #{escalatable.send("name") || "a " + escalatable.class.name}" }]
       end
     end
 
     class Denied < Base
       def rich_message
-          [{message: "Your request to escalate a " + escalatable_type + " was denied by " + escalation_request.reviewer.name }]
+          [{user: escalation_request.reviewer}, {message: " denied your escalation request for #{escalatable.send("name") || "a " + escalatable.class.name}" }]
       end
     end
   end

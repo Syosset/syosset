@@ -1,8 +1,11 @@
 %a{href: alert_path(alert)}
+    - if alert.read?
+        %i.fa.fa-eye
     - alert.rich_message.each do |element|
         - if element[:user]
             = element[:user].name
-        = element[:message].html_safe # TODO sanitize?
+        - if element[:message]
+            = element[:message].html_safe # TODO sanitize?
         - if element[:time]
             = time_ago_in_words(alert.updated_at, false, vague: true)
             ago

@@ -24,7 +24,10 @@ Rails.application.routes.draw do
 
     resources :departments, shallow: true, only: [:new, :create, :edit, :update, :destroy]
 
-    resources :escalation_requests
+    resources :escalation_requests do
+      post "approve", action: :approve, as: :approve
+      post "deny", action: :deny, as: :deny
+    end
 
     resources :collaborator_groups, only: [:edit, :update] do
       post "add_collaborator", action: :add_collaborator, as: :add_collaborator

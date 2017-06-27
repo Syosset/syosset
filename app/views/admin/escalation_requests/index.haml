@@ -4,7 +4,40 @@
       View Escalation Requests
   .container-fluid
     .row-fluid
-      %ul.list-group
-        - @escalation_requests.each do |request|
-          %li.list-group-item
-            = request.escalatable
+      = link_to "All", admin_escalation_requests_path(status: ""), class: "btn btn-default"
+      = link_to "Pending", admin_escalation_requests_path(status: "pending"), class: "btn btn-primary"
+      = link_to "Approved", admin_escalation_requests_path(status: "approved"), class: "btn btn-success"
+      = link_to "Denied", admin_escalation_requests_path(status: "denied"), class: "btn btn-danger"
+      .table-responsive
+        %table.table
+          %thead
+            %tr
+              %th Escalatable
+              %th Requester
+              %th Reviewer
+              %th Status
+              %th Created
+              %th Action
+          %tbody
+            - @escalation_requests.each do |request|
+              - case request.status # TODO: Refactor into a view helper
+                - when "pending"
+                - color = "active"
+                - when "approved"
+                - color = "success"
+                - when "denied"
+                - color = "danger"
+
+              %tr{class: color}
+                %td= link_to "#{request.escalatable.class.to_s.humanize}", request.escalatable
+                %td= request.requester.name
+                %td= request.reviewer ? request.reviewer.name : ""
+                %td= request.status
+                %td
+                  = time_ago_in_words(request.created_at)
+                  ago
+                %td
+                  %a.btn.btn-sm.btn-success{href: admin_escalation_request_approve_path(request), data: {method: 'post'}}
+                    %i.fa.fa-check
+                  %a.btn.btn-sm.btn-danger{href: admin_escalation_request_deny_path(request), data: {method: 'post'}}
+                    %i.fa.fa-times

@@ -93,6 +93,7 @@
                 Alerts
                 %b.caret
             %ul.dropdown-menu.dropdown-menu-right
+              %li= link_to "See all alerts", alerts_path
               - @alerts.each do |alert|
                 %li= render partial: 'partials/alerts/alert', object: alert
               - if @alert_count > 25
@@ -100,4 +101,4 @@
                   %a{:href => alerts_path} And #{@alert_count - 25} more...
               - if @alert_count == 0
                 %li
-                  %a{href: alerts_path} No unread alerts!
+                  %a{href: ""} No unread alerts!
