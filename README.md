@@ -17,5 +17,6 @@ The official site is deployed on an EC2 instance running Dokku. To deploy in the
   *  [dokku-mongo](https://github.com/dokku/dokku-mongo)
   *  [dokku-redis](https://github.com/dokku/dokku-redis)
   *  [dokku-apt](https://github.com/F4-Group/dokku-apt)
+  *  [dokku-git-rev](https://github.com/dokku-community/dokku-git-rev)
 
 After deploying, scale the `clock` process to 1 for clockwork: `dokku ps:scale shs-web clock=1`

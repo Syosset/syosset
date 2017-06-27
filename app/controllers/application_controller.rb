@@ -37,7 +37,9 @@ class ApplicationController < ActionController::Base
       while $g.log[i].message =~ /\[HIDE\]/i or $g.log[i].message =~ /Merge ?:(pull request|branch) #(.*)/
         i += 1
       end
-      @revision = $g.log[i]
+      @revision = $g.log[i].sha
+    else
+      @revision = ENV['GIT_REV'] || "???"
     end
   end
 
