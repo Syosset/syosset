@@ -21,7 +21,7 @@ module Concerns
 
     module ClassMethods
       def escalated(limit=5)
-        EscalationRequest.approved.where(escalatable_type: name, :escalation_start_at.lte => Time.now, :escalation_end_at.gte => Time.now).limit(limit).map(&:escalatable)
+        EscalationRequest.approved.where(escalatable_type: name, :escalation_start_at.lte => Time.now, :escalation_end_at.gte => Time.now).limit(limit).map(&:escalatable).uniq!
       end
     end
   end
