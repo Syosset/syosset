@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
 
   before_action :find_alerts
   before_action :set_navbar_resources
+  before_action :get_revision
 
   rescue_from ScramUtils::NotAuthorizedError do |exception|
     respond_to do |format|
@@ -30,6 +31,16 @@ class ApplicationController < ActionController::Base
   end
 
   private
+  def get_revision
+    if defined? $g
+      i = 0
+      while $g.log[i].message =~ /\[HIDE\]/i or $g.log[i].message =~ /Merge ?:(pull request|branch) #(.*)/
+        i += 1
+      end
+      @revision = $g.log[i]
+    end
+  end
+
   def set_navbar_resources
     @departments = Department.all # TODO cache
   end

@@ -2,9 +2,16 @@
   .bottom-bar
     .container
       .row
-        %small.copyright.col-md-6.col-sm-12-col-xs-12
+        %small.copyright.col-md-3.col-sm-12-col-xs-12
           =t('copyright', year: Time.now.year)
-        %ul.social.pull-right.col-md-6.col-sm-12.col-xs-12
+        .commit.col-md-6.col-sm-12-col-xs-12
+          - if current_user
+            %code
+              %a{href:"https://github.com/Syosset/Web/commit/#{@revision.sha}", target: "_blank"} #{@revision.sha[0..5]}
+          - else
+            %code #{@revision.sha[0..5]}
+          #{@revision.message}
+        %ul.social.pull-right.col-md-3.col-sm-12.col-xs-12
           %li
             %a{:href => "https://twitter.com/SyoStudentGov"}
               %i.fa.fa-twitter
