@@ -73,17 +73,15 @@
             - else
               %i.fa.fa-user
             %b.caret
-          %ul.dropdown-menu
+          %ul.dropdown-menu.dropdown-menu-right
             - if user_signed_in?
               %li
-                =link_to t('menu.account.edit'), edit_user_registration_path
-              %li
-                =link_to t('menu.account.sign_out'), destroy_user_session_path, :method => :delete
+                = link_to t('menu.account.sign_out'), destroy_user_session_path, :method => :delete
             - else
               %li
-                =link_to t('menu.account.sign_in'), new_user_session_path
-              %li
-                =link_to t('menu.account.sign_up'), new_user_registration_path
+                = link_to omniauth_authorize_path("user", "google_oauth2") do
+                  = t('menu.account.sign_in_with')
+                  %i.fa.fa-google-plus-square
         - if user_signed_in?
           %li.nav-item.dropdown
             %a.dropdown-toggle{"data-close-others" => "false", "data-delay" => "0", "data-hover" => "dropdown", "data-toggle" => "dropdown", :href => "#"}
