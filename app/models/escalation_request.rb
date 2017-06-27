@@ -43,7 +43,7 @@ class EscalationRequest
 
   module Alert
     class Base < ::Alert
-      belongs_to :escalation_request, index: true, validate: true
+      belongs_to :escalation_request
       field :escalatable_type, type: String
 
       validates_presence_of :escalatable
@@ -71,6 +71,8 @@ class EscalationRequest
       end
     end
   end
+
+  has_many :alerts, dependent: :destroy, class_name: "EscalationRequest::Alert::Base"
 
   delegate :link, :alert_class, to: :escalatable
 
