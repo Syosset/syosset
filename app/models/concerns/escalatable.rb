@@ -3,9 +3,13 @@ module Concerns
     extend ActiveSupport::Concern
 
     included do
-      field :escalated, type: Boolean, default: false
-      scope :escalated, -> { where escalated: true }
+      has_many :escalation_requests, :as => :escalatable, :class_name => "EscalationRequest"
+
+      before_destroy do
+          escalation_requests.destroy_all
+      end
     end
+
 
     def request_escalation(user, note)
       unless EscalationRequest.request_for self
@@ -13,6 +17,12 @@ module Concerns
         return true
       end
       false
+    end
+
+    module ClassMethods
+      def escalated(limit=5)
+        EscalationRequest.approved.where(escalatable_type: name, :escalation_start_at.lte => Time.now, :escalation_end_at.gte => Time.now).limit(limit).map(&:escalatable)
+      end
     end
   end
 end

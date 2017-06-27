@@ -3,4 +3,33 @@
   .form-group
     = f.label :note
     = f.text_field :note, placeholder: "Briefly describe why you want frontpage visibility...", class: "form-control"
+  .row
+    .form-group.col-md-6
+      = f.label :start_date
+      #datetimepicker_start.input-group.date
+        = f.text_field("escalation_start_at", class: "form-control", placeholder: "Start frontpage visibilty date")
+        %span.input-group-addon
+          %i.fa.fa-calendar
+    .form-group.col-md-6
+      = f.label :end_date
+      #datetimepicker_end.input-group.date
+        = f.text_field("escalation_end_at", class: "form-control", placeholder: "End frontpage visibilty date")
+        %span.input-group-addon
+          %i.fa.fa-calendar
   = f.submit "Save Escalation Request", class: "btn btn-success pull-right", id: "submit-button"
+
+
+:javascript
+  $(function () {
+      $('#datetimepicker_start').datetimepicker({format: 'YYYY-MM-DD HH:mm a'});
+      $('#datetimepicker_end').datetimepicker({
+          useCurrent: true,
+          format: 'YYYY-MM-DD HH:mm a'
+      });
+      $("#datetimepicker_start").on("dp.change", function (e) {
+          $('#datetimepicker_end').data("DateTimePicker").minDate(e.date);
+      });
+      $("#datetimepicker_end").on("dp.change", function (e) {
+          $('#datetimepicker_start').data("DateTimePicker").maxDate(e.date);
+      });
+  });

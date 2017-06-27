@@ -1,6 +1,6 @@
 module Admin
   class EscalationRequestsController < BaseController
-    before_action :get_escalatable, only: [:new, :create]
+    before_action :get_escalatable, only: [:new, :create, :edit, :update]
     before_action :get_escalation_request, only: [:update, :destroy, :edit, :approve, :deny]
 
     def approve

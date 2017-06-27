@@ -21,7 +21,7 @@ class Announcement
       end
     end
   end
-  
+
   class Alert < Subscription::Alert
       belongs_to :poster, class_name: 'User'
       belongs_to :announcement

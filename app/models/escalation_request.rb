@@ -10,9 +10,12 @@ class EscalationRequest
 
   field :note, type: String
 
+  field :escalation_start_at, type: Time, default: Time.now
+  field :escalation_end_at, type: Time, default: Time.now + 1.week
+
   field :status
 
-  validates_presence_of :requester, :escalatable, :note
+  validates_presence_of :requester, :escalatable, :note, :escalation_start_at, :escalation_end_at
 
   scope :status, -> (status) { where status: status }
 
@@ -24,7 +27,6 @@ class EscalationRequest
     event :approve, after: Proc.new {|reviewer| self.reviewer = reviewer } do
       after do
         EscalationRequest::Alert::Accepted.create(user: self.requester, escalation_request: self)
-        self.escalatable.update!(escalated: true)
       end
 
       transitions from: [:pending, :denied], to: :approved
@@ -33,7 +35,6 @@ class EscalationRequest
     event :deny, after: Proc.new {|reviewer| self.reviewer = reviewer } do
       after do
         EscalationRequest::Alert::Denied.create(user: self.requester, escalation_request: self)
-        self.escalatable.update!(escalated: false)
       end
 
       transitions from: [:pending, :approved], to: :denied

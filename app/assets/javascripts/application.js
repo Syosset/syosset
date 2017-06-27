@@ -15,6 +15,8 @@
 //= require jquery-ui
 //= require turbolinks
 //= require bootstrap/dist/js/bootstrap
+//= require moment/min/moment.min
+//= require eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min
 //= require jquery.flexslider
 //= require college_green/bootstrap-hover-dropdown
 //= require_tree .

@@ -1,6 +1,6 @@
 class WelcomeController < ApplicationController
   def index
-    @announcements = Announcement.escalated.desc(:created_at).limit(8)
+    @announcements = Announcement.escalated(8).sort_by!(&:created_at)
   end
 
   def about
