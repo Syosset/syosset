@@ -77,7 +77,7 @@ module Admin
     end
 
     def escalation_request_params
-      params.permit(:escalation_request).permit!
+      params.require(:escalation_request).permit!
     end
   end
 end

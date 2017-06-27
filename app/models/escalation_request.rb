@@ -8,9 +8,11 @@ class EscalationRequest
   belongs_to :reviewer, class_name: "User", optional: true
 	belongs_to :escalatable, polymorphic: true
 
+  field :note, type: String
+
   field :status
 
-  validates_presence_of :requester, :escalatable
+  validates_presence_of :requester, :escalatable, :note
 
   scope :status, -> (status) { where status: status }
 

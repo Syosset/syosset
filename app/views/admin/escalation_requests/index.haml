@@ -19,7 +19,7 @@
               %th Created
               %th Action
           %tbody
-            - @escalation_requests.each do |request|
+            - @escalation_requests.each_with_index do |request, index|
               - case request.status # TODO: Refactor into a view helper
                 - when "pending"
                 - color = "active"
@@ -28,7 +28,7 @@
                 - when "denied"
                 - color = "danger"
 
-              %tr{class: color}
+              %tr{class: color, "data-toggle" => "collapse", "data-target" => ".more_info#{index}"}
                 %td= link_to "#{request.escalatable.class.to_s.humanize}", request.escalatable
                 %td= request.requester.name
                 %td= request.reviewer ? request.reviewer.name : ""
@@ -41,3 +41,14 @@
                     %i.fa.fa-check
                   %a.btn.btn-sm.btn-danger{href: admin_escalation_request_deny_path(request), data: {method: 'post'}}
                     %i.fa.fa-times
+              %tr
+                %td.hiddenRow{colspan: "6"}
+                  .collapse{class: "more_info#{index}"}= request.note
+              %tr
+                %td.hiddenRow{colspan: "6"}
+                  .collapse{class: "more_info#{index}"}
+                    - for attribute in request.escalatable.attributes.keys
+                      %b= attribute.humanize
+                      = ":"
+                      = request.escalatable.attributes[attribute].to_s
+                      %br
