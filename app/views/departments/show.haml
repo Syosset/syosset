@@ -27,12 +27,8 @@
             Announcements
           %ul.list-group
             - @department.announcements.each do |announcement|
-              %li.list-group-item
+              %li.list-group-item.list-group-item-cust.text-center
                 = link_to announcement.name, announcement
-                - if user_signed_in? && current_user.can?(:edit, @department)
-                  %span.pull-right
-                    %a.btn.btn-xs.btn-warning{href: admin_announcement_path(announcement), data: {method: 'delete', confirm: 'Are you sure?' } }
-                      %span.glyphicon.glyphicon-trash
         %section.widget.has-divider
           %h3.title
             %i.fa.fa-link
