@@ -1,0 +1,35 @@
+
+# TinyMCE Options
+mode: "exact"
+theme: "modern"
+language: "<%= I18n.locale.to_s.split('-')[0].downcase %>"
+skin: "lightgray"
+schema: "html5-strict"
+element_format: "html"
+resize: true
+plugins:
+  - table
+  - insertdatetime
+  - preview
+  - media
+  - searchreplace
+  - contextmenu
+  - paste
+  - directionality
+  - fullscreen
+  - noneditable
+  - visualchars
+  - nonbreaking
+  - template
+  - save
+
+# Each line is a toolbar
+toolbar:
+  - save | undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image
+  - print preview media | fontselect fontsizeselect | forecolor backcolor emoticons | codesample
+
+  #- cut copy paste pastetext pasteword | search replace | undo redo | link unlink anchor image cleanup help code | insertdate inserttime preview
+  #- bold italic underline strikethrough | justifyleft justifycenter justifyright justifyfull | sub sup | bullist numlist | outdent indent blockquote"
+  #- styleselect formatselect fontselect fontsizeselect | forecolor backcolor
+  #- tablecontrols | hr removeformat
+  #- fullscreen | charmap media | visualchars blockquote

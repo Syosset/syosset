@@ -12,7 +12,7 @@
       %table.table
         %thead
           %tr
-            - if user_signed_in? && current_user.can?(:edit, @announceable)
+            - if current_holder.can?(:edit, @announceable)
               %th
             - unless @announceable
               %th Posted Under
@@ -23,7 +23,7 @@
         %tbody.rankable
           - @announcements.each do |announcement|
             = content_tag_for(:tr, announcement) do
-              - if user_signed_in? && current_user.can?(:edit, announcement)
+              - if current_holder.can?(:edit, announcement)
                 %td
                   %i.handle.fa.fa-sort{"aria-hidden" => "true"}
               - unless @announceable

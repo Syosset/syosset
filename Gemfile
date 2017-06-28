@@ -31,6 +31,8 @@ gem 'uglifier', '>= 1.3.0'
 gem "font-awesome-rails", '~> 4.7.0.2'
 # Use flexslider
 gem 'flex-slider-rails', '~> 2.6.3'
+# Use tinymce
+gem 'tinymce-rails'
 
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby

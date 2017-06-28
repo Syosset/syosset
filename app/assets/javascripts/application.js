@@ -19,4 +19,6 @@
 //= require eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min
 //= require jquery.flexslider
 //= require college_green/bootstrap-hover-dropdown
+//= require tinymce
+//= require tinymce-jquery
 //= require_tree .

@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
   include ScramUtils
+  helper_method :current_holder
+
   protect_from_forgery with: :exception
 
   before_action :find_alerts

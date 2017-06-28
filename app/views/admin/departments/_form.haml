@@ -10,7 +10,7 @@
     = f.text_field :short_description, placeholder: "Short Description", class: "form-control"
   .form-group
     = f.label :content
-    = f.text_area :content, placeholder: "Content", class: "tinymce", rows: 10, class: "form-control"
+    = f.text_area :content, placeholder: "Content", rows: 10, class: "form-control tinymce"
 
   = f.submit "Save", class: "btn btn-success pull-right", id: "submit-button"
-/= tinymce
+= tinymce
