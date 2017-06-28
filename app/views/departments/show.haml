@@ -36,11 +36,12 @@
           %h3.title
             %i.fa.fa-link
             Links
-          %p Donec pulvinar arcu lacus, 20% vel aliquam libero scelerisque a.
-        %section.widget.has-divider
-          %h3.title
-            %i.fa.fa-users
-            Teachers
-          %p Donec pulvinar arcu lacus, 20% vel aliquam libero scelerisque a.
+          %ul.rankable.list-group
+            - @department.links.by_priority.limit(5).each do |link|
+              = content_tag_for(:li, link, class: "list-group-item") do
+                - if current_holder.can?(:edit, link)
+                  %i.handle.fa.fa-sort{"aria-hidden" => "true"}
+                  = link_to "[X]", admin_link_path(link), method: :delete
+                = link_to link.name, link.target
 :javascript
   init_tiny();

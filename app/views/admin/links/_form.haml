@@ -1,0 +1,9 @@
+= form_for [:admin, @link] do |f|
+  = hidden_field_tag "#{@linkable.class.to_s.downcase}_id", "#{@linkable.id}"
+  .form-group
+    = f.label :name
+    = f.text_field :name, placeholder: "Name", class: "form-control"
+  .form-group
+    = f.label :target
+    = f.text_field :target, placeholder: "URL", rows: 10, class: "form-control"
+  = f.submit "Save", class: "btn btn-success pull-right", id: "submit-button"
