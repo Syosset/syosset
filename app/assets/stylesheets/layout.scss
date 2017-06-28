@@ -23,3 +23,8 @@
 .hiddenRow { // Collapsing tables
     padding: 0 !important;
 }
+
+#announcements .handle {
+  cursor: move;
+  color: gray;
+}

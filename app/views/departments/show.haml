@@ -25,10 +25,13 @@
           %h3.title
             %i.fa.fa-bell
             = link_to "Announcements", announcements_path(department_id: @department.id)
-          %ul.list-group
-            - @department.announcements.each do |announcement|
-              %li.list-group-item.list-group-item-cust.text-center
+          %ul#announcements.list-group{"data-update-url" => sort_admin_announcements_url}
+            - @department.announcements.by_priority.each do |announcement|
+              = content_tag_for(:li, announcement, class: "list-group-item") do
+                - if user_signed_in? && current_user.can?(:edit, announcement)
+                  %i.handle.fa.fa-sort{"aria-hidden" => "true"}
                 = link_to announcement.name.truncate(38), announcement
+
         %section.widget.has-divider
           %h3.title
             %i.fa.fa-link

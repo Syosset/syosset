@@ -2,6 +2,7 @@ module Admin
   class AnnouncementsController < BaseController
     before_action :get_announceable, only: [:new, :create, :edit, :update]
     before_action :get_announcement, only: [:update, :destroy, :edit]
+    skip_before_action :verify_authenticity_token, only: [:sort]
 
     def create
       authorize @announceable, :edit
@@ -40,6 +41,15 @@ module Admin
       authorize @announcement, :edit
       @announcement.destroy
       redirect_to @announcement.announceable, flash: {:alert => "Announcement destroyed"}
+    end
+
+
+    def sort
+      params[:announcement].each_with_index do |id, index|
+        announcement = Announcement.find(id)
+        authorize announcement, :edit
+        announcement.update!(priority: index+1)
+      end
     end
 
     private

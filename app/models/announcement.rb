@@ -4,6 +4,7 @@ class Announcement
   include Scram::DSL::ModelConditions
   include Concerns::Descriptable
   include Concerns::Escalatable
+  include Concerns::Rankable
 
   after_create :alert_subscribers
 

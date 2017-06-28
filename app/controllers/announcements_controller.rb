@@ -7,9 +7,9 @@ class AnnouncementsController < ApplicationController
     actions_builder = ActionsBuilder.new(current_holder)
     @announcements = if @announceable
       actions_builder.require(:edit, @announceable).add_action("New Announcement", :get, new_admin_announcement_path("#{@announceable.class.to_s.downcase}_id" => @announceable.id))
-      @announceable.announcements
+      @announceable.announcements.by_priority
     else
-      Announcement.all
+      Announcement.by_priority
     end
 
     @actions = actions_builder.actions

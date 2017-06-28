@@ -12,15 +12,20 @@
       %table.table
         %thead
           %tr
+            - if user_signed_in? && current_user.can?(:edit, @announceable)
+              %th
             - unless @announceable
               %th Posted Under
             %th Title
             %th Announcement
             %th Poster
             %th Posted
-        %tbody
+        %tbody#announcements{"data-update-url" => sort_admin_announcements_url}
           - @announcements.each do |announcement|
-            %tr
+            = content_tag_for(:tr, announcement) do
+              - if user_signed_in? && current_user.can?(:edit, announcement)
+                %td
+                  %i.handle.fa.fa-sort{"aria-hidden" => "true"}
               - unless @announceable
                 - announceable = announcement.announceable
                 %td= link_to "#{announceable.send("name") || "a #{announceable.class.to_s.humanize}"}", announceable
