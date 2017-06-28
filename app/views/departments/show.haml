@@ -24,11 +24,11 @@
         %section.widget.has-divider
           %h3.title
             %i.fa.fa-bell
-            Announcements
+            = link_to "Announcements", announcements_path(department_id: @department.id)
           %ul.list-group
             - @department.announcements.each do |announcement|
               %li.list-group-item.list-group-item-cust.text-center
-                = link_to announcement.name, announcement
+                = link_to announcement.name.truncate(38), announcement
         %section.widget.has-divider
           %h3.title
             %i.fa.fa-link

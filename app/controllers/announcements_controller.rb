@@ -1,9 +1,16 @@
 class AnnouncementsController < ApplicationController
 
   before_action :get_announcement, except: [:index]
+  before_action :get_announceable, only: [:index]
 
   def index
-    @announcements = Announcement.all
+    @announcements = if @announceable
+      @announceable.announcements
+    else
+      Announcement.all
+    end
+
+    @actions = [] # TODO
   end
 
   def show
@@ -18,5 +25,14 @@ class AnnouncementsController < ApplicationController
   private
   def get_announcement
     @announcement = Announcement.find(params[:id])
+  end
+
+  def get_announceable
+    params.each do |name, value|
+      if name =~ /(.+)_id$/
+        return @announceable =  $1.classify.constantize.find(value)
+      end
+    end
+    nil
   end
 end

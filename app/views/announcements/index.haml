@@ -1,0 +1,32 @@
+.page-wrapper
+  %header.page-heading.clearfix
+    %h1.heading-title.pull-left
+      Announcements
+      - if @announceable
+        %small
+          Posted under
+          = link_to "#{@announceable.send("name") || "a #{@announceable.class.to_s.humanize}"}", @announceable
+    = render partial: "partials/modtools", locals: {actions: @actions}
+  .page-content
+    .table-responsive
+      %table.table
+        %thead
+          %tr
+            - unless @announceable
+              %th Posted Under
+            %th Title
+            %th Announcement
+            %th Poster
+            %th Posted
+        %tbody
+          - @announcements.each do |announcement|
+            %tr
+              - unless @announceable
+                - announceable = announcement.announceable
+                %td= link_to "#{announceable.send("name") || "a #{announceable.class.to_s.humanize}"}", announceable
+              %td= link_to announcement.name.truncate(60), announcement
+              %td= announcement.content.truncate(50)
+              %td= announcement.poster.name
+              %td
+                = time_ago_in_words(announcement.created_at)
+                ago
