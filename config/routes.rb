@@ -20,9 +20,9 @@ Rails.application.routes.draw do
   namespace :admin do
     root :to => "base#index"
 
-    resources :announcements do
-      collection { post :sort }
-    end
+    post "/rankables/sort" => "rankables#sort", :as => :sort_rankable
+
+    resources :announcements
 
     resources :departments, shallow: true, only: [:new, :create, :edit, :update, :destroy]
 

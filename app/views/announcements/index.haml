@@ -20,7 +20,7 @@
             %th Announcement
             %th Poster
             %th Posted
-        %tbody#announcements{"data-update-url" => sort_admin_announcements_url}
+        %tbody.rankable
           - @announcements.each do |announcement|
             = content_tag_for(:tr, announcement) do
               - if user_signed_in? && current_user.can?(:edit, announcement)

@@ -1,9 +1,9 @@
 $(document).on('turbolinks:load', function() {
-  $('#announcements').sortable({
+  $('.rankable').sortable({
     axis: 'y',
     handle: '.handle',
     update: function( event, ui ) {
-      $.post($(this).data('update-url'), $(this).sortable('serialize'))
+      $.post("/admin/rankables/sort", $(this).sortable('serialize'))
     }
   });
 });

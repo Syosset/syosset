@@ -25,7 +25,7 @@
           %h3.title
             %i.fa.fa-bell
             = link_to "Announcements", announcements_path(department_id: @department.id)
-          %ul#announcements.list-group{"data-update-url" => sort_admin_announcements_url}
+          %ul.rankable.list-group
             - @department.announcements.by_priority.limit(5).each do |announcement|
               = content_tag_for(:li, announcement, class: "list-group-item") do
                 - if user_signed_in? && current_user.can?(:edit, announcement)
