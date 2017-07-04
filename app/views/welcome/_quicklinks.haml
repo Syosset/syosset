@@ -15,3 +15,12 @@
       %a{:href => "http://www.syossetschools.org/Calendar/Default.aspx?period=monthgrid"}
         %i.fa.fa-calendar
         District Calendar
+    - @links.each do |link|
+      %p
+        = link_to link[:target] do
+          %i.fa.fa-link
+          = link.name
+    %p
+      = link_to links_path do
+        %i.fa.fa-ellipsis-h
+        See all links
