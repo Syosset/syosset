@@ -3,6 +3,7 @@ class Link
   include Mongoid::Timestamps
   include Scram::DSL::ModelConditions
   include Concerns::Rankable
+  include Concerns::Escalatable
 
   belongs_to :linkable, polymorphic: true
   belongs_to :poster, class_name: "User"
@@ -19,6 +20,10 @@ class Link
         User.all.select{ |u| u.can?(:edit, link.linkable) }.map(&:scram_compare_value).to_a
       end
     end
+  end
+
+  def link
+    target
   end
 
 end

@@ -33,7 +33,7 @@ module Admin
 
       if @escalation_request.errors.empty?
           flash[:notice] = 'Escalation request successfully created.'
-          redirect_to @escalatable
+          redirect_to url_for(@escalatable) rescue redirect_to root_path
       else
           flash.now[:alert] = @escalation_request.errors.full_messages.first
           render action: 'new'

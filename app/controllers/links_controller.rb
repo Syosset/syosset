@@ -8,9 +8,8 @@ class LinksController < ApplicationController
       actions_builder.require(:edit, @linkable).add_action("New Link", :get, new_admin_link_path("#{@linkable.class.to_s.downcase}_id" => @linkable.id))
       @linkable.links.by_priority
     else
-      Link.by_priority
+      (Link.escalated.sort_by!(&:created_at).to_a + Link.desc(:created_at).to_a).uniq
     end
-
     @actions = actions_builder.actions
   end
 

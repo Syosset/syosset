@@ -1,0 +1,40 @@
+.page-wrapper
+  %header.page-heading.clearfix
+    %h1.heading-title.pull-left
+      Links
+      - if @linkable
+        %small
+          Posted under
+          = link_to "#{@linkable.send("name") || "a #{@linkable.class.to_s.humanize}"}", @linkable
+    = render partial: "partials/modtools", locals: {actions: @actions}
+  .page-content
+    .table-responsive
+      %table.table
+        %thead
+          %tr
+            %th
+            %th
+            - unless @linkable
+              %th Posted Under
+            %th Link
+            %th Poster
+            %th Posted
+        %tbody
+          - @links.each do |link|
+            = content_tag_for(:tr, link) do
+              %td
+                - if @linkable && current_holder.can?(:edit, link)
+                  %i.handle.fa.fa-sort{"aria-hidden" => "true"}
+              %td
+                - if link.escalated?
+                  %i.fa.fa-star
+                - else
+                  %i.fa.fa-star-o
+              - unless @linkable
+                - linkable = link.linkable
+                %td= link_to "#{linkable.send("name") || "a #{linkable.class.to_s.humanize}"}", linkable
+              %td= link_to link.name.truncate(60), link[:target]
+              %td= link.poster.name
+              %td
+                = time_ago_in_words(link.created_at)
+                ago

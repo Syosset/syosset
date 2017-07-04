@@ -35,7 +35,7 @@
         %section.widget.has-divider
           %h3.title
             %i.fa.fa-link
-            Links
+            = link_to "Links", links_path(department_id: @department.id)
           %ul.rankable.list-group
             - @department.links.by_priority.limit(5).each do |link|
               = content_tag_for(:li, link, class: "list-group-item") do
@@ -43,6 +43,11 @@
                   %i.handle.fa.fa-sort{"aria-hidden" => "true"}
                   = link_to admin_link_path(link), method: :delete, data: { confirm: 'Are you sure?' } do
                     %i.fa.fa-times
+                  = link_to new_admin_escalation_request_path(link_id: link) do
+                    - if link.escalated?
+                      %i.fa.fa-star
+                    - else
+                      %i.fa.fa-star-o
                 = link_to link.name, link.target
 :javascript
   init_tiny();

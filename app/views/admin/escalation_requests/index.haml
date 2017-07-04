@@ -31,7 +31,7 @@
                 - color = "danger"
 
               %tr{class: color, "data-toggle" => "collapse", "data-target" => ".more_info#{index}"}
-                %td= link_to "#{request.escalatable.class.to_s.humanize}", request.escalatable
+                %td= link_to "#{request.escalatable.class.to_s.humanize}", url_for(request.escalatable) rescue "#{request.escalatable.class.to_s.humanize}"
                 %td= request.requester.name
                 %td= request.reviewer ? request.reviewer.name : ""
                 %td= request.status
