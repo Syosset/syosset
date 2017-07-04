@@ -41,7 +41,8 @@
               = content_tag_for(:li, link, class: "list-group-item") do
                 - if current_holder.can?(:edit, link)
                   %i.handle.fa.fa-sort{"aria-hidden" => "true"}
-                  = link_to "[X]", admin_link_path(link), method: :delete
+                  = link_to admin_link_path(link), method: :delete, data: { confirm: 'Are you sure?' } do
+                    %i.fa.fa-times
                 = link_to link.name, link.target
 :javascript
   init_tiny();
