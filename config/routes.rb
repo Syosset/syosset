@@ -8,7 +8,8 @@ Rails.application.routes.draw do
   get 'day_color', controller: 'day_color', action: 'day_color'
   get 'autocomplete', :to => 'application#autocomplete'
 
-  resources :announcements
+  resources :announcements, only: [:index, :show]
+  resources :links, only: [:index]
 
   resources :departments, shallow: true do
     member do

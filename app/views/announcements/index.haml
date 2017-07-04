@@ -12,8 +12,7 @@
       %table.table
         %thead
           %tr
-            - if current_holder.can?(:edit, @announceable)
-              %th
+            %th
             - unless @announceable
               %th Posted Under
             %th Title
@@ -23,8 +22,8 @@
         %tbody.rankable
           - @announcements.each do |announcement|
             = content_tag_for(:tr, announcement) do
-              - if current_holder.can?(:edit, announcement)
-                %td
+              %td
+                - if @announceable && current_holder.can?(:edit, announcement)
                   %i.handle.fa.fa-sort{"aria-hidden" => "true"}
               - unless @announceable
                 - announceable = announcement.announceable

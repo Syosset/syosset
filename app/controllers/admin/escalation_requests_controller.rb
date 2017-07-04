@@ -4,14 +4,14 @@ module Admin
     before_action :get_escalation_request, only: [:update, :destroy, :edit, :approve, :deny]
 
     def approve
-      authorize :approve, @escalation_request
+      authorize @escalation_request, :approve
       @escalation_request.approve!(current_user)
       flash[:notice] = 'Escalation request successfully approved.'
       redirect_to admin_escalation_requests_path
     end
 
     def deny
-      authorize :approve, @escalation_request
+      authorize @escalation_request, :deny
       @escalation_request.deny!(current_user)
       flash[:notice] = 'Escalation request successfully denied.'
       redirect_to admin_escalation_requests_path
