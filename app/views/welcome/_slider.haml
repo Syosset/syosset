@@ -3,14 +3,14 @@
     %li
       .super-hero-unit
         %figure
-          = image_tag("https://www.rockford-it.co.uk/wp-content/uploads/2017/03/educationresize.jpg", class: "center-block img-responsive", alt: "some image")
+          = image_tag(image_url('book-board.jpg'), class: "center-block img-responsive", alt: "some image")
           %figcaption.flex-caption
             %h1.super
               %b=t('.hero.first')
     %li
       .super-hero-unit
         %figure
-          %img.center-block.img-responsive{:alt => "some image", :src => "http://capstoneeducationcenter.com/wp-content/uploads/2013/09/capstone-education-phoenix-test-prep-1140x350.jpg"}/
+          %img.center-block.img-responsive{:alt => "some image", :src => image_url('test-prep.jpg')}/
           %figcaption.flex-caption
             %h1.super
               %b=t('.hero.second')
