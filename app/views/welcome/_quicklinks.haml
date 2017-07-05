@@ -2,6 +2,10 @@
   %h1.section-heading.text-highlight
     %span.line
       = link_to "Quick Links", links_path
+      %small
+        = link_to links_path do
+          %i.fa.fa-ellipsis-v
+          See all
   .section-content
     %p
       %a{:href => "https://ic.syosset.k12.ny.us/"}
@@ -20,7 +24,3 @@
         = link_to link[:target] do
           %i.fa.fa-link
           = link.name
-    %p
-      = link_to links_path do
-        %i.fa.fa-ellipsis-h
-        See all links

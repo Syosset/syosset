@@ -1,6 +1,11 @@
 %section.news
   %h1.section-heading.text-highlight
-    %span.line= link_to "Important Announcements", announcements_path
+    %span.line
+      = link_to "Important Announcements", announcements_path
+      %small
+        = link_to announcements_path do
+          %i.fa.fa-ellipsis-v
+          See all
   .carousel-controls
     %a.prev{"data-slide" => "prev", :href => "#news-carousel"}
       %i.fa.fa-caret-left
