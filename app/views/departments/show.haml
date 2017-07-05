@@ -4,10 +4,11 @@
     = render partial: "partials/modtools", locals: {actions: @actions}
     %ul.nav.navbar-nav.pull-right
       %li
-        - if @department.subscriber? current_user
-          %a{:href => unsubscribe_department_path(@department), data: {method: 'post'}} Unsubscribe
-        - else
-          %a{:href => subscribe_department_path(@department), data: {method: 'post'}} Subscribe
+        - if user_signed_in?
+          - if @department.subscriber? current_user
+            %a{:href => unsubscribe_department_path(@department), data: {method: 'post'}} Unsubscribe
+          - else
+            %a{:href => subscribe_department_path(@department), data: {method: 'post'}} Subscribe
   .page-content
     .row.page-row
       .courses-wrapper.col-md-8.col-sm-7
