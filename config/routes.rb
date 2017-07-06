@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   root 'welcome#index'
-
+  get 'z/index.html', to: redirect("/")
+  
   get 'about' => 'welcome#about'
   get 'day_color', controller: 'day_color', action: 'day_color'
   get 'autocomplete', :to => 'application#autocomplete'
