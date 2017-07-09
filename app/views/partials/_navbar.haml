@@ -79,7 +79,7 @@
                 = link_to t('menu.account.sign_out'), destroy_user_session_path, :method => :delete
             - else
               %li
-                = link_to omniauth_authorize_path("user", "google_oauth2") do
+                = link_to user_google_oauth2_omniauth_authorize_path do
                   = t('menu.account.sign_in_with')
                   %i.fa.fa-google-plus-square
         - if user_signed_in?

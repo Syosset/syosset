@@ -49,7 +49,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 # Use Devise for user authentication
 gem 'devise', '~> 4.3'
-gem 'omniauth-google-oauth2', '~> 0.5.0'
+gem 'omniauth-google-oauth2', github: "zquestz/omniauth-google-oauth2"
 # Use scram for authorization
 gem 'scram', '~> 0.1.1'
 # Use groupify in conjunction with Scram
