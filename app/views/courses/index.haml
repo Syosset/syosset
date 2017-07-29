@@ -1,0 +1,20 @@
+.page-wrapper
+  %header.page-heading.clearfix
+    %h1.heading-title.pull-left
+      Courses
+      %small
+        For
+        = link_to @department.name, @department
+    = render partial: "partials/modtools", locals: {actions: @actions}
+  .page-content
+    .table-responsive
+      %table.table
+        %thead
+          %tr
+            %th Title
+            %th Description
+        %tbody
+          - @courses.each do |course|
+            = content_tag_for(:tr, course) do
+              %td= link_to course.name, course
+              %td= course.short_description

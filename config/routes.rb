@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       post :subscribe
       post :unsubscribe
     end
+    resources :courses
   end
 
   namespace :admin do
@@ -27,7 +28,9 @@ Rails.application.routes.draw do
     resources :announcements
     resources :links
 
-    resources :departments, shallow: true, only: [:new, :create, :edit, :update, :destroy]
+    resources :departments, shallow: true, only: [:new, :create, :edit, :update, :destroy] do
+      resources :courses
+    end
 
     resources :escalation_requests do
       post "approve", action: :approve, as: :approve
