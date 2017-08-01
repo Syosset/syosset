@@ -70,6 +70,8 @@ en:
         responsibility with parents and our community, and, in turn, hope to
         make Syosset High School students aware of their responsibility and
         connection to the larger world."
+    announcements:
+      announcements: "Announcements"
   contact:
     phone: "Call us today (516) 364-5675"
     email: "admin@syosseths.com" #TODO: email
