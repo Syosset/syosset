@@ -16,12 +16,13 @@
           %div{class: "#{"editable-content" if current_holder.can? :edit, @department}", id: "department[content]"}
             = @department.content.html_safe
         - unless @department.courses.empty?
-          .container-fluid
-            %h3 Courses
-            %ul.nav.nav-pills.nav-stacked
-              - @department.courses.each do |course|
-                %li
-                  = link_to course.name, course
+          %h3 Courses
+          %hr
+          - @department.courses.in_groups_of(4).each do |courses|
+            .row
+              - courses.compact.each do |course|
+                .col-xs-6.col-md-3
+                  = link_to course.name.truncate(50), course, class: "thumbnail"
       %aside.page-sidebar.col-md-3.col-md-offset-1.col-sm-4.col-sm-offset-1
         %section.widget.has-divider
           %h3.title

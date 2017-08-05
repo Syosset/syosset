@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
   get 'z/index.html', to: redirect("/")
-  
+
   get 'about' => 'welcome#about'
   get 'day_color', controller: 'day_color', action: 'day_color'
   get 'autocomplete', :to => 'application#autocomplete'
@@ -17,7 +17,12 @@ Rails.application.routes.draw do
       post :subscribe
       post :unsubscribe
     end
-    resources :courses
+    resources :courses do
+      member do
+        post :subscribe
+        post :unsubscribe
+      end
+    end
   end
 
   namespace :admin do

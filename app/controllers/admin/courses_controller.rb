@@ -1,7 +1,7 @@
 module Admin
   class CoursesController < BaseController
     before_action :get_course, only: [:edit, :update, :destroy]
-    before_action :get_department, only: [:create, :new, :edit]
+    before_action :get_department, only: [:create, :new]
 
     def create
       @course = Course.new(course_params)
