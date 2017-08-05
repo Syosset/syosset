@@ -1,5 +1,5 @@
 .red-white-display {
-    border: 1px solid white;
+  border: 1px solid white;
 }
 
 .red-white-display a {
@@ -9,7 +9,7 @@
 
 @media (min-width: 576px) {
   .red-white-display {
-      margin-top: 15px;
+      margin-top: 13px;
       margin-right: 10px;
   }
 }
