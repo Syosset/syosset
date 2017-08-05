@@ -14,11 +14,16 @@
 .home-page .news .news-item {
   padding-left: 0px;
 }
+.footer .copyright {
+  float: left;
+  margin-right: 15px;
+}
 .footer .commit {
   padding: 0px;
   font-size: 11px;
   color: #dcdcdc;
   line-height: 3;
+  float: left;
 }
 .hiddenRow { // Collapsing tables
     padding: 0 !important;
