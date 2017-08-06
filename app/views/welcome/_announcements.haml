@@ -20,7 +20,7 @@
               .col-md-3.news-item
                 %h2.title
                   = link_to announcement.name, announcement
-                %p= truncate(announcement.content, length: 140)
+                %p= truncate(strip_tags(announcement.content), length: 140)
                 = link_to announcement do
                   Read more
                   %i.fa.fa-chevron-right
