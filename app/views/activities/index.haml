@@ -1,0 +1,21 @@
+.page-wrapper
+  %header.page-heading.clearfix
+    %h1.heading-title.pull-left Activities
+    = render partial: "partials/modtools", locals: {actions: @actions}
+  .page-content
+    .alert.alert-info{:role => "alert"}
+      %strong Want to add your club/group/sport?
+      = link_to "Click here!", "https://goo.gl/forms/5NyEFmoWkSbtIHEM2"
+    .table-responsive
+      %table.table
+        %thead
+          %tr
+            %th Activity Name
+            %th Type
+            %th Description
+        %tbody
+          - @activities.each do |activity|
+            %tr
+              %td= link_to activity.name, activity
+              %td= activity.type.to_s.humanize
+              %td= activity.short_description

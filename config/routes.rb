@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   resources :announcements, only: [:index, :show]
   resources :links, only: [:index]
 
+  resources :activities
+
   resources :departments, shallow: true do
     member do
       post :subscribe
@@ -32,6 +34,8 @@ Rails.application.routes.draw do
 
     resources :announcements
     resources :links
+
+    resources :activities
 
     resources :departments, shallow: true, only: [:new, :create, :edit, :update, :destroy] do
       resources :courses
