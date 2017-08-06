@@ -13,6 +13,7 @@
 //= require rails-ujs
 //= require jquery
 //= require jquery-ui
+//= require peek
 //= require turbolinks
 //= require bootstrap/dist/js/bootstrap
 //= require moment/min/moment.min

@@ -15,6 +15,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def peek_enabled?
+    user_signed_in? && current_user.super_admin
+  end
+
   def autocomplete
     if params[:term]
       @users = User.any_of({name: /.*#{params[:term]}.*/i}, {email: /.*#{params[:term]}.*/i}).limit(5)

@@ -34,6 +34,13 @@ gem 'flex-slider-rails', '~> 2.6.3'
 # Use tinymce
 gem 'tinymce-rails'
 
+# Peek shows performance stats
+gem 'peek'
+gem 'peek-host'
+gem 'peek-git'
+gem 'peek-redis'
+gem 'peek-mongo'
+
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
