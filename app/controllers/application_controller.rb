@@ -15,6 +15,13 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  rescue_from ActionController::RoutingError, :with => :not_found
+  rescue_from Mongoid::Errors::DocumentNotFound, :with => :not_found
+
+  def not_found
+    redirect_to root_path, :alert => "The page you requested does not exist."
+  end
+
   def peek_enabled?
     user_signed_in? && current_user.super_admin
   end
