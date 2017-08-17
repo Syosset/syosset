@@ -23,3 +23,7 @@
   background: #653444 !important;
   color: white;
 }
+
+#peek .wrapper {
+  margin-left: 20%;
+}

@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
   end
 
   def peek_enabled?
-    user_signed_in? && current_user.super_admin
+    Rails.env.development? || (user_signed_in? && current_user.super_admin)
   end
 
   def autocomplete

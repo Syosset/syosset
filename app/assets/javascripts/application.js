@@ -14,6 +14,7 @@
 //= require jquery
 //= require jquery-ui
 //= require peek
+//= require peek/views/performance_bar
 //= require turbolinks
 //= require bootstrap/dist/js/bootstrap
 //= require moment/min/moment.min
