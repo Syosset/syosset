@@ -25,5 +25,10 @@
 }
 
 #peek .wrapper {
-  margin-left: 20%;
+  margin-left: 0;
+}
+
+.peek-container {
+  background: #653444;
+  width: 100%;
 }
