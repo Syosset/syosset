@@ -37,7 +37,6 @@ gem 'tinymce-rails'
 # Peek shows performance stats
 gem 'peek'
 gem 'peek-host'
-gem 'peek-performance_bar'
 gem 'peek-redis'
 gem 'peek-mongo'
 
