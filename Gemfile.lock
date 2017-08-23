@@ -204,6 +204,8 @@ GEM
       concurrent-ruby (>= 0.9.0)
       concurrent-ruby-ext (>= 0.9.0)
       railties (>= 4.0.0)
+    peek-git (1.0.2)
+      peek
     peek-host (1.0.0)
       peek
     peek-mongo (1.2.0)
@@ -371,6 +373,7 @@ DEPENDENCIES
   mongoid-slug (~> 5.2)
   omniauth-google-oauth2!
   peek
+  peek-git
   peek-host
   peek-mongo
   peek-redis

@@ -13,6 +13,6 @@ Dokku plugins used in production:
   *  [dokku-mongo](https://github.com/dokku/dokku-mongo)
   *  [dokku-redis](https://github.com/dokku/dokku-redis)
   *  [dokku-apt](https://github.com/F4-Group/dokku-apt)
-  *  [dokku-git-rev](https://github.com/dokku-community/dokku-git-rev)
+  *  [dokku-git-state](https://github.com/kailan/dokku-git-state)
 
 After deploying, scale the `clock` process to 1 for clockwork: `dokku ps:scale shs-web clock=1`

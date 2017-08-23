@@ -52,7 +52,7 @@ class ApplicationController < ActionController::Base
       end
       @revision = $g.log[i].sha
     else
-      @revision = ENV['GIT_REV'] || "???"
+      @revision = ENV['GIT_SHA'] || "???"
     end
   end
 
