@@ -5,6 +5,8 @@ class User
   include Scram
   include Alerts
 
+  paginates_per 12
+
 	groupify :group_member, group_class_name: 'CollaboratorGroup'
 
   # Include default devise modules. Others available are:

@@ -31,6 +31,8 @@ Rails.application.routes.draw do
   namespace :admin do
     root :to => "base#index"
 
+    resources :users
+
     post "/rankables/sort" => "rankables#sort", :as => :sort_rankable
 
     resources :announcements
