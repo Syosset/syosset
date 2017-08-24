@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).on('turbolinks:load', function() {
   $('.course-search').on('input', function() {
     query = $(this).val().toLowerCase();
     $('.course').each(function(i, course) {
