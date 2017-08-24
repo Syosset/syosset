@@ -9,4 +9,6 @@ class Course
   belongs_to :department
   paginates_per 12
 
+  field :course_id, type: Integer
+
 end
