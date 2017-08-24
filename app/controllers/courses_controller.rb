@@ -4,7 +4,7 @@ class CoursesController < ApplicationController
   before_action :get_department, only: [:index]
 
   def index
-    @courses = @department.courses
+    @courses = @department.courses.page params[:page]
     @actions = []
   end
 

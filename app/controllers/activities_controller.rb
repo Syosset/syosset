@@ -6,7 +6,7 @@ class ActivitiesController < ApplicationController
     actions_builder.require(:create, @activity).add_action("New Activity", :get, new_admin_activity_path)
     @actions = actions_builder.actions
 
-    @activities = Activity.all
+    @activities = Activity.all.page params[:page]
   end
 
   def show

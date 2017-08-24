@@ -11,6 +11,7 @@ class Activity
 
   validates_uniqueness_of :name
   slug :name
+  paginates_per 12
 
   # enum :type, [:club, :group, :sport] TODO: Fix mongoid-enum to support symbol storage
   validates :type, inclusion: { in: %w(club group sport),

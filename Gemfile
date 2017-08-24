@@ -34,6 +34,11 @@ gem 'flex-slider-rails', '~> 2.6.3'
 # Use tinymce
 gem 'tinymce-rails'
 
+# Pagination
+gem 'kaminari'
+gem 'kaminari-mongoid'
+gem 'kaminari-views-bootstrap'
+
 # Peek shows performance stats
 gem 'peek'
 gem 'peek-git'

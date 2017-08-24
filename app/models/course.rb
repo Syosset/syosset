@@ -7,5 +7,6 @@ class Course
   include Concerns::Linkable
 
   belongs_to :department
+  paginates_per 12
 
 end

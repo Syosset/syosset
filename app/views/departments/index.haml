@@ -16,3 +16,4 @@
               %td= link_to department.name, department
               %td= department.short_description
               %td= department.phone
+    = paginate @departments, theme: 'tb3'
