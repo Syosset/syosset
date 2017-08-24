@@ -2,13 +2,19 @@
   .bottom-bar
     .container
       .row
-        .col-md-3.col-sm-12-col-xs-12
+        .col-4
           %small.copyright
-            =t('copyright', year: Time.now.year)
-          .commit
-            %code
-              %a{href:"https://github.com/Syosset/Web/commit/#{@revision}", target: "_blank"} #{@revision[0..5]}
-        %ul.social.pull-right.col-md-3.col-sm-12.col-xs-12
+            Created by
+            = link_to "Neil Johari", "https://github.com/neiljohari/"
+            and
+            = link_to "Kailan Blanks", "https://github.com/kailan/"
+            &raquo;
+            = link_to "https://github.com/Syosset/Web" do
+              We
+              %i.fa.fa-heart
+              Open Source
+
+        %ul.social.pull-right.col-4
           %li
             %a{:href => "https://twitter.com/SyoStudentGov"}
               %i.fa.fa-twitter

@@ -17,14 +17,13 @@
 .footer .copyright {
   float: left;
   margin-right: 15px;
+  font-size: 15px !important;
 }
-.footer .commit {
-  padding: 0px;
-  font-size: 11px;
-  color: #dcdcdc;
-  line-height: 3;
-  float: left;
+
+.footer a {
+  color: #ff4949;
 }
+
 .hiddenRow { // Collapsing tables
     padding: 0 !important;
 }
