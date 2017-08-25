@@ -52,7 +52,7 @@
             = link_to t('nav.admin'), admin_root_path
       %ul.nav.navbar-nav.pull-right
         %li.nav-item.red-white-display
-          = link_to "#" do
+          = link_to "javascript:;", id: "day", tabindex: 0, role: :button, "data-trigger" => :focus, title: "Period Schedule", "data-content" => "#{render 'partials/dynamic_schedule'}", "data-html" => :true, "data-placement" => :bottom , "data-toggle" => :popover, "data-container" => :nav do
             - if color = $redis.get("current_day_color")
               %i.fa{class: "#{color == "Red Day" ? "fa-map-o" : "fa-map"}"}
               Today is a

@@ -32,3 +32,18 @@
   background: #842a2a;
   width: 100%;
 }
+
+#movable {
+  position: relative;
+}
+#movable #line {
+  margin-left: 20px;
+  border-bottom: 2px solid #d83a3a;
+}
+
+#movable #text {
+  transform: translate(calc(-98%), 11px);
+  width: 100%;
+  text-align: right;
+  color: #d83a3a;
+}
