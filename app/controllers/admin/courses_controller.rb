@@ -7,8 +7,12 @@ module Admin
       @course = Course.new(course_params)
       @course.department = @department
       authorize @course
-      @course.save!
-      redirect_to course_path(@course), flash: {:success => "Course has been created"}
+
+      if @course.save
+          redirect_to course_path(@course), flash: {:success => "Course has been created"}
+      else
+          render action: 'new'
+      end
     end
 
     def new

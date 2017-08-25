@@ -12,6 +12,9 @@ class Course
 
   belongs_to :department
 
+  validates_numericality_of :course_id
+  validates_presence_of :course_id, :name, :short_description, :content
+
   field :course_id, type: Integer
 
 end

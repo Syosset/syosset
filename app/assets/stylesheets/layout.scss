@@ -30,7 +30,6 @@
   font-size: 18px;
   line-height: 2;
 }
-
 .footer a {
   color: #ff4949;
 }
@@ -38,8 +37,40 @@
 .hiddenRow { // Collapsing tables
     padding: 0 !important;
 }
-
 .rankable .handle {
   cursor: move;
   color: gray;
+}
+#error_explanation {
+  color: #f00;
+  ul {
+    list-style: none;
+    margin: 0 0 18px 0;
+  }
+}
+
+// @extend won't see bootstrap's given selectors...
+// TODO: Would be nice if we can avoid putting BS code here just to make the selector valid
+#error_explanation {
+  color: #f00;
+  ul {
+    list-style: none;
+    margin: 0 0 18px 0;
+  }
+}
+.has-error {
+  color: #a94442;
+}
+.has-error .form-control {
+  border-color: #a94442;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+}
+.has-error .form-control:focus {
+  border-color: #843534;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #ce8483;
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #ce8483;
+}
+.field_with_errors {
+  @extend .has-error;
 }
