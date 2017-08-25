@@ -30,6 +30,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root :to => "base#index"
+    post "/toggle" => "base#toggle"
 
     resources :users
 
