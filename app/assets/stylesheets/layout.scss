@@ -4,34 +4,12 @@
 .wrapper::after {
   height: auto;
 }
-.footer {
-  height: auto;
-  margin-top: 15px;
-}
+
 .header-main {
   padding: 15px 0 !important;
 }
 .home-page .news .news-item {
   padding-left: 0px;
-}
-.footer .copyright {
-  float: left;
-  margin-left: 2px;
-  margin-right: 2px;
-  font-size: 15px !important;
-}
-.footer .bottom-bar .social {
-  margin-top: 4px;
-}
-.footer .bottom-bar .social li {
-  float: right;
-  margin-left: 10px;
-  text-align: center;
-  font-size: 18px;
-  line-height: 2;
-}
-.footer a {
-  color: #ff4949;
 }
 
 .hiddenRow { // Collapsing tables
