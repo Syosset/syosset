@@ -10,6 +10,12 @@ class Course
   paginates_per 12
   slug :name
 
+  scram_define do
+    condition :collaborators do |course|
+      course.department.send("*collaborators") + User.in_group(course.collaborator_group).map(&:scram_compare_value).to_a
+    end
+  end
+
   belongs_to :department
 
   validates_numericality_of :course_id
