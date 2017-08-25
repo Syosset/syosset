@@ -26,6 +26,7 @@ module Scram
   }
 
   DEFAULT_POLICIES << collaborator_policy.(Department)
+  DEFAULT_POLICIES << collaborator_policy.(Course, ["edit", "destroy"])
   DEFAULT_POLICIES << collaborator_policy.(Activity)
   DEFAULT_POLICIES << collaborator_policy.(Announcement)
   DEFAULT_POLICIES << collaborator_policy.(Link)
