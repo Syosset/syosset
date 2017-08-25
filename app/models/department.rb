@@ -9,8 +9,10 @@ class Department
   include Concerns::Linkable
 
   slug :name
-  field :phone, type: String, default: "(516) 364-5675"
-  has_many :courses
   paginates_per 12
-  
+
+  has_many :courses
+
+  field :phone, type: String, default: "(516) 364-5675"
+
 end
