@@ -1,6 +1,8 @@
 # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 Rails.application.routes.draw do
-  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'users/registrations' }, skip: [:passwords]
+  resources :users, only: [:show]
   mount Peek::Railtie => '/peek'
 
   root 'welcome#index'
@@ -31,7 +33,7 @@ Rails.application.routes.draw do
   namespace :admin do
     root :to => "base#index"
 
-    resources :users
+    resources :users, only: [:index, :edit, :update]
 
     post "/rankables/sort" => "rankables#sort", :as => :sort_rankable
 

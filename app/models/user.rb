@@ -47,6 +47,8 @@ class User
   # field :unlock_token,    type: String # Only if unlock strategy is :email or :both
   # field :locked_at,       type: Time
 
+  field :bio, type: String, default: ""
+
   def self.from_omniauth(access_token)
       data = access_token.info
       user = User.where(email: data['email']).first
@@ -58,5 +60,9 @@ class User
            )
       end
       user
+  end
+
+  def staff?
+    super_admin || (/^[a-z]+\@syosset\.k12\.ny\.us$/ =~ email) == 0
   end
 end

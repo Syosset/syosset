@@ -31,6 +31,10 @@ module Scram
   DEFAULT_POLICIES << collaborator_policy.(Announcement)
   DEFAULT_POLICIES << collaborator_policy.(Link)
 
+  profile_policy = Policy.new(name: "Profile Management", context: User.to_s)
+  profile_policy.targets.build(conditions: { :not_equals => { :email => 'kailan@kmp.pw' } }, actions: [:edit])
+  DEFAULT_POLICIES << profile_policy
+
   DEFAULT_POLICIES.freeze
 
   # Class to be a holder with the DEFAULT_POLICIES when a User is not available.

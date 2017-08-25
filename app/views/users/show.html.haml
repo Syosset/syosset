@@ -1,0 +1,7 @@
+.container
+  - if current_user.can? :edit, @user
+    = link_to "Edit profile", edit_user_registration_path, class: 'btn btn-primary pull-right'
+  %h1
+    = @user.name
+    %small= @user.email
+  %p.lead= @user.bio
