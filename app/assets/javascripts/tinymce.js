@@ -11,3 +11,7 @@ function init_tiny() {
     }
   });
 };
+
+$(document).on('turbolinks:load', function() {
+  $( "table" ).wrap( "<div class='table-responsive'></div>" );
+});
