@@ -16,8 +16,19 @@
 }
 .footer .copyright {
   float: left;
-  margin-right: 15px;
+  margin-left: 2px;
+  margin-right: 2px;
   font-size: 15px !important;
+}
+.footer .bottom-bar .social {
+  margin-top: 4px;
+}
+.footer .bottom-bar .social li {
+  float: right;
+  margin-left: 10px;
+  text-align: center;
+  font-size: 18px;
+  line-height: 2;
 }
 
 .footer a {

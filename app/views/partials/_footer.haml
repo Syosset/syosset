@@ -1,23 +1,19 @@
 %footer.footer
   .bottom-bar
     .container
-      .row
-        .col-4
-          %small.copyright
-            Created by
-            = link_to "Neil Johari", "https://github.com/neiljohari/"
-            and
-            = link_to "Kailan Blanks", "https://github.com/kailan/"
-            &raquo;
-            = link_to "https://github.com/Syosset/Web" do
-              We
-              %i.fa.fa-heart
-              Open Source
-
-        %ul.social.pull-right.col-4
-          %li
-            %a{:href => "https://twitter.com/SyoStudentGov"}
-              %i.fa.fa-twitter
-          %li
-            %a{:href => "https://www.facebook.com/search/top/?q=Syosset%20High%20School"}
-              %i.fa.fa-facebook
+      .col-7
+        %small.copyright.row
+          Made by
+          = link_to "Neil Johari", "https://github.com/neiljohari/"
+          and
+          = link_to "Kailan Blanks", "https://github.com/kailan/"
+      %ul.social.col-5
+        %li.text-primary
+          %a{:href => "https://twitter.com/SyoStudentGov"}
+            %i.fa.fa-twitter
+        %li
+          %a{:href => "https://www.facebook.com/search/top/?q=Syosset%20High%20School"}
+            %i.fa.fa-facebook
+        %li
+          %a{:href => "https://github.com/Syosset/Web"}
+            %i.fa.fa-github
