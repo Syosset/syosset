@@ -25,6 +25,8 @@
 %nav.main-nav{role: :navigation}
   .container
     .navbar-header
+      .day-indicator-container.visible-xs
+        = render "partials/nav/day_indicator"
       %button.navbar-toggle{"data-target" => "#navbar-collapse", "data-toggle" => "collapse", :type => "button"}
         %span.sr-only Toggle navigation
         %span.icon-bar
@@ -51,15 +53,9 @@
           %li.nav-item{class: active_controller('admin/base', 'index')}
             = link_to t('nav.admin'), admin_root_path
       %ul.nav.navbar-nav.pull-right
-        %li.nav-item.red-white-display
-          = link_to "javascript:;", id: "day", tabindex: 0, role: :button, "data-trigger" => :focus, title: "Period Schedule", "data-content" => "#{render 'partials/dynamic_schedule'}", "data-html" => :true, "data-placement" => :bottom , "data-toggle" => :popover, "data-container" => :nav do
-            - if color = $redis.get("current_day_color")
-              %i.fa{class: "#{color == "Red Day" ? "fa-map-o" : "fa-map"}"}
-              Today is a
-              = color
-            - else
-              %i.fa.fa-thumbs-up
-              No school today
+        %li.nav-item.hidden-xs
+          .red-white-display
+            = render "partials/nav/day_indicator"
         - if user_signed_in?
           %li.nav-item
             %a
