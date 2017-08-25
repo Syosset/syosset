@@ -10,6 +10,9 @@ class LinksController < ApplicationController
     else
       (Link.escalated.sort_by!(&:created_at).to_a + Link.desc(:created_at).to_a).uniq
     end
+
+    @links = Kaminari.paginate_array(@links).page(params[:page]).per(12)
+
     @actions = actions_builder.actions
   end
 

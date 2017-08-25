@@ -38,3 +38,4 @@
               %td
                 = time_ago_in_words(link.created_at)
                 ago
+    = paginate @links, theme: 'tb3'
