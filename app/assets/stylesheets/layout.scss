@@ -37,10 +37,12 @@
 .hiddenRow { // Collapsing tables
     padding: 0 !important;
 }
-.rankable .handle {
+
+.handle {
   cursor: move;
   color: gray;
 }
+
 #error_explanation {
   color: #f00;
   ul {
