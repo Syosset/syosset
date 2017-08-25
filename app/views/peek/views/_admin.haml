@@ -2,4 +2,4 @@
   .bucket.admin-toggle
     = link_to admin_toggle_path, method: :post do
       %i.fa.fa-shield
-      = "#{current_user.admin_enabled? ? 'Disable' : 'Enable'} admin"
+      %span.hidden-xs= "#{current_user.admin_enabled? ? 'Disable' : 'Enable'} admin"
