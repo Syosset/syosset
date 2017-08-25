@@ -1,12 +1,22 @@
 .page-wrapper
   %header.page-heading.clearfix
-    %h1.heading-title.pull-left
-      Links
-      - if @linkable
-        %small
-          Posted under
-          = link_to "#{@linkable.send("name") || "a #{@linkable.class.to_s.humanize}"}", @linkable
-    = render partial: "partials/modtools", locals: {actions: @actions}
+    .row
+      .col-xs-12.col-sm-5
+        %h1.heading-title.pull-left
+          Links
+          - if @linkable
+            %small
+              Posted under
+              = link_to "#{@linkable.send("name") || "a #{@linkable.class.to_s.humanize}"}", @linkable
+
+      .col-xs-12.col-sm-7
+        = form_tag links_path, method: :get do
+          = hidden_field_tag "#{@linkable.class.to_s.downcase}_id", @linkable.id.to_s if @linkable
+          .input-group
+            %input#search.form-control{:placeholder => "Search for Link", :type => "text", name: "search"}
+            %span.input-group-btn
+              = submit_tag "Search", :name => nil, class: "btn btn-default"
+        = render partial: "partials/modtools", locals: {actions: @actions}
   .page-content
     .table-responsive
       %table.table
