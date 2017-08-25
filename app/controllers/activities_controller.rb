@@ -6,7 +6,7 @@ class ActivitiesController < ApplicationController
     actions_builder.require(:create, @activity).add_action("New Activity", :get, new_admin_activity_path)
     @actions = actions_builder.actions
 
-    @activities = Activity.asc(:name).page params[:page]
+    @activities = Activity.full_text_search(params[:search], allow_empty_search: true).asc(:name).page params[:page]
   end
 
   def show

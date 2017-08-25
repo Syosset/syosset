@@ -4,7 +4,7 @@ class CoursesController < ApplicationController
   before_action :get_department, only: [:index]
 
   def index
-    @courses = @department.courses.page params[:page]
+    @courses = @department.courses.full_text_search(params[:search], allow_empty_search: true).page params[:page]
     @actions = []
   end
 

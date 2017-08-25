@@ -1,11 +1,20 @@
 .page-wrapper
   %header.page-heading.clearfix
-    %h1.heading-title.pull-left
-      Courses
-      %small
-        For
-        = link_to @department.name, @department
-    = render partial: "partials/modtools", locals: {actions: @actions}
+    .row
+      .col-xs-12.col-sm-5
+        %h1.heading-title.pull-left
+          Courses
+          %small
+            For
+            = link_to @department.name, @department
+      .col-xs-12.col-sm-7
+        = form_tag department_courses_path(@department), method: :get do
+          .input-group
+            %input#search.form-control{:placeholder => "Search for Course", :type => "text", name: "search"}
+            %span.input-group-btn
+              = submit_tag "Search", :name => nil, class: "btn btn-default"
+    .row
+      = render partial: "partials/modtools", locals: {actions: @actions}
   .page-content
     .table-responsive
       %table.table

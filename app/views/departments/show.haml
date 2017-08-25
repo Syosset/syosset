@@ -16,7 +16,7 @@
           %div{class: "#{"editable-content" if current_holder.can? :edit, @department}", id: "department[content]"}
             = @department.content.html_safe
         - unless @department.courses.empty?
-          %h3 Courses
+          %h3= link_to "Courses", department_courses_path(@department)
           %input.course-search.form-control{type: 'text', placeholder: 'Search courses'}
           %hr
           - @department.courses.in_groups_of(4).each_with_index do |courses, index|

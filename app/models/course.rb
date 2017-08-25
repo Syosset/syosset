@@ -1,6 +1,7 @@
 class Course
   include Mongoid::Document
   include Mongoid::Slug
+  include Mongoid::Search
   include Concerns::Descriptable
   include Concerns::Subscribable
   include Concerns::Collaboratable
@@ -9,6 +10,7 @@ class Course
 
   paginates_per 12
   slug :name
+  search_in :name, :course_id
 
   scram_define do
     condition :collaborators do |course|
