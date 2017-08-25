@@ -9,8 +9,7 @@
             %input#search.form-control{:placeholder => "Search for Department", :type => "text", name: "search"}
             %span.input-group-btn
               = submit_tag "Search", :name => nil, class: "btn btn-default"
-    .row
-      = render partial: "partials/modtools", locals: {actions: @actions}
+        = render partial: "partials/modtools", locals: {actions: @actions}
   .page-content
     .table-responsive
       %table.table
