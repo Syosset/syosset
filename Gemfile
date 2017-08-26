@@ -63,7 +63,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'devise', '~> 4.3'
 gem 'omniauth-google-oauth2', github: "zquestz/omniauth-google-oauth2"
 # Use scram for authorization
-gem 'scram', '~> 0.1.1'
+gem 'scram', '~> 0.1.2'
 # Use groupify in conjunction with Scram
 gem 'groupify', '~> 0.8.0'
 
