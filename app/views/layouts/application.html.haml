@@ -5,6 +5,7 @@
     %title= content_for?(:title) ? "#{t('name.abbr')} » #{yield(:title)}" : t('name.full')
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
     %link{rel: "apple-touch-icon", sizes: "60x60", href: "touch-icon.png"}
     %link{rel: "apple-touch-icon", sizes: "120x120", href: "touch-icon@2x.png"}
     %link{rel: "apple-touch-icon", sizes: "180x180", href: "touch-icon@3x.png"}
@@ -19,4 +20,3 @@
         = render 'partials/flash'
         = yield
     = render 'partials/footer'
-    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'

@@ -50,9 +50,9 @@
 	border-bottom-left-radius:          $bottomleft;
 	border-top-left-radius:             $topleft;
 
-	-moz-background-clip:    padding; 
-	-webkit-background-clip: padding-box; 
-	background-clip:         padding-box; 
+	-moz-background-clip:    padding;
+	-webkit-background-clip: padding-box;
+	background-clip:         padding-box;
 }
 
 @mixin opacity($opacity: 0.5) {
@@ -85,10 +85,10 @@
 }
 
 @mixin transition($transition) {
-	-webkit-transition: $transition;  
+	-webkit-transition: $transition;
 	-moz-transition:    $transition;
-	-ms-transition:     $transition; 
-	-o-transition:      $transition;  
+	-ms-transition:     $transition;
+	-o-transition:      $transition;
 }
 @mixin transform($string) {
 	-webkit-transform: $string;
@@ -144,7 +144,7 @@
   *,
   *:before,
   *:after {
-    @mixin box-sizing($size),
+    box-sizing: $size;
   }
 }
 
@@ -154,5 +154,3 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
-

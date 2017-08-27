@@ -345,9 +345,9 @@ ul.custom-list-style {
 }
 
 .panel {
-    .border-radius(0);
+    @include border-radius(0);
     .panel-heading {
-        .border-radius(0);
+        @include border-radius(0);
         h3.panel-title {
             font-weight: 500;
         }
@@ -356,7 +356,7 @@ ul.custom-list-style {
         }
     }
     .panel-footer {
-        .border-radius(0);
+        @include border-radius(0);
         ul {
             margin-bottom: 0;
             &.list-inline {
@@ -372,7 +372,7 @@ ul.custom-list-style {
 }
 
 .panel>.list-group .list-group-item:last-child {
-    .border-radius(0);
+    @include border-radius(0);
 }
 
 .panel-theme {
@@ -1142,7 +1142,7 @@ ul.custom-list-style {
                 position: relative;
                 img {
                     display: block;
-                    .opacity(0.9);
+                    @include opacity(0.9);
                 }
             }
             .desc {
