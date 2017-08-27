@@ -6,6 +6,13 @@ GIT
       tzinfo
 
 GIT
+  remote: https://github.com/Syosset/mongoid-enum.git
+  revision: 98edb02f9713eafbb9d8a2c53313effbc5adce8c
+  specs:
+    mongoid-enum (0.5.0)
+      mongoid (>= 5, < 7)
+
+GIT
   remote: https://github.com/zquestz/omniauth-google-oauth2.git
   revision: 6364a35581d0443c96b82535e02a86f3bf5b8732
   specs:
@@ -395,6 +402,7 @@ DEPENDENCIES
   launchy (~> 2.4, >= 2.4.3)
   listen (>= 3.0.5, < 3.2)
   mongoid (~> 6.1.0)
+  mongoid-enum!
   mongoid-slug (~> 5.2)
   mongoid_search
   omniauth-google-oauth2!
