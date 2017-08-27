@@ -6,7 +6,7 @@ module Peek::Views
   end
 end
 
-Peek.into Peek::Views::Git, nwo: "Syosset/Web"
+Peek.into Peek::Views::Git, nwo: "Syosset/Web", sha: ENV["GIT_REV"]
 Peek.into Peek::Views::Admin
 Peek.into Peek::Views::Host
 Peek.into Peek::Views::Redis
