@@ -42,7 +42,7 @@ gem 'kaminari-views-bootstrap'
 # Peek shows performance stats
 gem 'peek'
 gem 'peek-git'
-gem 'peek-host'
+gem 'peek-host', github: "kailan/peek-host"
 gem 'peek-redis'
 gem 'peek-mongo'
 
