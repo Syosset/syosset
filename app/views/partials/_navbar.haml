@@ -1,5 +1,5 @@
 %header.header
-  .header-main.container
+  .header-main.container.hidden-xs
     .container
       %h1.logo.pull-left
         = link_to root_path do
@@ -20,6 +20,9 @@
 %nav.main-nav{role: :navigation}
   .container
     .navbar-header
+      = link_to root_path do
+        .logo-mobile.visible-xs
+          = svg 'icon'
       .day-indicator-container.visible-xs
         = render "partials/nav/day_indicator"
       %button.navbar-toggle{"data-target" => "#navbar-collapse", "data-toggle" => "collapse", :type => "button"}
