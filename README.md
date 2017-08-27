@@ -1,4 +1,6 @@
-# Syosset Web
+![website screenshot](https://i.imgur.com/jXzfbQc.png)
+
+# 🖥️ syosseths.com
 
 This is the [official website for Syosset High School](https://syosseths.com/). It is written in Ruby on Rails (version 5) currently under ruby 2.3.4.
 
