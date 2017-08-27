@@ -6,7 +6,7 @@
       .col-xs-12.col-sm-7
         = form_tag activities_path, method: :get do
           .input-group
-            %input#search.form-control{:placeholder => "Search for Activity", :type => "text", name: "search"}
+            %input#search.form-control{:placeholder => "Search for Activity", :type => "text", name: "search", value: params[:search]}
             %span.input-group-btn
               = submit_tag "Search", :name => nil, class: "btn btn-default"
     .row
