@@ -1,21 +1,22 @@
 %header.header
-  .header-main.container.hidden-xs
-    .container
-      %h1.logo.pull-left
-        = link_to root_path do
-          = svg 'logo'
-          .full-name.pull-right.visible-lg
-            SYOSSET HIGH SCHOOL 
-      .info.col-md-4-col-sm-4.pull-right
-        %br
-        %br
-        .contact
-          %p.phone
-            %i.fa.fa-phone
-            = t('contact.phone')
-          %p.email
-            %i.fa.fa-envelope
-            = t('contact.email')
+  - unless params[:action] == 'landing'
+    .header-main.container.hidden-xs
+      .container
+        %h1.logo.pull-left
+          = link_to root_path do
+            = svg 'logo'
+            .full-name.pull-right.visible-lg
+              SYOSSET HIGH SCHOOL
+        .info.col-md-4-col-sm-4.pull-right
+          %br
+          %br
+          .contact
+            %p.phone
+              %i.fa.fa-phone
+              = t('contact.phone')
+            %p.email
+              %i.fa.fa-envelope
+              = t('contact.email')
 
 %nav.main-nav{role: :navigation}
   .container

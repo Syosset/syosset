@@ -1,0 +1,25 @@
+.landing-quicklinks.panel.panel-sosset
+  .panel-heading
+    = link_to "Quick Links", links_path
+    %small
+      = link_to links_path do
+        %i.fa.fa-ellipsis-v
+        See all
+  .panel-body
+    %p
+      %a{:href => "https://ic.syosset.k12.ny.us/"}
+        %i.fa.fa-graduation-cap
+        Parent and Teacher Portal
+    %p
+      %a{:href => "http://portal.office365.com/"}
+        %i.fa.fa-envelope
+        Teacher email
+    %p
+      %a{:href => "http://www.syossetschools.org/Calendar/Default.aspx?period=monthgrid"}
+        %i.fa.fa-calendar
+        District Calendar
+    - @links.each do |link|
+      %p
+        = link_to link[:target] do
+          %i.fa.fa-link
+          = link.name
