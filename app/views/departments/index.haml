@@ -4,11 +4,7 @@
       .col-xs-12.col-sm-5
         %h1.heading-title.pull-left Departments
       .col-xs-12.col-sm-7
-        = form_tag departments_path, method: :get do
-          .input-group
-            %input#search.form-control{:placeholder => "Search for Department", :type => "text", name: "search", value: params[:search]}
-            %span.input-group-btn
-              = submit_tag "Search", :name => nil, class: "btn btn-default"
+        = render partial: "partials/index_search_bar", locals: {path: departments_path}
         = render partial: "partials/modtools", locals: {actions: @actions}
   .page-content
     .table-responsive
