@@ -8,6 +8,9 @@ class WelcomeController < ApplicationController
   end
 
   def landing
+    unless user_signed_in?
+      expires_in 5.minutes, public: true
+    end
   end
 
   private
