@@ -5,10 +5,11 @@
     %title= content_for?(:title) ? "#{t('name.abbr')} » #{yield(:title)}" : t('name.full')
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
-    %link{rel: "apple-touch-icon", sizes: "60x60", href: asset_path("touch-icon.png")}
-    %link{rel: "apple-touch-icon", sizes: "120x120", href: asset_path("touch-icon@2x.png")}
-    %link{rel: "apple-touch-icon", sizes: "180x180", href: asset_path("touch-icon@3x.png")}
-    %link{rel: "apple-touch-startup-image", href: asset_path("launch.png")}
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    %link{rel: "apple-touch-icon", sizes: "60x60", href: "touch-icon.png"}
+    %link{rel: "apple-touch-icon", sizes: "120x120", href: "touch-icon@2x.png"}
+    %link{rel: "apple-touch-icon", sizes: "180x180", href: "touch-icon@3x.png"}
+    %link{rel: "apple-touch-startup-image", href: "launch.png"}
     %meta{name: "apple-mobile-web-app-title", content: "SHS"}
     %meta{name: "apple-mobile-web-app-capable", content: "yes"}
     %meta{name: "viewport", content: "width=device-width", "initial-scale" => 1.0}
@@ -19,4 +20,3 @@
         = render 'partials/flash'
         = yield
     = render 'partials/footer'
-    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'

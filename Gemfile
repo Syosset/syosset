@@ -23,6 +23,8 @@ gem 'rails', '~> 5.1.1'
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
+# Use autoprefixer-rails for automatic browser prefixing
+gem 'autoprefixer-rails', '~> 7.1.3'
 # Use HAML for templates
 gem 'haml-rails', '~> 0.9'
 # Use Uglifier as compressor for JavaScript assets
