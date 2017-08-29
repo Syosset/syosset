@@ -1,3 +1,6 @@
+= content_for :title, @announcement.name
+= content_for :description, truncate(strip_tags(@announcement.content), length: 200)
+
 .page-wrapper
   %header.page-heading.clearfix
     %h1.heading-title.pull-left
