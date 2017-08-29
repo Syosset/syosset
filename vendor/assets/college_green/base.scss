@@ -39,7 +39,7 @@ p {
 
 a {
     color: $color;
-    @include transition (all 0.4s ease-in-out);
+    transition: all 0.4s ease-in-out;
     &:hover {
         text-decoration: none;
         color: darken($color, 20%);
@@ -50,8 +50,8 @@ a {
 }
 
 .btn {
-    @include transition (all 0.4s ease-in-out);
-    @include border-radius(0);
+    transition: all 0.4s ease-in-out;
+    border-radius: 0;
     .fa {
         color: #fff;
         margin-right: 5px;
@@ -78,7 +78,7 @@ a.btn-cta, .btn-cta {
     padding: 10px 20px;
     font-size: 18px;
     line-height: 1.33;
-    @include border-radius(0);
+    border-radius: 0;
     border: 1px solid $color;
     font-family: 'open sans', arial, sans-serif;
 
@@ -95,10 +95,10 @@ a.btn-cta, .btn-cta {
 }
 
 .form-control {
-    @include border-radius(0);
+    border-radius: 0;
     &:focus {
         border-color: $color;
-        @include box-shadow(none);
+        box-shadow: none;
     }
 }
 
@@ -148,7 +148,7 @@ blockquote {
 
 
 .read-more {
-    @include transition (all 0.4s ease-in-out);
+    transition: all 0.4s ease-in-out;
     font-size: 13px;
     display: block;
     .fa {
@@ -163,10 +163,10 @@ blockquote {
 
 .carousel-fade {
     .item {
-        @include opacity(0);
-        @include transition(opacity 0.3s);
+        opacity: 0;
+        transition: opacity 0.3s;
         &.active {
-            @include opacity(1);
+            opacity: 1;
         }
     }
 
@@ -180,8 +180,8 @@ blockquote {
     width: 35px;
     height: 35px;
     border: none;
-    @include border-radius(2px);
-    @include transition (all 0.4s ease-in-out);
+    border-radius: 2px;
+    transition: all 0.4s ease-in-out;
     &:hover {
         background: $color;
     }
@@ -240,7 +240,7 @@ ul.custom-list-style {
 }
 
 .pagination>li:first-child>a, .pagination>li:first-child>span, .pagination>li:last-child>a, .pagination>li:last-child>span {
-    @include border-radius(0);
+    border-radius: 0;
 }
 
 .nav-tabs {
@@ -269,9 +269,9 @@ ul.custom-list-style {
     background: $smoky-white;
     padding: 5px 15px;
     margin-right: 0;
-    @include border-radius(0);
+    border-radius: 0;
     color: $text-color;
-    @include transition (all 0s);
+    transition: all 0s;
 }
 
 .nav-tabs>li {
@@ -315,11 +315,11 @@ ul.custom-list-style {
 
 .panel-group {
     .panel {
-        @include border-radius(0);
+        border-radius: 0;
         .panel-heading {
             background: none;
             border: none;
-            @include border-radius(0);
+            border-radius: 0;
             .panel-title {
                 a {
                     color: $color;
@@ -345,9 +345,9 @@ ul.custom-list-style {
 }
 
 .panel {
-    @include border-radius(0);
+    border-radius: 0;
     .panel-heading {
-        @include border-radius(0);
+        border-radius: 0;
         h3.panel-title {
             font-weight: 500;
         }
@@ -356,7 +356,7 @@ ul.custom-list-style {
         }
     }
     .panel-footer {
-        @include border-radius(0);
+        border-radius: 0;
         ul {
             margin-bottom: 0;
             &.list-inline {
@@ -372,7 +372,7 @@ ul.custom-list-style {
 }
 
 .panel>.list-group .list-group-item:last-child {
-    @include border-radius(0);
+    border-radius: 0;
 }
 
 .panel-theme {
@@ -407,7 +407,7 @@ ul.custom-list-style {
 }
 
 .label {
-    @include border-radius(0);
+    border-radius: 0;
     &.label-theme {
         background: $color;
     }
@@ -458,9 +458,9 @@ ul.custom-list-style {
         height:135px;
         text-align: center;
         vertical-align: middle;
-        @include border-radius(50%);
+        border-radius: 50%;
         border: 5px solid #fff;
-        @include box-shadow(0px 0px 1px 1px rgba(0,0,0,0.1));
+        box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.1);
     }
     .percentage {
         font-size: 32px;
@@ -485,7 +485,7 @@ ul.custom-list-style {
 }
 
 .img-thumbnail {
-    @include border-radius(0);
+    border-radius: 0;
     border-color: $divider;
     margin-bottom: 15px;
 }
@@ -532,7 +532,7 @@ ul.custom-list-style {
         height: 32px;
         text-align: center;
         padding-top: 4px;
-        @include border-radius(50%);
+        border-radius: 50%;
         font-size: 18px;
         margin-right: 10px;
         float: left;
@@ -674,11 +674,11 @@ ul.custom-list-style {
     }
     .search-form {
          border: 0;
-        @include box-shadow (none);
+         box-shadow: none;
         .form-control {
             width: 260px;
             background: $smoky-white;
-            @include transition (all 0.4s ease-in-out);
+            transition: all 0.4s ease-in-out;
             &:focus {
                 background: #fff;
                 border-color: $color;
@@ -694,7 +694,7 @@ ul.custom-list-style {
     button {
         background: darken($color, 30%);
         color: #fff !important;
-        @include border-radius(0);
+        border-radius: 0;
         &:focus {
             outline: none;
         }
@@ -717,7 +717,7 @@ ul.custom-list-style {
             }
             a {
                 color: lighten($color, 35%);
-                @include transition (all 0.4s ease-in-out);
+                transition: all 0.4s ease-in-out;
                 &:hover {
                     background:$color;
                     color: #fff;
@@ -752,7 +752,7 @@ ul.custom-list-style {
                 }
             }
             .dropdown-menu {
-                @include border-radius(0);
+                border-radius: 0;
                 margin: 0;
                 border:none;
                 padding: 0;
@@ -865,7 +865,7 @@ ul.custom-list-style {
                 width: 320px;
                 background: $smoky-white;
                 border: none;
-                @include transition (all 0.4s ease-in-out);
+                transition: all 0.4s ease-in-out;
                 &:focus {
                     background: #fff;
                 }
@@ -907,8 +907,8 @@ ul.custom-list-style {
 
 /* ======= FlexSlider ======= */
 .flexslider {
-    @include border-radius(0);
-    @include box-shadow(0 0 0);
+    border-radius: 0;
+    box-shadow: 0 0 0;
     border: 0;
     .flex-control-nav {
         bottom: -35px;
@@ -1135,14 +1135,14 @@ ul.custom-list-style {
             border: 1px solid $divider;
             margin-bottom: 30px;
             &:hover {
-                @include box-shadow(0px 0px 5px 0px $divider);
+                box-shadow: 0px 0px 5px 0px $divider;
             }
 
             &>a:hover {
                 position: relative;
                 img {
                     display: block;
-                    @include opacity(0.9);
+                    opacity: 0.9;
                 }
             }
             .desc {
@@ -1166,7 +1166,7 @@ ul.custom-list-style {
         .prettyphoto {
             &:hover  {
                 img {
-                    @include box-shadow(0px 0px 5px 0px $divider);
+                    box-shadow: 0px 0px 5px 0px $divider;
                 }
             }
          }
@@ -1239,9 +1239,9 @@ ul.custom-list-style {
                 margin-right: 5px;
                 img {
                     max-width: 100%;
-                    @include transition (all 0.4s ease-in-out);
+                    transition: all 0.4s ease-in-out;
                     &:hover {
-                        @include opacity(0.8);
+                        opacity: 0.8;
                     }
                 }
             }
@@ -1286,7 +1286,7 @@ ul.custom-list-style {
                 text-align: right;
                 a {
                     .fa {
-                        @include transition (all 0.4s ease-in-out);
+                        transition: all 0.4s ease-in-out;
                         background: lighten($text-color, 60%);
                         color: #fff;
                         display: inline-block;
@@ -1379,7 +1379,7 @@ ul.custom-list-style {
            height: 20px;
            border: 2px solid transparent;
            &:hover {
-               @include opacity(0.9);
+               opacity: 0.9;
                border: 2px solid rgba(256, 256, 256, 0.8);
            }
         }
