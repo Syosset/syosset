@@ -44,7 +44,7 @@ gem 'kaminari-views-bootstrap'
 # Peek shows performance stats
 gem 'peek'
 gem 'peek-git'
-gem 'peek-host'
+gem 'peek-host', github: "kailan/peek-host"
 gem 'peek-redis'
 gem 'peek-mongo'
 
@@ -76,6 +76,8 @@ gem 'groupify', '~> 0.8.0'
 gem 'mongoid', '~> 6.1.0'
 # Use mongoid-slug for pretty urls
 gem 'mongoid-slug', '~> 5.2'
+# Use mongoid-enum for types in models
+gem 'mongoid-enum', github: "Syosset/mongoid-enum"
 # Use mongoid_search for model searching
 gem 'mongoid_search'
 # Use Redis for caching

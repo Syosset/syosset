@@ -12,7 +12,7 @@ module Admin
         redirect_to root_path, alert: 'You must be an administrator to do that.'
       else
         current_user.toggle_admin
-        redirect_to root_path
+        redirect_back(fallback_location: root_path)
       end
     end
 

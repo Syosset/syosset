@@ -1,0 +1,9 @@
+- @announcements.first(2).each do |announcement|
+  .panel.panel-sosset
+    .panel-heading= link_to announcement.name, announcement
+    .panel-body
+      = truncate(strip_tags(announcement.content), length: 150) do
+        = link_to " &raquo; Read more".html_safe, announcement
+.panel.panel-default
+  .panel-body
+    = link_to "See more announcements", announcements_path

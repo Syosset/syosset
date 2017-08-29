@@ -4,11 +4,7 @@
       .col-xs-12.col-sm-5
         %h1.heading-title.pull-left Activities
       .col-xs-12.col-sm-7
-        = form_tag activities_path, method: :get do
-          .input-group
-            %input#search.form-control{:placeholder => "Search for Activity", :type => "text", name: "search"}
-            %span.input-group-btn
-              = submit_tag "Search", :name => nil, class: "btn btn-default"
+        = render partial: "partials/index_search_bar", locals: {path: activities_path}
     .row
       = render partial: "partials/modtools", locals: {actions: @actions}
   .page-content

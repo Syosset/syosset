@@ -10,12 +10,9 @@
               = link_to "#{@linkable.send("name") || "a #{@linkable.class.to_s.humanize}"}", @linkable
 
       .col-xs-12.col-sm-7
-        = form_tag links_path, method: :get do
+        = render layout: "partials/index_search_bar", locals: {path: links_path} do
           = hidden_field_tag "#{@linkable.class.to_s.downcase}_id", @linkable.id.to_s if @linkable
-          .input-group
-            %input#search.form-control{:placeholder => "Search for Link", :type => "text", name: "search"}
-            %span.input-group-btn
-              = submit_tag "Search", :name => nil, class: "btn btn-default"
+
         = render partial: "partials/modtools", locals: {actions: @actions}
   .page-content
     .table-responsive

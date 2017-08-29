@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   mount Peek::Railtie => '/peek'
 
   root 'welcome#index'
+  get 'landing' => 'welcome#landing'
+
   get 'z/index.html', to: redirect("/")
 
   get 'about' => 'welcome#about'

@@ -1,18 +1,17 @@
-%section.links
-  %h1.section-heading.text-highlight
-    %span.line
-      = link_to "Quick Links", links_path
-      %small
-        = link_to links_path do
-          %i.fa.fa-ellipsis-v
-          See all
-  .section-content
+.landing-quicklinks.panel.panel-sosset
+  .panel-heading
+    = link_to "Quick Links", links_path
+    %small
+      = link_to links_path do
+        %i.fa.fa-ellipsis-v
+        See all
+  .panel-body
     %p
       %a{:href => "https://ic.syosset.k12.ny.us/"}
-        %i.fa.fa-institution
+        %i.fa.fa-graduation-cap
         Parent and Teacher Portal
     %p
-      %a{:href => "https://portal.office.com/"}
+      %a{:href => "http://portal.office365.com/"}
         %i.fa.fa-envelope
         Teacher Email
     %p

@@ -6,6 +6,20 @@ GIT
       tzinfo
 
 GIT
+  remote: https://github.com/Syosset/mongoid-enum.git
+  revision: 98edb02f9713eafbb9d8a2c53313effbc5adce8c
+  specs:
+    mongoid-enum (0.5.0)
+      mongoid (>= 5, < 7)
+
+GIT
+  remote: https://github.com/kailan/peek-host.git
+  revision: c692b152ff444b37f7d9ba265e347f8f6088e2fc
+  specs:
+    peek-host (1.1.0)
+      peek
+
+GIT
   remote: https://github.com/zquestz/omniauth-google-oauth2.git
   revision: 6364a35581d0443c96b82535e02a86f3bf5b8732
   specs:
@@ -230,8 +244,6 @@ GEM
       railties (>= 4.0.0)
     peek-git (1.0.2)
       peek
-    peek-host (1.0.0)
-      peek
     peek-mongo (1.2.0)
       concurrent-ruby (>= 1.0.4)
       mongo (>= 2.4.1)
@@ -398,12 +410,13 @@ DEPENDENCIES
   launchy (~> 2.4, >= 2.4.3)
   listen (>= 3.0.5, < 3.2)
   mongoid (~> 6.1.0)
+  mongoid-enum!
   mongoid-slug (~> 5.2)
   mongoid_search
   omniauth-google-oauth2!
   peek
   peek-git
-  peek-host
+  peek-host!
   peek-mongo
   peek-redis
   poltergeist (~> 1.15)
