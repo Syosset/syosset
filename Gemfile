@@ -48,6 +48,7 @@ gem 'peek-git'
 gem 'peek-host', github: "kailan/peek-host"
 gem 'peek-redis'
 gem 'peek-mongo'
+gem 'peek-resque', github: "kailan/peek-resque"
 
 # Integrations
 gem 'slack-ruby-client', '~> 0.9'
@@ -84,6 +85,8 @@ gem 'mongoid-slug', '~> 5.2'
 gem 'mongoid_search'
 # Use Redis for caching
 gem 'redis'
+# Use Resque for jobs
+gem 'resque'
 
 gem 'aasm', '~> 4.11'
 
