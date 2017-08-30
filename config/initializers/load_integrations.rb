@@ -1,0 +1,1 @@
+Dir[Rails.root + 'lib/integrations/**/*.rb'].each {|file| require file}
