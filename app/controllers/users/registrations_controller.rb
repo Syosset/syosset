@@ -2,7 +2,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def update
     authorize current_user
-    current_user.update!(params.require(:user).permit(:bio))
+    current_user.update!(params.require(:user).permit(:bio, :picture))
     redirect_to user_path(current_user)
   end
 

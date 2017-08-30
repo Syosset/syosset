@@ -3,6 +3,9 @@
     = f.label :name
     = f.text_field :name, placeholder: "Name", class: "form-control"
   .form-group
+    = f.label :bio
+    = f.text_area :bio, placeholder: "Bio", class: "form-control"
+  .form-group
     = f.label :super_admin
     = f.check_box :super_admin
   = f.submit "Save", class: "btn btn-success pull-right", id: "submit-button"

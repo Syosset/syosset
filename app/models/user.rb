@@ -53,6 +53,7 @@ class User
   has_mongoid_attached_file :picture, styles: {
     :large => ['512x512>', :jpg]
   }
+  validates_attachment :picture, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png"] }
 
   def self.from_omniauth(access_token)
       data = access_token.info
