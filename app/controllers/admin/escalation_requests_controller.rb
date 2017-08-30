@@ -6,6 +6,7 @@ module Admin
     def approve
       authorize @escalation_request, :approve
       @escalation_request.approve!(current_user)
+      notify_integrations "*#{current_user.name}* approved an escalation request from *#{@escalation_request.requester.name}* for #{url_for(@escalation_request.escalatable)}"      
       flash[:notice] = 'Escalation request successfully approved.'
       redirect_to admin_escalation_requests_path
     end
@@ -13,6 +14,7 @@ module Admin
     def deny
       authorize @escalation_request, :deny
       @escalation_request.deny!(current_user)
+      notify_integrations "*#{current_user.name}* denied an escalation request from *#{@escalation_request.requester.name}* for #{url_for(@escalation_request.escalatable)}"      
       flash[:notice] = 'Escalation request successfully denied.'
       redirect_to admin_escalation_requests_path
     end
