@@ -21,7 +21,7 @@ GIT
 
 GIT
   remote: https://github.com/kailan/peek-resque.git
-  revision: 1d1aab6d0c814a4a4932a2cc746d5cee2092b3e6
+  revision: 6857ff5e3043fd3cbeb8b2f645fe0cc072ce0a3d
   specs:
     peek-resque (2.1.0)
       peek (~> 1.0)
