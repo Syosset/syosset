@@ -1,4 +1,11 @@
 module ApplicationHelper
+
+  def present(model, presenter_class=nil)
+    klass = presenter_class || "#{model.class}Presenter".constantize
+    presenter = klass.new(model, self)
+    yield(presenter) if block_given?
+  end
+
   def active_controller(controller, action = nil)
     return 'active' if params[:controller] == controller && (action ? params[:action] == action : true)
   end
