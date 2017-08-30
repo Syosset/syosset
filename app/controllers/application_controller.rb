@@ -20,7 +20,9 @@ class ApplicationController < ActionController::Base
       begin
         i.create_provider.notify(message)
       rescue => error
-        # todo: store errors in integration model
+        i.failures << IntegrationFailure.new(error: error.message, message: message)
+        i.save
+        $redis.incr('integration_failures')
       end
     end
   end

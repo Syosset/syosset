@@ -13,6 +13,8 @@ class Integration
   field :properties, type: Hash
   validates_with IntegrationValidator
 
+  embeds_many :failures, class_name: 'IntegrationFailure'
+
   def provider=(provider_class)
     provider_name = provider_class.name
   end
