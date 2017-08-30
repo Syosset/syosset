@@ -32,11 +32,13 @@ module Admin
       @escalation_request.save
 
       if @escalation_request.errors.empty?
-          flash[:notice] = 'Escalation request successfully created.'
-          redirect_to url_for(@escalatable) rescue redirect_to root_path
+        type_name = @escalation_request.escalatable.class.to_s.downcase
+        notify_integrations "*#{current_user.name}* wants to escalate their #{type_name}: #{url_for(@escalatable)}\n> #{@escalation_request.note}"
+        flash[:notice] = 'Escalation request successfully created.'
+        redirect_to url_for(@escalatable) rescue redirect_to root_path
       else
-          flash.now[:alert] = @escalation_request.errors.full_messages.first
-          render action: 'new'
+        flash.now[:alert] = @escalation_request.errors.full_messages.first
+        render action: 'new'
       end
     end
 
