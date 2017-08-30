@@ -1,0 +1,8 @@
+%section.section.section-padded
+  .section-header
+    %h3
+      Edit Integration
+  .container-fluid
+    .row-fluid
+      = render 'form'
+      = link_to "Delete Integration", admin_integration_path(@integration), method: :delete, data: {confirm: "Are you sure?"}

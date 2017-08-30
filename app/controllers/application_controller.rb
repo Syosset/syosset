@@ -16,7 +16,13 @@ class ApplicationController < ActionController::Base
   end
 
   def notify_integrations(message)
-    Integration.each {|i| i.create_provider.notify(message)}
+    Integration.each do |i|
+      begin
+        i.create_provider.notify(message)
+      rescue => error
+        # todo: store errors in integration model
+      end
+    end
   end
 
   rescue_from ActionController::RoutingError, :with => :not_found
