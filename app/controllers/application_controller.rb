@@ -15,6 +15,18 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def notify_integrations(message)
+    Integration.each do |i|
+      begin
+        i.create_provider.notify(message)
+      rescue => error
+        i.failures << IntegrationFailure.new(error: error.message, message: message)
+        i.save
+        $redis.incr('integration_failures')
+      end
+    end
+  end
+
   rescue_from ActionController::RoutingError, :with => :not_found
   rescue_from Mongoid::Errors::DocumentNotFound, :with => :not_found
 

@@ -47,6 +47,10 @@ Rails.application.routes.draw do
       resources :courses
     end
 
+    resources :integrations do
+      post :clear_failures, on: :member
+    end
+
     resources :escalation_requests do
       post "approve", action: :approve, as: :approve
       post "deny", action: :deny, as: :deny

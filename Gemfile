@@ -48,6 +48,9 @@ gem 'peek-host', github: "kailan/peek-host"
 gem 'peek-redis'
 gem 'peek-mongo'
 
+# Integrations
+gem 'slack-ruby-client', '~> 0.9'
+
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
