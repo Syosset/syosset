@@ -12,10 +12,6 @@ module Syosset
         @channel = opts[:channel] || '#general'
       end
 
-      def options
-        {token: @client.token, channel: @channel}
-      end
-
       def notify(message)
         @client.chat_postMessage(channel: @channel, text: message, as_user: true)
       end

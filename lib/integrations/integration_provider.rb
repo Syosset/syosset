@@ -10,10 +10,6 @@ module Syosset
         friendly_name.downcase
       end
 
-      def options
-        Hash.new
-      end
-
       def notify(message)
         raise "not implemented!"
       end
