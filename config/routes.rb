@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   mount Peek::Railtie => '/peek'
 
   root 'welcome#index'
+  get 'landing' => 'welcome#landing'
+
   get 'z/index.html', to: redirect("/")
 
   get 'about' => 'welcome#about'
@@ -32,6 +34,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root :to => "base#index"
+    post "/toggle" => "base#toggle"
 
     resources :users, only: [:index, :edit, :update]
 
@@ -44,6 +47,10 @@ Rails.application.routes.draw do
 
     resources :departments, shallow: true, only: [:new, :create, :edit, :update, :destroy] do
       resources :courses
+    end
+
+    resources :integrations do
+      post :clear_failures, on: :member
     end
 
     resources :escalation_requests do

@@ -8,11 +8,8 @@
             For
             = link_to @department.name, @department
       .col-xs-12.col-sm-7
-        = form_tag department_courses_path(@department), method: :get do
-          .input-group
-            %input#search.form-control{:placeholder => "Search for Course", :type => "text", name: "search"}
-            %span.input-group-btn
-              = submit_tag "Search", :name => nil, class: "btn btn-default"
+        = render partial: "partials/index_search_bar", locals: {path: department_courses_path(@department)}
+
     .row
       = render partial: "partials/modtools", locals: {actions: @actions}
   .page-content

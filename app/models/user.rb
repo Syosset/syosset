@@ -65,4 +65,5 @@ class User
   def staff?
     super_admin || (/^[a-z]+\@syosset\.k12\.ny\.us$/ =~ email) == 0
   end
+
 end

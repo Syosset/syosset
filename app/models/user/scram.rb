@@ -20,8 +20,17 @@ class User
       end
 
       define_method :can? do |*args|
-        return true if super_admin
+        return true if admin_enabled?
         super(*args)
+      end
+
+      define_method :admin_enabled? do
+        $redis.get("user:#{self.id}:admin_enabled") == "true"
+      end
+
+      define_method :toggle_admin do
+        raise "User is not an administrator" unless super_admin
+        $redis.set("user:#{self.id}:admin_enabled", !admin_enabled?)
       end
     end
 

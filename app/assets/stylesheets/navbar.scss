@@ -2,6 +2,10 @@
   display: flex;
 }
 
+.contact .email {
+  margin-top: 3px;
+}
+
 @media (min-width: 576px) {
   .red-white-display {
       border: 2px solid #dce7f0;
@@ -10,6 +14,11 @@
       margin-right: 15px;
       margin-bottom: 8px;
   }
+}
+
+.logo-mobile {
+  margin-top: 10px;
+  margin-left: 8px;
 }
 
 .day-indicator-container {
@@ -28,7 +37,6 @@
   position: relative;
   font-weight: 600;
   text-transform: uppercase;
-  font-family: 'open sans', arial, sans-serif;
 }
 
 .day-indicator-container a:after{
@@ -42,21 +50,29 @@
 
 .full-name {
   margin-top: 38px;
-  margin-left: 15px;
+  margin-left: 1em;
 }
 
 #peek {
-  background: #43232d !important;
+  background: #43232d;
   color: white;
+}
+
+#peek.development {
+  background: #7b008e;
 }
 
 #peek .wrapper {
   margin-left: 0;
 }
 
-.peek-container {
-  background: #43232d;
-  width: 100%;
+.peek-icon {
+  font-size: 120%;
+  margin-right: 5px;
+  color: #fff;
+}
+.peek-link a {
+  color: #fff;
 }
 
 #movable {

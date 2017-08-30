@@ -14,7 +14,8 @@ gem 'capybara', '~> 2.7', '>= 2.7.1'
 gem 'poltergeist', '~> 1.15'
 gem 'launchy', '~> 2.4', '>= 2.4.3'
 
-gem 'jquery-ui-rails', '~> 6.0', '>= 6.0.1'
+gem 'jquery-ui-rails'
+gem 'jquery-rails'
 gem 'git', '~> 1.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -23,6 +24,8 @@ gem 'rails', '~> 5.1.1'
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
+# Use autoprefixer-rails for automatic browser prefixing
+gem 'autoprefixer-rails', '~> 7.1.3'
 # Use HAML for templates
 gem 'haml-rails', '~> 0.9'
 # Use Uglifier as compressor for JavaScript assets
@@ -42,9 +45,12 @@ gem 'kaminari-views-bootstrap'
 # Peek shows performance stats
 gem 'peek'
 gem 'peek-git'
-gem 'peek-host'
+gem 'peek-host', github: "kailan/peek-host"
 gem 'peek-redis'
 gem 'peek-mongo'
+
+# Integrations
+gem 'slack-ruby-client', '~> 0.9'
 
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby

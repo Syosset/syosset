@@ -9,12 +9,12 @@
   .section-content
     %p
       %a{:href => "https://ic.syosset.k12.ny.us/"}
-        %i.fa.fa-graduation-cap
+        %i.fa.fa-institution
         Parent and Teacher Portal
     %p
-      %a{:href => "http://portal.office365.com/"}
+      %a{:href => "https://portal.office.com/"}
         %i.fa.fa-envelope
-        Teacher email
+        Teacher Email
     %p
       %a{:href => "http://www.syossetschools.org/Calendar/Default.aspx?period=monthgrid"}
         %i.fa.fa-calendar
@@ -22,5 +22,5 @@
     - @links.each do |link|
       %p
         = link_to link[:target] do
-          %i.fa.fa-link
+          %i.fa{class: link.icon.nil? ? "fa-link" : "#{link.icon}"}
           = link.name

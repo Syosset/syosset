@@ -1,25 +1,26 @@
 %header.header
-  .header-main.container
-    .container
-      %h1.logo.pull-left
-        = link_to root_path do
-          = svg 'logo'
-          .full-name.pull-right.visible-lg
-            = svg 'full_name'
-      .info.col-md-4-col-sm-4.pull-right
-        %br
-        %br
-        .contact
-          %p.phone
-            %i.fa.fa-phone
-            = t('contact.phone')
-          %p.email
-            %i.fa.fa-envelope
-            = t('contact.email')
+  - unless params[:action] == 'landing'
+    .header-main.container.hidden-xs
+      .container
+        %h1.logo.pull-left
+          = link_to root_path do
+            = svg 'logo'
+            .full-name.pull-right.visible-lg
+              SYOSSET HIGH SCHOOL
+        .info.col-md-4-col-sm-4.pull-right
+          %br
+          %br
+          .contact
+            %p.phone
+              %i.fa.fa-phone
+              = t('contact.phone')
 
 %nav.main-nav{role: :navigation}
   .container
     .navbar-header
+      = link_to root_path do
+        .logo-mobile.visible-xs
+          = svg 'icon'
       .day-indicator-container.visible-xs
         = render "partials/nav/day_indicator"
       %button.navbar-toggle{"data-target" => "#navbar-collapse", "data-toggle" => "collapse", :type => "button"}
@@ -44,7 +45,7 @@
         %li.nav-item
           = link_to t('nav.extracurriculars'), activities_path
 
-        - if user_signed_in? && current_user.super_admin?
+        - if user_signed_in? && current_user.admin_enabled?
           %li.nav-item{class: active_controller('admin/base', 'index')}
             = link_to t('nav.admin'), admin_root_path
       %ul.nav.navbar-nav.pull-right
@@ -54,7 +55,7 @@
         - if user_signed_in?
           %li.nav-item
             = link_to user_path(current_user) do
-              - if current_user.super_admin
+              - if current_user.admin_enabled?
                 %i.fa.fa-shield
               = current_user.name
           %li.nav-item
@@ -82,6 +83,4 @@
               - if @alert_count == 0
                 %li
                   %a{href: ""} No unread alerts!
-  .peek-container
-    .container
-      = render 'peek/bar'
+  = render 'peek/bar'
