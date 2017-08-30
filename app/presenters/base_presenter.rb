@@ -4,7 +4,9 @@ class BasePresenter
   include Rails.application.routes.url_helpers
   attr_reader :model
 
-  delegates_missing_to :@model
+  delegate :current_holder, to: :h
+  delegate :current_user, to: :h
+  delegate_missing_to :@model
 
   def initialize(model, helpers = nil)
     @model = model
@@ -14,4 +16,5 @@ class BasePresenter
   def h
     @helpers ||= ActionController::Base.helpers
   end
+
 end

@@ -1,0 +1,3 @@
+class LinkPresenter < BasePresenter
+  
+end

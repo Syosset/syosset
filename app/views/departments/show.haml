@@ -1,47 +1,45 @@
-.page-wrapper
-  %header.page-heading.clearfix
-    %h1.heading-title.pull-left= @department.name
-    = render partial: "partials/modtools", locals: {actions: @actions}
-    %ul.nav.navbar-nav.pull-right
-      %li
-        - if @department.subscriber? current_user
-          %a{:href => unsubscribe_department_path(@department), data: {method: 'post'}} Unsubscribe
-        - else
-          %a{:href => subscribe_department_path(@department), data: {method: 'post'}} Subscribe
-  .page-content
-    .row.page-row
-      .courses-wrapper.col-md-8.col-sm-7
-        = form_for [:admin, @department] do |f|
-          %div{class: "#{"editable-content" if current_holder.can? :edit, @department}", id: "department[content]"}
-            = @department.content.html_safe
-      %aside.page-sidebar.col-md-3.col-md-offset-1.col-sm-4.col-sm-offset-1
-        %section.widget.has-divider
-          %h3.title
-            %i.fa.fa-phone
-            Contact Department
-          %p
-            Call us at
-            = @department.phone
-        %section.widget.has-divider
-          %h3.title
-            %i.fa.fa-bell
-            = link_to "Announcements", announcements_path(department_id: @department.id)
-          %ul.rankable.list-group
-            - @department.announcements.by_priority.limit(5).each do |announcement|
-              = content_tag_for(:li, announcement, class: "list-group-item") do
-                - if current_holder.can?(:edit, announcement)
-                  %i.handle.fa.fa-sort{"aria-hidden" => "true"}
-                = link_to announcement.name.truncate(38), announcement
-        %section.widget.has-divider
-          %h3.title
-            %i.fa.fa-link
-            Links
-          %ul.rankable.list-group
-            - @department.links.by_priority.limit(5).each do |link|
-              = content_tag_for(:li, link, class: "list-group-item") do
-                - if current_holder.can?(:edit, link)
-                  %i.handle.fa.fa-sort{"aria-hidden" => "true"}
-                  = link_to "[X]", admin_link_path(link), method: :delete
-                = link_to link.name, link.target
+- present @department do |department_presenter|
+  .page-wrapper
+    %header.page-heading.clearfix
+      %h1.heading-title.pull-left= @department.name
+      = render partial: "partials/modtools", locals: {actions: @actions}
+      %ul.nav.navbar-nav.pull-right
+        %li
+          = department_presenter.subscription_button
+    .page-content
+      .row.page-row
+        .courses-wrapper.col-md-8.col-sm-7
+          = form_for [:admin, @department] do |f|
+            = department_presenter.editable_content do
+              = @department.content.html_safe
+        %aside.page-sidebar.col-md-3.col-md-offset-1.col-sm-4.col-sm-offset-1
+          %section.widget.has-divider
+            %h3.title
+              %i.fa.fa-phone
+              Contact Department
+            %p
+              Call us at
+              = @department.phone
+          %section.widget.has-divider
+            %h3.title
+              %i.fa.fa-bell
+              = link_to "Announcements", announcements_path(department_id: @department.id)
+            %ul.rankable.list-group
+              - @department.announcements.by_priority.limit(5).each do |a|
+                - present a do |announcement|
+                  = announcement.as_list_item do
+                    = announcement.sorting_handle
+                    = link_to announcement.display_name, announcement
+          %section.widget.has-divider
+            %h3.title
+              %i.fa.fa-link
+              Links
+            %ul.rankable.list-group
+              - @department.links.by_priority.limit(5).each do |link|
+                = content_tag_for(:li, link, class: "list-group-item") do
+                  - if current_holder.can?(:edit, link)
+                    %i.handle.fa.fa-sort{"aria-hidden" => "true"}
+                    = link_to "[X]", admin_link_path(link), method: :delete
+                  = link_to link.name, link.target
 :javascript
   init_tiny();
