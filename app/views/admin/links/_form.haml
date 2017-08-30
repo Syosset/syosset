@@ -3,6 +3,10 @@
   .form-group
     = f.label :name
     = f.text_field :name, placeholder: "Name", class: "form-control"
+  - if current_user.admin_enabled?
+    .form-group
+      = f.label :icon, "Font Awesome Icon Name"
+      = f.text_field :icon, placeholder: "book", class: "form-control"
   .form-group
     = f.label :target
     = f.text_field :target, placeholder: "URL", rows: 10, class: "form-control"

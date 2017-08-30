@@ -6,7 +6,7 @@ module Admin
     def approve
       authorize @escalation_request, :approve
       @escalation_request.approve!(current_user)
-      notify_integrations "*#{current_user.name}* approved an escalation request from *#{@escalation_request.requester.name}* for #{url_for(@escalation_request.escalatable)}"      
+      notify_integrations "*#{current_user.name}* approved an escalation request from *#{@escalation_request.requester.name}*."
       flash[:notice] = 'Escalation request successfully approved.'
       redirect_to admin_escalation_requests_path
     end
@@ -14,7 +14,7 @@ module Admin
     def deny
       authorize @escalation_request, :deny
       @escalation_request.deny!(current_user)
-      notify_integrations "*#{current_user.name}* denied an escalation request from *#{@escalation_request.requester.name}* for #{url_for(@escalation_request.escalatable)}"      
+      notify_integrations "*#{current_user.name}* denied an escalation request from *#{@escalation_request.requester.name}*."
       flash[:notice] = 'Escalation request successfully denied.'
       redirect_to admin_escalation_requests_path
     end
@@ -35,7 +35,7 @@ module Admin
 
       if @escalation_request.errors.empty?
         type_name = @escalation_request.escalatable.class.to_s.downcase
-        notify_integrations "*#{current_user.name}* wants to escalate their #{type_name}: #{url_for(@escalatable)}\n> #{@escalation_request.note}"
+        notify_integrations "*#{current_user.name}* wants to escalate their #{type_name}:\n> #{@escalation_request.note}\n#{admin_escalation_requests_url}"
         flash[:notice] = 'Escalation request successfully created.'
         redirect_to url_for(@escalatable) rescue redirect_to root_path
       else
