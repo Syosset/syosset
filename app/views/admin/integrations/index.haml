@@ -17,4 +17,6 @@
                 %i.fa{class: "fa-#{provider.fa_icon}"}
                 = link_to provider.friendly_name, edit_admin_integration_path(integration)
               %td
-                %kbd= integration.properties.to_json.truncate(120)
+                - props = integration[:properties]
+                - props[:token] = "[hidden]" unless props[:token].nil?
+                %kbd= props.to_json.truncate(120)
