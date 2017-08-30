@@ -1,0 +1,19 @@
+require 'rails_helper'
+require "test_implementations/plugin_test"
+
+module Syosset::Plugins
+  RSpec.describe Registry do
+    it "registers plugins" do
+      expect { Registry.register PluginTest }.to change{ Registry.plugins.empty? }.from(true).to(false)
+    end
+
+    it "notifies callbacks of plugin registry" do
+      flag = 0
+      Registry.on_register do
+        flag = 1
+      end
+
+      expect { Registry.register PluginTest }.to change{ flag }.from(0).to(1)
+    end
+  end
+end
