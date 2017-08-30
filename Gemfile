@@ -14,7 +14,8 @@ gem 'capybara', '~> 2.7', '>= 2.7.1'
 gem 'poltergeist', '~> 1.15'
 gem 'launchy', '~> 2.4', '>= 2.4.3'
 
-gem 'jquery-ui-rails', '~> 6.0', '>= 6.0.1'
+gem 'jquery-ui-rails'
+gem 'jquery-rails'
 gem 'git', '~> 1.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
