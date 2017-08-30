@@ -86,6 +86,8 @@ gem 'mongoid-enum', github: "Syosset/mongoid-enum"
 gem 'mongoid_search'
 # Use Redis for caching
 gem 'redis'
+# Use Resque for jobs
+gem 'resque'
 
 gem 'aasm', '~> 4.11'
 
