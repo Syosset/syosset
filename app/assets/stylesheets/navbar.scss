@@ -1,0 +1,91 @@
+.navbar-header {
+  display: flex;
+}
+
+.contact .email {
+  margin-top: 3px;
+}
+
+@media (min-width: 576px) {
+  .red-white-display {
+      border: 2px solid #dce7f0;
+      padding: 3px 10px;
+      margin-top: 11px;
+      margin-right: 15px;
+      margin-bottom: 8px;
+  }
+}
+
+.logo-mobile {
+  margin-top: 10px;
+  margin-left: 8px;
+}
+
+.day-indicator-container {
+  position: relative;
+  padding: 9px 10px;
+  margin-top: 8px;
+  margin-right: 15px;
+  margin-bottom: 8px;
+  flex: 1;
+}
+
+.day-indicator-container a {
+  border: 2px solid #dce7f0;
+  padding: 5px;
+  color: #dce7f0;
+  position: relative;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.day-indicator-container a:after{
+  padding: 30px;
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.full-name {
+  margin-top: 38px;
+  margin-left: 1em;
+}
+
+#peek {
+  background: #43232d;
+  color: white;
+}
+
+#peek.development {
+  background: #7b008e;
+}
+
+#peek .wrapper {
+  margin-left: 0;
+}
+
+.peek-icon {
+  font-size: 120%;
+  margin-right: 5px;
+  color: #fff;
+}
+.peek-link a {
+  color: #fff;
+}
+
+#movable {
+  position: relative;
+}
+#movable #line {
+  margin-left: 20px;
+  border-bottom: 2px solid #d83a3a;
+}
+
+#movable #text {
+  transform: translate(calc(-98%), 11px);
+  width: 100%;
+  text-align: right;
+  color: #d83a3a;
+}

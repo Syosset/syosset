@@ -1,16 +1,17 @@
 %footer.footer
-  .bottom-bar
-    .container
-      .row
-        %small.copyright.col-md-3.col-sm-12-col-xs-12
-          =t('copyright', year: Time.now.year)
-        .commit.col-md-6.col-sm-12-col-xs-12
-          %code
-            %a{href:"https://github.com/Syosset/Web/commit/#{@revision}", target: "_blank"} #{@revision[0..5]}
-        %ul.social.pull-right.col-md-3.col-sm-12.col-xs-12
-          %li
-            %a{:href => "https://twitter.com/SyoStudentGov"}
-              %i.fa.fa-twitter
-          %li
-            %a{:href => "https://www.facebook.com/search/top/?q=Syosset%20High%20School"}
-              %i.fa.fa-facebook
+  .container
+    %small.copyright
+      Made by
+      = link_to "Neil Johari", "https://github.com/neiljohari/"
+      and
+      = link_to "Kailan Blanks", "https://github.com/kailan/"
+    %ul.social
+      %li.text-primary
+        %a{:href => "https://twitter.com/SyoStudentGov"}
+          %i.fa.fa-twitter
+      %li
+        %a{:href => "https://www.facebook.com/syosseths"}
+          %i.fa.fa-facebook
+      %li
+        %a{:href => "https://github.com/Syosset/syosset"}
+          %i.fa.fa-github

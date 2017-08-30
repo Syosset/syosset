@@ -1,0 +1,20 @@
+.page-wrapper
+  %header.page-heading.clearfix
+    %h1.heading-title.pull-left Users
+  .page-content
+    .table-responsive
+      %table.table
+        %thead
+          %tr
+            %th Name
+            %th Email
+        %tbody
+          - @users.each do |user|
+            %tr
+              %td
+                = link_to user.name, edit_admin_user_path(user)
+                &nbsp;
+                - if user.super_admin
+                  %i.fa.fa-shield
+              %td= user.email
+    = paginate @users, theme: 'tb3'

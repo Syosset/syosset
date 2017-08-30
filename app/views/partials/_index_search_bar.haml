@@ -1,0 +1,19 @@
+-# Partial for a search bar for an index listing search
+-# Yields inside of the form to allow hidden fields
+
+-# Locals:
+-#  * path        -> Index route,                          default: none, required
+-#  * placeholder -> Text in search bar,                   default: "Search for {Model}" (model is resolved from the path)
+-#  * value       -> Text in bar after a completed search, default: params[:search]
+-#  * submit_button_text -> Text in search button,         default: "Search"
+
+- placeholder = local_assigns.fetch(:placeholder, "Search for " + "#{request.path.split("/").last.singularize}".indefinite_articularize)
+- value       = local_assigns.fetch(:value, params[:search])
+- submit_button_text  = local_assigns.fetch(:submit_button_text, "Search")
+
+= form_tag path, method: :get do
+  = yield
+  .input-group
+    %input#search.form-control{placeholder: placeholder, type: :text, name: :search, value: value}
+    %span.input-group-btn
+      = submit_tag submit_button_text, name: nil, class: "btn btn-default"

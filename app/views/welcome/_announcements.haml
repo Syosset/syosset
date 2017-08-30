@@ -1,6 +1,11 @@
 %section.news
   %h1.section-heading.text-highlight
-    %span.line= link_to "Important Announcements", announcements_path
+    %span.line
+      = link_to t('.announcements'), announcements_path
+      %small
+        = link_to announcements_path do
+          %i.fa.fa-ellipsis-v
+          See all
   .carousel-controls
     %a.prev{"data-slide" => "prev", :href => "#news-carousel"}
       %i.fa.fa-caret-left
@@ -15,7 +20,7 @@
               .col-md-3.news-item
                 %h2.title
                   = link_to announcement.name, announcement
-                %p= truncate(announcement.content, length: 140)
+                %p= truncate(strip_tags(announcement.content), length: 140)
                 = link_to announcement do
                   Read more
                   %i.fa.fa-chevron-right

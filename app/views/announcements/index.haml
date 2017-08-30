@@ -12,25 +12,24 @@
       %table.table
         %thead
           %tr
-            - if current_holder.can?(:edit, @announceable)
-              %th
+            %th
             - unless @announceable
               %th Posted Under
             %th Title
             %th Announcement
             %th Poster
             %th Posted
-        %tbody.rankable
+        %tbody
           - @announcements.each do |announcement|
             = content_tag_for(:tr, announcement) do
-              - if current_holder.can?(:edit, announcement)
-                %td
+              %td
+                - if @announceable && current_holder.can?(:edit, announcement)
                   %i.handle.fa.fa-sort{"aria-hidden" => "true"}
               - unless @announceable
                 - announceable = announcement.announceable
                 %td= link_to "#{announceable.send("name") || "a #{announceable.class.to_s.humanize}"}", announceable
               %td= link_to announcement.name.truncate(60), announcement
-              %td= announcement.content.truncate(50)
+              %td= strip_tags(announcement.content).truncate(50)
               %td= announcement.poster.name
               %td
                 = time_ago_in_words(announcement.created_at)

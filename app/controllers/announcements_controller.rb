@@ -9,7 +9,7 @@ class AnnouncementsController < ApplicationController
       actions_builder.require(:edit, @announceable).add_action("New Announcement", :get, new_admin_announcement_path("#{@announceable.class.to_s.downcase}_id" => @announceable.id))
       @announceable.announcements.by_priority
     else
-      Announcement.by_priority
+      Announcement.desc(:created_at)
     end
 
     @actions = actions_builder.actions

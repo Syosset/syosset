@@ -1,0 +1,48 @@
+.page-wrapper
+  %header.page-heading.clearfix
+    .row
+      .col-xs-12.col-sm-5
+        %h1.heading-title.pull-left
+          Links
+          - if @linkable
+            %small
+              Posted under
+              = link_to "#{@linkable.send("name") || "a #{@linkable.class.to_s.humanize}"}", @linkable
+
+      .col-xs-12.col-sm-7
+        = render layout: "partials/index_search_bar", locals: {path: links_path} do
+          = hidden_field_tag "#{@linkable.class.to_s.downcase}_id", @linkable.id.to_s if @linkable
+
+        = render partial: "partials/modtools", locals: {actions: @actions}
+  .page-content
+    .table-responsive
+      %table.table
+        %thead
+          %tr
+            %th
+            %th
+            - unless @linkable
+              %th Posted Under
+            %th Link
+            %th Poster
+            %th Posted
+        %tbody
+          - @links.each do |link|
+            = content_tag_for(:tr, link) do
+              %td
+                - if @linkable && current_holder.can?(:edit, link)
+                  %i.handle.fa.fa-sort{"aria-hidden" => "true"}
+              %td
+                - if link.escalated?
+                  %i.fa.fa-star
+                - else
+                  %i.fa.fa-star-o
+              - unless @linkable
+                - linkable = link.linkable
+                %td= link_to "#{linkable.send("name") || "a #{linkable.class.to_s.humanize}"}", linkable
+              %td= link_to link.name.truncate(60), link[:target]
+              %td= link.poster.name
+              %td
+                = time_ago_in_words(link.created_at)
+                ago
+    = paginate @links, theme: 'tb3'

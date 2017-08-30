@@ -1,0 +1,55 @@
+= content_for :title, @course.name
+= content_for :description, truncate(strip_tags(@course.content), length: 200)
+
+.page-wrapper
+  %header.page-heading.clearfix
+    %h1.heading-title.pull-left
+      %span.text-muted= "##{@course.course_id}"
+      = @course.name
+      %small
+        - department = @course.department
+        = link_to "For #{department.name}", department
+    = render partial: "partials/modtools", locals: {actions: @actions}
+    %ul.nav.navbar-nav.pull-right
+      %li
+        - if user_signed_in?
+          - if @course.subscriber? current_user
+            %a{:href => unsubscribe_course_path(@course), data: {method: 'post'}} Unsubscribe
+          - else
+            %a{:href => subscribe_course_path(@course), data: {method: 'post'}} Subscribe
+  .page-content
+    .row.page-row
+      .courses-wrapper.col-md-8.col-sm-7
+        = form_for [:admin, @course] do |f|
+          %div{class: "#{"editable-content" if current_holder.can? :edit, @course}", id: "course[content]"}
+            = @course.content.html_safe
+      %aside.page-sidebar.col-md-3.col-md-offset-1.col-sm-4.col-sm-offset-1
+        %section.widget.has-divider
+          %h3.title
+            %i.fa.fa-bell
+            = link_to "Announcements", announcements_path(course_id: @course.id)
+          %ul.rankable.list-group
+            - @course.announcements.by_priority.limit(5).each do |announcement|
+              = content_tag_for(:li, announcement, class: "list-group-item") do
+                - if current_holder.can?(:edit, announcement)
+                  %i.handle.fa.fa-sort{"aria-hidden" => "true"}
+                = link_to announcement.name.truncate(38), announcement
+        %section.widget.has-divider
+          %h3.title
+            %i.fa.fa-link
+            = link_to "Links", links_path(course_id: @course.id)
+          %ul.rankable.list-group
+            - @course.links.by_priority.limit(5).each do |link|
+              = content_tag_for(:li, link, class: "list-group-item") do
+                - if current_holder.can?(:edit, link)
+                  %i.handle.fa.fa-sort{"aria-hidden" => "true"}
+                  = link_to admin_link_path(link), method: :delete, data: { confirm: 'Are you sure?' } do
+                    %i.fa.fa-times
+                  = link_to new_admin_escalation_request_path(link_id: link) do
+                    - if link.escalated?
+                      %i.fa.fa-star
+                    - else
+                      %i.fa.fa-star-o
+                = link_to link.name, link.target
+:javascript
+  init_tiny();

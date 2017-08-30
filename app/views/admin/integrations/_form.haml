@@ -1,0 +1,9 @@
+= form_for [:admin, @integration] do |f|
+  .form-group
+    = f.label :provider_name
+    = f.select :provider_name, Integration.providers.map {|c| c.name}, class: "form-control"
+  .form-group
+    = f.label :properties
+    - props = @integration.properties.nil? ? "" : @integration.properties.to_json
+    = f.text_field :properties, value: props, placeholder: '{"token": "xoxb-..."}', class: "form-control"
+  = f.submit "Save", class: "btn btn-success pull-right", id: "submit-button"

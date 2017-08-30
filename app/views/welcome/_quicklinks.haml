@@ -1,16 +1,26 @@
 %section.links
   %h1.section-heading.text-highlight
-    %span.line Quick Links
+    %span.line
+      = link_to "Quick Links", links_path
+      %small
+        = link_to links_path do
+          %i.fa.fa-ellipsis-v
+          See all
   .section-content
     %p
       %a{:href => "https://ic.syosset.k12.ny.us/"}
-        %i.fa.fa-graduation-cap
+        %i.fa.fa-institution
         Parent and Teacher Portal
     %p
-      %a{:href => "https://web.archive.org/web/20160802212722/https://webmail.syosset.k12.ny.us/owa/auth/logon.aspx?url=https://webmail.syosset.k12.ny.us/owa/&reason=0"}
+      %a{:href => "https://portal.office.com/"}
         %i.fa.fa-envelope
-        Teacher email
+        Teacher Email
     %p
       %a{:href => "http://www.syossetschools.org/Calendar/Default.aspx?period=monthgrid"}
         %i.fa.fa-calendar
         District Calendar
+    - @links.each do |link|
+      %p
+        = link_to link[:target] do
+          %i.fa{class: link.icon.nil? ? "fa-link" : "#{link.icon}"}
+          = link.name

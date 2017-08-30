@@ -4,15 +4,17 @@ module Admin
     before_action :get_escalation_request, only: [:update, :destroy, :edit, :approve, :deny]
 
     def approve
-      authorize :approve, @escalation_request
+      authorize @escalation_request, :approve
       @escalation_request.approve!(current_user)
+      notify_integrations "*#{current_user.name}* approved an escalation request from *#{@escalation_request.requester.name}*."
       flash[:notice] = 'Escalation request successfully approved.'
       redirect_to admin_escalation_requests_path
     end
 
     def deny
-      authorize :approve, @escalation_request
+      authorize @escalation_request, :deny
       @escalation_request.deny!(current_user)
+      notify_integrations "*#{current_user.name}* denied an escalation request from *#{@escalation_request.requester.name}*."
       flash[:notice] = 'Escalation request successfully denied.'
       redirect_to admin_escalation_requests_path
     end
@@ -32,11 +34,13 @@ module Admin
       @escalation_request.save
 
       if @escalation_request.errors.empty?
-          flash[:notice] = 'Escalation request successfully created.'
-          redirect_to @escalatable
+        type_name = @escalation_request.escalatable.class.to_s.downcase
+        notify_integrations "*#{current_user.name}* wants to escalate their #{type_name}:\n> #{@escalation_request.note}\n#{admin_escalation_requests_url}"
+        flash[:notice] = 'Escalation request successfully created.'
+        redirect_to url_for(@escalatable) rescue redirect_to root_path
       else
-          flash.now[:alert] = @escalation_request.errors.full_messages.first
-          render action: 'new'
+        flash.now[:alert] = @escalation_request.errors.full_messages.first
+        render action: 'new'
       end
     end
 

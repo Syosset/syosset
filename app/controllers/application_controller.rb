@@ -15,6 +15,29 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def notify_integrations(message)
+    Integration.each do |i|
+      begin
+        NotifyIntegrationJob.perform_later(i.id.to_s, message)
+      rescue => error
+        i.failures << IntegrationFailure.new(error: error.message, message: message)
+        i.save
+        $redis.incr('integration_failures')
+      end
+    end
+  end
+
+  rescue_from ActionController::RoutingError, :with => :not_found
+  rescue_from Mongoid::Errors::DocumentNotFound, :with => :not_found
+
+  def not_found
+    redirect_to root_path, :alert => "The page you requested does not exist."
+  end
+
+  def peek_enabled?
+    Rails.env.development? || (user_signed_in? && current_user.super_admin)
+  end
+
   def autocomplete
     if params[:term]
       @users = User.any_of({name: /.*#{params[:term]}.*/i}, {email: /.*#{params[:term]}.*/i}).limit(5)
@@ -41,12 +64,12 @@ class ApplicationController < ActionController::Base
       end
       @revision = $g.log[i].sha
     else
-      @revision = ENV['GIT_REV'] || "???"
+      @revision = ENV['GIT_SHA'] || "???"
     end
   end
 
   def set_navbar_resources
-    @departments = Department.all # TODO cache
+    @departments = Department.by_priority # TODO cache
   end
 
   def find_alerts

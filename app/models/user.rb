@@ -5,13 +5,15 @@ class User
   include Scram
   include Alerts
 
+  paginates_per 12
+
 	groupify :group_member, group_class_name: 'CollaboratorGroup'
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :omniauthable, omniauth_providers: [:google_oauth2]
+         :omniauthable, :timeoutable, omniauth_providers: [:google_oauth2]
 
   # Omniauthable
   field :name
@@ -57,4 +59,9 @@ class User
       end
       user
   end
+
+  def staff?
+    super_admin || (/^[a-z]+\@syosset\.k12\.ny\.us$/ =~ email) == 0
+  end
+  
 end

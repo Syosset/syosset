@@ -1,18 +1,27 @@
 .page-wrapper
   %header.page-heading.clearfix
-    %h1.heading-title.pull-left Departments
-    = render partial: "partials/modtools", locals: {actions: @actions}
+    .row
+      .col-xs-12.col-sm-5
+        %h1.heading-title.pull-left Departments
+      .col-xs-12.col-sm-7
+        = render partial: "partials/index_search_bar", locals: {path: departments_path}
+        = render partial: "partials/modtools", locals: {actions: @actions}
   .page-content
     .table-responsive
       %table.table
         %thead
           %tr
+            %th
             %th Department Name
             %th Description
             %th Phone Number
-        %tbody
+        %tbody.rankable
           - @departments.each do |department|
-            %tr
+            = content_tag_for(:tr, department) do
+              %td
+                - if current_holder.can?(:rank, :departments)
+                  %i.handle.fa.fa-sort{"aria-hidden" => "true"}
               %td= link_to department.name, department
               %td= department.short_description
               %td= department.phone
+    = paginate @departments, theme: 'tb3'

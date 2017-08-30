@@ -1,0 +1,11 @@
+%section.section.section-padded
+  .section-header
+    %h3
+      Edit
+      %span.light
+        = @activity.name
+        Club
+  .container-fluid
+    .row-fluid
+      = render 'form'
+      = link_to 'Back',  activity_path(@activity), class: "btn btn-warning pull-right"

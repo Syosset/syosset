@@ -14,7 +14,8 @@ gem 'capybara', '~> 2.7', '>= 2.7.1'
 gem 'poltergeist', '~> 1.15'
 gem 'launchy', '~> 2.4', '>= 2.4.3'
 
-gem 'jquery-ui-rails', '~> 6.0', '>= 6.0.1'
+gem 'jquery-ui-rails'
+gem 'jquery-rails'
 gem 'git', '~> 1.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -23,6 +24,8 @@ gem 'rails', '~> 5.1.1'
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
+# Use autoprefixer-rails for automatic browser prefixing
+gem 'autoprefixer-rails', '~> 7.1.3'
 # Use HAML for templates
 gem 'haml-rails', '~> 0.9'
 # Use Uglifier as compressor for JavaScript assets
@@ -33,6 +36,22 @@ gem "font-awesome-rails", '~> 4.7.0.2'
 gem 'flex-slider-rails', '~> 2.6.3'
 # Use tinymce
 gem 'tinymce-rails'
+
+# Pagination
+gem 'kaminari'
+gem 'kaminari-mongoid'
+gem 'kaminari-views-bootstrap'
+
+# Peek shows performance stats
+gem 'peek'
+gem 'peek-git'
+gem 'peek-host', github: "kailan/peek-host"
+gem 'peek-redis'
+gem 'peek-mongo'
+gem 'peek-resque', github: "kailan/peek-resque"
+
+# Integrations
+gem 'slack-ruby-client', '~> 0.9'
 
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
@@ -49,7 +68,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 # Use Devise for user authentication
 gem 'devise', '~> 4.3'
-gem 'omniauth-google-oauth2', '~> 0.5.0'
+gem 'omniauth-google-oauth2', github: "zquestz/omniauth-google-oauth2"
 # Use scram for authorization
 gem 'scram', '~> 0.1.1'
 # Use groupify in conjunction with Scram
@@ -62,8 +81,12 @@ gem 'groupify', '~> 0.8.0'
 gem 'mongoid', '~> 6.1.0'
 # Use mongoid-slug for pretty urls
 gem 'mongoid-slug', '~> 5.2'
+# Use mongoid_search for model searching
+gem 'mongoid_search'
 # Use Redis for caching
 gem 'redis'
+# Use Resque for jobs
+gem 'resque'
 
 gem 'aasm', '~> 4.11'
 

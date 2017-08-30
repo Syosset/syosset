@@ -32,7 +32,7 @@
 en:
   menu:
     account:
-      sign_in_with: "Sign in with Google"
+      sign_in_with: "Sign In"
   name:
     abbr: "SHS"
     full: "Syosset High School"
@@ -41,17 +41,20 @@ en:
     about: "About"
     contact: "Contact"
     departments: "Departments"
-    extracurriculars: "Clubs"
+    extracurriculars: "Activities"
   welcome:
     slider:
       hero:
         first: "A BLUE RIBBON SCHOOL"
         second: "DEDICATED STAFF"
+    description: "Syosset High School is a top-tier high school located in Syosset, New York.
+                  As a blue ribbon school of excellence, we provide students with a rigorous
+                  education that will serve them for life."
     about:
       title: "About Us"
       principal:
         name: "Giovanni Durante"
-        statement: "TODO"
+        statement: "Let's get out there and make it a great day!"
       info:
         title: "Philosophy"
         text: "At Syosset High School, we strive to provide an education that is
@@ -64,12 +67,14 @@ en:
         continue to grow and explore long after their last test is taken. It is
         our hope that Syosset students will emerge as discerning, educated
         citizens—with the skills necessary to find success in the university, in
-        the workplace, in all the challenges life offers. Our administration and
+        the workplace, and in all the challenges life offers. Our administration and
         staff serve to model the values and character we expect of our students:
         patience, respect, integrity, dignity and empathy. We share our
         responsibility with parents and our community, and, in turn, hope to
         make Syosset High School students aware of their responsibility and
         connection to the larger world."
+    announcements:
+      announcements: "Announcements"
   contact:
     phone: "Call us today (516) 364-5675"
     email: "admin@syosseths.com" #TODO: email
