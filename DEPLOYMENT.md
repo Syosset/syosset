@@ -8,6 +8,15 @@ Requirements for Red-White display:
 
 For sign ins, set the environment variables `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` to the credentials provided from Google APIs.
 
+For file uploads, AWS credentials with s3:PutObject and s3:PutObjectAcl permissions to an S3 bucket are required. They can be configured
+via the following environment variables:
+```
+S3_BUCKET_NAME=<s3 bucket name>
+AWS_REGION=<s3 bucket region>
+AWS_ACCESS_KEY_ID=<aws access key id>
+AWS_SECRET_ACCESS_KEY=<aws secret access key>
+```
+
 Dokku plugins used in production:
 
   *  [dokku-mongo](https://github.com/dokku/dokku-mongo)

@@ -2,6 +2,7 @@ require_dependencies 'user/*'
 
 class User
   include Mongoid::Document
+  include Mongoid::Paperclip
   include Scram
   include Alerts
 
@@ -47,7 +48,11 @@ class User
   # field :unlock_token,    type: String # Only if unlock strategy is :email or :both
   # field :locked_at,       type: Time
 
+  # Profiles
   field :bio, type: String, default: ""
+  has_mongoid_attached_file :picture, styles: {
+    :large => ['512x512>', :jpg]
+  }
 
   def self.from_omniauth(access_token)
       data = access_token.info

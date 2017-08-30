@@ -52,6 +52,11 @@ gem 'peek-mongo'
 # Integrations
 gem 'slack-ruby-client', '~> 0.9'
 
+# Paperclip handles file uploads
+gem 'mongoid-paperclip', '~> 0.0.11'
+# Files are stored in S3
+gem 'aws-sdk', '~> 2.10'
+
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
