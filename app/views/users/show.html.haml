@@ -1,10 +1,59 @@
-.container
-  - if current_holder.can? :edit, @user
-    = link_to "Edit profile", edit_user_registration_path, class: 'btn btn-primary pull-right'
-  - if @user.staff?
-    = link_to "View schedule", user_periods_path(@user), class: 'btn btn-success pull-right'
-  %h1
-    %img{src: @user.picture.url}
-    = @user.name
-    %small= @user.email
-  %p.lead= @user.bio
+= content_for :title, @user.name
+= content_for :description, strip_tags(@user.bio)
+
+.page-wrapper
+  %header.page-heading.clearfix
+    %ul.nav.navbar-nav.pull-right
+      %li.nav-item.dropdown
+        %a.dropdown-toggle{"data-close-others" => "false", "data-delay" => "0", "data-hover" => "dropdown", "data-toggle" => "dropdown", :href => "#"}
+          Actions
+          %b.caret
+        %ul.dropdown-menu.dropdown-menu-right
+          - if current_holder.can? :edit, @user
+            %li= link_to "Edit profile", edit_user_registration_path
+          - if @user.staff?
+            %li= link_to "View schedule", user_periods_path(@user)
+
+  .row
+    .col-md-3
+      %a.thumbnail{:href => "#"}
+        = image_tag(@user.picture.url, height: '256', width: '256')
+      .panel.panel-sosset
+        .panel-heading= link_to @user.name, @user
+        .panel-body
+          %ul.list-group
+            - if @user.super_admin
+              %li.list-group-item
+                %i.fa.fa-shield
+                Site Administrator
+            %li.list-group-item
+              %i.fa.fa-clock-o
+              Last seen
+              = time_ago_in_words @user.last_sign_in_at
+              ago
+            %li.list-group-item
+              %i.fa.fa-envelope
+              = @user.email
+
+    .col-md-9
+      .well
+        %p.lead= @user.bio.html_safe
+  .row
+    - if @periods.count > 0
+      .table-responsive
+        %table.table
+          %thead
+            %tr
+              - if current_holder.can? :edit, @user
+                %th
+              %th Period
+              %th Course
+              %th Room
+          %tbody
+            - @periods.each do |period|
+              %tr
+                - if current_holder.can? :edit, @user
+                  %td= link_to "Edit", edit_user_period_path(period, user_id: @user.id)
+                %td= period.period
+                %td= link_to period.course.name, period.course
+                %td= period.room
