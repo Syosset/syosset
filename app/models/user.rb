@@ -3,6 +3,7 @@ require_dependencies 'user/*'
 class User
   include Mongoid::Document
   include Mongoid::Paperclip
+  include Mongoid::Slug
   include Scram
   include Alerts
 
@@ -49,6 +50,7 @@ class User
   # field :locked_at,       type: Time
 
   # Profiles
+  slug :username
   field :bio, type: String, default: ""
   has_mongoid_attached_file :picture, styles: {
     :large => ['512x512>', :jpg]
@@ -69,6 +71,11 @@ class User
            )
       end
       user
+  end
+
+  def username
+    match = email.match(/^([a-z]+)\@.*$/)
+    match.nil? ? nil : match[1]
   end
 
   def staff?
