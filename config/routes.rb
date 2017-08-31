@@ -2,7 +2,9 @@
 Rails.application.routes.draw do
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'users/registrations' }, skip: [:passwords]
-  resources :users, only: [:show]
+  resources :users, only: [:show] do
+    resources :periods, on: :member, except: [:show]
+  end
   mount Peek::Railtie => '/peek'
 
   root 'welcome#index'

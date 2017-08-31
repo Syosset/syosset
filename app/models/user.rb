@@ -55,6 +55,9 @@ class User
   }
   validates_attachment :picture, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png"] }
 
+  # Schedules
+  has_many :periods
+
   def self.from_omniauth(access_token)
       data = access_token.info
       user = User.where(email: data['email']).first

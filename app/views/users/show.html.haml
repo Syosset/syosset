@@ -1,6 +1,8 @@
 .container
-  - if current_user.can? :edit, @user
+  - if current_holder.can? :edit, @user
     = link_to "Edit profile", edit_user_registration_path, class: 'btn btn-primary pull-right'
+  - if @user.staff?
+    = link_to "View schedule", user_periods_path(@user), class: 'btn btn-success pull-right'
   %h1
     %img{src: @user.picture.url}
     = @user.name

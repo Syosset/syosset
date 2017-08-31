@@ -1,0 +1,11 @@
+= form_for [:user, @period] do |f|
+  .form-group
+    = f.label :period
+    = f.number_field :period, placeholder: "Period Number", class: "form-control"
+  .form-group
+    = f.label :course
+    = f.text_field :course, placeholder: "Course", class: "form-control"
+  .form-group
+    = f.label :room
+    = f.text_field :room, placeholder: "Room", class: "form-control"
+  = f.submit "Save", class: "btn btn-success pull-right", id: "submit-button"

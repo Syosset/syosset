@@ -19,6 +19,7 @@ class Course
   end
 
   belongs_to :department
+  has_many :periods
 
   validates_numericality_of :course_id
   validates_presence_of :course_id, :name, :short_description, :content
