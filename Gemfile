@@ -14,7 +14,8 @@ gem 'capybara', '~> 2.7', '>= 2.7.1'
 gem 'poltergeist', '~> 1.15'
 gem 'launchy', '~> 2.4', '>= 2.4.3'
 
-gem 'jquery-ui-rails', '~> 6.0', '>= 6.0.1'
+gem 'jquery-ui-rails'
+gem 'jquery-rails'
 gem 'git', '~> 1.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -47,9 +48,15 @@ gem 'peek-git'
 gem 'peek-host', github: "kailan/peek-host"
 gem 'peek-redis'
 gem 'peek-mongo'
+gem 'peek-resque', github: "kailan/peek-resque"
 
 # Integrations
 gem 'slack-ruby-client', '~> 0.9'
+
+# Paperclip handles file uploads
+gem 'mongoid-paperclip', '~> 0.0.11'
+# Files are stored in S3
+gem 'aws-sdk', '~> 2.10'
 
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
@@ -68,7 +75,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'devise', '~> 4.3'
 gem 'omniauth-google-oauth2', github: "zquestz/omniauth-google-oauth2"
 # Use scram for authorization
-gem 'scram', '~> 0.1.1'
+gem 'scram', '~> 0.1.2'
 # Use groupify in conjunction with Scram
 gem 'groupify', '~> 0.8.0'
 
@@ -79,12 +86,12 @@ gem 'groupify', '~> 0.8.0'
 gem 'mongoid', '~> 6.1.0'
 # Use mongoid-slug for pretty urls
 gem 'mongoid-slug', '~> 5.2'
-# Use mongoid-enum for types in models
-gem 'mongoid-enum', github: "Syosset/mongoid-enum"
 # Use mongoid_search for model searching
 gem 'mongoid_search'
 # Use Redis for caching
 gem 'redis'
+# Use Resque for jobs
+gem 'resque'
 
 gem 'aasm', '~> 4.11'
 

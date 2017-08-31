@@ -14,9 +14,6 @@
             %p.phone
               %i.fa.fa-phone
               = t('contact.phone')
-            %p.email
-              %i.fa.fa-envelope
-              = t('contact.email')
 
 %nav.main-nav{role: :navigation}
   .container
@@ -57,7 +54,7 @@
             = render "partials/nav/day_indicator"
         - if user_signed_in?
           %li.nav-item
-            %a
+            = link_to user_path(current_user) do
               - if current_user.admin_enabled?
                 %i.fa.fa-shield
               = current_user.name
@@ -86,6 +83,4 @@
               - if @alert_count == 0
                 %li
                   %a{href: ""} No unread alerts!
-  .peek-container
-    .container
-      = render 'peek/bar'
+  = render 'peek/bar'

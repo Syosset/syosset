@@ -2,7 +2,7 @@ class Activity
   include Mongoid::Document
   include Mongoid::Slug
   include Mongoid::Search
-  include Mongoid::Enum
+  # include Mongoid::Enum
   include Concerns::Descriptable
   include Concerns::Rankable
   include Concerns::Subscribable
@@ -16,6 +16,9 @@ class Activity
   paginates_per 12
   search_in :name
 
-  enum :type, [:club, :group, :sport]
+  # enum :type, [:club, :group, :sport] TODO: Fix mongoid-enum to support symbol storage
+  validates :type, inclusion: { in: %w(club group sport),
+    message: "%{value} must be a club, group, or sport" }
+  field :type, type: String
 
 end

@@ -1,7 +1,7 @@
 module Admin
   class UsersController < BaseController
     before_action :verify_admin
-    before_action :find_user, only: [:edit, :update, :destroy]
+    before_action :find_user, only: [:edit, :update]
 
     def index
       @users = User.all.page(params[:page])

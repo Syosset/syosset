@@ -54,17 +54,16 @@
 }
 
 #peek {
-  background: #43232d !important;
+  background: #43232d;
   color: white;
+}
+
+#peek.development {
+  background: #7b008e;
 }
 
 #peek .wrapper {
   margin-left: 0;
-}
-
-.peek-container {
-  background: #43232d;
-  width: 100%;
 }
 
 .peek-icon {

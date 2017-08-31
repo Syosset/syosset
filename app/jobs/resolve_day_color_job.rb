@@ -3,6 +3,13 @@
 class ResolveDayColorJob < ApplicationJob
   queue_as :default
 
+  # Fails assuming there is no school today
+  def failure_with_assumption
+    puts "ResolveDayColorJob | Unable to find element for current date on infinite campus. School is likely not in session today."
+    Capybara.current_session.reset!
+    $redis.del("current_day_color")
+  end
+
   def perform(*args)
     browser = Capybara.current_session
     browser.visit "https://ic.syosset.k12.ny.us/"
@@ -11,15 +18,18 @@ class ResolveDayColorJob < ApplicationJob
     browser.click_button("signinbtn")
 
     browser.within_frame 'frameDetail' do
+      begin
        browser.click_link("attendance")
+     rescue Capybara::ElementNotFound
+       failure_with_assumption
+       return
+     end
     end
     browser.within_frame 'frameDetail' do
       begin
         browser.find(:xpath, "//span[contains(text(),\'#{Date.today.strftime("%B")}\')]/../../..").first("a", text: "#{Date.today.day}").click()
       rescue NoMethodError
-        puts "ResolveDayColorJob | Unable to find element for current date on infinite campus. School is likely not in session today."
-        Capybara.current_session.reset!
-        $redis.del("current_day_color")
+        failure_with_assumption
         return
       ensure
       end

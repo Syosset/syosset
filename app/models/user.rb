@@ -2,6 +2,8 @@ require_dependencies 'user/*'
 
 class User
   include Mongoid::Document
+  include Mongoid::Paperclip
+  include Mongoid::Slug
   include Scram
   include Alerts
 
@@ -47,6 +49,17 @@ class User
   # field :unlock_token,    type: String # Only if unlock strategy is :email or :both
   # field :locked_at,       type: Time
 
+  # Profiles
+  slug :username
+  field :bio, type: String, default: ""
+  has_mongoid_attached_file :picture, styles: {
+    :large => ['512x512>', :jpg]
+  }
+  validates_attachment :picture, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png"] }
+
+  # Schedules
+  has_many :periods
+
   def self.from_omniauth(access_token)
       data = access_token.info
       user = User.where(email: data['email']).first
@@ -60,8 +73,13 @@ class User
       user
   end
 
+  def username
+    match = email.match(/^([a-z]+)\@.*$/)
+    match.nil? ? nil : match[1]
+  end
+
   def staff?
     super_admin || (/^[a-z]+\@syosset\.k12\.ny\.us$/ =~ email) == 0
   end
-  
+
 end

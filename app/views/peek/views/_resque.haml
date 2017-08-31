@@ -1,0 +1,10 @@
+.hidden-xs
+  %strong
+    %span#resque-jobs-tooltip
+      %span{"data-defer-to" => "#{view.defer_key}-jobs"} ...
+      jobs
+    \/
+    %span{"data-defer-to" => "#{view.defer_key}-workers"} ...
+    workers
+  %i.fa.fa-server
+  resque

@@ -21,5 +21,5 @@
     - @links.each do |link|
       %p
         = link_to link[:target] do
-          %i.fa{class: link.icon.nil? ? "fa-link" : "fa-#{link.icon}"}
+          %i.fa{class: link.icon.nil? ? "fa-link" : "#{link.icon}"}
           = link.name
