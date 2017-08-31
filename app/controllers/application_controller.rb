@@ -69,7 +69,9 @@ class ApplicationController < ActionController::Base
   end
 
   def set_navbar_resources
-    @departments = Department.by_priority # TODO cache
+    @departments = Rails.cache.fetch("nav_departments", expires_in: 5.minutes) do
+      Department.by_priority
+    end
   end
 
   def find_alerts

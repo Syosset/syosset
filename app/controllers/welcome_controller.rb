@@ -15,8 +15,12 @@ class WelcomeController < ApplicationController
 
   private
   def get_information
-    @announcements = (Announcement.escalated(8).sort_by!(&:created_at).reverse + Announcement.desc(:created_at).limit(8).to_a).first(8).uniq
-    # First 8 escalated announcements. If there aren't 8, we'll pad with the latest announcements and hopefully that'll make up for it.
-    @links = Link.escalated(5).sort_by!(&:created_at)
+    @announcements = Rails.cache.fetch("announcements", expires_in: 5.minutes) do
+      # First 8 escalated announcements. If there aren't 8, we'll pad with the latest announcements and hopefully that'll make up for it.
+      (Announcement.escalated(8).sort_by!(&:created_at).reverse + Announcement.desc(:created_at).limit(8).to_a).first(8).uniq
+    end
+    @links = Rails.cache.fetch("links", expires_in: 5.minutes) do
+      Link.escalated(5).sort_by!(&:created_at)
+    end
   end
 end
