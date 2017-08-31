@@ -4,7 +4,7 @@
     = f.number_field :period, placeholder: "Period Number", class: "form-control"
   .form-group
     = f.label :course
-    = f.text_field :course, placeholder: "Course", class: "form-control"
+    = f.collection_select :course, @courses, :id, :name, class: "form-control"
   .form-group
     = f.label :room
     = f.text_field :room, placeholder: "Room", class: "form-control"
