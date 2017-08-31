@@ -1,5 +1,8 @@
 = content_for :title, @user.name
 = content_for :description, strip_tags(@user.bio)
+= content_for :meta do
+  %meta{name: 'og:type', content: 'profile'}
+  %meta{name: 'og:image', content: @user.picture.url}
 
 .page-wrapper
   %header.page-heading.clearfix
