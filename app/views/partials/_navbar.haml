@@ -54,7 +54,7 @@
             = render "partials/nav/day_indicator"
         - if user_signed_in?
           %li.nav-item
-            %a
+            = link_to user_path(current_user) do
               - if current_user.admin_enabled?
                 %i.fa.fa-shield
               = current_user.name

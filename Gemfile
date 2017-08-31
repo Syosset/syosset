@@ -53,6 +53,11 @@ gem 'peek-resque', github: "kailan/peek-resque"
 # Integrations
 gem 'slack-ruby-client', '~> 0.9'
 
+# Paperclip handles file uploads
+gem 'mongoid-paperclip', '~> 0.0.11'
+# Files are stored in S3
+gem 'aws-sdk', '~> 2.10'
+
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
@@ -70,7 +75,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'devise', '~> 4.3'
 gem 'omniauth-google-oauth2', github: "zquestz/omniauth-google-oauth2"
 # Use scram for authorization
-gem 'scram', '~> 0.1.1'
+gem 'scram', '~> 0.1.2'
 # Use groupify in conjunction with Scram
 gem 'groupify', '~> 0.8.0'
 

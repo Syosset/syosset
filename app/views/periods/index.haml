@@ -1,0 +1,26 @@
+.page-wrapper
+  %header.page-heading.clearfix
+    .row
+      .col-xs-12.col-sm-5
+        %h1.heading-title.pull-left
+          = @user.name + "'s Schedule"
+      - if current_holder.can? :edit, @user
+        = link_to "Add period", new_user_period_path(user: @user), class: "btn btn-primary pull-right"
+  .page-content
+    .table-responsive
+      %table.table
+        %thead
+          %tr
+            - if current_holder.can? :edit, @user
+              %th
+            %th Period
+            %th Course
+            %th Room
+        %tbody
+          - @periods.each do |period|
+            %tr
+              - if current_holder.can? :edit, @user
+                %td= link_to "Edit", edit_user_period_path(period, user_id: @user.id)
+              %td= period.period
+              %td= link_to period.course.name, period.course
+              %td= period.room
