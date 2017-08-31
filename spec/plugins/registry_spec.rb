@@ -9,7 +9,7 @@ module Syosset::Plugins
     end
 
     it "registers plugins" do
-      expect { Registry.register PluginTest }.to change{ Registry.plugins.empty? }.from(true).to(false)
+      expect { Registry.register TestPlugin }.to change{ Registry.plugins.empty? }.from(true).to(false)
     end
 
     it "notifies callbacks of plugin registry" do
@@ -18,7 +18,7 @@ module Syosset::Plugins
         flag = 1
       end
 
-      expect { Registry.register PluginTest }.to change{ flag }.from(0).to(1)
+      expect { Registry.register TestPlugin }.to change{ flag }.from(0).to(1)
     end
   end
 end
