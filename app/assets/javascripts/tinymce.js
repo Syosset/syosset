@@ -8,7 +8,10 @@ function init_tiny() {
     "print preview   | fontselect fontsizeselect | forecolor backcolor emoticons | codesample"],
     table_default_attributes: {
         class: 'table table-bordered'
-    }
+    },
+    image_class_list: [
+      {title: 'Automatically Adjust Size to Screen Resolution', value: 'img-responsive'},
+    ]
   });
 };
 
