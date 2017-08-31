@@ -17,13 +17,7 @@ class ApplicationController < ActionController::Base
 
   def notify_integrations(message)
     Integration.each do |i|
-      begin
-        NotifyIntegrationJob.perform_later(i.id.to_s, message)
-      rescue => error
-        i.failures << IntegrationFailure.new(error: error.message, message: message)
-        i.save
-        $redis.incr('integration_failures')
-      end
+      NotifyIntegrationJob.perform_later(i.id.to_s, message)
     end
   end
 
