@@ -20,5 +20,45 @@ module Syosset::Plugins
 
       expect { Registry.register TestPlugin }.to change{ flag }.from(0).to(1)
     end
+
+    it "can enable a plugin for a plugable" do
+      Registry.register TestPlugin
+      plugable = PlugableModel.create
+
+      expect { Registry.enable TestPlugin, plugable }.to change { Registry.enabled? TestPlugin, plugable }.from(false).to(true)
+    end
+
+    it "notifies callbacks of plugin enable" do
+      Registry.register TestPlugin
+      plugable = PlugableModel.create
+
+      flag = nil
+      Registry.on_enable do |plugin|
+        flag = plugin
+      end
+
+      expect { Registry.enable TestPlugin, plugable }.to change{ flag }.from(nil).to(TestPlugin)
+    end
+
+    it "can disable a plugin for a plugable" do
+      Registry.register TestPlugin
+      plugable = PlugableModel.create
+      Registry.enable TestPlugin, plugable
+
+      expect { Registry.disable TestPlugin, plugable }.to change { Registry.enabled? TestPlugin, plugable }.from(true).to(false)
+    end
+
+    it "notifies callbacks of plugin disable" do
+      Registry.register TestPlugin
+      plugable = PlugableModel.create
+      Registry.enable TestPlugin, plugable
+
+      flag = nil
+      Registry.on_disable do |plugin|
+        flag = plugin
+      end
+
+      expect { Registry.disable TestPlugin, plugable }.to change{ flag }.from(nil).to(TestPlugin)
+    end
   end
 end
