@@ -4,10 +4,10 @@ class NotifyIntegrationJob < ApplicationJob
   def perform(integration_id, message)
     integration = Integration.find(integration_id)
     begin
-      i.create_provider.notify(message)
+      integration.create_provider.notify(message)
     rescue => error
-      i.failures << IntegrationFailure.new(error: error.message, message: message)
-      i.save
+      integration.failures << IntegrationFailure.new(error: error.message, message: message)
+      integration.save
       $redis.incr('integration_failures')
     end
   end
