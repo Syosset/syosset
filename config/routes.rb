@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     resources :periods, on: :member, except: [:show]
   end
   mount Peek::Railtie => '/peek'
-  mount Syosset::Plugins::NHS::Engine => 'plugins/nhs'
+
 
   root 'welcome#index'
   get 'landing' => 'welcome#landing'
