@@ -11,7 +11,6 @@ require "action_view/railtie"
 require "action_cable/engine"
 require "sprockets/railtie"
 # require "rails/test_unit/railtie"
-require_relative "../lib/plugins/railtie"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -47,3 +46,5 @@ module Syosset
     config.time_zone = 'Eastern Time (US & Canada)'
   end
 end
+
+require "syosset/plugins/base/railtie"
