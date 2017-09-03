@@ -63,7 +63,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_navbar_resources
-    @departments = Department.by_priority # TODO cache
+    @departments_summary = Department.by_priority.limit(5) # TODO cache
   end
 
   def find_alerts
