@@ -1,7 +1,7 @@
 class PeriodsController < ApplicationController
 
   before_action :check_staff, except: [:index]
-  before_action :get_period, only: [:edit, :update]
+  before_action :get_period, only: [:edit, :update, :destroy]
   before_action :get_user_courses, only: [:new, :edit]
 
   def index
@@ -33,6 +33,12 @@ class PeriodsController < ApplicationController
     authorize @period
     @period.update!(period_params)
     redirect_to user_periods_path(current_user)
+  end
+
+  def destroy
+    authorize @period.user, "edit"
+    @period.destroy!
+    redirect_to user_path(@period.user), alert: "The period has been removed successfully."
   end
 
   private

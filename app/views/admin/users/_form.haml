@@ -3,6 +3,9 @@
     = f.label :name
     = f.text_field :name, placeholder: "Name", class: "form-control"
   .form-group
+    = f.label :picture
+    = f.file_field :picture, class: "form-control"
+  .form-group
     = f.label :bio
     = f.text_area :bio, placeholder: "Bio", class: "form-control"
   .form-group
