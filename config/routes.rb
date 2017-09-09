@@ -38,6 +38,9 @@ Rails.application.routes.draw do
     root :to => "base#index"
     post "/toggle" => "base#toggle"
 
+    get "/color" => "color#edit"
+    post "/color" => "color#update"
+
     resources :users, only: [:index, :edit, :update]
 
     post "/rankables/sort" => "rankables#sort", :as => :sort_rankable

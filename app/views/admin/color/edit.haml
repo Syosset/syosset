@@ -1,0 +1,7 @@
+.page-wrapper
+  %header.page-heading.clearfix
+    %h1.heading-title.pull-left Day Color
+  = form_tag admin_color_path, method: :post do
+    = label_tag :color
+    = select_tag(:color, options_for_select(['Red Day', 'White Day', 'No Color']))
+    = submit_tag 'Update Color'
