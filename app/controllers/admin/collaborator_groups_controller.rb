@@ -4,13 +4,13 @@ module Admin
     before_action :find_user, only: [:add_collaborator, :remove_collaborator]
 
     def add_collaborator
-      authorize :edit, @collaborator_group.collaboratable
+      authorize @collaborator_group.collaboratable, :edit
       @collaborator_group.add(@user)
       redirect_to edit_admin_collaborator_group_path(@collaborator_group), flash: {:success => "Collaborator was added"}
     end
 
     def remove_collaborator
-      authorize :edit, @collaborator_group.collaboratable
+      authorize @collaborator_group.collaboratable, :edit
       @collaborator_group.users.delete(@user)
       redirect_to edit_admin_collaborator_group_path(@collaborator_group), flash: {:success => "Collaborator was removed"}
     end

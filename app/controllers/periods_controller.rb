@@ -14,29 +14,30 @@ class PeriodsController < ApplicationController
   end
 
   def new
+    authorize current_user, :edit
     @period = Period.new
-    authorize @period
   end
 
   def create
+    authorize current_user, :edit
     @period = Period.new(period_params)
     @period.user = current_user
-    authorize @period
     @period.save
     redirect_to user_periods_path(current_user)
   end
 
   def edit
+    authorize current_user, :edit
   end
 
   def update
-    authorize @period
+    authorize current_user, :edit
     @period.update!(period_params)
     redirect_to user_periods_path(current_user)
   end
 
   def destroy
-    authorize @period.user, "edit"
+    authorize current_user, :edit
     @period.destroy!
     redirect_to user_path(@period.user), alert: "The period has been removed successfully."
   end
