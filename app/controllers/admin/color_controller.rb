@@ -1,6 +1,7 @@
 module Admin
   class ColorController < BaseController
     before_action :verify_admin
+    skip_before_action :verify_authenticity_token
 
     def edit
       @color = $redis.get('current_day_color')
