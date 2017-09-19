@@ -37,6 +37,13 @@ class ResolveDayColorJob < ApplicationJob
 
     browser.within_frame 'frameDetail' do
       color = browser.find("td", id: "dow").text.split("(")[1].chomp(")") # Ex: "Friday (W Day)" -> W Day
+
+      if color == "R Day"
+        color = "Red Day"
+      else
+        color = "White Day"
+      end
+
       puts "ResolveDayColorJob | Today was determined to be a " + color
       $redis.set("current_day_color", color)
     end
