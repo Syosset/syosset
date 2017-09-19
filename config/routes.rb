@@ -40,6 +40,7 @@ Rails.application.routes.draw do
 
     get "/color" => "color#edit"
     post "/color" => "color#update"
+    post "/color_trigger_update" => "color#trigger_update"
 
     resources :users, only: [:index, :edit, :update]
 

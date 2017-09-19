@@ -16,6 +16,10 @@ module Admin
       redirect_to admin_color_path, notice: 'Day color updated.'
     end
 
+    def trigger_update
+      ResolveDayColorJob.perform_later
+    end
+
     private
     def verify_admin
       authorize :admin_panel, :color
