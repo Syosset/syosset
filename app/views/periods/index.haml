@@ -5,7 +5,7 @@
         %h1.heading-title.pull-left
           = @user.name + "'s Schedule"
       - if current_holder.can? :edit, @user
-        = link_to "Add period", new_user_period_path(user: @user), class: "btn btn-primary pull-right"
+        = link_to "Add period", new_user_period_path(@user), class: "btn btn-primary pull-right"
   .page-content
     .table-responsive
       %table.table
