@@ -49,7 +49,11 @@ Rails.application.routes.draw do
     resources :announcements
     resources :links
 
-    resources :activities
+    resources :activities do
+      member do
+        post :unlock
+      end
+    end
 
     resources :departments, shallow: true, only: [:new, :create, :edit, :update, :destroy] do
       resources :courses

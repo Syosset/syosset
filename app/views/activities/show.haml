@@ -4,11 +4,14 @@
     = render partial: "partials/modtools", locals: {actions: @actions}
     %ul.nav.navbar-nav.pull-right
       %li
-        - if user_signed_in?
+        -# if user_signed_in?
           - if @activity.subscriber? current_user
-            %a{:href => unsubscribe_department_path(@activity), data: {method: 'post'}} Unsubscribe
+            %a{:href => unsubscribe_activity_path(@activity), data: {method: 'post'}} Unsubscribe
           - else
-            %a{:href => subscribe_department_path(@activity), data: {method: 'post'}} Subscribe
+            %a{:href => subscribe_activity_path(@activity), data: {method: 'post'}} Subscribe
+        - if user_signed_in? && current_holder.can?(:edit, @activity) && current_user.staff?
+          %a{:href => unlock_admin_activity_path(@activity, granter_id: current_user), data: {method: 'post'}} Unlock this page for student edits
+
   .page-content
     .row.page-row
       .courses-wrapper.col-md-8.col-sm-7

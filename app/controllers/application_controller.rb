@@ -2,6 +2,8 @@ class ApplicationController < ActionController::Base
   include ScramUtils
   helper_method :current_holder
 
+  around_action :set_current_user
+
   protect_from_forgery with: :exception
 
   before_action :find_alerts
@@ -50,6 +52,15 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def set_current_user
+    Current.user = current_user
+    yield
+  ensure
+    # to address the thread variable leak issues in Puma/Thin webserver
+    Current.user = nil
+  end
+
   def get_revision
     if defined? $g
       i = 0
