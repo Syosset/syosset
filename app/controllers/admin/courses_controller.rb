@@ -26,8 +26,11 @@ module Admin
 
     def update
       authorize @course
-      @course.update!(course_params)
-      redirect_to course_path(@course), flash: {:success => "Course has been updated"}
+      if @course.update(course_params)
+        redirect_to course_path(@course), flash: {:success => "Course has been updated"}
+      else
+        render action: 'edit'
+      end
     end
 
     def destroy

@@ -21,8 +21,11 @@ module Admin
 
     def update
       authorize @department
-      @department.update!(department_params)
-      redirect_to department_path(@department), flash: {:success => "Department has been updated"}
+      if @department.update(department_params)
+        redirect_to department_path(@department), flash: {:success => "Department has been updated"}
+      else
+        render action: 'edit'
+      end
     end
 
     def destroy
