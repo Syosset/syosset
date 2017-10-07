@@ -414,6 +414,8 @@ GEM
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
     stringex (2.7.1)
+    syosset-plugins-base (0.1.0)
+      activesupport (~> 5.0)
     thor (0.20.0)
     thread_safe (0.3.6)
     tilt (2.0.8)
@@ -494,6 +496,7 @@ DEPENDENCIES
   slack-ruby-client (~> 0.9)
   spring
   spring-watcher-listen (~> 2.0.0)
+  syosset-plugins-base (~> 0.1.0)
   tinymce-rails
   turbolinks (~> 5)
   tzinfo-data

@@ -46,3 +46,5 @@ module Syosset
     config.time_zone = 'Eastern Time (US & Canada)'
   end
 end
+
+require "syosset/plugins/base/railtie"

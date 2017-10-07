@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   end
   mount Peek::Railtie => '/peek'
 
+
   root 'welcome#index'
   get 'landing' => 'welcome#landing'
 
