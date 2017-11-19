@@ -2,7 +2,12 @@ class DepartmentsController < ApplicationController
   before_action :get_department, only: [:show, :subscribe, :unsubscribe]
 
   def index
-    @departments = Department.full_text_search(params[:search], allow_empty_search: true).by_priority.page params[:page]
+    @order_mode = current_user.try(:admin_enabled?)
+
+    @departments = Department.full_text_search(params[:search], allow_empty_search: true).by_priority
+    unless @order_mode
+      @departments = @departments.page params[:page]
+    end
 
     actions_builder = ActionsBuilder.new(current_holder)
     actions_builder.require(:create, @department).add_action("New Department", :get, new_admin_department_path(@department))
