@@ -7,11 +7,11 @@ module Admin
       authorize :admin_panel, :view
     end
 
-    def toggle
+    def renew
       unless current_user.super_admin
         redirect_to root_path, alert: 'You must be an administrator to do that.'
       else
-        current_user.toggle_admin
+        current_user.renew_admin
         redirect_back(fallback_location: root_path)
       end
     end

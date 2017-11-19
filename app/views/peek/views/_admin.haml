@@ -1,5 +1,10 @@
 - if user_signed_in? && current_user.super_admin
   .bucket.peek-link
-    = link_to admin_toggle_path, method: :post do
+    = link_to admin_renew_path, method: :post do
       %i.fa.fa-shield
-      %span.hidden-xs= "#{current_user.admin_enabled? ? 'Disable' : 'Enable'} admin"
+      - if current_user.admin_enabled?
+        %span
+          = Time.at(current_user.admin_expiry - Time.now.to_i).strftime("%M:%S")
+      - else
+        %span.hidden-xs
+          Enable admin
