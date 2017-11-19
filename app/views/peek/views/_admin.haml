@@ -1,10 +1,6 @@
 - if user_signed_in? && current_user.super_admin
-  .bucket.peek-link
-    = link_to admin_renew_path, method: :post do
-      %i.fa.fa-shield
-      - if current_user.admin_enabled?
-        %span
-          = Time.at(current_user.admin_expiry - Time.now.to_i).strftime("%M:%S")
-      - else
-        %span.hidden-xs
-          Enable admin
+  #adminControl{data: {expiry: current_user.admin_expiry}}
+    .bucket.peek-link#adminContainer
+      %span#adminTime
+      %i.fa.fa-shield#renew
+      %i.fa.fa-times#resign

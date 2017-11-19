@@ -37,6 +37,10 @@ class User
         raise "User is not an administrator" unless super_admin
         $redis.set("user:#{self.id}:admin_until", 15.minutes.from_now.to_i)
       end
+
+      define_method :resign_admin do
+        $redis.del("user:#{self.id}:admin_until")
+      end
     end
 
   end
