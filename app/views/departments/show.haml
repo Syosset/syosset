@@ -61,6 +61,10 @@
           %h3.title
             %i.fa.fa-link
             = link_to "Links", links_path(department_id: @department.id)
+            %small
+              = link_to links_path(department_id: @department.id) do
+                %i.fa.fa-ellipsis-v
+                See all
           %ul.rankable.list-group
             - @department.links.by_priority.limit(5).each do |link|
               = content_tag_for(:li, link, class: "list-group-item") do
