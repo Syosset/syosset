@@ -1,24 +1,17 @@
-# For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 Rails.application.routes.draw do
 
-  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'users/registrations' }, skip: [:passwords]
+  # Main pages
+  root 'welcome#index'
+  get 'landing' => 'welcome#landing' # browser homepage on school devices
+  get 'about' => 'welcome#about'
+
+  # Users and Profiles
+  devise_for :users, controllers: {omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'users/registrations' }, skip: [:passwords]
   resources :users, only: [:show] do
     resources :periods, on: :member, except: [:show]
   end
-  mount Peek::Railtie => '/peek'
 
-  root 'welcome#index'
-  get 'landing' => 'welcome#landing'
-
-  get 'z/index.html', to: redirect("/")
-
-  get 'about' => 'welcome#about'
-  get 'day_color', controller: 'day_color', action: 'day_color'
-  get 'autocomplete', :to => 'application#autocomplete'
-
-  resources :announcements, only: [:index, :show]
-  resources :links, only: [:index]
-
+  # User content
   resources :activities
 
   resources :departments, shallow: true do
@@ -33,6 +26,25 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  resources :announcements, only: [:index, :show]
+  resources :links, only: [:index]
+
+  # Alerts
+  resources :alerts do
+    collection do
+      post "read_all"
+    end
+  end
+
+  # Day Color
+  get 'day_color', controller: 'day_color', action: 'day_color' # DO NOT REMOVE -> required by ryan's app
+
+  # Autocomplete AJAX
+  get 'autocomplete', :to => 'application#autocomplete'
+
+  # Utilities
+  mount Peek::Railtie => '/peek'
 
   namespace :admin do
     root :to => "base#index"
@@ -72,12 +84,6 @@ Rails.application.routes.draw do
     resources :collaborator_groups, only: [:edit, :update] do
       post "add_collaborator", action: :add_collaborator, as: :add_collaborator
       post "remove_collaborator", action: :remove_collaborator, as: :remove_collaborator
-    end
-  end
-
-  resources :alerts do
-    collection do
-      post "read_all"
     end
   end
 end
