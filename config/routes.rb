@@ -38,7 +38,11 @@ Rails.application.routes.draw do
   end
 
   # Day Color
-  get 'day_color', controller: 'day_color', action: 'day_color' # DO NOT REMOVE -> required by ryan's app
+  resource :day, only: [:show, :edit, :update] do
+    post 'fetch'
+  end
+
+  get 'day_color' => 'day#legacy_show' # legacy endpoint -> required by ryan's app
 
   # Autocomplete AJAX
   get 'autocomplete', :to => 'application#autocomplete'
@@ -46,14 +50,16 @@ Rails.application.routes.draw do
   # Utilities
   mount Peek::Railtie => '/peek'
 
+  # This namespace is slowly being removed
+  # Please add new routes elsewhere
   namespace :admin do
     root :to => "base#index"
     post "/renew" => "base#renew"
     post "/resign" => "base#resign"
 
-    get "/color" => "color#edit"
-    post "/color" => "color#update"
-    post "/color_trigger_update" => "color#trigger_update"
+    #get "/color" => "color#edit"
+    #post "/color" => "color#update"
+    #post "/color_trigger_update" => "color#trigger_update"
 
     resources :users, only: [:index, :edit, :update]
 
