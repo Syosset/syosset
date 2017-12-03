@@ -8,7 +8,6 @@ class ResolveDayColorJob < ApplicationJob
     puts "ResolveDayColorJob | Unable to find element for current date on infinite campus. School is likely not in session today."
     Capybara.current_session.reset!
     $redis.del("current_day_color")
-    notify_integrations "Day color updated to *\"No School Today 👍 \"* from Infinite Campus."
   end
 
   def perform(*args)
@@ -49,7 +48,6 @@ class ResolveDayColorJob < ApplicationJob
 
         puts "ResolveDayColorJob | Today was determined to be a " + color
         $redis.set("current_day_color", color)
-        notify_integrations "Day color updated to *#{color}* from Infinite Campus."
       rescue NoMethodError, Capybara::ElementNotFound
         failure_with_assumption
         return
