@@ -15,7 +15,7 @@
             %th Department Name
             %th Description
             %th Phone Number
-        %tbody.rankable
+        %tbody{class: @order_mode ? 'rankable' : ''}
           - @departments.each do |department|
             = content_tag_for(:tr, department) do
               %td
@@ -24,4 +24,5 @@
               %td= link_to department.name, department
               %td= department.short_description
               %td= department.phone
-    = paginate @departments, theme: 'tb3'
+    - unless @order_mode
+      = paginate @departments, theme: 'tb3'

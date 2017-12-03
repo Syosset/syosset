@@ -41,6 +41,7 @@ en:
     about: "About"
     contact: "Contact"
     departments: "Departments"
+    departments_all: "View all departments..."
     extracurriculars: "Activities"
   welcome:
     slider:

@@ -36,7 +36,8 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root :to => "base#index"
-    post "/toggle" => "base#toggle"
+    post "/renew" => "base#renew"
+    post "/resign" => "base#resign"
 
     get "/color" => "color#edit"
     post "/color" => "color#update"

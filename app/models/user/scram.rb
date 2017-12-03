@@ -25,12 +25,21 @@ class User
       end
 
       define_method :admin_enabled? do
-        $redis.get("user:#{self.id}:admin_enabled") == "true"
+        expiry = admin_expiry
+        expiry.nil? ? false : expiry > Time.now.to_i
       end
 
-      define_method :toggle_admin do
+      define_method :admin_expiry do
+        $redis.get("user:#{self.id}:admin_until").try(:to_i)
+      end
+
+      define_method :renew_admin do
         raise "User is not an administrator" unless super_admin
-        $redis.set("user:#{self.id}:admin_enabled", !admin_enabled?)
+        $redis.set("user:#{self.id}:admin_until", 15.minutes.from_now.to_i)
+      end
+
+      define_method :resign_admin do
+        $redis.del("user:#{self.id}:admin_until")
       end
     end
 

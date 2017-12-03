@@ -13,7 +13,13 @@ class ApplicationController < ActionController::Base
   rescue_from ScramUtils::NotAuthorizedError do |exception|
     respond_to do |format|
       format.json { head :forbidden }
-      format.html { redirect_to main_app.new_user_session_path, :alert => "You are not authorized to perform that action at this time. Please try signing in!" }
+      format.html do
+        unless user_signed_in?
+          redirect_to main_app.new_user_session_path, :alert => "You must be signed in to do that."
+        else
+          redirect_to root_path, :alert => "You do not have permission to do that."
+        end
+      end
     end
   end
 
@@ -75,7 +81,7 @@ class ApplicationController < ActionController::Base
 
   def set_navbar_resources
     @departments_summary = Rails.cache.fetch("nav_departments", expires_in: 5.minutes) do
-      Department.by_priority.limit(5)
+      Department.by_priority.limit(6)
     end
   end
 

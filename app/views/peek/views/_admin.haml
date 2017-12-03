@@ -1,5 +1,6 @@
 - if user_signed_in? && current_user.super_admin
-  .bucket.peek-link
-    = link_to admin_toggle_path, method: :post do
-      %i.fa.fa-shield
-      %span.hidden-xs= "#{current_user.admin_enabled? ? 'Disable' : 'Enable'} admin"
+  #adminControl{data: {expiry: current_user.admin_expiry}}
+    .bucket.peek-link#adminContainer
+      %span#adminTime
+      %i.fa.fa-shield#renew
+      %i.fa.fa-times#resign

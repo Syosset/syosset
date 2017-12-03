@@ -1,0 +1,3 @@
+[submodule "vendor/plugins/nhs"]
+	path = vendor/plugins/nhs
+	url = https://github.com/Syosset/syosset-plugins-NHS.git
