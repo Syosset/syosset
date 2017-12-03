@@ -25,9 +25,10 @@ class ResolveDayColorJob < ApplicationJob
        return
      end
     end
+
     browser.within_frame 'frameDetail' do
       begin
-        browser.find(:xpath, "//span[contains(text(),\'#{Date.today.strftime("%B")}\')]/../../..").first("a", text: "#{Date.today.day}").click()
+        browser.find(:xpath, "//span[contains(text(),\'#{Date.today.strftime("%B")}\')]/../../..").first("td", text: "#{Date.today.day}").click()
       rescue NoMethodError
         failure_with_assumption
         return
@@ -36,17 +37,24 @@ class ResolveDayColorJob < ApplicationJob
     end
 
     browser.within_frame 'frameDetail' do
-      color = browser.find("td", id: "dow").text.split("(")[1].chomp(")") # Ex: "Friday (W Day)" -> W Day
+      begin
+        color = browser.find("td", id: "dow").text.split("(")[1].chomp(")") # Ex: "Friday (W Day)" -> W Day
 
-      if color == "R Day"
-        color = "Red Day"
-      else
-        color = "White Day"
+        if color == "R Day"
+          color = "Red Day"
+        else
+          color = "White Day"
+        end
+
+        puts "ResolveDayColorJob | Today was determined to be a " + color
+        $redis.set("current_day_color", color)
+      rescue NoMethodError, Capybara::ElementNotFound
+        failure_with_assumption
+        return
+      ensure
       end
-
-      puts "ResolveDayColorJob | Today was determined to be a " + color
-      $redis.set("current_day_color", color)
     end
+
     Capybara.current_session.reset!
   end
 end
