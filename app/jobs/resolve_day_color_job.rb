@@ -28,7 +28,8 @@ class ResolveDayColorJob < ApplicationJob
 
     browser.within_frame 'frameDetail' do
       begin
-        browser.find(:xpath, "//span[contains(text(),\'#{Date.today.strftime("%B")}\')]/../../..").first("td", text: "#{Date.today.day}").click()
+        today = Time.find_zone!("America/New_York").today
+        browser.find(:xpath, "//span[contains(text(),\'#{today.strftime("%B")}\')]/../../..").first("td", text: "#{today.day}").click()
       rescue NoMethodError
         failure_with_assumption
         return
