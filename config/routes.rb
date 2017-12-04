@@ -27,8 +27,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :announcements, only: [:index, :show]
-  resources :links, only: [:index]
+  resources :announcements, :links
 
   # Alerts
   resources :alerts do
@@ -65,8 +64,8 @@ Rails.application.routes.draw do
 
     post "/rankables/sort" => "rankables#sort", :as => :sort_rankable
 
-    resources :announcements
-    resources :links
+    #resources :announcements
+    #resources :links
 
     resources :activities do
       member do

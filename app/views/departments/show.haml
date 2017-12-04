@@ -38,7 +38,7 @@
               = link_to "javascript:;", id: "show-more-courses" do
                 %i.fa.fa-ellipsis-h
                 = "Show #{excess_courses} more courses"
-                
+
       %aside.page-sidebar.col-md-3.col-md-offset-1.col-sm-4.col-sm-offset-1
         %section.widget.has-divider
           %h3.title
@@ -70,7 +70,7 @@
               = content_tag_for(:li, link, class: "list-group-item") do
                 - if current_holder.can?(:edit, link)
                   %i.handle.fa.fa-sort{"aria-hidden" => "true"}
-                  = link_to admin_link_path(link), method: :delete, data: { confirm: 'Are you sure?' } do
+                  = link_to link_path(link), method: :delete, data: { confirm: 'Are you sure?' } do
                     %i.fa.fa-times
                   = link_to new_admin_escalation_request_path(link_id: link) do
                     - if link.escalated?

@@ -35,7 +35,7 @@
                   %i.handle.fa.fa-sort{"aria-hidden" => "true"}
               %td
                 - if current_holder.can?(:delete, link)
-                  = link_to admin_link_path(link), method: :delete do
+                  = link_to link_path(link), method: :delete do
                     %i.fa.fa-times
                 - if link.escalated?
                   %i.fa.fa-star
