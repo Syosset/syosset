@@ -2,16 +2,23 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+#christmasParallax {
+  width: 100%;
+  margin-bottom: 40px;
+  overflow: hidden;
+}
+
+.christmas-bg {
+  width: 100%;
+  height: 225px;
+  object-fit: cover;
+}
+
 .christmas {
   width: 100%;
-  height: 300px;
-  margin-bottom: 40px;
-  padding-top: 100px;
+  margin-top: 50px;
   text-align: center;
   color: white;
-  background-image: url(image-path('syosset-snow.jpg'));
-  background-position: bottom;
-  background-size: cover;
 }
 
 .christmas h1 {
