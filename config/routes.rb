@@ -46,6 +46,9 @@ Rails.application.routes.draw do
   # Autocomplete AJAX
   get 'autocomplete', :to => 'application#autocomplete'
 
+  # Sortable AJAX
+  post "/rankables/sort" => "rankables#sort", :as => :sort_rankable
+
   # Utilities
   mount Peek::Railtie => '/peek'
 
@@ -62,7 +65,7 @@ Rails.application.routes.draw do
 
     resources :users, only: [:index, :edit, :update]
 
-    post "/rankables/sort" => "rankables#sort", :as => :sort_rankable
+    #post "/rankables/sort" => "rankables#sort", :as => :sort_rankable
 
     #resources :announcements
     #resources :links
