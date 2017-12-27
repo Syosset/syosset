@@ -36,6 +36,11 @@ Rails.application.routes.draw do
     end
   end
 
+  # Admin Panel
+  get 'admin' => 'admin#index'
+  post 'admin/renew' => 'admin#renew'
+  post 'admin/resign' => 'admin#resign'
+
   # Day Color
   resource :day, only: [:show, :edit, :update] do
     post 'fetch'
@@ -60,9 +65,9 @@ Rails.application.routes.draw do
   # This namespace is slowly being removed
   # Please add new routes elsewhere
   namespace :admin do
-    root :to => "base#index"
-    post "/renew" => "base#renew"
-    post "/resign" => "base#resign"
+    #root :to => "base#index"
+    #post "/renew" => "base#renew"
+    #post "/resign" => "base#resign"
 
     #get "/color" => "color#edit"
     #post "/color" => "color#update"
