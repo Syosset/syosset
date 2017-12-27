@@ -1,7 +1,7 @@
 .page-wrapper
   %header.page-heading.clearfix
     %h1.heading-title.pull-left Integrations
-    = link_to "Create", new_admin_integration_path, class: "btn btn-primary pull-right"
+    = link_to "Create", new_integration_path, class: "btn btn-primary pull-right"
   .page-content
     .table-responsive
       %table.table
@@ -16,7 +16,7 @@
             %tr
               %td
                 %i.fa{class: "fa-#{provider.fa_icon}"}
-                = link_to provider.friendly_name, edit_admin_integration_path(integration)
+                = link_to provider.friendly_name, edit_integration_path(integration)
               %td= integration.failures.count
               %td
                 - props = integration[:properties]

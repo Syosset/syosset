@@ -43,6 +43,11 @@ Rails.application.routes.draw do
 
   get 'day_color' => 'day#legacy_show' # legacy endpoint -> required by ryan's app
 
+  # Integration Management
+  resources :integrations do
+    post :clear_failures, on: :member
+  end
+
   # Autocomplete AJAX
   get 'autocomplete', :to => 'application#autocomplete'
 
@@ -80,9 +85,9 @@ Rails.application.routes.draw do
       resources :courses
     end
 
-    resources :integrations do
-      post :clear_failures, on: :member
-    end
+    #resources :integrations do
+    #  post :clear_failures, on: :member
+    #end
 
     resources :escalation_requests do
       post "approve", action: :approve, as: :approve

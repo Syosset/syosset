@@ -1,4 +1,4 @@
-= form_for [:admin, @integration] do |f|
+= form_for @integration do |f|
   .form-group
     = f.label :provider_name
     = f.select :provider_name, Integration.providers.map {|c| c.name}, class: "form-control"
