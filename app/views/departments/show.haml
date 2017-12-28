@@ -18,6 +18,23 @@
         = form_for @department do |f|
           %div{class: "#{"editable-content" if current_holder.can? :edit, @department}", id: "department[content]"}
             = @department.content.html_safe
+        %h3= link_to "Teachers", "#"
+        %table.table
+          %thead
+            %tr
+              %th{:scope => "col"} Name
+              %th{:scope => "col"} Email
+          %tbody
+            - @department.collaborator_group.users.sort_by {|u| u.bio.length}.reverse.each_with_index do |user, index|
+              %tr.teacher{class: index > 8 ? 'hidden' : ''}
+                %td= link_to user.name, user
+                %td= link_to user.email, "mailto:#{user.email}"
+        .pull-right
+          - excess_teachers = @department.collaborator_group.users.count - 8
+          - if excess_teachers >= 1
+            = link_to "javascript:;", id: "show-more-teachers" do
+              %i.fa.fa-ellipsis-h
+              = "Show #{excess_teachers} more teachers"
         - unless @department.courses.empty?
           %h3
             = link_to "Courses", department_courses_path(@department)
@@ -84,5 +101,9 @@
     $("#show-more-courses").click(function() {
       $(".course").removeClass('hidden');
       $("#show-more-courses").addClass('hidden');
+    });
+    $("#show-more-teachers").click(function() {
+      $(".teacher").removeClass('hidden');
+      $("#show-more-teachers").addClass('hidden');
     });
   });
