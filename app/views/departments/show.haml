@@ -15,7 +15,7 @@
   .page-content
     .row.page-row
       .courses-wrapper.col-md-8.col-sm-7
-        = form_for [:admin, @department] do |f|
+        = form_for @department do |f|
           %div{class: "#{"editable-content" if current_holder.can? :edit, @department}", id: "department[content]"}
             = @department.content.html_safe
         - unless @department.courses.empty?

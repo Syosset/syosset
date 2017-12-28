@@ -88,9 +88,9 @@ Rails.application.routes.draw do
     #  end
     #end
 
-    resources :departments, shallow: true, only: [:new, :create, :edit, :update, :destroy] do
-      resources :courses
-    end
+    #resources :departments, shallow: true, only: [:new, :create, :edit, :update, :destroy] do
+    #  resources :courses
+    #end
 
     #resources :integrations do
     #  post :clear_failures, on: :member
