@@ -16,7 +16,7 @@ class ActivitiesController < ApplicationController
   def show
     actions_builder = ActionsBuilder.new(current_holder)
     actions_builder.require(:edit, @activity).add_action("Edit Activity", :get, edit_activity_path(@activity))
-    actions_builder.require(:edit, @activity).add_action("Manage Collaborators", :get, edit_admin_collaborator_group_path(@activity.collaborator_group))
+    actions_builder.require(:edit, @activity).add_action("Manage Collaborators", :get, edit_collaborator_group_path(@activity.collaborator_group))
     actions_builder.require(:edit, @activity).add_action("Make Announcement", :get, new_announcement_path(activity_id: @activity.id))
     actions_builder.require(:edit, @activity).add_action("Make Link", :get, new_link_path(activity_id: @activity.id))
     actions_builder.require(:destroy, @activity).add_action("Destroy Activity", :delete, activity_path(@activity), data: { confirm: 'Are you sure?' })

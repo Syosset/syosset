@@ -44,6 +44,12 @@ Rails.application.routes.draw do
     post "deny", action: :deny, as: :deny
   end
 
+  # Collaborator Management
+  resources :collaborator_groups, only: [:edit, :update] do
+    post "add_collaborator", action: :add_collaborator, as: :add_collaborator
+    post "remove_collaborator", action: :remove_collaborator, as: :remove_collaborator
+  end
+
   # Admin Panel
   get 'admin' => 'admin#index'
   post 'admin/renew' => 'admin#renew'
@@ -107,9 +113,9 @@ Rails.application.routes.draw do
     #  post "deny", action: :deny, as: :deny
     #end
 
-    resources :collaborator_groups, only: [:edit, :update] do
-      post "add_collaborator", action: :add_collaborator, as: :add_collaborator
-      post "remove_collaborator", action: :remove_collaborator, as: :remove_collaborator
-    end
+    #resources :collaborator_groups, only: [:edit, :update] do
+    #  post "add_collaborator", action: :add_collaborator, as: :add_collaborator
+    #  post "remove_collaborator", action: :remove_collaborator, as: :remove_collaborator
+    #end
   end
 end

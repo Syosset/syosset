@@ -1,6 +1,6 @@
 = errors_for(@course)
 
-= form_for [:admin, @department, @course] do |f|
+= form_for [@department, @course] do |f|
   .form-group
     = f.label :name
     = f.text_field :name, placeholder: "Name", class: "form-control"
