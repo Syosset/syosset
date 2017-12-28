@@ -2,35 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#christmasParallax {
-  width: 100%;
-  height: 225px;
-  margin-bottom: 40px;
-  overflow: hidden;
-}
-
-.christmas-bg {
-  width: 120%;
-  height: 120%;
-  object-fit: cover;
-}
-
-.christmas {
-  width: 100%;
-  margin-top: 50px;
-  text-align: center;
-  color: white;
-}
-
-.christmas h1 {
-  font-size: 3em;
-  font-weight: bold;
-}
-
-.christmas h2 {
-  font-size: 1.75em;
-}
-
 .super-hero-unit figure figcaption {
   position: absolute;
   top: 35%;
