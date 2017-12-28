@@ -31,9 +31,12 @@
                 Site Administrator
             %li.list-group-item
               %i.fa.fa-clock-o
-              Last seen
-              = time_ago_in_words @user.last_sign_in_at
-              ago
+              - if @user.last_sign_in_at
+                Last seen
+                = time_ago_in_words @user.last_sign_in_at
+                ago
+              - else
+                Never signed in
             %li.list-group-item
               %i.fa.fa-envelope
               = @user.email
