@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   # Users and Profiles
   devise_for :users, controllers: {omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'users/registrations' }, skip: [:passwords]
-  resources :users, only: [:show] do
+  resources :users, only: [:index, :show, :edit, :update] do
     resources :periods, on: :member, except: [:show]
   end
 
@@ -73,7 +73,7 @@ Rails.application.routes.draw do
     #post "/color" => "color#update"
     #post "/color_trigger_update" => "color#trigger_update"
 
-    resources :users, only: [:index, :edit, :update]
+    #resources :users, only: [:index, :edit, :update]
 
     #post "/rankables/sort" => "rankables#sort", :as => :sort_rankable
 
