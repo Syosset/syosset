@@ -65,8 +65,8 @@ class LinksController < ApplicationController
         return @linkable =  $1.classify.constantize.find(value)
       end
     end
+    redirect_to root_path, flash: {:alert => "Links can only be created from an linkable."} if params[:action] == 'create' || params[:action] == 'new'
     nil
-    redirect_to root_path, flash: {:alert => "Links can only be created from an announceable."}
   end
 
   def get_link
