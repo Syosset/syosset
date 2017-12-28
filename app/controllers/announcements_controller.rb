@@ -20,7 +20,7 @@ class AnnouncementsController < ApplicationController
     @announceable = @announcement.announceable
     actions_builder.require(:edit, @announceable).add_action("Edit Announcement", :get, edit_announcement_path(@announcement, "#{@announceable.class.to_s.downcase}_id" => @announceable.id))
     actions_builder.require(:edit, @announceable).add_action("Destroy Announcement", :delete, announcement_path(@announcement), data: { confirm: 'Are you sure?' })
-    actions_builder.require(:edit, @announceable).add_action("Request Frontpage Visibility", :get, new_admin_escalation_request_path(announcement_id: @announcement))
+    actions_builder.require(:edit, @announceable).add_action("Request Frontpage Visibility", :get, new_escalation_request_path(announcement_id: @announcement))
     @actions = actions_builder.actions
   end
 

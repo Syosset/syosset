@@ -38,6 +38,12 @@ Rails.application.routes.draw do
     end
   end
 
+  # Escalation Requests
+  resources :escalation_requests, path: 'escalations' do
+    post "approve", action: :approve, as: :approve
+    post "deny", action: :deny, as: :deny
+  end
+
   # Admin Panel
   get 'admin' => 'admin#index'
   post 'admin/renew' => 'admin#renew'
@@ -96,10 +102,10 @@ Rails.application.routes.draw do
     #  post :clear_failures, on: :member
     #end
 
-    resources :escalation_requests do
-      post "approve", action: :approve, as: :approve
-      post "deny", action: :deny, as: :deny
-    end
+    #resources :escalation_requests do
+    #  post "approve", action: :approve, as: :approve
+    #  post "deny", action: :deny, as: :deny
+    #end
 
     resources :collaborator_groups, only: [:edit, :update] do
       post "add_collaborator", action: :add_collaborator, as: :add_collaborator

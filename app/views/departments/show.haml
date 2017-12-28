@@ -72,7 +72,7 @@
                   %i.handle.fa.fa-sort{"aria-hidden" => "true"}
                   = link_to link_path(link), method: :delete, data: { confirm: 'Are you sure?' } do
                     %i.fa.fa-times
-                  = link_to new_admin_escalation_request_path(link_id: link) do
+                  = link_to new_escalation_request_path(link_id: link) do
                     - if link.escalated?
                       %i.fa.fa-star
                     - else

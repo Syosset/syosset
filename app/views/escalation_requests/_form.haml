@@ -1,4 +1,4 @@
-= form_for [:admin, @escalation_request] do |f|
+= form_for @escalation_request do |f|
   = hidden_field_tag "#{@escalatable.class.to_s.downcase}_id", "#{@escalatable.id}"
   .form-group
     = f.label :note
