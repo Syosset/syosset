@@ -73,7 +73,7 @@ class DepartmentsController < ApplicationController
   end
 
   def department_params
-    params.require(:department).permit!
+    params.require(:department).permit(:name, :phone, :short_description, :content)
   end
 
 end

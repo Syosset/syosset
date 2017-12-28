@@ -78,6 +78,6 @@ class AnnouncementsController < ApplicationController
   end
 
   def announcement_params
-    params.require(:announcement).permit!
+    params.require(:announcement).permit(:name, :content)
   end
 end

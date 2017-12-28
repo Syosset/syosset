@@ -34,6 +34,6 @@ class CollaboratorGroupsController < ApplicationController
   end
 
   def collaborator_group_params
-    params.permit!
+    params.permit(:id, :collaborator_group_id, :user_id)
   end
 end

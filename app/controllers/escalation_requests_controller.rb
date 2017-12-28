@@ -80,6 +80,6 @@ class EscalationRequestsController < ApplicationController
   end
 
   def escalation_request_params
-    params.require(:escalation_request).permit!
+    params.require(:escalation_request).permit(:note, :start_date, :end_date, "#{@escalatable.class.to_s.downcase}_id".to_sym)
   end
 end
