@@ -1,6 +1,7 @@
 .page-wrapper
   %header.page-heading.clearfix
     %h1.heading-title.pull-left Users
+    = link_to "Create Users", new_user_path, class: "btn btn-primary pull-right"
   .page-content
     %input#search.form-control{:placeholder => "Search by name or ID", :type => "text",  "data-provide" => "typeahead"}
     .table-responsive

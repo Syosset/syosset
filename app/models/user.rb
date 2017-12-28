@@ -9,7 +9,7 @@ class User
 
   paginates_per 12
 
-	groupify :group_member, group_class_name: 'CollaboratorGroup'
+  groupify :group_member, group_class_name: 'CollaboratorGroup'
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

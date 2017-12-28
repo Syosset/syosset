@@ -1,0 +1,16 @@
+%section.section.section-padded
+  .section-header
+    %h3
+      Create Users
+  .container-fluid
+    .row-fluid
+      = form_tag populate_users_path, method: :post do
+        .form-group
+          %p
+            Enter user data seperated by newlines.
+            Emails are optional for non-special names.
+          = text_area_tag :users, nil, placeholder: "Ethan K'lein, eklein@syosset.k12.ny.us", class: "form-control"
+        .form-group
+          %p Collaborator group to add users to:
+          = text_field_tag :collaborator_group, nil, placeholder: "Collaborator Group ID", class: "form-control"
+        = submit_tag "Create Users", class: "btn btn-success pull-right"

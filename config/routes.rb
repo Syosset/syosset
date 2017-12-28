@@ -7,7 +7,8 @@ Rails.application.routes.draw do
 
   # Users and Profiles
   devise_for :users, controllers: {omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'users/registrations' }, skip: [:passwords]
-  resources :users, only: [:index, :show, :edit, :update] do
+  resources :users, only: [:index, :new, :show, :edit, :update] do
+    post :populate, on: :collection # create multiple users and assign to collaborator groups
     resources :periods, on: :member, except: [:show]
   end
 
