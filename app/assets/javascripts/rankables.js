@@ -4,7 +4,7 @@ $(document).on('turbolinks:load', function() {
         axis: 'y',
         handle: '.handle',
         update: function( event, ui ) {
-          $.post("/admin/rankables/sort", $(this).sortable('serialize'))
+          $.post("/rankables/sort", $(this).sortable('serialize'))
         }
       })
   }))

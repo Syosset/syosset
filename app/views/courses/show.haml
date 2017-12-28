@@ -20,7 +20,7 @@
   .page-content
     .row.page-row
       .courses-wrapper.col-md-8.col-sm-7
-        = form_for [:admin, @course] do |f|
+        = form_for @course do |f|
           %div{class: "#{"editable-content" if current_holder.can? :edit, @course}", id: "course[content]"}
             = @course.content.html_safe
       %aside.page-sidebar.col-md-3.col-md-offset-1.col-sm-4.col-sm-offset-1
@@ -43,9 +43,9 @@
               = content_tag_for(:li, link, class: "list-group-item") do
                 - if current_holder.can?(:edit, link)
                   %i.handle.fa.fa-sort{"aria-hidden" => "true"}
-                  = link_to admin_link_path(link), method: :delete, data: { confirm: 'Are you sure?' } do
+                  = link_to link_path(link), method: :delete, data: { confirm: 'Are you sure?' } do
                     %i.fa.fa-times
-                  = link_to new_admin_escalation_request_path(link_id: link) do
+                  = link_to new_escalation_request_path(link_id: link) do
                     - if link.escalated?
                       %i.fa.fa-star
                     - else

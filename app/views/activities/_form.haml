@@ -1,12 +1,12 @@
-= errors_for(@department)
+= errors_for(@activity)
 
-= form_for [:admin, @department] do |f|
+= form_for @activity do |f|
   .form-group
     = f.label :name
     = f.text_field :name, placeholder: "Name", class: "form-control"
   .form-group
-    = f.label :phone
-    = f.text_field :phone, placeholder: "Phone Number", class: "form-control"
+    = f.label :type
+    = f.select :type, ['club', 'sport', 'group']
   .form-group
     = f.label :short_description
     = f.text_field :short_description, placeholder: "Short Description", class: "form-control"

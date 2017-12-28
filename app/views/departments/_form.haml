@@ -1,17 +1,18 @@
-= errors_for(@course)
+= errors_for(@department)
 
-= form_for [:admin, @department, @course] do |f|
+= form_for @department do |f|
   .form-group
     = f.label :name
     = f.text_field :name, placeholder: "Name", class: "form-control"
   .form-group
-    = f.label :course_id
-    = f.number_field :course_id, placeholder: "Course ID", class: "form-control"
+    = f.label :phone
+    = f.text_field :phone, placeholder: "Phone Number", class: "form-control"
   .form-group
     = f.label :short_description
     = f.text_field :short_description, placeholder: "Short Description", class: "form-control"
   .form-group
     = f.label :content
     = f.text_area :content, placeholder: "Content", rows: 10, class: "form-control tinymce"
+
   = f.submit "Save", class: "btn btn-success pull-right", id: "submit-button"
 = tinymce

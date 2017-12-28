@@ -46,8 +46,8 @@
           = link_to t('nav.extracurriculars'), activities_path
 
         - if user_signed_in? && current_user.admin_enabled?
-          %li.nav-item{class: active_controller('admin/base', 'index')}
-            = link_to t('nav.admin'), admin_root_path
+          %li.nav-item{class: active_controller('admin', 'index')}
+            = link_to t('nav.admin'), admin_path
       %ul.nav.navbar-nav.pull-right
         %li.nav-item.hidden-xs
           .red-white-display
