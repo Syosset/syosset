@@ -2,6 +2,7 @@
   %header.page-heading.clearfix
     %h1.heading-title.pull-left Users
   .page-content
+    %input#search.form-control{:placeholder => "Search by name or ID", :type => "text",  "data-provide" => "typeahead"}
     .table-responsive
       %table.table
         %thead
@@ -18,3 +19,24 @@
                   %i.fa.fa-shield
               %td= user.email
     = paginate @users, theme: 'tb3'
+
+:javascript
+  $(function() {
+    $('#search').autocomplete({
+      minLength: 2,
+      source: '#{autocomplete_path(:json)}',
+      focus: function(event, ui) {
+        $('#search').val(ui.item.label);
+        return false;
+      },
+      select: function(event, ui) {
+        window.location.href = '/users/' + ui.item.value + '/edit';
+        return false;
+      }
+    })
+    .autocomplete( "instance" )._renderItem = function( ul, item ) {
+      return $( "<li>" )
+        .append( "<div>" + item.label + "<br>" + item.desc + "</div>" )
+        .appendTo( ul );
+    };
+  });
