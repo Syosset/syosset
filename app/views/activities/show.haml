@@ -10,12 +10,12 @@
           - else
             %a{:href => subscribe_activity_path(@activity), data: {method: 'post'}} Subscribe
         - if user_signed_in? && current_holder.can?(:edit, @activity) && current_user.staff?
-          %a{:href => unlock_admin_activity_path(@activity, granter_id: current_user), data: {method: 'post'}} Unlock this page for student edits
+          %a{:href => unlock_activity_path(@activity, granter_id: current_user), data: {method: 'post'}} Unlock this page for student edits
 
   .page-content
     .row.page-row
       .courses-wrapper.col-md-8.col-sm-7
-        = form_for [:admin, @activity] do |f|
+        = form_for @activity do |f|
           %div{class: "#{"editable-content" if current_holder.can? :edit, @activity}", id: "activity[content]"}
             = @activity.content.html_safe
       %aside.page-sidebar.col-md-3.col-md-offset-1.col-sm-4.col-sm-offset-1

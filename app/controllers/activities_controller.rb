@@ -1,9 +1,13 @@
+require 'action_view'
+
 class ActivitiesController < ApplicationController
-  before_action :get_activity, only: [:show, :subscribe, :unsubscribe]
+  include ActionView::Helpers::DateHelper
+
+  before_action :get_activity, only: [:show, :edit, :update, :destroy, :subscribe, :unsubscribe, :unlock]
 
   def index
     actions_builder = ActionsBuilder.new(current_holder)
-    actions_builder.require(:create, @activity).add_action("New Activity", :get, new_admin_activity_path)
+    actions_builder.require(:create, @activity).add_action("New Activity", :get, new_activity_path)
     @actions = actions_builder.actions
 
     @activities = Activity.full_text_search(params[:search], allow_empty_search: true).asc(:name).page params[:page]
@@ -11,11 +15,11 @@ class ActivitiesController < ApplicationController
 
   def show
     actions_builder = ActionsBuilder.new(current_holder)
-    actions_builder.require(:edit, @activity).add_action("Edit Activity", :get, edit_admin_activity_path(@activity))
+    actions_builder.require(:edit, @activity).add_action("Edit Activity", :get, edit_activity_path(@activity))
     actions_builder.require(:edit, @activity).add_action("Manage Collaborators", :get, edit_admin_collaborator_group_path(@activity.collaborator_group))
     actions_builder.require(:edit, @activity).add_action("Make Announcement", :get, new_announcement_path(activity_id: @activity.id))
     actions_builder.require(:edit, @activity).add_action("Make Link", :get, new_link_path(activity_id: @activity.id))
-    actions_builder.require(:destroy, @activity).add_action("Destroy Activity", :delete, admin_activity_path(@activity), data: { confirm: 'Are you sure?' })
+    actions_builder.require(:destroy, @activity).add_action("Destroy Activity", :delete, activity_path(@activity), data: { confirm: 'Are you sure?' })
     @actions = actions_builder.actions
   end
 
@@ -29,10 +33,55 @@ class ActivitiesController < ApplicationController
     redirect_to activity_path(@activity), :notice => 'Successfully un-subscribed from activity.'
   end
 
+  def create
+    @activity = Activity.new(activity_params)
+    authorize @activity
+
+    @activity.save!
+    redirect_to activity_path(@activity), flash: {:success => "Activity has been created"}
+  end
+
+  def new
+    authorize Activity
+    @activity = Activity.new
+  end
+
+  def edit
+    authorize @activity
+  end
+
+  def update
+    authorize @activity
+    if @activity.update(activity_params)
+      redirect_to activity_path(@activity), flash: {:success => "Activity has been updated"}
+    else
+      render action: "edit"
+    end
+  end
+
+  def destroy
+    authorize @activity
+    @activity.destroy
+    redirect_to activities_path, flash: {:alert => "Activity destroyed"}
+  end
+
+  def unlock
+    granter = User.find(params[:granter_id])
+    time = 30.minute # TODO: Make configurable
+
+    if @activity.unlock(time, granter)
+      redirect_to activity_path(@activity), flash: {:success => "Activity has been updated"}
+    else
+      redirect_to activity_path(@activity), flash: {:alert => "This page is already unlocked for another #{(distance_of_time_in_words(Time.now, @activity.unlock_grant.expire_at))}"}
+    end
+  end
+
   private
   def get_activity
     @activity = Activity.find(params[:id])
   end
 
-
+  def activity_params
+    params.require(:activity).permit!
+  end
 end

@@ -12,7 +12,9 @@ Rails.application.routes.draw do
   end
 
   # User content
-  resources :activities
+  resources :activities do
+    post :unlock, on: :member
+  end
 
   resources :departments, shallow: true do
     member do
@@ -80,11 +82,11 @@ Rails.application.routes.draw do
     #resources :announcements
     #resources :links
 
-    resources :activities do
-      member do
-        post :unlock
-      end
-    end
+    #resources :activities do
+    #  member do
+    #    post :unlock
+    #  end
+    #end
 
     resources :departments, shallow: true, only: [:new, :create, :edit, :update, :destroy] do
       resources :courses
