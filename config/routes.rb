@@ -76,46 +76,4 @@ Rails.application.routes.draw do
   # Utilities
   mount Peek::Railtie => '/peek'
 
-  # This namespace is slowly being removed
-  # Please add new routes elsewhere
-  namespace :admin do
-    #root :to => "base#index"
-    #post "/renew" => "base#renew"
-    #post "/resign" => "base#resign"
-
-    #get "/color" => "color#edit"
-    #post "/color" => "color#update"
-    #post "/color_trigger_update" => "color#trigger_update"
-
-    #resources :users, only: [:index, :edit, :update]
-
-    #post "/rankables/sort" => "rankables#sort", :as => :sort_rankable
-
-    #resources :announcements
-    #resources :links
-
-    #resources :activities do
-    #  member do
-    #    post :unlock
-    #  end
-    #end
-
-    #resources :departments, shallow: true, only: [:new, :create, :edit, :update, :destroy] do
-    #  resources :courses
-    #end
-
-    #resources :integrations do
-    #  post :clear_failures, on: :member
-    #end
-
-    #resources :escalation_requests do
-    #  post "approve", action: :approve, as: :approve
-    #  post "deny", action: :deny, as: :deny
-    #end
-
-    #resources :collaborator_groups, only: [:edit, :update] do
-    #  post "add_collaborator", action: :add_collaborator, as: :add_collaborator
-    #  post "remove_collaborator", action: :remove_collaborator, as: :remove_collaborator
-    #end
-  end
 end
