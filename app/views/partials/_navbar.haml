@@ -56,7 +56,7 @@
           %li.nav-item
             = link_to user_path(current_user) do
               - unless current_user.onboarding_steps.empty?
-                %span.label.label-info
+                %span.label.label-info.onboarding-alert
                   %i.fa.fa-pencil-square
                   NEW
                 &nbsp;

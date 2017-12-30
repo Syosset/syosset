@@ -2,6 +2,19 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.onboarding-alert {
+  animation: flash ease 1s alternate infinite;
+}
+
+@keyframes flash {
+  0%, 50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 .onboarding {
   padding: 15px 30px;
   background-color: #ffffff;
