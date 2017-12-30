@@ -55,6 +55,11 @@
         - if user_signed_in?
           %li.nav-item
             = link_to user_path(current_user) do
+              - unless current_user.onboarding_steps.empty?
+                %span.label.label-info
+                  %i.fa.fa-pencil-square
+                  NEW
+                &nbsp;
               - if current_user.admin_enabled?
                 %i.fa.fa-shield
               = current_user.name

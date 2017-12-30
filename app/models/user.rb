@@ -82,4 +82,17 @@ class User
     super_admin || (/^[a-z]+\@syosset\.k12\.ny\.us$/ =~ email) == 0
   end
 
+  def onboarding_steps
+    required = []
+    if staff?
+      unless picture.present?
+        required << :picture
+      end
+      if bio.empty?
+        required << :bio
+      end
+    end
+    required
+  end
+
 end

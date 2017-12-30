@@ -5,17 +5,19 @@
   %meta{name: 'og:image', content: @user.picture.url}
 
 .page-wrapper
-  %header.page-heading.clearfix
-    %ul.nav.navbar-nav.pull-right
-      %li.nav-item.dropdown
-        %a.dropdown-toggle{"data-close-others" => "false", "data-delay" => "0", "data-hover" => "dropdown", "data-toggle" => "dropdown", :href => "#"}
-          Actions
-          %b.caret
-        %ul.dropdown-menu.dropdown-menu-right
-          - if current_holder.can? :edit, @user
+  - if current_holder == @user && !@onboarding.empty?
+    = render 'onboarding'
+
+  - if current_holder.can? :edit, @user
+    %header.page-heading.clearfix
+      %ul.nav.navbar-nav.pull-right
+        %li.nav-item.dropdown
+          %a.dropdown-toggle{"data-close-others" => "false", "data-delay" => "0", "data-hover" => "dropdown", "data-toggle" => "dropdown", :href => "#"}
+            Actions
+            %b.caret
+          %ul.dropdown-menu.dropdown-menu-right
             %li= link_to "Edit profile", edit_user_registration_path
-          - if @user.staff?
-            %li= link_to "View schedule", user_periods_path(@user)
+            %li= link_to "Edit schedule", user_periods_path(@user)
 
   .row
     .col-md-3
