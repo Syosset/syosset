@@ -44,8 +44,13 @@
               = @user.email
 
     .col-md-9
-      .well
-        %p.lead= @user.bio.html_safe
+      - unless @user.bio.empty?
+        .well
+          %p.lead= @user.bio.html_safe
+      - else
+        %p.no-bio
+          %i.fa.fa-pencil-square-o
+          This user does not have a bio.
   .row
     - if @periods.count > 0
       .table-responsive
