@@ -1,0 +1,22 @@
+.onboarding
+  %h1 Hi #{@user.name}, let's get your profile set up.
+  %p Profiles make it easier for students to contact you and check your schedule.
+
+  = link_to edit_user_registration_path do
+    - if @onboarding.include? :picture
+      .step
+        %i.fa.fa-cloud-upload
+        .prompt Upload a profile picture.
+    - else
+      .step.complete
+        %i.fa.fa-check
+        .prompt You've uploaded a profile picture. Looking great!
+
+    - if @onboarding.include? :bio
+      .step
+        %i.fa.fa-pencil-square-o
+        .prompt Tell us about yourself! Write a bio.
+    - else
+      .step.complete
+        %i.fa.fa-check
+        .prompt You've written a bio.

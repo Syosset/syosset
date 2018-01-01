@@ -7,6 +7,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     redirect_to root_path, alert: "Only staff members can have profiles." unless @user.staff?
     @periods = @user.periods.asc(:period)
+    @onboarding = @user == current_user ? @user.onboarding_steps : []
   end
 
   def index

@@ -1,3 +1,75 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.onboarding-alert {
+  animation: flash ease 1s alternate infinite;
+}
+
+@keyframes flash {
+  0%, 50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.onboarding {
+  padding: 15px 30px;
+  background-color: #ffffff;
+  border: 2px solid #f4f4f4;
+  border-radius: 4px;
+}
+
+.onboarding p {
+  font-size: 16px;
+}
+
+.onboarding .step {
+  padding: 15px;
+  margin: 15px 0;
+
+  background-color: #f9f9f9;
+  color: #000000;
+
+  border-radius: 4px;
+  border: 1px solid #e7e7e7;
+
+  font-size: 16px;
+  display: flex;
+
+  animation: slide-left ease 0.5s forwards;
+  margin-left: 25px;
+  opacity: 0;
+}
+
+.onboarding .step:nth-child(1) {
+  animation-delay: 0.5s;
+}
+.onboarding .step:nth-child(2) {
+  animation-delay: 1s;
+}
+
+@keyframes slide-left {
+  100% {
+    margin-left: 0;
+    opacity: 1;
+  }
+}
+
+.onboarding .step:hover {
+  background-color: #f1f1f1;
+}
+
+.onboarding .step i {
+  font-size: 36px;
+}
+
+.onboarding .step .prompt {
+  margin: 6px 0 0 10px;
+}
+
+.onboarding .step.complete {
+  background-color: rgb(159, 224, 159);
+}
