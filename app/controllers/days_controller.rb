@@ -28,7 +28,7 @@ class DaysController < ApplicationController
   end
 
   def fetch
-    authorize :update, :day
+    authorize :day, :update
     ResolveDayColorJob.perform_later
     render json: {:success => true, :message => 'Job queued.'}
   end
