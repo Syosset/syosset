@@ -1,0 +1,8 @@
+%section.section.section-padded
+  .section-header
+    %h3
+      Edit Closure
+  .container-fluid
+    .row-fluid
+      = render 'form'
+      = link_to "Delete", closure_path(@closure), method: :delete, class: "btn btn-warning pull-right"

@@ -1,0 +1,37 @@
+.red-white-display.closed {
+  animation: scale-flash linear 1s alternate infinite;
+}
+
+@keyframes scale-flash {
+  0%, 50% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
+
+.closure-info {
+  margin: -10px -15px;
+  display: flex;
+}
+
+.closure-icon {
+  border-radius: 10px 0 0 10px;
+  padding: 20px;
+  font-size: 32px;
+  background-color: #e9e7e7;
+}
+
+.closure-content {
+  padding: 25px;
+  width: 200px;
+}
+
+.closure-content p.dates {
+  font-weight: bold;
+}
+
+.closure-content p {
+  font-size: 14px;
+}

@@ -50,8 +50,12 @@
             = link_to t('nav.admin'), admin_path
       %ul.nav.navbar-nav.pull-right
         %li.nav-item.hidden-xs
-          .red-white-display
-            = render "partials/nav/day_indicator"
+          - if @closure.nil?
+            .red-white-display
+              = render "partials/nav/day_indicator"
+          - else
+            .red-white-display.closed
+              = render "partials/nav/closure_indicator"
         - if user_signed_in?
           %li.nav-item
             = link_to user_path(current_user) do
