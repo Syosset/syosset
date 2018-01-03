@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get 'landing' => 'welcome#landing' # browser homepage on school devices
   get 'about' => 'welcome#about'
 
+  get 'z/index.html', to: redirect("/") # legacy endpoint -> still set on school devices (Syosset/syosset##83)
+
   # Users and Profiles
   devise_for :users, controllers: {omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'users/registrations' }, skip: [:passwords]
   resources :users, only: [:index, :new, :show, :edit, :update] do
@@ -61,7 +63,7 @@ Rails.application.routes.draw do
     post 'fetch'
   end
 
-  get 'day_color' => 'day#legacy_show' # legacy endpoint -> required by ryan's app
+  get 'day_color' => 'days#legacy_show' # legacy endpoint -> required by ryan's app (Syosset/syosset#84)
 
   # Integration Management
   resources :integrations do
