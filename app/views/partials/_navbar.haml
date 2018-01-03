@@ -22,7 +22,12 @@
         .logo-mobile.visible-xs
           = svg 'icon'
       .day-indicator-container.visible-xs
-        = render "partials/nav/day_indicator"
+        - if @active_closure.nil?
+          .red-white-display
+            = render "partials/nav/day_indicator"
+        - else
+          .red-white-display.closed
+            = render "partials/nav/closure_indicator"
       %button.navbar-toggle{"data-target" => "#navbar-collapse", "data-toggle" => "collapse", :type => "button"}
         %span.sr-only Toggle navigation
         %span.icon-bar
@@ -50,7 +55,7 @@
             = link_to t('nav.admin'), admin_path
       %ul.nav.navbar-nav.pull-right
         %li.nav-item.hidden-xs
-          - if @closure.nil?
+          - if @active_closure.nil?
             .red-white-display
               = render "partials/nav/day_indicator"
           - else

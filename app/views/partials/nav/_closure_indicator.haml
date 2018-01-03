@@ -1,5 +1,5 @@
 = link_to "javascript:;", "data-content" => "#{render 'partials/nav/closure_info'}", "data-html" => :true, "data-placement" => :bottom , "data-toggle" => :popover, "data-container" => :nav do
-  - if @closure.type == 'snow'
+  - if @active_closure.type == 'snow'
     %i.fa.fa-snowflake-o
   - else
     %i.fa.fa-exclamation-triangle

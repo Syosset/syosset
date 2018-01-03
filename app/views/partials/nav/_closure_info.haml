@@ -1,18 +1,18 @@
 .closure-info
   .closure-icon
-    - if @closure.type == 'snow'
+    - if @active_closure.type == 'snow'
       %i.fa.fa-snowflake-o
     - else
       %i.fa.fa-exclamation-triangle
   .closure-content
     %p.dates
       Syosset High School is closed
-      - if @closure.start_date == @closure.end_date
+      - if @active_closure.start_date == @active_closure.end_date
         on
-        = @closure.start_date.strftime("%A")
+        = @active_closure.start_date.strftime("%A")
       - else
         from
-        = @closure.start_date.strftime("%A")
+        = @active_closure.start_date.strftime("%A")
         to
-        = @closure.end_date.strftime("%A") + '.'
-    %p= @closure.content
+        = @active_closure.end_date.strftime("%A") + '.'
+    %p= @active_closure.content
