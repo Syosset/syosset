@@ -18,6 +18,8 @@
                 &nbsp;
                 - if user.super_admin
                   %i.fa.fa-shield
+                - if user.bot
+                  %i.fa.fa-certificate
               %td= user.email
     = paginate @users, theme: 'tb3'
 

@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.all.page(params[:page])
+    @users = User.all.order([:super_admin, :desc], [:bot, :desc]).page(params[:page])
   end
 
   def new
