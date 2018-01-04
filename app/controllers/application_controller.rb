@@ -84,7 +84,8 @@ class ApplicationController < ActionController::Base
       Department.by_priority.limit(6)
     end
     @active_closure = Rails.cache.fetch("nav_closure", expires_in: 5.minutes) do
-      Closure.where(:start_date.lte => Date.today, :end_date.gte => Date.today).first
+      start_date = Time.now.in_time_zone("EST").hour >= 18 ? Date.tomorrow : Date.today
+      Closure.where(:start_date.lte => start_date, :end_date.gte => Date.today).first
     end
   end
 
