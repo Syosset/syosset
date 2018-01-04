@@ -9,7 +9,7 @@
       Syosset High School is closed
       - if @active_closure.start_date == @active_closure.end_date
         on
-        = @active_closure.start_date.strftime("%A")
+        = @active_closure.start_date.strftime("%A") + '.'
       - else
         from
         = @active_closure.start_date.strftime("%A")

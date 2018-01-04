@@ -32,7 +32,7 @@
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-ga('create', 'UA-105323459-1', 'auto');
+ga('create', 'UA-105323459-1', 'auto', {'siteSpeedSampleRate': 5});
 document.addEventListener("turbolinks:load", function(event) {
   ga("set", "location", event.data.url);
   ga("send", "pageview");
