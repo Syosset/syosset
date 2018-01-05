@@ -1,25 +1,17 @@
 class DaysController < ApplicationController
-
   skip_before_action :verify_authenticity_token, only: [:fetch]
 
   def show
-    @color = $redis.get('current_day_color')
-    render json: {:color => @color}
+    render jsonapi: Day.first, include: [:closure]
   end
 
   def edit
     authorize :day
-    @color = $redis.get('current_day_color')
   end
 
   def update
     authorize :day
-
-    unless params[:color] == 'No Color'
-      $redis.set('current_day_color', params[:color])
-    else
-      $redis.del('current_day_color')
-    end
+    Day.first.update(params)
 
     respond_to do |format|
       format.json { render json: {:success => true, :color => $redis.get('current_day_color')} }

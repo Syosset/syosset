@@ -4,6 +4,11 @@ class ClosuresController < ApplicationController
 
   def index
     @closures = Closure.all.order([:start_date, :asc])
+
+    respond_to do |format|
+      format.html
+      format.json { render jsonapi: @closures }
+    end
   end
 
   def show

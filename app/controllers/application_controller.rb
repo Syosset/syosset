@@ -83,10 +83,7 @@ class ApplicationController < ActionController::Base
     @departments_summary = Rails.cache.fetch("nav_departments", expires_in: 5.minutes) do
       Department.by_priority.limit(6)
     end
-    @active_closure = Rails.cache.fetch("nav_closure", expires_in: 5.minutes) do
-      start_date = Time.now.in_time_zone("EST").hour >= 18 ? Date.tomorrow : Date.today
-      Closure.where(:start_date.lte => start_date, :end_date.gte => Date.today).first
-    end
+    @active_closure = Closure.active_closure
   end
 
   def find_alerts
