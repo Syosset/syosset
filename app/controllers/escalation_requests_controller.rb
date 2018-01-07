@@ -7,7 +7,7 @@ class EscalationRequestsController < ApplicationController
     @escalation_request.approve!(current_user)
     notify_integrations "*#{current_user.name}* approved an escalation request from *#{@escalation_request.requester.name}*."
     flash[:notice] = 'Escalation request successfully approved.'
-    redirect_to escalation_requests_path
+    redirect_back(fallback_location: root_path)
   end
 
   def deny
@@ -15,7 +15,7 @@ class EscalationRequestsController < ApplicationController
     @escalation_request.deny!(current_user)
     notify_integrations "*#{current_user.name}* denied an escalation request from *#{@escalation_request.requester.name}*."
     flash[:notice] = 'Escalation request successfully denied.'
-    redirect_to escalation_requests_path
+    redirect_back(fallback_location: root_path)
   end
 
   def index
@@ -36,7 +36,7 @@ class EscalationRequestsController < ApplicationController
       type_name = @escalation_request.escalatable.class.to_s.downcase
       notify_integrations "*#{current_user.name}* wants to escalate their #{type_name}:\n> #{@escalation_request.note}\n#{escalation_requests_url}"
       flash[:notice] = 'Escalation request successfully created.'
-      redirect_to url_for(@escalatable) rescue redirect_to root_path
+      safe_redirect_to @escalatable
     else
       flash.now[:alert] = @escalation_request.errors.full_messages.first
       render action: 'new'
@@ -55,16 +55,22 @@ class EscalationRequestsController < ApplicationController
   def update
     authorize @escalatable, :edit
     @escalation_request.update!(escalation_request_params)
-    redirect_to @escalatable, flash: {:success => "Escalation request updated successfully."}
+    flash[:success] = 'Escalation request updated successfully.'
+    safe_redirect_to @escalatable
   end
 
   def destroy
     authorize @escalatable, :edit
     @escalation_request.destroy
-    redirect_to @escalatable, flash: {:alert => "Escalation request destroyed"}
+    flash[:alert] = 'Escalation request destroyed.'
+    safe_redirect_to @escalatable
   end
 
   private
+  def safe_redirect_to(model, controller: model.class.name.underscore.pluralize, action: :show)
+    redirect_to url_for(id: model.id, controller: controller, action: action) rescue redirect_to root_path
+  end
+
   def get_escalatable
     params.each do |name, value|
       if name =~ /(.+)_id$/

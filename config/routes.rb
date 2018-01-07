@@ -32,7 +32,8 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :announcements, :links
+  resources :announcements
+  resources :links, except: [:show]
 
   # Alerts
   resources :alerts do
