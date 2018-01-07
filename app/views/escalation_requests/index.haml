@@ -50,12 +50,12 @@
                   %a.btn.btn-xs.btn-primary{href: edit_escalation_request_path(request, "#{request.escalatable.class.to_s.downcase}_id" => request.escalatable.id )}
                     %i.fa.fa-gear
               %tr
-                %td.hiddenRow{colspan: "6"}
+                %td.hiddenRow{colspan: "8"}
                   .collapse{class: "more_info#{index}"}
                     %b Special Note:
                     = request.note
               %tr
-                %td.hiddenRow{colspan: "6"}
+                %td.hiddenRow{colspan: "8"}
                   .collapse{class: "more_info#{index}"}
                     - for attribute in request.escalatable.attributes.keys
                       %b= attribute.humanize
