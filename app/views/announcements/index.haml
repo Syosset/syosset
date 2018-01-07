@@ -19,7 +19,7 @@
             %th Announcement
             %th Poster
             %th Posted
-        %tbody
+        %tbody.rankable
           - @announcements.each do |announcement|
             = content_tag_for(:tr, announcement) do
               %td

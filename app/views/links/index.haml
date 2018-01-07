@@ -27,7 +27,7 @@
             %th Link
             %th Poster
             %th Posted
-        %tbody
+        %tbody.rankable
           - @links.each do |link|
             = content_tag_for(:tr, link) do
               %td
