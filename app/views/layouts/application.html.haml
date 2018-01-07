@@ -21,9 +21,10 @@
     - if content_for?(:description)
       %meta{name: "description", content: yield(:description)}
   %body{:class => yield(:body_class), "data-no-turbolink" => yield(:disable_turbolinks)}
+    %a.skip.screen-reader-text{:href => "#content"} Skip to content
     .wrapper
       = render 'partials/navbar'
-      .content.container
+      #content.container
         = render 'partials/flash'
         = yield
     = render 'partials/footer'
