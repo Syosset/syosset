@@ -1,4 +1,7 @@
 function init_tiny() {
+  $('#flash').append("<div id=\"ada-notice\"><div class=\"alert alert-warning\"><strong>ADA Compliance</strong><br/>By posting on syosseths.com, you agree that the content is ADA compliant to the best of your ability.</div><br/><br/></div>")
+  $('#ada-notice').hide();
+
   tinyMCE.init({
     selector: '.editable-content',
     inline: true,
@@ -14,7 +17,15 @@ function init_tiny() {
     },
     image_class_list: [
       {title: 'Automatically Adjust Size to Screen Resolution', value: 'img-responsive'},
-    ]
+    ],
+    init_instance_callback: function (editor) {
+      editor.on('focus', function (e) {
+        $('#ada-notice').show();
+      });
+      editor.on('blur', function (e) {
+        $('#ada-notice').hide();
+      });
+    }
   });
 };
 

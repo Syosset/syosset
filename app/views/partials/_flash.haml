@@ -1,6 +1,7 @@
 -# We need to filter out Devise's timedout
 -# See https://github.com/plataformatec/devise/issues/1777
-- flash.to_hash.except("timedout").each do |key, value|
-  %div{:class => "alert alert-#{bootstrap_alert_class(key)}"}
-    %button.close{"data-dismiss" => "alert", :type => "button"} ×
-    = value
+#flash
+  - flash.to_hash.except("timedout").each do |key, value|
+    %div{:class => "alert alert-#{bootstrap_alert_class(key)}"}
+      %button.close{"data-dismiss" => "alert", :type => "button"} ×
+      = value
