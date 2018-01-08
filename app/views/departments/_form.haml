@@ -15,4 +15,6 @@
     = f.text_area :content, placeholder: "Content", rows: 10, class: "form-control tinymce"
 
   = f.submit "Save", class: "btn btn-success pull-right", id: "submit-button"
-= tinymce
+
+:javascript
+  init_tiny();

@@ -1,10 +1,8 @@
 function init_tiny() {
-  $('#flash').append("<div id=\"ada-notice\"><div class=\"alert alert-warning\"><strong>ADA Compliance</strong><br/>By posting on syosseths.com, you agree that the content is ADA compliant to the best of your ability.</div><br/><br/></div>")
+  $('#flash').append("<div id=\"ada-notice\"><div class=\"alert alert-warning\"><strong>ADA Compliance</strong><br/>By posting on syosseths.com, you agree that the content is ADA compliant to the best of your ability.</div></div>")
   $('#ada-notice').hide();
 
-  tinyMCE.init({
-    selector: '.editable-content',
-    inline: true,
+  options = {
     plugins: "table insertdatetime preview link image media searchreplace contextmenu paste directionality fullscreen noneditable visualchars nonbreaking template save",
     relative_urls: false,
     remove_script_host: false,
@@ -26,7 +24,10 @@ function init_tiny() {
         $('#ada-notice').hide();
       });
     }
-  });
+  };
+
+  tinyMCE.init(Object.assign({},options, {selector: '.tinymce'}));
+  tinyMCE.init(Object.assign({},options, {selector: '.editable-content', inline: true}));
 };
 
 $(document).on('turbolinks:load', function() {
