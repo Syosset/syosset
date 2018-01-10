@@ -43,6 +43,11 @@ module Syosset
       s3_protocol: :https
     }
 
+    # Sentry configuration
+    Raven.configure do |config|
+      config.dsn = ENV.fetch('SENTRY_DSN')
+    end
+
     config.time_zone = 'Eastern Time (US & Canada)'
   end
 end

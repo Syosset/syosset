@@ -58,6 +58,10 @@ gem 'mongoid-paperclip', '~> 0.0.11'
 # Files are stored in S3
 gem 'aws-sdk', '~> 2.10'
 
+
+# Error Reporting
+gem "sentry-raven"
+
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 

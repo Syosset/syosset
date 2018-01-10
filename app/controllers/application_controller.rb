@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
   before_action :find_alerts
   before_action :set_navbar_resources
   before_action :get_revision
+  before_action :set_raven_context
 
   rescue_from ScramUtils::NotAuthorizedError do |exception|
     respond_to do |format|
@@ -65,6 +66,11 @@ class ApplicationController < ActionController::Base
   ensure
     # to address the thread variable leak issues in Puma/Thin webserver
     Current.user = nil
+  end
+
+  def set_raven_context
+    Raven.user_context(id: session[:current_user_id]) # or anything else in session
+    Raven.extra_context(params: params.to_unsafe_h, url: request.url)
   end
 
   def get_revision

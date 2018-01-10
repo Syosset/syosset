@@ -396,6 +396,8 @@ GEM
     scram (0.1.2)
       mongoid (~> 6.1)
       rails (~> 5.0, >= 5.0.1)
+    sentry-raven (2.7.1)
+      faraday (>= 0.7.6, < 1.0)
     sexp_processor (4.10.0)
     shellany (0.0.1)
     sinatra (2.0.0)
@@ -503,6 +505,7 @@ DEPENDENCIES
   rspec-rails (~> 3.5)
   sass-rails (~> 5.0)
   scram (~> 0.1.2)
+  sentry-raven
   slack-ruby-client (~> 0.9)
   spring
   spring-watcher-listen (~> 2.0.0)
