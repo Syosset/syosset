@@ -2,6 +2,7 @@ class Department
   include Mongoid::Document
   include Mongoid::Slug
   include Mongoid::Search
+  include Mongoid::History::Trackable
   include Concerns::Descriptable
   include Concerns::Rankable
   include Concerns::Subscribable
@@ -12,6 +13,7 @@ class Department
   slug :name
   paginates_per 12
   search_in :name, :courses => [:name, :course_id]
+  track_history on: [:fields]
 
   has_many :courses
 

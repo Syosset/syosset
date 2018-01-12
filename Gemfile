@@ -92,6 +92,8 @@ gem 'mongoid', '~> 6.1.0'
 gem 'mongoid-slug', '~> 5.2'
 # Use mongoid_search for model searching
 gem 'mongoid_search'
+# Use mongoid-history for auditing
+gem 'mongoid-history'
 # Use Redis for caching
 gem 'redis'
 # Use Resque for jobs
