@@ -7,7 +7,7 @@
       %th Author
       %th Event
   %tbody
-    - @trackable.history_tracks.reverse.each do |track|
+    - @tracks.each do |track|
       %tr
         %td= link_to track.version, history_tracker_path(track, "#{@trackable.class.name.underscore}_id" => @trackable.id)
         %td
@@ -15,5 +15,5 @@
           ago
         %td= link_to track.modifier.name, track.modifier
         %td= track.action
-
+= paginate @tracks, theme: 'tb3'
 = link_to 'Back',  @trackable, class: "btn btn-warning pull-right"

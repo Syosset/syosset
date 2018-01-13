@@ -4,6 +4,7 @@ class HistoryTrackersController < ApplicationController
 
   def index
     authorize @trackable, :edit # Must be a collaborator to view audit log
+    @tracks = @trackable.history_tracks.reorder(created_at: :desc).page(params[:page]).per(15)
   end
 
   def show
