@@ -1,9 +1,5 @@
-require 'action_view'
-
 class ActivitiesController < ApplicationController
-  include ActionView::Helpers::DateHelper
-
-  before_action :get_activity, only: [:show, :edit, :update, :destroy, :subscribe, :unsubscribe, :unlock]
+  before_action :get_activity, only: [:show, :edit, :update, :destroy, :subscribe, :unsubscribe]
 
   def index
     actions_builder = ActionsBuilder.new(current_holder)
@@ -64,17 +60,6 @@ class ActivitiesController < ApplicationController
     authorize @activity
     @activity.destroy
     redirect_to activities_path, flash: {:alert => "Activity destroyed"}
-  end
-
-  def unlock
-    granter = User.find(params[:granter_id])
-    time = 30.minute # TODO: Make configurable
-
-    if @activity.unlock(time, granter)
-      redirect_to activity_path(@activity), flash: {:success => "Activity has been updated"}
-    else
-      redirect_to activity_path(@activity), flash: {:alert => "This page is already unlocked for another #{(distance_of_time_in_words(Time.now, @activity.unlock_grant.expire_at))}"}
-    end
   end
 
   private

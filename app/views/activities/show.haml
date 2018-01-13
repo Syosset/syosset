@@ -9,8 +9,6 @@
             %a{:href => unsubscribe_activity_path(@activity), data: {method: 'post'}} Unsubscribe
           - else
             %a{:href => subscribe_activity_path(@activity), data: {method: 'post'}} Subscribe
-        - if user_signed_in? && current_holder.can?(:edit, @activity) && current_user.staff?
-          %a{:href => unlock_activity_path(@activity, granter_id: current_user), data: {method: 'post'}} Unlock this page for student edits
 
   .page-content
     .row.page-row

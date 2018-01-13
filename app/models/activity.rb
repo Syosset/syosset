@@ -10,7 +10,6 @@ class Activity
   include Concerns::Collaboratable
   include Concerns::Announceable
   include Concerns::Linkable
-  include Concerns::StudentEditable
 
   validates_uniqueness_of :name
 

@@ -15,10 +15,8 @@ Rails.application.routes.draw do
   end
 
   # User content
-  resources :activities do
-    post :unlock, on: :member
-  end
-
+  resources :activities
+  
   resources :departments, shallow: true do
     member do
       post :subscribe
