@@ -73,6 +73,10 @@ Rails.application.routes.draw do
     post :clear_failures, on: :member
   end
 
+
+  # Auditing
+  resources :history_trackers, only: [:index, :show]
+
   # Autocomplete AJAX
   get 'autocomplete', :to => 'application#autocomplete'
 

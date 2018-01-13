@@ -94,6 +94,10 @@ gem 'mongoid-slug', '~> 5.2'
 gem 'mongoid_search'
 # Use mongoid-history for auditing
 gem 'mongoid-history'
+# Use mongoid_userstamp to store modifier information automatically
+gem 'mongoid_userstamp', github: "AndreiMotinga/mongoid_userstamp"
+# Use diffy to compute diffs between documents for auditing
+gem 'diffy'
 # Use Redis for caching
 gem 'redis'
 # Use Resque for jobs

@@ -1,4 +1,11 @@
 GIT
+  remote: https://github.com/AndreiMotinga/mongoid_userstamp.git
+  revision: 0fcea0eb6e85abab8b3748017654150d0b138913
+  specs:
+    mongoid_userstamp (0.4.0)
+      mongoid (>= 3.0.4)
+
+GIT
   remote: https://github.com/Rykian/clockwork.git
   revision: 11f80a0f206d17060b07a55bffec23e935279d1c
   specs:
@@ -120,6 +127,7 @@ GEM
       responders
       warden (~> 1.2.3)
     diff-lcs (1.3)
+    diffy (3.2.0)
     dotenv (2.2.1)
     dotenv-rails (2.2.1)
       dotenv (= 2.2.1)
@@ -472,6 +480,7 @@ DEPENDENCIES
   clockwork!
   coffee-rails (~> 4.2)
   devise (~> 4.3)
+  diffy
   dotenv-rails
   factory_girl
   flex-slider-rails (~> 2.6.3)
@@ -494,6 +503,7 @@ DEPENDENCIES
   mongoid-paperclip (~> 0.0.11)
   mongoid-slug (~> 5.2)
   mongoid_search
+  mongoid_userstamp!
   omniauth-google-oauth2!
   peek
   peek-git

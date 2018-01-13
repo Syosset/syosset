@@ -13,7 +13,7 @@ class Department
   slug :name
   paginates_per 12
   search_in :name, :courses => [:name, :course_id]
-  track_history on: [:fields]
+  track_history on: [:all]
 
   has_many :courses
 

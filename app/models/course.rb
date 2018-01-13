@@ -12,7 +12,7 @@ class Course
   paginates_per 12
   slug :name
   search_in :name, :course_id
-  track_history on: [:fields], :scope => :department
+  track_history on: [:all]
 
   scram_define do
     condition :collaborators do |course|

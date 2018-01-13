@@ -1,8 +1,7 @@
 class HistoryTracker
   include Mongoid::History::Tracker
 
-
-  before_create :set_modifier
+  before_save :set_modifier
   before_update :set_modifier
 
   protected

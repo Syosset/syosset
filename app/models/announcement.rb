@@ -1,6 +1,7 @@
 class Announcement
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::History::Trackable
   include Scram::DSL::ModelConditions
   include Concerns::Descriptable
   include Concerns::Escalatable
@@ -22,6 +23,8 @@ class Announcement
       end
     end
   end
+
+  track_history on: [:all]
 
   class Alert < Subscription::Alert
       belongs_to :poster, class_name: 'User'
