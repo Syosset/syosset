@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   # User content
   resources :activities
-  
+
   resources :departments, shallow: true do
     member do
       post :subscribe
@@ -63,9 +63,7 @@ Rails.application.routes.draw do
   end
 
   resources :closures
-
-  get 'day_color' => 'days#legacy_show' # legacy endpoint -> required by ryan's app (Syosset/syosset#84)
-
+  
   # Integration Management
   resources :integrations do
     post :clear_failures, on: :member

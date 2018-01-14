@@ -25,10 +25,4 @@ class DaysController < ApplicationController
     render json: {:success => true, :message => 'Job queued.'}
   end
 
-  # required by ryan lefkowitz's app
-  # todo: migrate app to `GET /day` and remove this one
-  def legacy_show
-    render json: {:current_day_color => $redis.get('current_day_color')}
-  end
-
 end
