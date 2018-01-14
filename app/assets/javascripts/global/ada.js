@@ -18,6 +18,9 @@ $(document).on('turbolinks:load', function setup() {
     });
 
     $("img").click(function(){
-      window.open($(this).attr("src"), '_blank', 'height=300,width=400,toolbar=0,location=0,menubar=0');
+      var w = window.open($(this).attr('src'), '_blank', 'height=300,width=400,toolbar=0,location=0,menubar=0');
+      $(w).on("load", function(){
+          $("body", w.document).append('<button type="button" onclick="window.open(\'\', \'_self\', \'\'); window.close();" style="width:175px;height:175px;font-size:30px;">Close</button>');
+      });
     });
 });
