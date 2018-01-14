@@ -1,8 +1,11 @@
 @import "mixins.scss";
 @import "theme-default.scss";
 
-/* ======= Courses Page ======= */   
-.courses-wrapper {  
+/* ======= Courses Page ======= */
+.courses-wrapper {
+    *:first-child {
+      margin-top: 0
+    }
 
     .tab-content {
         font-size: 12px;
@@ -13,8 +16,8 @@
         img {
             margin-bottom: 10px;
         }
-        
-    }        
+
+    }
     .course-finder {
         .keywords {
             input {
@@ -23,7 +26,7 @@
         }
         margin-bottom: 30px;
     }
-    
+
     .course-list-header {
         font-size: 13px;
         margin-bottom: 15px;
@@ -54,4 +57,3 @@
     }
 
 }
-    
