@@ -10,9 +10,11 @@
   .form-group
     = f.label :short_description
     = f.text_field :short_description, placeholder: "Short Description", class: "form-control"
+  - if !@course.content.blank? && current_user.super_admin
+    .form-group
+      = f.label :content, "OLD CONTENT"
+      = f.text_area :content, rows: 10, class: "form-control", disabled: true
   .form-group
-    = f.label :content
-    = f.text_area :content, placeholder: "Content", rows: 10, class: "form-control tinymce"
+    = f.label :markdown
+    ~ f.text_area :markdown, placeholder: "Content", rows: 10, class: "form-control markdown"
   = f.submit "Save", class: "btn btn-success pull-right", id: "submit-button"
-:javascript
-  init_tiny();

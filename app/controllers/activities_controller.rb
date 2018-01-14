@@ -1,9 +1,5 @@
-require 'action_view'
-
 class ActivitiesController < ApplicationController
-  include ActionView::Helpers::DateHelper
-
-  before_action :get_activity, only: [:show, :edit, :update, :destroy, :subscribe, :unsubscribe, :unlock]
+  before_action :get_activity, only: [:show, :edit, :update, :destroy, :subscribe, :unsubscribe]
 
   def index
     actions_builder = ActionsBuilder.new(current_holder)
@@ -17,6 +13,7 @@ class ActivitiesController < ApplicationController
     actions_builder = ActionsBuilder.new(current_holder)
     actions_builder.require(:edit, @activity).add_action("Edit Activity", :get, edit_activity_path(@activity))
     actions_builder.require(:edit, @activity).add_action("Manage Collaborators", :get, edit_collaborator_group_path(@activity.collaborator_group))
+    actions_builder.require(:edit, @activity).add_action("View Audit Log", :get, history_trackers_path(activity_id: @activity.id))
     actions_builder.require(:edit, @activity).add_action("Make Announcement", :get, new_announcement_path(activity_id: @activity.id))
     actions_builder.require(:edit, @activity).add_action("Make Link", :get, new_link_path(activity_id: @activity.id))
     actions_builder.require(:destroy, @activity).add_action("Destroy Activity", :delete, activity_path(@activity), data: { confirm: 'Are you sure?' })
@@ -65,23 +62,12 @@ class ActivitiesController < ApplicationController
     redirect_to activities_path, flash: {:alert => "Activity destroyed"}
   end
 
-  def unlock
-    granter = User.find(params[:granter_id])
-    time = 30.minute # TODO: Make configurable
-
-    if @activity.unlock(time, granter)
-      redirect_to activity_path(@activity), flash: {:success => "Activity has been updated"}
-    else
-      redirect_to activity_path(@activity), flash: {:alert => "This page is already unlocked for another #{(distance_of_time_in_words(Time.now, @activity.unlock_grant.expire_at))}"}
-    end
-  end
-
   private
   def get_activity
     @activity = Activity.find(params[:id])
   end
 
   def activity_params
-    params.require(:activity).permit(:name, :type, :short_description, :content)
+    params.require(:activity).permit(:name, :type, :short_description, :markdown).merge(modifier: current_user)
   end
 end

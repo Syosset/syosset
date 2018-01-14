@@ -12,4 +12,7 @@
     = render partial: "partials/modtools", locals: {actions: @actions}
   .page-content
     .row-fluid.page-row
-      = @announcement.content.html_safe
+      - unless @announcement.markdown
+        = @announcement.content.html_safe
+      - else
+        = @markdown.render(@announcement.markdown).html_safe

@@ -1,0 +1,19 @@
+%h2 Previous Versions
+%table.table
+  %thead
+    %tr
+      %th Version
+      %th Date
+      %th Author
+      %th Event
+  %tbody
+    - @tracks.each do |track|
+      %tr
+        %td= link_to track.version, history_tracker_path(track, "#{@trackable.class.name.underscore}_id" => @trackable.id)
+        %td
+          = time_ago_in_words(track.created_at)
+          ago
+        %td= link_to track.modifier.name, track.modifier
+        %td= track.action
+= paginate @tracks, theme: 'tb3'
+= link_to 'Back',  @trackable, class: "btn btn-warning pull-right"

@@ -15,10 +15,8 @@ Rails.application.routes.draw do
   end
 
   # User content
-  resources :activities do
-    post :unlock, on: :member
-  end
-
+  resources :activities
+  
   resources :departments, shallow: true do
     member do
       post :subscribe
@@ -72,6 +70,10 @@ Rails.application.routes.draw do
   resources :integrations do
     post :clear_failures, on: :member
   end
+
+
+  # Auditing
+  resources :history_trackers, only: [:index, :show]
 
   # Autocomplete AJAX
   get 'autocomplete', :to => 'application#autocomplete'

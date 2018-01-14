@@ -30,12 +30,12 @@ gem 'autoprefixer-rails', '~> 7.1.3'
 gem 'haml-rails', '~> 0.9'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
+# Use redcarpet to render Markdown content
+gem 'redcarpet', '~> 3.4'
 # Use font-awesome for icons
 gem "font-awesome-rails", '~> 4.7.0.2'
 # Use flexslider
 gem 'flex-slider-rails', '~> 2.6.3'
-# Use tinymce
-gem 'tinymce-rails'
 
 # Pagination
 gem 'kaminari'
@@ -92,6 +92,12 @@ gem 'mongoid', '~> 6.1.0'
 gem 'mongoid-slug', '~> 5.2'
 # Use mongoid_search for model searching
 gem 'mongoid_search'
+# Use mongoid-history for auditing
+gem 'mongoid-history'
+# Use mongoid_userstamp to store modifier information automatically
+gem 'mongoid_userstamp', github: "AndreiMotinga/mongoid_userstamp"
+# Use diffy to compute diffs between documents for auditing
+gem 'diffy'
 # Use Redis for caching
 gem 'redis'
 # Use Resque for jobs

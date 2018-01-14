@@ -1,0 +1,13 @@
+.row.mt
+  .col-sm-12
+    %h2= "Diff between Version #{@track.version} and Current Version"
+    :css
+      #{Diffy::CSS}
+    .well.diff
+      - @track.original.keys.each do |field|
+        %p
+          %strong= "#{field}:"
+          = diff(@track.original[field], @track.modified[field])
+    %p
+      = "Version authored by #{@track.modifier.name} on #{@track.created_at} via '#{@track.action.humanize}'."
+      = link_to 'Back',  history_trackers_path("#{@trackable.class.name.underscore}_id" => @trackable.id), class: "btn btn-warning pull-right"

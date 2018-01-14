@@ -15,9 +15,10 @@
   .page-content
     .row.page-row
       .courses-wrapper.col-md-8.col-sm-7
-        = form_for @department do |f|
-          %div{class: "#{"editable-content" if current_holder.can? :edit, @department}", id: "department[content]"}
-            = @department.content.html_safe
+        - unless @department.markdown
+          = @department.content.html_safe
+        - else
+          = @markdown.render(@department.markdown).html_safe
         %h3= link_to "Teachers", "#"
         %table.table
           %thead
@@ -96,7 +97,6 @@
                       %i.fa.fa-star-o
                 = link_to link.name, link.target
 :javascript
-  init_tiny();
   $(document).on('turbolinks:load', function() {
     $("#show-more-courses").click(function() {
       $(".course").removeClass('hidden');

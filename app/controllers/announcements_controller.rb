@@ -21,6 +21,7 @@ class AnnouncementsController < ApplicationController
     actions_builder.require(:edit, @announceable).add_action("Edit Announcement", :get, edit_announcement_path(@announcement, "#{@announceable.class.to_s.downcase}_id" => @announceable.id))
     actions_builder.require(:edit, @announceable).add_action("Destroy Announcement", :delete, announcement_path(@announcement), data: { confirm: 'Are you sure?' })
     actions_builder.require(:edit, @announceable).add_action("Request Frontpage Visibility", :get, new_escalation_request_path(announcement_id: @announcement))
+    actions_builder.require(:edit, @announceable).add_action("View Audit Log", :get, history_trackers_path(announcement_id: @announcement.id))
     @actions = actions_builder.actions
   end
 
@@ -78,6 +79,6 @@ class AnnouncementsController < ApplicationController
   end
 
   def announcement_params
-    params.require(:announcement).permit(:name, :content)
+    params.require(:announcement).permit(:name, :markdown).merge(modifier: current_user)
   end
 end

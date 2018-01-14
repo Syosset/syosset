@@ -1,6 +1,7 @@
 class Announcement
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::History::Trackable
   include Scram::DSL::ModelConditions
   include Concerns::Descriptable
   include Concerns::Escalatable
@@ -11,7 +12,7 @@ class Announcement
   belongs_to :announceable, polymorphic: true
   belongs_to :poster, class_name: "User"
 
-  validates_presence_of :name, :content
+  validates_presence_of :name, :markdown
 
   scram_define do
     condition :collaborators do |announcement|
@@ -22,6 +23,8 @@ class Announcement
       end
     end
   end
+
+  track_history on: [:all]
 
   class Alert < Subscription::Alert
       belongs_to :poster, class_name: 'User'
