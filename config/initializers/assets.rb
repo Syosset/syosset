@@ -14,6 +14,8 @@ Rails.application.config.assets.paths << Rails.root.join('vendor/assets')
 # folder are already added.
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
 
+Rails.application.config.assets.precompile += %w( markdown.js )
+
 # Adding Webfonts to the Asset Pipeline
 Rails.application.config.assets.precompile << Proc.new { |path|
   if path =~ /\.(eot|svg|ttf|woff)\z/

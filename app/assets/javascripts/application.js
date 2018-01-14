@@ -23,7 +23,7 @@
 //= require jquery.flexslider
 //= require college_green/bootstrap-hover-dropdown
 //= require simplemde/dist/simplemde.min
-//= require_tree .
+//= require_tree ./global
 
 
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

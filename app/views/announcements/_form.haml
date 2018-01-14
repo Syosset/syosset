@@ -1,3 +1,5 @@
+= javascript_include_tag "markdown"
+
 = form_for @announcement do |f|
   = hidden_field_tag "#{@announceable.class.to_s.downcase}_id", "#{@announceable.id}"
   .form-group
