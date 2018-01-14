@@ -46,7 +46,7 @@
     .col-md-9
       - unless @user.bio.empty?
         .well
-          %p.lead= @user.bio.html_safe
+          %p.lead= @markdown.render(@user.bio).html_safe
       - else
         %p.no-bio
           %i.fa.fa-pencil-square-o

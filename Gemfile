@@ -30,12 +30,12 @@ gem 'autoprefixer-rails', '~> 7.1.3'
 gem 'haml-rails', '~> 0.9'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
+# Use redcarpet to render Markdown content
+gem 'redcarpet', '~> 3.4'
 # Use font-awesome for icons
 gem "font-awesome-rails", '~> 4.7.0.2'
 # Use flexslider
 gem 'flex-slider-rails', '~> 2.6.3'
-# Use tinymce
-gem 'tinymce-rails'
 
 # Pagination
 gem 'kaminari'

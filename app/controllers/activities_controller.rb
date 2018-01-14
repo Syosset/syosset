@@ -68,6 +68,6 @@ class ActivitiesController < ApplicationController
   end
 
   def activity_params
-    params.require(:activity).permit(:name, :type, :short_description, :content).merge(modifier: current_user)
+    params.require(:activity).permit(:name, :type, :short_description, :markdown).merge(modifier: current_user)
   end
 end

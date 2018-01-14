@@ -75,7 +75,7 @@ class CoursesController < ApplicationController
   end
 
   def course_params
-    params.require(:course).permit(:name, :course_id, :short_description, :content).merge(modifier: current_user)
+    params.require(:course).permit(:name, :course_id, :short_description, :markdown).merge(modifier: current_user)
   end
 
 end

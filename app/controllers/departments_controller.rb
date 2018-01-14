@@ -73,7 +73,7 @@ class DepartmentsController < ApplicationController
   end
 
   def department_params
-    params.require(:department).permit(:name, :phone, :short_description, :content).merge(modifier: current_user)
+    params.require(:department).permit(:name, :phone, :short_description, :markdown).merge(modifier: current_user)
   end
 
 end

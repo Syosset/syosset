@@ -13,9 +13,10 @@
   .page-content
     .row.page-row
       .courses-wrapper.col-md-8.col-sm-7
-        = form_for @activity do |f|
-          %div{class: "#{"editable-content" if current_holder.can? :edit, @activity}", id: "activity[content]"}
-            = @activity.content.html_safe
+        - unless @activity.markdown
+          = @activity.content.html_safe
+        - else
+          = @markdown.render(@activity.markdown).html_safe
       %aside.page-sidebar.col-md-3.col-md-offset-1.col-sm-4.col-sm-offset-1
         %section.widget.has-divider
           %h3.title
@@ -44,5 +45,3 @@
                     - else
                       %i.fa.fa-star-o
                 = link_to link.name, link.target
-:javascript
-  init_tiny();

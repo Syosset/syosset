@@ -24,7 +24,7 @@ class Course
   has_many :periods
 
   validates_numericality_of :course_id
-  validates_presence_of :course_id, :name, :short_description, :content
+  validates_presence_of :course_id, :name, :short_description, :markdown
 
   field :course_id, type: Integer
 

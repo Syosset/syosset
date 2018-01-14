@@ -18,6 +18,6 @@ class Department
   has_many :courses
 
   field :phone, type: String, default: "(516) 364-5675"
-  validates_presence_of :name, :short_description, :content
+  validates_presence_of :name, :short_description, :markdown
 
 end

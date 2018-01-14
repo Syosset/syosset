@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
 
+  before_action :initialize_markdown
   before_action :find_alerts
   before_action :set_navbar_resources
   before_action :get_revision
@@ -78,6 +79,10 @@ class ApplicationController < ActionController::Base
     end
 
     Raven.extra_context(params: params.to_unsafe_h, url: request.url)
+  end
+
+  def initialize_markdown
+    @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(filter_html: true), tables: true)
   end
 
   def get_revision
