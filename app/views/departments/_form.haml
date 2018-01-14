@@ -16,6 +16,6 @@
       = f.text_area :content, rows: 10, class: "form-control", disabled: true
   .form-group
     = f.label :markdown
-    = f.text_area :markdown, placeholder: "Content", rows: 10, class: "form-control markdown"
+    ~ f.text_area :markdown, placeholder: "Content", rows: 10, class: "form-control markdown"
 
   = f.submit "Save", class: "btn btn-success pull-right", id: "submit-button"
