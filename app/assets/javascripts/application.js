@@ -22,7 +22,6 @@
 //= require fontawesome-iconpicker/dist/js/fontawesome-iconpicker.min
 //= require jquery.flexslider
 //= require college_green/bootstrap-hover-dropdown
-//= require simplemde/dist/simplemde.min
 //= require_tree ./global
 
 
