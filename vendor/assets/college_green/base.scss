@@ -711,9 +711,9 @@ ul.custom-list-style {
             font-weight: 600;
             text-transform: uppercase;
             font-family: 'open sans', arial, sans-serif;
-            z-index: 100;
+            //z-index: 100;
             &.dropdown {
-                z-index:101;
+                //z-index:101;
             }
             a {
                 color: lighten($color, 35%);
