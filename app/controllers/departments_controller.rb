@@ -39,8 +39,11 @@ class DepartmentsController < ApplicationController
   def create
     @department = Department.new(department_params)
     authorize @department
-    @department.save!
-    redirect_to department_path(@department), flash: {:success => "Department has been created"}
+    if @department.save
+      redirect_to department_path(@department), flash: {:success => "Department has been created"}
+    else
+      render action: :new
+    end
   end
 
   def new
