@@ -1,4 +1,4 @@
-$( document ).ready(function() {
+$(document).on('turbolinks:load', function setup() {
     // bind a click event to the 'skip' link
     $(".skip").click(function(event){
 
@@ -15,5 +15,9 @@ $( document ).ready(function() {
             $(this).removeAttr('tabindex');
 
         }).focus(); // focus on the content container
+    });
+
+    $("img").click(function(){
+      window.open($(this).attr("src"), '_blank', 'height=300,width=400,toolbar=0,location=0,menubar=0');
     });
 });
