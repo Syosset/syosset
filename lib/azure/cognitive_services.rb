@@ -1,7 +1,6 @@
 require 'net/https'
 require 'uri'
 require 'json'
-require "pry"
 
 module Azure
   class CognitiveServices
