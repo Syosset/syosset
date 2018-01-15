@@ -82,7 +82,7 @@ class ApplicationController < ActionController::Base
   end
 
   def initialize_markdown
-    @markdown = Redcarpet::Markdown.new(BootstrapRenderer.new(filter_html: true), tables: true)
+    @markdown = Redcarpet::Markdown.new(SyossetRenderer.new(filter_html: true), tables: true)
   end
 
   def get_revision
