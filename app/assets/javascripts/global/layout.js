@@ -3,7 +3,8 @@ $(document).on('turbolinks:load', function() {
 
     /* ======= Flexslider ======= */
     $('.flexslider').flexslider({
-        animation: "fade"
+        animation: "fade",
+        slideshowSpeed: 10000
     });
 
     /* ======= jQuery Placeholder ======= */
