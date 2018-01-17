@@ -14,7 +14,6 @@
             %th
             %th Department Name
             %th Description
-            %th Phone Number
         %tbody{class: @order_mode ? 'rankable' : ''}
           - @departments.each do |department|
             = content_tag_for(:tr, department) do
@@ -23,6 +22,5 @@
                   %i.handle.fa.fa-sort{"aria-hidden" => "true"}
               %td= link_to department.name, department
               %td= department.short_description
-              %td= department.phone
     - unless @order_mode
       = paginate @departments, theme: 'tb3'

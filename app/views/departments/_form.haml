@@ -7,9 +7,6 @@
     = f.label :name
     = f.text_field :name, placeholder: "Name", class: "form-control"
   .form-group
-    = f.label :phone
-    = f.text_field :phone, placeholder: "Phone Number", class: "form-control"
-  .form-group
     = f.label :short_description
     = f.text_field :short_description, placeholder: "Short Description", class: "form-control"
   - if !@department.content.blank? && current_user.super_admin

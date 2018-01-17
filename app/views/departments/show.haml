@@ -60,13 +60,6 @@
       %aside.page-sidebar.col-md-3.col-md-offset-1.col-sm-4.col-sm-offset-1
         %section.widget.has-divider
           %h3.title
-            %i.fa.fa-phone
-            Contact Department
-          %p
-            Call us at
-            = @department.phone
-        %section.widget.has-divider
-          %h3.title
             %i.fa.fa-bell
             = link_to "Announcements", announcements_path(department_id: @department.id)
           %ul.rankable.list-group
