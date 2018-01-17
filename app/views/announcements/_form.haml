@@ -5,6 +5,10 @@
   .form-group
     = f.label :name
     = f.text_field :name, placeholder: "Name", class: "form-control"
+  - if current_holder.can? :edit, :homepage
+    .form-group
+      = f.label :slider_hidden, "Hide from frontpage slider"
+      = f.check_box :slider_hidden
   - if !@announcement.content.blank? && current_user.super_admin
     .form-group
       = f.label :content, "OLD CONTENT"

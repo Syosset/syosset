@@ -12,6 +12,9 @@ class Announcement
   belongs_to :announceable, polymorphic: true
   belongs_to :poster, class_name: "User"
 
+  # can be set to hide an announcement from the frontpage slider
+  field :slider_hidden, type: Boolean, default: false
+
   validates_presence_of :name, :markdown
 
   scram_define do
