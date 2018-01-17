@@ -1,5 +1,26 @@
-= link_to "View Escalation Requests", escalation_requests_path, class: "btn btn-info"
-= link_to "Manage Users", users_path, class: "btn btn-info"
-= link_to "Manage Closures", closures_path, class: "btn btn-info"
-= link_to "Update Day Color", edit_day_path, class: "btn btn-info"
-= link_to "Manage Integrations", integrations_path, class: "btn btn-primary"
+.admin-stats
+  %h1
+    = User.count
+    %small users
+  %h1
+    = Activity.count
+    %small activities
+  %h1
+    = Announcement.count
+    %small announcements
+
+= link_to escalation_requests_path, class: "btn btn-admin" do
+  %i.fa.fa-star
+  View Escalation Requests
+= link_to users_path, class: "btn btn-admin" do
+  %i.fa.fa-user
+  Manage Users
+= link_to closures_path, class: "btn btn-admin" do
+  %i.fa.fa-snowflake-o
+  Manage Closures
+= link_to edit_day_path, class: "btn btn-admin" do
+  %i.fa.fa-calendar
+  Update Day Color
+= link_to integrations_path, class: "btn btn-admin" do
+  %i.fa.fa-comment
+  Manage Integrations
