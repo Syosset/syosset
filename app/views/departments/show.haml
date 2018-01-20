@@ -19,7 +19,7 @@
           = @department.content.html_safe
         - else
           = @markdown.render(@department.markdown).html_safe
-        %h3= link_to "Teachers", "#"
+        %h3= link_to "#{@department.name} Staff", "#"
         %table.table
           %thead
             %tr
