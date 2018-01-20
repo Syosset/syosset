@@ -6,7 +6,7 @@ module Concerns
       has_many :attachments, :as => :attachable, :class_name => "Attachment"
 
       before_destroy do
-        attachables.destroy_all
+        attachments.destroy_all
       end
     end
   end
