@@ -31,14 +31,15 @@
               %li.list-group-item
                 %i.fa.fa-shield
                 Site Administrator
-            %li.list-group-item
-              %i.fa.fa-clock-o
-              - if @user.last_sign_in_at
-                Last seen
-                = time_ago_in_words @user.last_sign_in_at
-                ago
-              - else
-                Never signed in
+            - if current_user.admin_enabled?
+              %li.list-group-item
+                %i.fa.fa-clock-o
+                - if @user.last_sign_in_at
+                  Last seen
+                  = time_ago_in_words @user.last_sign_in_at
+                  ago
+                - else
+                  Never signed in
             %li.list-group-item
               %i.fa.fa-envelope
               = @user.email
