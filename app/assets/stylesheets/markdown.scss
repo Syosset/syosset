@@ -1,0 +1,9 @@
+.CodeMirror::after {
+    content: "Attach files like images by dragging and dropping";
+    display: block;
+    border-top: 1px dashed #e7e7e7;
+    margin: -10px;
+    padding: 7px 10px;
+    background-color: #fbfbfb;
+    color: #757575;
+}
