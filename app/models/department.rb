@@ -9,6 +9,7 @@ class Department
   include Concerns::Collaboratable
   include Concerns::Announceable
   include Concerns::Linkable
+  include Concerns::Attachable
 
   slug :name
   paginates_per 12

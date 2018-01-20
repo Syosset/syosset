@@ -63,7 +63,7 @@ Rails.application.routes.draw do
   end
 
   resources :closures
-  
+
   # Integration Management
   resources :integrations do
     post :clear_failures, on: :member
@@ -78,6 +78,9 @@ Rails.application.routes.draw do
 
   # Sortable AJAX
   post "/rankables/sort" => "rankables#sort", :as => :sort_rankable
+
+  # Attachments
+  post "/attachments" => "attachments#create"
 
   # Utilities
   mount Peek::Railtie => '/peek'

@@ -1,3 +1,4 @@
+= content_for :model_name, Course.name.underscore.to_sym
 = javascript_include_tag "markdown"
 
 = errors_for(@course)

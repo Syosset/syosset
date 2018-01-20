@@ -1,3 +1,5 @@
+= content_for :model_name, User.name.underscore.to_sym
+= content_for :model_id, resource.id
 = javascript_include_tag "markdown"
 
 %h2

@@ -6,6 +6,7 @@ class Announcement
   include Concerns::Descriptable
   include Concerns::Escalatable
   include Concerns::Rankable
+  include Concerns::Attachable
 
   after_create :alert_subscribers
 

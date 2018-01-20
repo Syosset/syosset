@@ -8,6 +8,7 @@ class Course
   include Concerns::Collaboratable
   include Concerns::Announceable
   include Concerns::Linkable
+  include Concerns::Attachable
 
   paginates_per 12
   slug :name
