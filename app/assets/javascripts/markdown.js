@@ -5,12 +5,15 @@
 $(document).on('turbolinks:load', function() {
   var modelName = document.body.getAttribute('data-model-name');
   var modelId = document.body.getAttribute('data-params-id');
+  var userId = document.body.getAttribute('data-current-user-id');
 
   document.querySelectorAll('.markdown').forEach(function(editor) {
     var simplemde = new SimpleMDE({ element: editor });
 
     var params = {};
-    params[modelName + "_id"] = modelId;
+    params["attachable_type"] = modelName;
+    params["attachable_id"] = modelId;
+    params["user_id"] = userId;
 
     inlineAttachment.editors.codemirror4.attach(simplemde.codemirror, {
       uploadUrl: '/attachments',

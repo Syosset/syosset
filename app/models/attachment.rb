@@ -3,6 +3,7 @@ class Attachment
   include Mongoid::Timestamps
   include Mongoid::Paperclip
 
+  belongs_to :user
   belongs_to :attachable, polymorphic: true
 
   has_mongoid_attached_file :file
