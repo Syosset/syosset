@@ -45,7 +45,10 @@
                 - linkable = link.linkable
                 %td= link_to "#{linkable.send("name") || "a #{linkable.class.to_s.humanize}"}", linkable
               %td= link_to link.name.truncate(60), link[:target]
-              %td= link.poster.name
+              %td
+                = link_to link.poster do
+                  = link.poster.name
+                  = render 'badges/badge', badge: link.poster.badge
               %td
                 = time_ago_in_words(link.created_at)
                 ago
