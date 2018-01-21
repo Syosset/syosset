@@ -48,8 +48,8 @@ module Syosset
 
     # Sentry configuration
     Raven.configure do |config|
-      config.dsn = ENV.fetch('SENTRY_DSN')
       config.environments = ['production']
+      config.release = ENV['GIT_REV']
     end
 
     config.time_zone = 'Eastern Time (US & Canada)'

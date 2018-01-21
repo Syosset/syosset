@@ -9,7 +9,6 @@ class ApplicationController < ActionController::Base
   before_action :initialize_markdown
   before_action :find_alerts
   before_action :set_navbar_resources
-  before_action :get_revision
   before_action :set_raven_context
 
   rescue_from ScramUtils::NotAuthorizedError do |exception|
@@ -83,18 +82,6 @@ class ApplicationController < ActionController::Base
 
   def initialize_markdown
     @markdown = Redcarpet::Markdown.new(SyossetRenderer.new(filter_html: true), tables: true)
-  end
-
-  def get_revision
-    if defined? $g
-      i = 0
-      while $g.log[i].message =~ /\[HIDE\]/i or $g.log[i].message =~ /Merge ?:(pull request|branch) #(.*)/
-        i += 1
-      end
-      @revision = $g.log[i].sha
-    else
-      @revision = ENV['GIT_SHA'] || "???"
-    end
   end
 
   def set_navbar_resources
