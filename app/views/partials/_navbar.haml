@@ -88,7 +88,7 @@
                 Alerts
                 %b.caret
             %ul.dropdown-menu.dropdown-menu-right
-              %li= link_to "See all alerts", alerts_path
+              %li= link_to "Click to see all alerts", alerts_path
               - @alerts.each do |alert|
                 %li= render partial: 'partials/alerts/alert', object: alert
               - if @alert_count > 25

@@ -411,6 +411,8 @@ GEM
     scram (0.1.2)
       mongoid (~> 6.1)
       rails (~> 5.0, >= 5.0.1)
+    secure_headers (5.0.4)
+      useragent (>= 0.15.0)
     sentry-raven (2.7.1)
       faraday (>= 0.7.6, < 1.0)
     sexp_processor (4.10.0)
@@ -452,6 +454,7 @@ GEM
       thread_safe (~> 0.1)
     uglifier (3.2.0)
       execjs (>= 0.3.0, < 3)
+    useragent (0.16.9)
     vegas (0.1.11)
       rack (>= 1.0.0)
     warden (1.2.7)
@@ -522,6 +525,7 @@ DEPENDENCIES
   rspec-rails (~> 3.5)
   sass-rails (~> 5.0)
   scram (~> 0.1.2)
+  secure_headers (~> 5.0, >= 5.0.4)
   sentry-raven
   slack-ruby-client (~> 0.9)
   spring

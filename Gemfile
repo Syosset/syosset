@@ -62,6 +62,9 @@ gem 'aws-sdk', '~> 2.10'
 # Error Reporting
 gem "sentry-raven"
 
+# Security Headers
+gem 'secure_headers', '~> 5.0', '>= 5.0.4'
+
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 

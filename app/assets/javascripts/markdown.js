@@ -8,7 +8,7 @@ $(document).on('turbolinks:load', function() {
   var userId = document.body.getAttribute('data-current-user-id');
 
   document.querySelectorAll('.markdown').forEach(function(editor) {
-    var simplemde = new SimpleMDE({ element: editor });
+    var simplemde = new SimpleMDE({ element: editor, autoDownloadFontAwesome: false });
 
     var params = {};
     params["attachable_type"] = modelName;
