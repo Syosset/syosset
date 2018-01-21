@@ -38,7 +38,7 @@
           - if excess_teachers >= 1
             = link_to "javascript:;", id: "show-more-teachers" do
               %i.fa.fa-ellipsis-h
-              = "Show #{excess_teachers} more teachers"
+              = "Show #{excess_teachers} more staff members"
         - unless @department.courses.empty?
           %h3
             = link_to "Courses", department_courses_path(@department)
