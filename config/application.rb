@@ -40,6 +40,9 @@ module Syosset
         s3_region: ENV.fetch('AWS_REGION')
       },
       s3_host_name: "s3-#{ENV.fetch('AWS_REGION')}.amazonaws.com",
+      url: ENV['CDN_URL'].nil? ? ":s3_host_name" : ":s3_alias_url",
+      path: "/:class/:attachment/:id_partition/:style/:filename",
+      s3_host_alias: ENV['CDN_URL'],
       s3_protocol: :https
     }
 
