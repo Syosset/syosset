@@ -19,7 +19,7 @@ SecureHeaders::Configuration.default do |config|
     block_all_mixed_content: true,
     form_action: %w('self'),
     frame_ancestors: %w('none'),
-    connect_src: %w('self' www.google-analytics.com cdn.jsdelivr.net), # jsdelivr cdn for simplemde spellchecking
+    connect_src: %w('self' accounts.google.com www.google-analytics.com cdn.jsdelivr.net), # jsdelivr cdn for simplemde spellchecking
     font_src: %w('self'),
     object_src: %w('none'),
     img_src: %w('self' data: uploads.syosseths.com www.google-analytics.com www.gstatic.com www.google.com translate.googleapis.com),
