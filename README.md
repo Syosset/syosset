@@ -7,4 +7,4 @@ This is the [official website for Syosset High School](https://syosseths.com/). 
 The production site is hosted on an EC2 instance from Amazon Web Services, and we manage deployments through Dokku. Looking to deploy the site? Read [DEPLOYMENT.md](./DEPLOYMENT.md).
 
 ## License
-I am not offering any license at this time. You are free to view this code with the extent that GitHub's TOS allows you to.
+This project is licensed under the terms of the MIT license.
