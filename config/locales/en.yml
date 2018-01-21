@@ -43,14 +43,9 @@ en:
     departments: "Departments"
     departments_all: "View all departments..."
     extracurriculars: "Activities"
+  promotions:
+    none: "No promotions loaded. Create one?"
   welcome:
-    slider:
-      hero:
-        first: "A BLUE RIBBON SCHOOL"
-        second: "DEDICATED STAFF"
-    description: "Syosset High School is a top-tier high school located in Syosset, New York.
-                  As a blue ribbon school of excellence, we provide students with a rigorous
-                  education that will serve them for life."
     about:
       title: "About Us"
       principal:

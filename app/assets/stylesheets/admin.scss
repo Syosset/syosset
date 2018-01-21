@@ -33,3 +33,19 @@
   padding: 16px;
   margin-bottom: 8px;
 }
+
+.promotion-preview {
+  padding: 15px 30px;
+  background-color: #ffffff;
+  border: 2px solid #f4f4f4;
+
+  &:hover {
+    background-color: #f8f8f8;
+  }
+
+  img {
+    max-width: 250px;
+  }
+
+  font-size: 24px;
+}

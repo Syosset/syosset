@@ -1,0 +1,15 @@
+.page-wrapper
+  %header.page-heading
+    %h1.heading-title Promotions
+    = link_to "Create", new_promotion_path, class: "btn btn-primary pull-right"
+  .page-content
+    %table.table
+      %tbody.rankable
+        - @promotions.each do |promotion|
+          = content_tag_for(:tr, promotion, class: 'promotion-preview') do
+            %td
+              %i.handle.fa.fa-sort{"aria-hidden" => "true"}
+            %td
+              = image_tag promotion.picture.url
+            %td
+              = link_to promotion.text, edit_promotion_path(promotion)

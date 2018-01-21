@@ -102,6 +102,9 @@ class ApplicationController < ActionController::Base
       Department.by_priority.limit(6)
     end
     @active_closure = Closure.active_closure
+    @active_promotions = Rails.cache.fetch("promotions", expires_in: 5.minutes) do
+      Promotion.all.by_priority
+    end
   end
 
   def find_alerts

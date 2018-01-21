@@ -1,0 +1,11 @@
+= errors_for(@promotion)
+
+= form_for @promotion do |f|
+  .form-group
+    = f.label :picture
+    = f.file_field :picture, class: "form-control"
+  .form-group
+    = f.label :text
+    = f.text_field :text, placeholder: "Text", class: "form-control"
+
+  = f.submit "Save", class: "btn btn-success pull-right", id: "submit-button"

@@ -1,16 +1,13 @@
 .slider.flexslider#promo-slider
   %ul.slides
-    %li
-      .super-hero-unit
-        %figure
-          %img.center-block.img-responsive{alt: "First image of Syosset High School building. Courtesy of Kevin Ho (Class of 2018).", src: image_url('shs-picture-3.jpg')}/
-          %figcaption.flex-caption
-            %h1.super
-              %b=t('.hero.first')
-    %li
-      .super-hero-unit
-        %figure
-          %img.center-block.img-responsive{alt: "Second image of Syosset High School building. Courtesy of Kevin Ho (Class of 2018).", src: image_url('shs-picture-2.jpg')}/
-          %figcaption.flex-caption
-            %h1.super
-              %b=t('.hero.second')
+    - unless @active_promotions.empty?
+      - @active_promotions.each do |promotion|
+        %li
+          .super-hero-unit
+            %figure
+              %img.center-block.img-responsive{src: promotion.picture.url}
+              %figcaption.flex-caption
+                %h1.super
+                  %b= promotion.text.upcase
+    - else
+      = link_to t('promotions.none'), promotions_path, class: 'btn btn-warning'

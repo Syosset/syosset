@@ -64,11 +64,13 @@ Rails.application.routes.draw do
 
   resources :closures
 
+  # Promotion Management
+  resources :promotions, except: [:show]
+
   # Integration Management
   resources :integrations do
     post :clear_failures, on: :member
   end
-
 
   # Auditing
   resources :history_trackers, only: [:index, :show]
