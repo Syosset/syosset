@@ -31,7 +31,7 @@
               %li.list-group-item
                 %i.fa.fa-shield
                 Site Administrator
-            - if current_user.admin_enabled?
+            - if current_user.try(:admin_enabled?)
               %li.list-group-item
                 %i.fa.fa-clock-o
                 - if @user.last_sign_in_at
