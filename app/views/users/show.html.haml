@@ -16,7 +16,10 @@
             Actions
             %b.caret
           %ul.dropdown-menu.dropdown-menu-right
-            %li= link_to "Edit profile", edit_user_registration_path
+            - if @user == current_user
+              %li= link_to "Edit profile", edit_user_registration_path
+            - else
+              %li= link_to "Edit profile", edit_user_path(@user)
             %li= link_to "Edit schedule", user_periods_path(@user)
 
   .row
