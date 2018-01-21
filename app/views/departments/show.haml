@@ -28,7 +28,10 @@
           %tbody
             - @department.collaborator_group.users.sort_by {|u| u.name.split(" ").last}.each_with_index do |user, index|
               %tr.teacher{class: index > 8 ? 'hidden' : ''}
-                %td= link_to user.name, user
+                %td
+                  = link_to user do
+                    = user.name
+                    = render 'badges/badge', badge: user.badge
                 %td= link_to user.email, "mailto:#{user.email}"
         .pull-right
           - excess_teachers = @department.collaborator_group.users.count - 8

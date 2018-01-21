@@ -27,10 +27,11 @@
         .panel-heading= link_to @user.name, @user
         .panel-body
           %ul.list-group
-            - if @user.super_admin
+            - unless @user.badge.nil?
               %li.list-group-item
-                %i.fa.fa-shield
-                Site Administrator
+                %i.fa{class: @user.badge.icon}
+                .user-badge{style: "background-color: ##{@user.badge.color};"}
+                  = @user.badge.name
             - if current_user.try(:admin_enabled?)
               %li.list-group-item
                 %i.fa.fa-clock-o

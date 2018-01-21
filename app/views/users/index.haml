@@ -15,6 +15,7 @@
             %tr
               %td
                 = link_to user.name, edit_user_path(user)
+                = render 'badges/badge', badge: user.badge
                 &nbsp;
                 - if user.super_admin
                   %i.fa.fa-shield

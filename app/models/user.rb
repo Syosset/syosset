@@ -50,6 +50,9 @@ class User
   }
   validates_attachment :picture, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png"] }
 
+  # Badges
+  belongs_to :badge
+
   # Schedules
   has_many :periods
 

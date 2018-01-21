@@ -2,6 +2,18 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.user-badge {
+  display: inline-block;
+  color: #ffffff;
+  padding: 3px 5px;
+  margin: 0 2px;
+  border-radius: 4px;
+
+  i {
+    margin-right: 2px;
+  }
+}
+
 .onboarding-alert {
   animation: flash ease 1s alternate infinite;
 }

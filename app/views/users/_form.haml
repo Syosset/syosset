@@ -6,6 +6,9 @@
     = f.label :name
     = f.text_field :name, placeholder: "Name", class: "form-control"
   .form-group
+    = f.label :badge
+    = f.select :badge, Badge.all.collect {|b|[b.name,b.id]}, include_blank: true
+  .form-group
     = f.label :picture
     = f.file_field :picture, class: "form-control"
   .form-group

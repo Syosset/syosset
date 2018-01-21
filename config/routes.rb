@@ -67,6 +67,9 @@ Rails.application.routes.draw do
   # Promotion Management
   resources :promotions, except: [:show]
 
+  # Badge Management
+  resources :badges, except: [:show]
+
   # Integration Management
   resources :integrations do
     post :clear_failures, on: :member

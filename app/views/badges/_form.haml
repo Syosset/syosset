@@ -1,0 +1,19 @@
+= errors_for(@badge)
+
+= form_for @badge do |f|
+  .form-group
+    = f.label :name
+    = f.text_field :name, class: "form-control"
+  .form-group
+    = f.label :color, "Hex Color (e.g f1f1f1)"
+    = f.text_field :color, class: "form-control"
+  .form-group
+    = f.label :icon
+    = f.text_field :icon, class: "form-control fontawesome-picker"
+
+  = f.submit "Save", class: "btn btn-success pull-right", id: "submit-button"
+
+:javascript
+  $(document).on('turbolinks:load', function() {
+    $('.fontawesome-picker').iconpicker();
+  });
