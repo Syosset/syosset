@@ -19,10 +19,10 @@ SecureHeaders::Configuration.default do |config|
     block_all_mixed_content: true,
     form_action: %w('self'),
     frame_ancestors: %w('none'),
-    connect_src: %w('self' accounts.google.com www.google-analytics.com cdn.jsdelivr.net), # jsdelivr cdn for simplemde spellchecking
+    connect_src: %w('self' accounts.google.com www.google-analytics.com translate.googleapis.com cdn.jsdelivr.net), # jsdelivr cdn for simplemde spellchecking
     font_src: %w('self' data:),
     object_src: %w('none'),
-    img_src: %w('self' data: uploads.syosseths.com www.google-analytics.com www.gstatic.com www.google.com translate.googleapis.com),
+    img_src: %w('self' data: uploads.syosseths.com www.google-analytics.com www.gstatic.com www.google.com translate.googleapis.com translate.google.com),
     style_src: %w('self' 'unsafe-inline' translate.googleapis.com),
     script_src: %w('self' 'unsafe-inline' 'unsafe-eval' www.google-analytics.com translate.google.com translate.googleapis.com),
     report_uri: [ENV["CSP_REPORT_URI"]]
