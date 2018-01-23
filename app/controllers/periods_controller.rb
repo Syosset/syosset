@@ -7,7 +7,7 @@ class PeriodsController < ApplicationController
 
   def index
     unless user_signed_in?
-      redirect_to root_path, "Only students may view schedules."
+      redirect_to root_path, alert: "Only students may view schedules."
     end
 
     unless @user.staff?
