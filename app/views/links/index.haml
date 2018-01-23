@@ -21,11 +21,11 @@
           %tr
             %th
             %th
-            %th
             - unless @linkable
               %th Posted Under
             %th Link
-            %th Poster
+            - if current_user.try(:admin_enabled?)
+              %th Poster
             %th Posted
         %tbody.rankable
           - @links.each do |link|
@@ -45,10 +45,11 @@
                 - linkable = link.linkable
                 %td= link_to "#{linkable.send("name") || "a #{linkable.class.to_s.humanize}"}", linkable
               %td= link_to link.name.truncate(60), link[:target]
-              %td
-                = link_to link.poster do
-                  = link.poster.name
-                  = render 'badges/badge', badge: link.poster.badge
+              - if current_user.try(:admin_enabled?)
+                %td
+                  = link_to link.poster do
+                    = link.poster.name
+                    = render 'badges/badge', badge: link.poster.badge
               %td
                 = time_ago_in_words(link.created_at)
                 ago
