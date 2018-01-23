@@ -8,6 +8,9 @@ $(document).on('turbolinks:load', function() {
   var userId = document.body.getAttribute('data-current-user-id');
 
   document.querySelectorAll('.markdown').forEach(function(editor) {
+    if ($(editor).data('editor-loaded')) return;
+    $(editor).data('editor-loaded', true);
+
     var simplemde = new SimpleMDE({ element: editor, autoDownloadFontAwesome: false });
 
     var params = {};
