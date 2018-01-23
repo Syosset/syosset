@@ -92,6 +92,9 @@ class ApplicationController < ActionController::Base
     @active_promotions = Rails.cache.fetch("promotions", expires_in: 5.minutes) do
       Promotion.all.by_priority
     end
+    @midterm_announcement = Rails.cache.fetch("midterm_announcement", expires_in: 5.minutes) do
+      Announcement.where(id: "5a6777e73e7fb400c07d8599").first # hard-coded announcement in prod
+    end
   end
 
   def find_alerts

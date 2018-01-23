@@ -24,7 +24,10 @@
       .day-indicator-container.visible-xs
         - if @active_closure.nil?
           .red-white-display
-            = render "partials/nav/day_indicator"
+            - if @midterm_announcement
+              = render "partials/nav/midterm_indicator"
+            - else
+              = render "partials/nav/day_indicator"
         - else
           .red-white-display.closed
             = render "partials/nav/closure_indicator"
@@ -57,7 +60,10 @@
         %li.nav-item.hidden-xs
           - if @active_closure.nil?
             .red-white-display
-              = render "partials/nav/day_indicator"
+              - if @midterm_announcement
+                = render "partials/nav/midterm_indicator"
+              - else
+                = render "partials/nav/day_indicator"
           - else
             .red-white-display.closed
               = render "partials/nav/closure_indicator"
