@@ -6,6 +6,10 @@ class PeriodsController < ApplicationController
   before_action :get_user_courses, only: [:new, :edit]
 
   def index
+    unless user_signed_in?
+      redirect_to root_path, "Only students may view schedules."
+    end
+
     unless @user.staff?
       redirect_back fallback_location: root_path, alert: "Only staff can have schedules."
     else
