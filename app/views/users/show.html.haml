@@ -56,23 +56,24 @@
         %p.no-bio
           %i.fa.fa-pencil-square-o
           This user does not have a bio.
-  .row
-    - if @periods.count > 0
-      .table-responsive
-        %table.table
-          %thead
-            %tr
-              %th
-              %th Period
-              %th Course
-              %th Room
-          %tbody
-            - @periods.each do |period|
+  - if user_signed_in?
+    .row
+      - if @periods.count > 0
+        .table-responsive
+          %table.table
+            %thead
               %tr
-                %td
-                  - if current_holder.can? :edit, @user
-                    = link_to "Edit", edit_user_period_path(period, user_id: @user.id), class: "btn btn-warning"
-                    = link_to "Remove", user_period_path(@user, period), method: :delete, class: "btn btn-danger", data: { confirm: 'Are you sure you want to remove this period?' }
-                %td= period.period
-                %td= link_to period.course.name, period.course
-                %td= period.room
+                %th
+                %th Period
+                %th Course
+                %th Room
+            %tbody
+              - @periods.each do |period|
+                %tr
+                  %td
+                    - if current_holder.can? :edit, @user
+                      = link_to "Edit", edit_user_period_path(period, user_id: @user.id), class: "btn btn-warning"
+                      = link_to "Remove", user_period_path(@user, period), method: :delete, class: "btn btn-danger", data: { confirm: 'Are you sure you want to remove this period?' }
+                  %td= period.period
+                  %td= link_to period.course.name, period.course
+                  %td= period.room
