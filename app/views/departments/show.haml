@@ -73,14 +73,14 @@
                 - if current_holder.can?(:edit, announcement)
                   %i.handle.fa.fa-sort{"aria-hidden" => "true"}
                 = link_to announcement.name.truncate(38), announcement
+            - if @department.announcements.by_priority.count > 5
+              %li.list-group-item.shaded
+                = link_to announcements_path(department_id: @department.id) do
+                  Click to see all announcements
         %section.widget.has-divider
           %h3.title
             %i.fa.fa-link
             = link_to "Links", links_path(department_id: @department.id)
-            %small
-              = link_to links_path(department_id: @department.id) do
-                %i.fa.fa-ellipsis-v
-                Click to see all
           %ul.rankable.list-group
             - @department.links.by_priority.limit(5).each do |link|
               = content_tag_for(:li, link, class: "list-group-item") do
@@ -94,6 +94,11 @@
                     - else
                       %i.fa.fa-star-o
                 = link_to link.name, link.target
+            - if @department.links.by_priority.count > 5
+              %li.list-group-item.shaded
+                = link_to links_path(department_id: @department.id) do
+                  Click to see all links
+
 :javascript
   $(document).on('turbolinks:load', function() {
     $("#show-more-courses").click(function() {

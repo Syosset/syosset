@@ -35,6 +35,10 @@
                 - if current_holder.can?(:edit, announcement)
                   %i.handle.fa.fa-sort{"aria-hidden" => "true"}
                 = link_to announcement.name.truncate(38), announcement
+            - if @course.announcements.by_priority.count > 5
+              %li.list-group-item.shaded
+                = link_to announcements_path(course_id: @course.id) do
+                  Click to see all announcements
         %section.widget.has-divider
           %h3.title
             %i.fa.fa-link
@@ -52,3 +56,7 @@
                     - else
                       %i.fa.fa-star-o
                 = link_to link.name, link.target
+            - if @course.links.by_priority.count > 5
+              %li.list-group-item.shaded
+                = link_to links_path(course_id: @course.id) do
+                  Click to see all links
