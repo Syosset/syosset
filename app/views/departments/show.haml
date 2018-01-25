@@ -19,46 +19,48 @@
           = @department.content.html_safe
         - else
           = @markdown.render(@department.markdown).html_safe
-        %h3= link_to "#{@department.name} Staff", "#"
-        %table.table
-          %thead
-            %tr
-              %th{:scope => "col"} Name
-              %th{:scope => "col"} Email
-          %tbody
-            - @department.collaborator_group.users.sort_by {|u| u.name.split(" ").last}.each_with_index do |user, index|
-              %tr.teacher{class: index > 8 ? 'hidden' : ''}
-                %td
-                  = link_to user do
-                    = user.name
-                    = render 'badges/badge', badge: user.badge
-                %td= link_to user.email, "mailto:#{user.email}"
-        .pull-right
-          - excess_teachers = @department.collaborator_group.users.count - 8
-          - if excess_teachers >= 1
-            = link_to "javascript:;", id: "show-more-teachers" do
-              %i.fa.fa-ellipsis-h
-              = "Show #{excess_teachers} more staff members"
-        - unless @department.courses.empty?
-          %h3
-            = link_to "Courses", department_courses_path(@department)
-            %small
-              = link_to department_courses_path(@department) do
-                %i.fa.fa-ellipsis-v
-                Click to see all
-          %input.course-search.form-control{type: 'text', placeholder: 'Search courses'}
-          %hr
-          - @department.courses.in_groups_of(4).each_with_index do |courses, index|
-            .row
-              - courses.compact.each do |course|
-                .col-xs-6.col-md-3.course{data: {name: course.name, course_id: course.course_id}, class: index >= 2 ? 'hidden' : ''}
-                  = link_to course.name.truncate(50), course, class: "thumbnail"
+        %span.row
+          %h3= link_to "#{@department.name} Staff", "#"
+          %table.table
+            %thead
+              %tr
+                %th{:scope => "col"} Name
+                %th{:scope => "col"} Email
+            %tbody
+              - @department.collaborator_group.users.sort_by {|u| u.name.split(" ").last}.each_with_index do |user, index|
+                %tr.teacher{class: index > 8 ? 'hidden' : ''}
+                  %td
+                    = link_to user do
+                      = user.name
+                      = render 'badges/badge', badge: user.badge
+                  %td= link_to user.email, "mailto:#{user.email}"
           .pull-right
-            - excess_courses = @department.courses.count - 8
-            - if excess_courses >= 1
-              = link_to "javascript:;", id: "show-more-courses" do
+            - excess_teachers = @department.collaborator_group.users.count - 8
+            - if excess_teachers >= 1
+              = link_to "javascript:;", id: "show-more-teachers", class: "btn btn-sm btn-info" do
                 %i.fa.fa-ellipsis-h
-                = "Show #{excess_courses} more courses"
+                = "Click to see #{excess_teachers} more staff"
+        %span.row
+          - unless @department.courses.empty?
+            %h3
+              = link_to "Courses", department_courses_path(@department)
+              %small
+                = link_to department_courses_path(@department) do
+                  %i.fa.fa-ellipsis-v
+                  Click to see all
+            %input.course-search.form-control{type: 'text', placeholder: 'Search courses'}
+            %hr
+            - @department.courses.in_groups_of(4).each_with_index do |courses, index|
+              .row
+                - courses.compact.each do |course|
+                  .col-xs-6.col-md-3.course{data: {name: course.name, course_id: course.course_id}, class: index >= 2 ? 'hidden' : ''}
+                    = link_to course.name.truncate(50), course, class: "thumbnail"
+            .pull-right
+              - excess_courses = @department.courses.count - 8
+              - if excess_courses >= 1
+                = link_to "javascript:;", id: "show-more-courses", class: "btn btn-sm btn-info" do
+                  %i.fa.fa-ellipsis-h
+                  = "Click to see #{excess_courses} more courses"
 
       %aside.page-sidebar.col-md-3.col-md-offset-1.col-sm-4.col-sm-offset-1
         %section.widget.has-divider
