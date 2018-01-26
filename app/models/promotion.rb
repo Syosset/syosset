@@ -4,6 +4,7 @@ class Promotion
   include Concerns::Rankable
 
   field :text, type: String
+  field :blurb, type: String, default: ""
 
   has_mongoid_attached_file :picture, styles: {
     :large => ['1080x350>', :jpg]

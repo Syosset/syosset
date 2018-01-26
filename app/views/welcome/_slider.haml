@@ -9,5 +9,9 @@
               %figcaption.flex-caption
                 %h1.super
                   %b= promotion.text.upcase
+                - unless promotion.blurb.empty?
+                  = link_to promotion_path(promotion) do
+                    Click to read more
+                    %i.fa.fa-arrow-circle-o-right
     - else
       = link_to t('promotions.none'), promotions_path, class: 'btn btn-warning'

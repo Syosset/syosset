@@ -64,8 +64,8 @@ Rails.application.routes.draw do
 
   resources :closures
 
-  # Promotion Management
-  resources :promotions, except: [:show]
+  # Promotions
+  resources :promotions
 
   # Badge Management
   resources :badges, except: [:show]

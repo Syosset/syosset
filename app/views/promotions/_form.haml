@@ -1,4 +1,5 @@
 = errors_for(@promotion)
+= javascript_include_tag "markdown"
 
 = form_for @promotion do |f|
   .form-group
@@ -7,5 +8,8 @@
   .form-group
     = f.label :text
     = f.text_field :text, placeholder: "Text", class: "form-control"
+  .form-group
+    = f.label :blurb
+    ~ f.text_area :blurb, placeholder: "Describe the content here", class: "form-control markdown"
 
   = f.submit "Save", class: "btn btn-success pull-right", id: "submit-button"

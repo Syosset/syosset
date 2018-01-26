@@ -13,7 +13,7 @@
     = f.file_field :picture, class: "form-control"
   .form-group
     = f.label :bio
-    = f.text_area :bio, placeholder: "Bio", class: "form-control markdown"
+    ~ f.text_area :bio, placeholder: "Bio", class: "form-control markdown"
   .form-group
     = f.label :super_admin
     = f.check_box :super_admin

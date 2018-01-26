@@ -1,9 +1,15 @@
 class PromotionsController < ApplicationController
 
-  before_action :get_promotion, only: [:edit, :update, :destroy]
+  before_action :get_promotion, only: [:show, :edit, :update, :destroy]
 
   def index
     @promotions = Promotion.all.by_priority
+  end
+
+  def show
+    actions_builder = ActionsBuilder.new(current_holder)
+    actions_builder.require(:edit, @promotion).add_action("Edit Promotion", :get, edit_promotion_path(@promotion))
+    @actions = actions_builder.actions
   end
 
   def new
@@ -16,7 +22,7 @@ class PromotionsController < ApplicationController
     authorize @promotion
 
     if @promotion.save
-      redirect_to promotions_path, notice: 'Promotion created.'
+      redirect_to promotion_path(@promotion), notice: 'Promotion created.'
     else
       render action: 'new'
     end
@@ -29,7 +35,7 @@ class PromotionsController < ApplicationController
   def update
     authorize @promotion
     if @promotion.update(promotion_params)
-      redirect_to promotions_path, notice: 'Promotion updated.'
+      redirect_to promotion_path(@promotion), notice: 'Promotion updated.'
     else
       render action: 'edit'
     end
@@ -48,6 +54,6 @@ class PromotionsController < ApplicationController
   end
 
   def promotion_params
-    params.require(:promotion).permit(:text, :picture)
+    params.require(:promotion).permit(:text, :blurb, :picture)
   end
 end
