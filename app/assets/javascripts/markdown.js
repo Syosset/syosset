@@ -2,7 +2,7 @@
 //= require inline-attachment/src/inline-attachment.js
 //= require inline-attachment/src/codemirror-4.inline-attachment.js
 
-$(document).on('turbolinks:load', function() {
+function loadMarkdownEditors() {
   var modelName = document.body.getAttribute('data-model-name');
   var modelId = document.body.getAttribute('data-params-id');
   var userId = document.body.getAttribute('data-current-user-id');
@@ -26,5 +26,7 @@ $(document).on('turbolinks:load', function() {
       extraParams: params
     });
   });
+}
 
-});
+$(document).ready(loadMarkdownEditors);
+$(document).on('turbolinks:load', loadMarkdownEditors);
