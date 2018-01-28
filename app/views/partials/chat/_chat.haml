@@ -1,5 +1,16 @@
 #support_ui
-  %h3 Support Chat
-  %input#send_field{type: "text"}
-  %btn.btn-info#send_button Send
-  .messages
+  .panel.panel-default
+    .panel-heading
+      .row
+        .col-xs-10
+          How can we help you?
+        .col-xs-2
+          %span.pull-right#dismiss_support
+            %i.fa.fa-times
+    .panel-body
+      .messages
+    .panel-footer
+      .input-group
+        %input#send_field.form-control{:placeholder => "Enter your message here", :type => "text"}/
+        %span.input-group-btn
+          %button#send_button.btn.btn-default{:type => "button"} Send
