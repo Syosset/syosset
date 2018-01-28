@@ -19,8 +19,9 @@ Support.prototype = {
     this.fetchThread(function(id) {
       var thread = new Thread(id, this.log);
       setInterval(thread.update.bind(thread), 1500); // update every 1.5s
-      thread.update();
-      callback(thread);
+      thread.update(function() {
+        callback(thread);
+      });
     }.bind(this));
   }
 }
@@ -55,7 +56,7 @@ Thread.prototype = {
     }.bind(this));
   },
 
-  sendMessage: function(text, callback) {
+  sendMessage: function(text) {
     $.ajax(this.id + '/messages', {method: "POST", data: {text: text}, context: this, headers: {'X-CSRF-Token': Rails.csrfToken()}})
       .done(function(message) {
         this.messages += message.id;
@@ -63,8 +64,9 @@ Thread.prototype = {
       });
   },
 
-  update: function() {
+  update: function(callback) {
     this.fetchNewMessages(function(messages) {
+      if (typeof callback == 'function') callback();
       messages.forEach(function(msg){this.onMessage(msg)}.bind(this));
     }.bind(this));
   },

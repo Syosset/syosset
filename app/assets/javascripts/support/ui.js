@@ -8,6 +8,7 @@ function loadChat() {
 
   $("#support_ui").hide();
   $("#open_support").click(function() {
+    $("#open_support").text("Loading your support session...");
     Support.openThread(function(thread) {
       $("#open_support").hide();
       $("#support_ui").show();
@@ -18,14 +19,13 @@ function loadChat() {
       });
 
       function send() {
-        thread.sendMessage($("#send_field").val(), function() {});
+        thread.sendMessage($("#send_field").val());
         $("#send_field").val('');
       }
 
       thread.onMessage(function(msg){
         var messageClass = 'message';
-        //if (msg.sender.id == userId) messageClass += ' self';
-        if (Math.random() > 0.5) messageClass += ' self';
+        if (msg.sender.id == userId) messageClass += ' self';
         $('.messages').append('<div class=\'' + messageClass + '\'><span class=\'sender\'>' + msg.sender.name + '</span><br/>' + msg.message + '</div>');
         $('.messages').scrollTop($('.messages')[0].scrollHeight);
       });
