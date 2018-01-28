@@ -18,7 +18,8 @@ Support.prototype = {
   openThread: function(callback) {
     this.fetchThread(function(id) {
       var thread = new Thread(id, this.log);
-      setInterval(thread.update.bind(thread), 1000); // update every 1s
+      setInterval(thread.update.bind(thread), 1500); // update every 1.5s
+      thread.update();
       callback(thread);
     }.bind(this));
   }
