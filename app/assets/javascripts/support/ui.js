@@ -10,9 +10,15 @@ function loadChat() {
       $("#open_support").hide();
       $("#support_ui").show();
 
-      $("#send_button").click(function() {
-        thread.sendMessage($("#send_field").val(), function() {});
+      $("#send_button").click(send);
+      $("#send_field").keyup(function(e) {
+        if (e.keyCode == 13) send();
       });
+
+      function send() {
+        thread.sendMessage($("#send_field").val(), function() {});
+        $("#send_field").val('');
+      }
 
       thread.onMessage(function(msg){
         $('.messages').append('<div class=\'message\'>' + msg.sender.name + ': ' + msg.message + '</div>');
