@@ -22,6 +22,7 @@ function loadChat() {
 
       thread.onMessage(function(msg){
         $('.messages').append('<div class=\'message\'>' + msg.sender.name + ': ' + msg.message + '</div>');
+        $('.messages').scrollTop($('.messages')[0].scrollHeight);
       });
     });
   });
