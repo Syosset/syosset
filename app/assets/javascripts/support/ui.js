@@ -4,6 +4,8 @@ function loadChat() {
   if(loaded) return;
   loaded = true;
 
+  var userId = document.body.getAttribute('data-current-user-id');
+
   $("#support_ui").hide();
   $("#open_support").click(function() {
     Support.openThread(function(thread) {
@@ -21,7 +23,10 @@ function loadChat() {
       }
 
       thread.onMessage(function(msg){
-        $('.messages').append('<div class=\'message\'>' + msg.sender.name + ': ' + msg.message + '</div>');
+        var messageClass = 'message';
+        //if (msg.sender.id == userId) messageClass += ' self';
+        if (Math.random() > 0.5) messageClass += ' self';
+        $('.messages').append('<div class=\'' + messageClass + '\'><span class=\'sender\'>' + msg.sender.name + '</span><br/>' + msg.message + '</div>');
         $('.messages').scrollTop($('.messages')[0].scrollHeight);
       });
     });
