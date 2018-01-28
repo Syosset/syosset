@@ -5,6 +5,8 @@
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    - if current_user.try(:staff?)
+      = javascript_include_tag 'support', 'data-turbolinks-track': 'reload'
 
     %link{rel: "apple-touch-icon", sizes: "60x60", href: asset_path("touch-icon.png")}
     %link{rel: "apple-touch-icon", sizes: "120x120", href: asset_path("touch-icon@2x.png")}

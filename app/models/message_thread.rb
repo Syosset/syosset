@@ -3,7 +3,7 @@ class MessageThread
   include Mongoid::Timestamps
 
   belongs_to :user
-  has_many :messages
+  has_many :messages, dependent: :destroy
 
   field :expires, type: DateTime, default: 24.hours.from_now
 
