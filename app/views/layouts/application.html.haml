@@ -25,8 +25,9 @@
   %body{:class => yield(:body_class), "data-no-turbolink" => yield(:disable_turbolinks), "data-model-name" => yield(:model_name), "data-current-user-id" => current_user.try(:id), "data-params-id" => (params[:id] || yield(:model_id)) }
     %a.skip.screen-reader-text{:href => "#content"} Skip to content
     - if current_user.try(:staff?)
-      = render 'partials/chat/chat_button'
-      = render 'partials/chat/chat'
+      %div#support{"data-turbolinks-permanent" => true}
+        = render 'partials/chat/chat_button'
+        = render 'partials/chat/chat'
     .wrapper
       = render 'partials/navbar'
       #content.container
