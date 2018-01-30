@@ -53,11 +53,18 @@
 
 #support_ui {
   position: fixed;
-  width: 300px;
+  width: 400px;
   bottom: 20px;
   right: 21px;
   z-index: 20;
   border-radius: 20px;
+
+  .support-info {
+    text-align: center;
+    color: #bababa;
+    margin: 48px 0;
+    animation: appear 1s ease;
+  }
 
   @media(max-width:768px){
     display: block;
@@ -68,7 +75,6 @@
     left: 0;
     bottom: 0;
     overflow: auto;
-
   }
 }
 

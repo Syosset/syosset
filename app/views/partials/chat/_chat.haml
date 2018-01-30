@@ -9,8 +9,13 @@
             %i.fa.fa-times
     .panel-body
       .messages
+        .support-info
+          👋 &nbsp; Welcome to Syosset web support! Please send a chat message here and we'll get back to
+          you as soon as possible, usually within a few minutes.
     .panel-footer
       .input-group
         %input#send_field.form-control{:placeholder => "Enter your message here", :type => "text"}/
         %span.input-group-btn
-          %button#send_button.btn.btn-default{:type => "button"} Send
+          %button#send_button.btn.btn-info{:type => "button"}
+            Send
+            %i.fa.fa-paper-plane-o
