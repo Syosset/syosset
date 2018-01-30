@@ -6,6 +6,7 @@ class MessageThreadsController < ApplicationController
     return nil unless current_user.staff?
 
     @thread = MessageThread.thread_for(current_user)
+    @thread.notify_spagett
     render :plain => "/threads/#{@thread.id}"
   end
 
@@ -17,6 +18,7 @@ class MessageThreadsController < ApplicationController
   def send_message
     return nil unless current_user == @thread.user
     message = @thread.messages.create(message: params[:text], user: current_user)
+    message.notify_spagett
     render :json => message.to_json
   end
 

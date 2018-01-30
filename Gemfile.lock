@@ -1000,6 +1000,7 @@ DEPENDENCIES
   diffy
   dotenv-rails
   factory_girl
+  faraday (~> 0.12)
   flex-slider-rails (~> 2)
   font-awesome-rails (~> 4)
   groupify (~> 0.9)

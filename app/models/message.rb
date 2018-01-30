@@ -10,9 +10,14 @@ class Message
   def to_json
     {
       id: self.id.to_s,
-      sender: {id: self.user.id.to_s, name: self.user.name},
+      sender: {id: self.user.id.to_s, name: self.user.name, picture: self.user.picture.url},
       timestamp: self.created_at,
       message: self.message
     }
   end
+
+  def notify_spagett
+    $spagett.on_message self
+  end
+
 end
