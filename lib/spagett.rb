@@ -1,7 +1,7 @@
 class Spagett
 
   def initialize(host)
-    @connection = host.empty? ? nil : Faraday.new(:url => host)
+    @connection = host ? Faraday.new(:url => host) : nil
   end
 
   def on_thread(thread)
