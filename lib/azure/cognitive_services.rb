@@ -6,13 +6,17 @@ module Azure
   class CognitiveServices
     def self.alt_description(image_url)
       if (desc = $redis.get(redis_key = "azure:cognitive_services:#{image_url}:alt_description")).nil?
-        region = ENV['AZURE_REGION']
+        region = ENV['AZURE_REGION'] || 'eastus'
+        key = ENV['AZURE_COGNITIVE_SERVICES_KEY']
+        if key.nil?
+          return nil
+        end
 
         uri = URI("https://#{region}.api.cognitive.microsoft.com/vision/v1.0/describe")
 
         request = Net::HTTP::Post.new(uri.request_uri)
         request['Content-Type'] = 'application/json'
-        request['Ocp-Apim-Subscription-Key'] = ENV['AZURE_COGNITIVE_SERVICES_KEY']
+        request['Ocp-Apim-Subscription-Key'] = key
         request.body = {url: image_url}.to_json
 
         response = Net::HTTP.start(uri.host, uri.port, :use_ssl => uri.scheme == 'https') do |http|
