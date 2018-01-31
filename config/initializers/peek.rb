@@ -15,9 +15,9 @@ module Peek::Views
   end
 end
 
-Peek.into Peek::Views::Git, nwo: "Syosset/syosset", sha: ENV["GIT_REV"]
+Peek.into Peek::Views::Git, nwo: "Syosset/syosset", sha: ENV["GIT_REV"] || ENV['HEROKU_SLUG_COMMIT']
 Peek.into Peek::Views::Admin
-Peek.into Peek::Views::Host, host: ENV["HOSTNAME"]
+Peek.into Peek::Views::Host, host: ENV["HOSTNAME"] || ENV['HEROKU_APP_NAME']
 Peek.into Peek::Views::Mongo
 Peek.into Peek::Views::Redis
 Peek.into Peek::Views::Resque
