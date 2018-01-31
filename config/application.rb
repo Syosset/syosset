@@ -48,7 +48,7 @@ module Syosset
 
     # Sentry configuration
     Raven.configure do |config|
-      config.environments = ['production']
+      config.environments = ['production', 'staging']
       config.release = ENV['GIT_REV']
     end
 
