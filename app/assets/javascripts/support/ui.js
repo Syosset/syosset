@@ -28,7 +28,17 @@ function loadChat() {
         if (msg.sender.id == userId) messageClass += ' self';
 
         var formattedTime = moment(msg.timestamp).fromNow();
-        $('.messages').append('<div class=\'' + messageClass + '\'><span class=\'sender\'>' + msg.sender.name + '</span>&nbsp;<span class=\'timestamp pull-right\'>' + formattedTime + '</span><br/>' + msg.message + '</div>');
+        $('.messages').append(
+          '<div class=\'' + messageClass + '\'>' +
+            '<div class=\'message-meta\'>' +
+              '<a href=\'/users/' + msg.sender.id + '\'>' +
+                (msg.sender.id != userId ? '<img class=\'img-responsive img-rounded\' src=\'' + msg.sender.picture + '\' />' : '') +
+                '<span class=\'sender\'>' + msg.sender.name + '</span>' +
+              '</a>' +
+              '&nbsp;<span class=\'timestamp\'>' + formattedTime + '</span>' +
+            '</div>' +
+            '<br/>' + msg.message
+        + '</div>');
         $('.messages').scrollTop($('.messages')[0].scrollHeight);
       });
     });

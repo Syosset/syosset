@@ -1,5 +1,6 @@
 .messages {
   height: 200px;
+  padding: 15px;
   overflow-y: auto;
 
   .message {
@@ -17,14 +18,43 @@
       background-color: #50a0b2;
       color: #ffffff;
       margin-left: 20%;
+      .message-meta a {
+        color: #ffffff;
+      }
+      .timestamp {
+        color: #e3e3e3;
+      }
+    }
+
+    .message-meta {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: -10px;
+
+      a {
+        color: #000000;
+
+        &:hover {
+          color: #b41929;
+        }
+      }
+    }
+
+    img {
+      display: inline-block;
+      max-width: 32px;
+      max-height: 32px;
+      margin-right: 8px;
     }
 
     .sender {
+      display: inline-block;
       font-weight: bold;
     }
 
     .timestamp {
       font-style: italic;
+      color: grey;
     }
   }
 }
@@ -85,6 +115,7 @@
 
 #support_ui > div > div.panel-body {
   min-height: 86%;
+  padding: 0;
 }
 
 #dismiss_support {
