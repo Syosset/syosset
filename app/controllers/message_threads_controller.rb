@@ -18,7 +18,9 @@ class MessageThreadsController < ApplicationController
 
   def send_message
     user = current_holder
-    unless current_holder.bot
+    if current_holder.bot
+      user = User.find(params[:user_id])
+    else
       return nil unless user == @thread.user
     end
 
