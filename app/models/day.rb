@@ -15,7 +15,12 @@ class Day
   end
 
   def update(params)
-    $redis.set("#{prefix}:color", params[:color])
+    @color = params[:color]
+    save
+  end
+
+  def save
+    $redis.set("#{prefix}:color", @color)
   end
 
   def id
