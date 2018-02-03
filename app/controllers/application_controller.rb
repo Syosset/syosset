@@ -85,9 +85,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_navbar_resources
-    @current_day = Rails.cache.fetch("current_day", expires_in: 2.minutes) do
-      Day.first
-    end
+    @current_day = Day.today
     @active_closure = Rails.cache.fetch("nav_closure", expires_in: 5.minutes) do
       Closure.active_closure
     end

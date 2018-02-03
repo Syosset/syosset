@@ -15,8 +15,8 @@ class DaysController < ApplicationController
     @day.update(params)
 
     respond_to do |format|
-      format.json { render json: {:success => true, :color => Day.first.color} }
-      format.html { redirect_back :fallback_location => root_path, :notice => 'Day color updated.' }
+      format.json { render json: {:success => true, :color => @day.color} }
+      format.html { redirect_back :fallback_location => root_path, :notice => "Day color set to #{@day.color}." }
     end
   end
 
@@ -29,7 +29,7 @@ class DaysController < ApplicationController
   private
 
   def get_day
-    @day = Day.first
+    @day = Day.today
   end
 
 end

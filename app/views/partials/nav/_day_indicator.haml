@@ -1,8 +1,12 @@
 = link_to "javascript:;", class: "day", tabindex: 0, role: :button, "data-trigger" => :focus, title: "Period Schedule", "data-content" => "#{render 'partials/nav/dynamic_schedule'}", "data-html" => :true, "data-placement" => :bottom , "data-toggle" => :popover, "data-container" => :nav do
   - if @current_day.is_set?
-    %i.fa{class: "#{@current_day.color == "Red Day" ? "fa-map-o" : "fa-map"}"}
-    Today is a
-    = @current_day.color
+    - unless @current_day.color == 'No Color'
+      %i.fa{class: "#{@current_day.color == "Red Day" ? "fa-map-o" : "fa-map"}"}
+      Today is a
+      = @current_day.color
+    - else
+      %i.fa.fa-thumbs-up
+      No school today
   - else
-    %i.fa.fa-thumbs-up
-    No school today
+    %i.fa.fa-exclamation-circle
+    Unknown day color
