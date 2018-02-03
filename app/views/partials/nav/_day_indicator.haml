@@ -1,8 +1,8 @@
 = link_to "javascript:;", class: "day", tabindex: 0, role: :button, "data-trigger" => :focus, title: "Period Schedule", "data-content" => "#{render 'partials/nav/dynamic_schedule'}", "data-html" => :true, "data-placement" => :bottom , "data-toggle" => :popover, "data-container" => :nav do
-  - if color = $redis.get("current_day_color")
-    %i.fa{class: "#{color == "Red Day" ? "fa-map-o" : "fa-map"}"}
+  - if @current_day.is_set?
+    %i.fa{class: "#{@current_day.color == "Red Day" ? "fa-map-o" : "fa-map"}"}
     Today is a
-    = color
+    = @current_day.color
   - else
     %i.fa.fa-thumbs-up
     No school today

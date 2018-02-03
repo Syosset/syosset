@@ -1,8 +1,7 @@
 class SerializableDay < JSONAPI::Serializable::Resource
   type 'days'
-  id { 'current_day_color' }
 
-  attributes :color
+  attributes :color, :updated_at
 
   has_one :closure do
     data { Closure.active_closure }

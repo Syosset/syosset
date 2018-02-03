@@ -85,11 +85,16 @@ class ApplicationController < ActionController::Base
   end
 
   def set_navbar_resources
+    @current_day = Rails.cache.fetch("current_day", expires_in: 2.minutes) do
+      Day.first
+    end
+    @active_closure = Rails.cache.fetch("nav_closure", expires_in: 5.minutes) do
+      Closure.active_closure
+    end
     @departments_summary = Rails.cache.fetch("nav_departments", expires_in: 5.minutes) do
       Department.by_priority.limit(6)
     end
-    @active_closure = Closure.active_closure
-    @active_promotions = Rails.cache.fetch("promotions", expires_in: 5.minutes) do
+    @active_promotions = Rails.cache.fetch("active_promotions", expires_in: 5.minutes) do
       Promotion.all.by_priority
     end
   end

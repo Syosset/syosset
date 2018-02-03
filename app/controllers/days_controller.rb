@@ -14,7 +14,7 @@ class DaysController < ApplicationController
     Day.first.update(params)
 
     respond_to do |format|
-      format.json { render json: {:success => true, :color => $redis.get('current_day_color')} }
+      format.json { render json: {:success => true, :color => Day.first.color} }
       format.html { redirect_back :fallback_location => root_path, :notice => 'Day color updated.' }
     end
   end
