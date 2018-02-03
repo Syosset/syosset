@@ -1,7 +1,12 @@
 .page-wrapper
   %header.page-heading.clearfix
-    %h1.heading-title.pull-left Day Color
+    %h1.heading-title.pull-left
+      Day Color
+      %small
+        Last updated
+        = time_ago_in_words @day.updated_at.to_i
+        ago
   = form_tag day_path, method: :patch do
     = label_tag :color
-    = select_tag(:color, options_for_select(['Red Day', 'White Day', 'No Color']))
+    = select_tag(:color, options_for_select(['Red Day', 'White Day', 'No Color'], @day.color))
     = submit_tag 'Update Color'

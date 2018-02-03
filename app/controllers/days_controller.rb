@@ -1,17 +1,18 @@
 class DaysController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:fetch]
+  before_action :get_day
 
   def show
-    render jsonapi: Day.first, include: [:closure]
+    render jsonapi: @day, include: [:closure]
   end
 
   def edit
-    authorize :day
+    authorize @day
   end
 
   def update
-    authorize :day
-    Day.first.update(params)
+    authorize @day
+    @day.update(params)
 
     respond_to do |format|
       format.json { render json: {:success => true, :color => Day.first.color} }
@@ -20,9 +21,15 @@ class DaysController < ApplicationController
   end
 
   def fetch
-    authorize :day, :update
+    authorize @day, :update
     ResolveDayColorJob.perform_later
     render json: {:success => true, :message => 'Job queued.'}
+  end
+
+  private
+
+  def get_day
+    @day = Day.first
   end
 
 end
