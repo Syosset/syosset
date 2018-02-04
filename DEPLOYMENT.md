@@ -7,7 +7,7 @@ Our production deployment (syosseths.com) is deployed and managed using [Dokku](
   - [dokku-hostname](https://github.com/michaelshobbs/dokku-hostname.git), to display the app host in Peek
 
 ## Deployment with Heroku
-Our review (syosset-staging-pr-xxx.herokuapp.com) and staging (staging.syosseths.com) environments are hosted on [Heroku](https://heroku.com). Out of the box, the app should configure and run itself, but you may wish to add the [imagemagick buildpack](https://github.com/jacobsmith/heroku-buildpack-imagemagick) on the Heroku dashboard to allow the app to resize uploaded images.
+Our review (syosset-staging-pr-xxx.herokuapp.com) and staging (staging.syosseths.com) environments are hosted on [Heroku](https://heroku.com). Out of the box, the app should configure and run itself, but you may wish to add the [imagemagick buildpack](https://github.com/jacobsmith/heroku-buildpack-imagemagick) and [phantomjs buildpack](https://github.com/stomita/heroku-buildpack-phantomjs) on the Heroku dashboard to allow the app to resize uploaded images and fetch day color state from Infinite Campus.
 
 ## Configuration
 Although the app is deployable to Heroku out of the box, certain functionality will be disabled without these environment variables set:
