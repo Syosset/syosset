@@ -2,7 +2,7 @@
   .panel.panel-sosset
     .panel-heading= link_to announcement.name, announcement
     .panel-body
-      = truncate(strip_tags(announcement.content), length: 150) do
+      = truncate(strip_tags(announcement.markdown.blank? ? announcement.content : @markdown.render(announcement.markdown)), length: 300) do
         = link_to " &raquo; Read more".html_safe, announcement
 .panel.panel-default
   .panel-body
