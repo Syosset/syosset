@@ -1,5 +1,6 @@
 class SerializableDay < JSONAPI::Serializable::Resource
   type 'days'
+  id { 'current_day_color' } # TEMPORARY FIX for Syosset/syosset#109
 
   attributes :color
 
