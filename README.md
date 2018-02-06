@@ -1,4 +1,4 @@
-![website screenshot](https://i.imgur.com/jXzfbQc.png)
+![website screenshot](https://uploads.syosseths.com/attachments/files/5a79/f0c2/3e7f/b400/bf0c/19f0/original/image-1517940929752.png?1517940930)
 
 # 🖥️ syosseths.com
 
