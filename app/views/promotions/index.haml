@@ -9,6 +9,8 @@
           = content_tag_for(:tr, promotion, class: "promotion-preview#{promotion.enabled ? '' : ' disabled'}") do
             %td
               %i.handle.fa.fa-sort{"aria-hidden" => "true"}
+              = link_to edit_promotion_path(promotion) do
+                %i.fa.fa-pencil
             %td
               = image_tag promotion.picture.url
             %td
