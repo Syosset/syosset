@@ -90,6 +90,11 @@ gem 'redis'
 # Use Resque for jobs
 gem 'resque'
 
+# Capybara is used to fetch day color from IC
+gem 'capybara', '~> 2'
+gem 'poltergeist', '~> 1'
+#gem 'launchy', '~> 2'
+
 gem 'aasm'
 
 gem 'record_tag_helper' # Thanks DHH
@@ -109,9 +114,6 @@ group :test do
   gem 'rails-controller-testing'
   gem 'guard-rspec', require: false
   gem 'clockwork', github: 'Rykian/clockwork'
-  gem 'capybara', '~> 2'
-  gem 'poltergeist', '~> 1'
-  gem 'launchy', '~> 2'
 end
 
 group :development do
