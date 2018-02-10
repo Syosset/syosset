@@ -13,6 +13,10 @@ class WelcomeController < ApplicationController
     end
   end
 
+  def status
+    render json: {ok: true}
+  end
+
   private
   def get_information
     @announcements = Rails.cache.fetch("announcements", expires_in: 5.minutes) do

@@ -1,0 +1,5 @@
+WAIT=5     # wait 5 seconds to check
+TIMEOUT=15 # request timeout after 15 seconds
+ATTEMPTS=5 # attempt check 5 times before failing deployment
+
+/ ok
