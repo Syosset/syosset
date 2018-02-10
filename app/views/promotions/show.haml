@@ -1,4 +1,4 @@
 = render partial: "partials/modtools", locals: {actions: @actions}
 
-= image_tag @promotion.picture.url, class: "img-responsive"
+= image_tag @promotion.picture.url(:large), class: "img-responsive"
 %p.lead= @markdown.render(@promotion.blurb).html_safe

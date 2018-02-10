@@ -52,6 +52,8 @@ gem 'slack-ruby-client', '~> 0.11'
 
 # Paperclip handles file uploads
 gem 'mongoid-paperclip', '~> 0.0.11'
+# Compress uploaded images
+gem 'paperclip-compression'
 # Files are stored in S3
 gem 'aws-sdk', '~> 3'
 

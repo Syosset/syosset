@@ -12,7 +12,7 @@
               = link_to edit_promotion_path(promotion) do
                 %i.fa.fa-pencil
             %td
-              = image_tag promotion.picture.url
+              = image_tag promotion.picture.url(:thumb)
             %td
               - unless promotion.enabled
                 %span.label.label-warning Hidden

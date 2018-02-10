@@ -5,7 +5,7 @@
         %li
           .super-hero-unit
             %figure
-              %img.center-block.img-responsive{src: promotion.picture.url}
+              %img.center-block.img-responsive{src: promotion.picture.url(:large)}
               %figcaption.flex-caption
                 = link_to promotion_path(promotion) do
                   %h1.super

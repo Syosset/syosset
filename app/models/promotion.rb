@@ -9,8 +9,9 @@ class Promotion
   field :blurb, type: String, default: ""
 
   has_mongoid_attached_file :picture, styles: {
-    :large => ['1080x350>', :jpg]
-  }
+    :thumb => ['625x250', :jpg],
+    :large => ['1000x400', :jpg]
+  }, processors: [:thumbnail, :compression]
   validates_attachment :picture, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png"] }
 
   track_history on: [:all]

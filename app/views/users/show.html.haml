@@ -25,7 +25,7 @@
   .row
     .col-md-3
       %a.thumbnail{:href => "#"}
-        = image_tag(@user.picture.url, height: '256', width: '256')
+        = image_tag(@user.picture.url(:large), height: '256', width: '256')
       .panel.panel-sosset
         .panel-heading= link_to @user.name, @user
         .panel-body
