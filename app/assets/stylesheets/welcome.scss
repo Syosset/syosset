@@ -8,10 +8,13 @@
   left: 0;
   text-align: center;
   width: 100%;
-  text-shadow: 1.5px 1.5px 7px #222222;
-
   a {
     color: white;
+    text-shadow: 1.5px 1.5px 7px #222222;
+
+    .cta {
+      font-size: 16px;
+    }
   }
 }
 
