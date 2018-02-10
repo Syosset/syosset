@@ -9,6 +9,7 @@ class PromotionsController < ApplicationController
   def show
     actions_builder = ActionsBuilder.new(current_holder)
     actions_builder.require(:edit, @promotion).add_action("Edit Promotion", :get, edit_promotion_path(@promotion))
+    actions_builder.require(:edit, @promotion).add_action("View Audit Log", :get, history_trackers_path(promotion_id: @promotion.id))
     @actions = actions_builder.actions
   end
 
@@ -54,6 +55,6 @@ class PromotionsController < ApplicationController
   end
 
   def promotion_params
-    params.require(:promotion).permit(:enabled, :text, :blurb, :picture)
+    params.require(:promotion).permit(:enabled, :text, :blurb, :picture).merge(modifier: current_user)
   end
 end

@@ -1,5 +1,6 @@
 class Promotion
   include Mongoid::Document
+  include Mongoid::History::Trackable
   include Mongoid::Paperclip
   include Concerns::Rankable
 
@@ -11,5 +12,7 @@ class Promotion
     :large => ['1080x350>', :jpg]
   }
   validates_attachment :picture, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png"] }
+
+  track_history on: [:all]
 
 end
