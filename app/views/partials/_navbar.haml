@@ -23,11 +23,9 @@
           = svg 'icon'
       .day-indicator-container.visible-xs
         - if @active_closure.nil?
-          .red-white-display
-            = render "partials/nav/day_indicator"
+          = render "partials/nav/day_indicator"
         - else
-          .red-white-display.closed
-            = render "partials/nav/closure_indicator"
+          = render "partials/nav/closure_indicator"
       %button.navbar-toggle{"data-target" => "#navbar-collapse", "data-toggle" => "collapse", :type => "button"}
         %span.sr-only Toggle navigation
         %span.icon-bar
@@ -56,11 +54,9 @@
       %ul.nav.navbar-nav.pull-right
         %li.nav-item.hidden-xs
           - if @active_closure.nil?
-            .red-white-display
-              = render "partials/nav/day_indicator"
+            = render "partials/nav/day_indicator"
           - else
-            .red-white-display.closed
-              = render "partials/nav/closure_indicator"
+            = render "partials/nav/closure_indicator"
         - if user_signed_in?
           %li.nav-item
             = link_to user_path(current_user) do
