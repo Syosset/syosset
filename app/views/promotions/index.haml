@@ -6,10 +6,12 @@
     %table.table
       %tbody.rankable
         - @promotions.each do |promotion|
-          = content_tag_for(:tr, promotion, class: 'promotion-preview') do
+          = content_tag_for(:tr, promotion, class: "promotion-preview#{promotion.enabled ? '' : ' disabled'}") do
             %td
               %i.handle.fa.fa-sort{"aria-hidden" => "true"}
             %td
               = image_tag promotion.picture.url
             %td
+              - unless promotion.enabled
+                %span.label.label-warning Hidden
               = link_to promotion.text, edit_promotion_path(promotion)

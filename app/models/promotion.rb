@@ -3,6 +3,7 @@ class Promotion
   include Mongoid::Paperclip
   include Concerns::Rankable
 
+  field :enabled, type: Mongoid::Boolean, default: true
   field :text, type: String
   field :blurb, type: String, default: ""
 

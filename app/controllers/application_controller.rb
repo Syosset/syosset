@@ -93,7 +93,7 @@ class ApplicationController < ActionController::Base
       Department.by_priority.limit(6)
     end
     @active_promotions = Rails.cache.fetch("active_promotions", expires_in: 5.minutes) do
-      Promotion.all.by_priority
+      Promotion.where(enabled: true).by_priority
     end
   end
 

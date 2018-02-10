@@ -48,4 +48,8 @@
   }
 
   font-size: 24px;
+
+  &.disabled {
+    background-color: #cccccc;
+  }
 }

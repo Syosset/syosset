@@ -54,6 +54,6 @@ class PromotionsController < ApplicationController
   end
 
   def promotion_params
-    params.require(:promotion).permit(:text, :blurb, :picture)
+    params.require(:promotion).permit(:enabled, :text, :blurb, :picture)
   end
 end
