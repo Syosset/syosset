@@ -27,7 +27,7 @@ gem 'sass-rails', '~> 5.0'
 # Use autoprefixer-rails for automatic browser prefixing
 gem 'autoprefixer-rails', '~> 7.1.3'
 # Use HAML for templates
-gem 'haml-rails', '~> 0.9'
+gem 'haml-rails', '~> 1.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use redcarpet to render Markdown content
