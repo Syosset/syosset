@@ -33,7 +33,7 @@ module Syosset
       end
 
       def describe
-        "#{@channel} at #{@client.team_info[:team][:name]}"
+        "#{@channel} at #{@client.team_info[:team][:domain]}.slack.com"
       end
 
       def user_signed_in(params)
