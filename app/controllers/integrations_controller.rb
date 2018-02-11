@@ -11,6 +11,10 @@ class IntegrationsController < ApplicationController
       @providers = Integration.providers.values
       render 'providers'
     else
+      unless Integration.providers.key? params[:provider]
+        redirect_to new_integration_path, alert: 'Invalid provider ID.'
+      end
+
       @integration = Integration.new(provider_id: params[:provider])
     end
   end
