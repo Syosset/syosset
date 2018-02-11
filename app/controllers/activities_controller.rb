@@ -64,7 +64,7 @@ class ActivitiesController < ApplicationController
 
   private
   def get_activity
-    @activity = Activity.find(params[:id])
+    @activity = Activity.includes(:announcements, :links).find(params[:id])
   end
 
   def activity_params

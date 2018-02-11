@@ -72,7 +72,7 @@ class DepartmentsController < ApplicationController
 
   private
   def get_department
-    @department = Department.find(params[:id])
+    @department = Department.includes(:announcements, :links).find(params[:id])
   end
 
   def department_params

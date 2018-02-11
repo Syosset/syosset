@@ -27,7 +27,7 @@
                 %th{:scope => "col"} Name
                 %th{:scope => "col"} Email
             %tbody
-              - @department.collaborator_group.users.sort_by {|u| u.name.split(" ").last}.each_with_index do |user, index|
+              - @department.collaborator_group.users.includes(:badge).sort_by {|u| u.name.split(" ").last}.each_with_index do |user, index|
                 %tr.teacher{class: index > 8 ? 'hidden' : ''}
                   %td
                     = link_to user do

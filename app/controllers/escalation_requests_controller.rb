@@ -18,7 +18,7 @@ class EscalationRequestsController < ApplicationController
 
   def index
     authorize EscalationRequest
-    @escalation_requests = EscalationRequest.filter(params.slice(:status)).desc(:updated_at)
+    @escalation_requests = EscalationRequest.includes(:requester, :reviewer).filter(params.slice(:status)).desc(:updated_at)
   end
 
   def create

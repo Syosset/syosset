@@ -67,7 +67,7 @@ class CoursesController < ApplicationController
 
   private
   def get_course
-    @course = Course.find(params[:id])
+    @course = Course.includes(:announcements, :links).find(params[:id])
   end
 
   def get_department
