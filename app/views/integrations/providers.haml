@@ -1,6 +1,8 @@
 %ol.breadcrumb
   %li= link_to 'Integrations', integrations_path
-  %li.active= 'Create Integration'
+  %li.active
+    %i.fa.fa-plug
+    Create Integration
 
 - @providers.each do |provider|
   .integration-provider
