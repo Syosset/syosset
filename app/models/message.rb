@@ -17,7 +17,7 @@ class Message
   end
 
   def notify_spagett
-    $spagett.on_message self
+    Integration.notify_all :on_support_message, message_id: self.id.to_s
   end
 
 end

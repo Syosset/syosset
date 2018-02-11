@@ -14,7 +14,7 @@ class MessageThread
 
   def notify_spagett
     unless self.notified
-      $spagett.on_thread self
+      Integration.notify_all :on_support_thread, thread_id: self.id.to_s
       self.update(notified: true)
     end
   end
