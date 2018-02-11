@@ -9,6 +9,8 @@ end
 
 # Rails framework
 gem 'rails', '~> 5.1.4'
+# Bootsnap decreases boot time
+gem 'bootsnap', require: false
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 
