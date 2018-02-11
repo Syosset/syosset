@@ -1,26 +1,29 @@
-%section.section.section-padded
-  .section-header
-    %h3
-      Edit Integration
-  .container-fluid
-    .row-fluid
-      = render 'form'
-      = link_to "Delete Integration", integration_path(@integration), class: 'btn btn-danger', method: :delete, data: {confirm: "Are you sure?"}
-    %hr
-    - if @integration.failures.count > 0
-      %h4
-        Failures
-        = link_to "(Clear All)", clear_failures_integration_path(@integration), method: :post
-      .table-responsive
-        %table.table
-          %thead
-            %tr
-              %th Time
-              %th Error
-              %th Message
-          %tbody
-            - @integration.failures.sort_by(&:created_at).reverse.each do |failure|
-              %tr
-                %td= time_ago_in_words(failure.created_at) + ' ago'
-                %td= failure.error
-                %td= failure.message
+%ol.breadcrumb
+  %li= link_to 'Integrations', integrations_path
+  %li.active
+    %i.fa{class: "fa-#{@integration.provider.fa_icon}"}
+    = @integration.provider.friendly_name
+
+= render 'form'
+= link_to "Delete Integration", integration_path(@integration), class: 'btn btn-danger', method: :delete, data: {confirm: "Are you sure?"}
+
+- if @integration.failures.count > 0
+  %hr
+  %h4
+    Failures
+    = link_to "(Clear All)", clear_failures_integration_path(@integration), method: :post
+  .table-responsive
+    %table.table
+      %thead
+        %tr
+          %th Time
+          %th Error
+          %th Event
+          %th Parameters
+      %tbody
+        - @integration.failures.sort_by(&:created_at).reverse.each do |failure|
+          %tr
+            %td= time_ago_in_words(failure.created_at) + ' ago'
+            %td= failure.error
+            %td= failure.event
+            %td= failure.parameters.to_json

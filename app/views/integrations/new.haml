@@ -1,7 +1,8 @@
-%section.section.section-padded
-  .section-header
-    %h3
-      Create Integration
-  .container-fluid
-    .row-fluid
-      = render 'form'
+%ol.breadcrumb
+  %li= link_to 'Integrations', integrations_path
+  %li= link_to 'Create Integration', new_integration_path
+  %li.active
+    %i.fa{class: "fa-#{@integration.provider.fa_icon}"}
+    = @integration.provider.friendly_name
+
+= render 'form'

@@ -1,9 +1,10 @@
 = form_for @integration do |f|
-  .form-group
-    = f.label :provider_name
-    = f.select :provider_name, Integration.providers.map {|c| c.name}, class: "form-control"
-  .form-group
-    = f.label :properties
-    - props = @integration.properties.nil? ? "" : @integration.properties.to_json
-    = f.text_field :properties, value: props, placeholder: '{"token": "xoxb-..."}', class: "form-control"
+  = hidden_field_tag 'integration[provider]', @integration.provider.id
+
+  - @integration.provider.options.each do |option, properties|
+    .form-group
+      = label_tag option, t("integrations.#{@integration.provider.id}.options.#{option.to_s}.name")
+      %p= t("integrations.#{@integration.provider.id}.options.#{option.to_s}.description")
+      - if properties[:type] == String
+        = text_field_tag "integration[options][#{option.to_s}]", @integration.options[option], class: 'form-control', placeholder: t("integrations.#{@integration.provider.id}.options.#{option.to_s}.placeholder")
   = f.submit "Save", class: "btn btn-success pull-right", id: "submit-button"

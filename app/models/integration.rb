@@ -4,27 +4,31 @@ class Integration
   include Mongoid::Document
 
   def self.providers
-    [Syosset::Integrations::Slack]
+    [Syosset::Integrations::Slack].index_by(&:id)
   end
 
-  field :provider_name, type: String
-  validates :provider_name, presence: true
+  def self.notify_all(event, parameters)
+    Integration.each do |i|
+      if i.provider.method_defined? event
+        NotifyIntegrationJob.perform_later(i.id.to_s, event.to_s, parameters)
+      end
+    end
+  end
 
-  field :properties, type: Hash
+  field :provider_id, type: String
+  validates :provider_id, presence: true
+
+  field :options, type: Hash, default: {}
   validates_with IntegrationValidator
 
   embeds_many :failures, class_name: 'IntegrationFailure'
 
-  def provider=(provider_class)
-    provider_name = provider_class.name
-  end
-
   def provider
-    provider_name.constantize
+    self.class.providers[provider_id]
   end
 
   def create_provider
-    provider.send('new', properties)
+    provider.send('new', options.symbolize_keys)
   end
 
 end

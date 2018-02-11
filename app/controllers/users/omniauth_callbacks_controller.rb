@@ -3,7 +3,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       @user = User.from_omniauth(request.env['omniauth.auth'])
 
       if @user.sign_in_count < 1 && @user.staff?
-        notify_integrations "*#{@user.name}* (#{@user.email}) just signed in with Google. User count is at #{User.count}."
+        Integration.notify_all :user_signed_in, user_id: @user.id.to_s
       end
 
       if @user.persisted?

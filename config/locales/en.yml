@@ -71,6 +71,18 @@ en:
         connection to the larger world."
     announcements:
       announcements: "Announcements"
+  integrations:
+    slack:
+      description: "Posts notifications to Slack as a bot user."
+      options:
+        token:
+          name: "API Token"
+          description: "This is the bot token that this integration will use to connect to your team."
+          placeholder: "xoxb-xxxxxxxxxxxx-xxxxxxxxxxxxxxxxxxxxxxxx"
+        channel:
+          name: "Channel"
+          description: "The channel to post messages to. Defaults to #general."
+          placeholder: "#general"
   contact:
     phone: "Call us today (516) 364-5675"
     email: "admin@syosseths.com" #TODO: email

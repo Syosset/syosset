@@ -24,12 +24,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def notify_integrations(message)
-    Integration.each do |i|
-      NotifyIntegrationJob.perform_later(i.id.to_s, message)
-    end
-  end
-
   rescue_from ActionController::RoutingError, :with => :not_found
   rescue_from Mongoid::Errors::DocumentNotFound, :with => :not_found
 

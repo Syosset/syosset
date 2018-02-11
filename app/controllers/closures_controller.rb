@@ -24,7 +24,6 @@ class ClosuresController < ApplicationController
     authorize @closure
 
     if @closure.save
-      notify_integrations "*#{current_user.name}* created a closure starting on *#{@closure.start_date}*\n#{closure_url(@closure)}"
       redirect_to @closure, notice: 'Closure created.'
     else
       render action: 'new'
@@ -38,7 +37,6 @@ class ClosuresController < ApplicationController
   def update
     authorize @closure
     if @closure.update(closure_params)
-      notify_integrations "*#{current_user.name}* updated a closure starting on *#{@closure.start_date}*\n#{closure_url(@closure)}"
       redirect_to @closure, notice: 'Closure updated.'
     else
       render action: 'edit'

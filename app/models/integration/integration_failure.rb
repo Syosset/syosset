@@ -6,7 +6,10 @@ class IntegrationFailure
 
   field :error, type: String
 
-  # message being sent that caused the error
-  field :message, type: String
+  # event that caused the error
+  field :event, type: String
+
+  # hash of parameters passed to the event
+  field :parameters, type: Hash
 
 end

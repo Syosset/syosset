@@ -7,18 +7,21 @@ class IntegrationsController < ApplicationController
   end
 
   def new
-    @integration = Integration.new
+    if params[:provider].nil?
+      @providers = Integration.providers.values
+      render 'providers'
+    else
+      @integration = Integration.new(provider_id: params[:provider])
+    end
   end
 
   def create
-    @integration = Integration.new(integration_params)
+    params = integration_params
+    @integration = Integration.new(provider_id: params[:provider])
+    @integration.options = params.require(:options).permit(@integration.provider.options.keys).to_hash
 
     if @integration.save
-      if send_to_integration @integration, "Hello world! This integration has been added to *#{request.host}* by *#{current_user.name}*."
-        flash[:notice] = 'Integration successfully created.'
-      else
-        flash[:alert] = 'The integration was created, but the ping message failed. Check the failure log for more info.'
-      end
+      flash[:notice] = 'Integration successfully created.'
       redirect_to edit_integration_path(@integration) rescue redirect_to integrations_path
     else
       flash.now[:alert] = @integration.errors.full_messages.first
@@ -37,19 +40,16 @@ class IntegrationsController < ApplicationController
   end
 
   def destroy
-    send_to_integration @integration, "#{current_user.name} has removed this integration. Goodbye!"
     $redis.decrby('integration_failures', @integration.failures.count)
     @integration.destroy
     redirect_to integrations_path, notice: 'Integration succesfully removed.'
   end
 
   def update
-    if @integration.update_attributes(integration_params)
-      if send_to_integration @integration, "This integration was updated by *#{current_user.name}* on *#{request.host}*."
-        flash[:notice] = "Successfully updated integration."
-      else
-        flash[:alert] = 'The integration was updated, but the ping message failed. Check the failure log for more info.'
-      end
+    options = integration_params.require(:options).permit(@integration.provider.options.keys).to_hash
+
+    if @integration.update(options: options)
+      flash[:notice] = "Successfully updated integration."
       redirect_to edit_integration_path(@integration)
     else
       render :action => 'edit'
@@ -57,20 +57,9 @@ class IntegrationsController < ApplicationController
   end
 
   private
-  def send_to_integration(integration, message)
-    begin
-      integration.create_provider.notify(message)
-      true
-    rescue => error
-      integration.failures << IntegrationFailure.new(error: error.message, message: message)
-      integration.save
-      $redis.incr('integration_failures')
-      false
-    end
-  end
 
   def verify_admin
-    authorize :admin_panel, :users
+    authorize :integrations, :edit
   end
 
   def get_integration
@@ -78,13 +67,7 @@ class IntegrationsController < ApplicationController
   end
 
   def integration_params
-    ip = params.require(:integration).permit(:provider_name, :properties)
-    unless ip[:properties].empty?
-      ip[:properties] = JSON.parse(ip[:properties])
-    else
-      ip[:properties] = nil
-    end
-    return ip
+    params.require(:integration).permit(:provider, options: {})
   end
 
 end
