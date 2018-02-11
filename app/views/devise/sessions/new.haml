@@ -1,2 +1,6 @@
-%h2 Log in
-= render "devise/shared/links"
+.login-container
+  %h1 Sign in
+  %h4 Signing in gives you access to exclusive features such as course subscriptions and student-only content.
+  = link_to user_google_oauth2_omniauth_authorize_path, class: "btn btn-loader" do
+    %i.fa.fa-google
+    Sign in with your school Google account
