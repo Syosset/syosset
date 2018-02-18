@@ -30,7 +30,8 @@ class CollaboratorGroupsController < ApplicationController
   end
 
   def find_collaborator_group
-    @collaborator_group = CollaboratorGroup.find(collaborator_group_params[:id] || collaborator_group_params[:collaborator_group_id])
+    @collaborator_group = CollaboratorGroup.find(collaborator_group_params[:id] ||
+      collaborator_group_params[:collaborator_group_id])
   end
 
   def collaborator_group_params

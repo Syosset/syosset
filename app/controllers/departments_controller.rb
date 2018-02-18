@@ -16,13 +16,28 @@ class DepartmentsController < ApplicationController
 
   def show
     actions_builder = ActionsBuilder.new(current_holder)
-    actions_builder.require(:edit, @department).add_action("Edit Department", :get, edit_department_path(@department))
-    actions_builder.require(:edit, @department).add_action("Manage Collaborators", :get, edit_collaborator_group_path(@department.collaborator_group))
-    actions_builder.require(:edit, @department).add_action("View Audit Log", :get, history_trackers_path(department_id: @department.id))
-    actions_builder.require(:edit, @department).add_action("Make Course", :get, new_department_course_path(department_id: @department.id))
-    actions_builder.require(:edit, @department).add_action("Make Announcement", :get, new_announcement_path(department_id: @department.id))
-    actions_builder.require(:edit, @department).add_action("Make Link", :get, new_link_path(department_id: @department.id))
-    actions_builder.require(:destroy, @department).add_action("Destroy Department", :delete, department_path(@department), data: { confirm: 'Are you sure?' })
+
+    actions_builder.require(:edit, @department)
+      .add_action("Edit Department", :get, edit_department_path(@department))
+
+    actions_builder.require(:edit, @department)
+      .add_action("Manage Collaborators", :get, edit_collaborator_group_path(@department.collaborator_group))
+
+    actions_builder.require(:edit, @department)
+      .add_action("View Audit Log", :get, history_trackers_path(department_id: @department.id))
+
+    actions_builder.require(:edit, @department)
+      .add_action("Make Course", :get, new_department_course_path(department_id: @department.id))
+
+    actions_builder.require(:edit, @department)
+      .add_action("Make Announcement", :get, new_announcement_path(department_id: @department.id))
+
+    actions_builder.require(:edit, @department)
+      .add_action("Make Link", :get, new_link_path(department_id: @department.id))
+
+    actions_builder.require(:destroy, @department)
+      .add_action("Destroy Department", :delete, department_path(@department), data: { confirm: 'Are you sure?' })
+
     @actions = actions_builder.actions
   end
 

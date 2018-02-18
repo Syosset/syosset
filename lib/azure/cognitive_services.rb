@@ -19,7 +19,7 @@ module Azure
         request['Ocp-Apim-Subscription-Key'] = key
         request.body = {url: image_url}.to_json
 
-        response = Net::HTTP.start(uri.host, uri.port, :use_ssl => uri.scheme == 'https') do |http|
+        response = Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == 'https') do |http|
             http.request(request)
         end
 

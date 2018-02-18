@@ -10,7 +10,7 @@ class IntegrationValidator < ActiveModel::Validator
 
     begin
       record.create_provider
-    rescue => error
+    rescue Exception => error
       record.errors[:integration] << error.message.downcase
     end
   end

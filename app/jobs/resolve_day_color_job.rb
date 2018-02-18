@@ -5,7 +5,8 @@ class ResolveDayColorJob < ApplicationJob
 
   # Fails assuming there is no school today
   def failure_with_assumption
-    puts "ResolveDayColorJob | Unable to find element for current date on infinite campus. School is likely not in session today."
+    puts "ResolveDayColorJob | Unable to find element for current date on infinite campus.
+      School is likely not in session today."
     Capybara.current_session.reset!
     Day.today.update(color: 'No Color')
   end
@@ -29,7 +30,8 @@ class ResolveDayColorJob < ApplicationJob
     browser.within_frame 'frameDetail' do
       begin
         today = Time.find_zone!("America/New_York").today
-        browser.find(:xpath, "//span[contains(text(),\'#{today.strftime("%B")}\')]/../../..").first("td", text: "#{today.day}").click()
+        browser.find(:xpath, "//span[contains(text(),\'#{today.strftime("%B")}\')]/../../..")
+          .first("td", text: "#{today.day}").click()
       rescue NoMethodError
         failure_with_assumption
         return

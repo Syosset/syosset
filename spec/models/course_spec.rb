@@ -15,7 +15,7 @@ RSpec.describe Course, type: :model do
 
   it "merges in collaborators from the department it belongs to" do
     user = build(:user)
-    expect { department_collaborators.add(user) }.to change { subject.send("*collaborators") }.from( [] ).to( [user.id] )
+    expect { department_collaborators.add(user) }.to change { subject.send("*collaborators") }.from([]).to([user.id])
   end
 
 end

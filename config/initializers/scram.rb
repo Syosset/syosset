@@ -47,7 +47,7 @@ module Scram
       @policies = DEFAULT_POLICIES
     end
 
-    # This is likely never to be used, since it wouldn't make sense to store permissions that only logged out users can perform
+    # This likely won't be used, since it wouldn't make sense to store actions that only logged out users can perform
     def scram_compare_value
       "default-holder"
     end

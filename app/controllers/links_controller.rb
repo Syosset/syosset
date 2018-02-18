@@ -6,7 +6,8 @@ class LinksController < ApplicationController
   def index
     actions_builder = ActionsBuilder.new(current_holder)
     @links = if @linkable
-      actions_builder.require(:edit, @linkable).add_action("New Link", :get, new_link_path("#{@linkable.class.to_s.downcase}_id" => @linkable.id))
+      actions_builder.require(:edit, @linkable)
+        .add_action("New Link", :get,new_link_path("#{@linkable.class.to_s.downcase}_id" => @linkable.id))
       @linkable.links.full_text_search(params[:search], allow_empty_search: true).by_priority.desc(:created_at)
     else
       #(Link.escalated.sort_by!(&:created_at).to_a + Link.desc(:created_at).to_a).uniq
@@ -65,7 +66,9 @@ class LinksController < ApplicationController
         return @linkable =  $1.classify.constantize.find(value)
       end
     end
-    redirect_to root_path, flash: {:alert => "Links can only be created from an linkable."} if params[:action] == 'create' || params[:action] == 'new'
+    if params[:action] == 'create' || params[:action] == 'new'
+      redirect_to root_path, flash: {:alert => "Links can only be created from an linkable."}
+    end
     nil
   end
 

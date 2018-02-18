@@ -6,7 +6,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = '39924fea45aa88c14bc79586acdb8fbf5d508afe4e1d468a55c7d0d631a3df67694d2e054d1273ed8a8cef47b3802cbabfb38cacd8bfa049717a990890a4902b'
+  # config.secret_key = '<random secret>'
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
@@ -108,7 +108,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 11
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = 'b4333d98896997085d218191ca11075ec7f21f4b023998ecc2968b06e281f5390dacea4a90de133f79d1a8e3dbc7d860b39536d999dcabf744a7928aea446a4d'
+  # config.pepper = '<random secret>'
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false
@@ -275,5 +275,6 @@ Devise.setup do |config|
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
 
-  config.omniauth :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET'], {hd: %w(syosset.k12.ny.us kmp.pw johari.tech), skip_jwt: true}
+  config.omniauth :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET'],
+    {hd: %w(syosset.k12.ny.us kmp.pw johari.tech), skip_jwt: true}
 end

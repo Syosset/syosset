@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   get 'z/index.html', to: redirect("/") # legacy endpoint -> still set on school devices (Syosset/syosset#83)
 
   # Users and Profiles
-  devise_for :users, controllers: {omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'users/registrations' }, skip: [:passwords]
+  devise_for :users,
+    controllers: {omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'users/registrations' },
+    skip: [:passwords]
   resources :users, only: [:index, :new, :show, :edit, :update] do
     post :populate, on: :collection # create multiple users and assign to collaborator groups
     get :autocomplete, on: :collection
@@ -86,7 +88,7 @@ Rails.application.routes.draw do
   resources :history_trackers, only: [:index, :show]
 
   # Autocomplete AJAX
-  get 'autocomplete', :to => 'application#autocomplete'
+  get 'autocomplete', to: 'application#autocomplete'
 
   # Sortable AJAX
   post "/rankables/sort" => "rankables#sort", :as => :sort_rankable

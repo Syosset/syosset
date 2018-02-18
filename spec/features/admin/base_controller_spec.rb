@@ -13,7 +13,7 @@ RSpec.describe Admin::BaseController, type: :controller do
 
   it "allows a user with admin view policy to access the panel" do
     user = FactoryGirl.build(:user, :admin_panel_acess)
-    login_as(user, :scope => :user)
+    login_as(user, scope: :user)
 
     visit admin_root_path
     expect(current_path).to eq admin_root_path

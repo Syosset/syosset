@@ -8,7 +8,7 @@ module Syosset
           raise "Host must be provided."
         end
 
-        @connection = Faraday.new(:url => opts[:host])
+        @connection = Faraday.new(url: opts[:host])
       end
 
       def self.fa_icon
@@ -17,7 +17,7 @@ module Syosset
 
       def self.options
         {
-          :host => {
+          host: {
             type: String,
             required: true
           }
@@ -27,7 +27,7 @@ module Syosset
       def describe
         begin
           @connection.get('/status').body
-        rescue
+        rescue Exception
           'Unable to fetch status. Possibly offline?'
         end
       end

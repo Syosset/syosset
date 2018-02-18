@@ -8,8 +8,13 @@ class PromotionsController < ApplicationController
 
   def show
     actions_builder = ActionsBuilder.new(current_holder)
-    actions_builder.require(:edit, @promotion).add_action("Edit Promotion", :get, edit_promotion_path(@promotion))
-    actions_builder.require(:edit, @promotion).add_action("View Audit Log", :get, history_trackers_path(promotion_id: @promotion.id))
+
+    actions_builder.require(:edit, @promotion)
+      .add_action("Edit Promotion", :get, edit_promotion_path(@promotion))
+
+    actions_builder.require(:edit, @promotion)
+      .add_action("View Audit Log", :get, history_trackers_path(promotion_id: @promotion.id))
+
     @actions = actions_builder.actions
   end
 

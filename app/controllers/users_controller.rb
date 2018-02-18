@@ -35,8 +35,8 @@ class UsersController < ApplicationController
 
     # parses users input and generates emails for users with only a name provided
     users = params[:users].split("\n").map {|u| u.split(", ")}
-                                      .map {|u| u.size == 1 ? [u[0], (u[0][0] + u[0].split(" ")[1] + '@syosset.k12.ny.us').downcase] : u}
-                                      .map {|u| User.find_or_create_by(email: u[1]) {|user| user.name = u[0]; user.password = Devise.friendly_token[0,20]}}
+      .map {|u| u.size == 1 ? [u[0], (u[0][0] + u[0].split(" ")[1] + '@syosset.k12.ny.us').downcase] : u}
+      .map {|u| User.find_or_create_by(email: u[1]) {|u1| u1.name = u[0]; u1.password = Devise.friendly_token[0,20]}}
 
     unless params[:collaborator_group].empty?
       group = CollaboratorGroup.find(params[:collaborator_group])
@@ -52,7 +52,9 @@ class UsersController < ApplicationController
 
   def update
     params[:user].delete(:password) if params[:user][:password].blank?
-    params[:user].delete(:password_confirmation) if params[:user][:password].blank? and params[:user][:password_confirmation].blank?
+    if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
+      params[:user].delete(:password_confirmation)
+    end
     if @user.update_attributes(user_params)
       flash[:notice] = "Successfully updated User."
       redirect_to users_path

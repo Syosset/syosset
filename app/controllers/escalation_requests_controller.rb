@@ -18,7 +18,8 @@ class EscalationRequestsController < ApplicationController
 
   def index
     authorize EscalationRequest
-    @escalation_requests = EscalationRequest.includes(:requester, :reviewer).filter(params.slice(:status)).desc(:updated_at)
+    @escalation_requests = EscalationRequest.includes(:requester, :reviewer).filter(params.slice(:status))
+      .desc(:updated_at)
   end
 
   def create
@@ -83,6 +84,7 @@ class EscalationRequestsController < ApplicationController
   end
 
   def escalation_request_params
-    params.require(:escalation_request).permit(:note, :escalation_start_at, :escalation_end_at, "#{@escalatable.class.to_s.downcase}_id".to_sym)
+    params.require(:escalation_request).permit(:note, :escalation_start_at, :escalation_end_at,
+      "#{@escalatable.class.to_s.downcase}_id".to_sym)
   end
 end

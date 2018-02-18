@@ -13,7 +13,7 @@ module Syosset
           unless @client.api_test['ok']
             raise 'failure'
           end
-        rescue
+        rescue Exception
           raise 'Token is not valid.'
         end
 
@@ -22,11 +22,11 @@ module Syosset
 
       def self.options
         {
-          :token => {
+          token: {
             type: String,
             required: true
           },
-          :channel => {
+          channel: {
             type: String
           }
         }

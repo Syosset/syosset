@@ -61,13 +61,15 @@ class EscalationRequest
 
     class Accepted < Base
       def rich_message
-          [{user: escalation_request.reviewer}, {message: " accepted your escalation request for #{escalatable.send("name") || "a " + escalatable.class.name}" }]
+          [{user: escalation_request.reviewer}, {message: " accepted your escalation request for
+            #{escalatable.send("name") || "a " + escalatable.class.name}" }]
       end
     end
 
     class Denied < Base
       def rich_message
-          [{user: escalation_request.reviewer}, {message: " denied your escalation request for #{escalatable.send("name") || "a " + escalatable.class.name}" }]
+          [{user: escalation_request.reviewer}, {message: " denied your escalation request for
+            #{escalatable.send("name") || "a " + escalatable.class.name}" }]
       end
     end
   end

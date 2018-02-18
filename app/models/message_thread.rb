@@ -9,7 +9,8 @@ class MessageThread
   field :notified, type: Boolean, default: false
 
   def self.thread_for(user)
-    (existing_thread = MessageThread.where(user: user, expires: { :$gte => DateTime.now }).first) ? existing_thread : MessageThread.create(user: user)
+    (existing_thread = MessageThread.where(user: user, expires: { :$gte => DateTime.now }).first) ?
+      existing_thread : MessageThread.create(user: user)
   end
 
   def notify_spagett

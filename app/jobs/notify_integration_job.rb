@@ -5,7 +5,7 @@ class NotifyIntegrationJob < ApplicationJob
     integration = Integration.find(integration_id)
     begin
       integration.create_provider.send(event.to_sym, parameters)
-    rescue => error
+    rescue Exception => error
       integration.failures << IntegrationFailure.new(error: error.message, event: event, parameters: parameters)
       integration.save
       $redis.incr('integration_failures')

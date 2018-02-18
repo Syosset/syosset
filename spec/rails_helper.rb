@@ -29,7 +29,7 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
   config.include Capybara::DSL
   config.include Devise::Test::ControllerHelpers, type: :controller
-  config.extend ControllerMacros, :type => :controller
+  config.extend ControllerMacros, type: :controller
 
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and

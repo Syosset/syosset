@@ -6,7 +6,9 @@ class AnnouncementsController < ApplicationController
   def index
     actions_builder = ActionsBuilder.new(current_holder)
     @announcements = if @announceable
-      actions_builder.require(:edit, @announceable).add_action("New Announcement", :get, new_announcement_path("#{@announceable.class.to_s.downcase}_id" => @announceable.id))
+      actions_builder.require(:edit, @announceable)
+        .add_action("New Announcement", :get,
+          new_announcement_path("#{@announceable.class.to_s.downcase}_id" => @announceable.id))
       @announceable.announcements.by_priority
     else
       Announcement.desc(:created_at)
@@ -18,10 +20,20 @@ class AnnouncementsController < ApplicationController
   def show
     actions_builder = ActionsBuilder.new(current_holder)
     @announceable = @announcement.announceable
-    actions_builder.require(:edit, @announceable).add_action("Edit Announcement", :get, edit_announcement_path(@announcement, "#{@announceable.class.to_s.downcase}_id" => @announceable.id))
-    actions_builder.require(:edit, @announceable).add_action("Destroy Announcement", :delete, announcement_path(@announcement), data: { confirm: 'Are you sure?' })
-    actions_builder.require(:edit, @announceable).add_action("Request Frontpage Visibility", :get, new_escalation_request_path(announcement_id: @announcement))
-    actions_builder.require(:edit, @announceable).add_action("View Audit Log", :get, history_trackers_path(announcement_id: @announcement.id))
+
+    actions_builder.require(:edit, @announceable)
+      .add_action("Edit Announcement", :get,
+        edit_announcement_path(@announcement, "#{@announceable.class.to_s.downcase}_id" => @announceable.id))
+
+    actions_builder.require(:edit, @announceable)
+      .add_action("Destroy Announcement", :delete, announcement_path(@announcement), data: { confirm: 'Are you sure?' })
+
+    actions_builder.require(:edit, @announceable)
+      .add_action("Request Frontpage Visibility", :get, new_escalation_request_path(announcement_id: @announcement))
+
+    actions_builder.require(:edit, @announceable)
+      .add_action("View Audit Log", :get, history_trackers_path(announcement_id: @announcement.id))
+
     @actions = actions_builder.actions
   end
 

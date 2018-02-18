@@ -24,7 +24,8 @@ module ActiveSupport
                     allow_nothing = true
                     require_or_load(path)
                 end
-                allow_nothing or raise LoadError, "No dependencies matched the pattern '#{pattern}' (specify allow_nothing: true to allow this)"
+                allow_nothing or raise LoadError,
+                    "No dependencies matched the pattern '#{pattern}' (specify allow_nothing: true to allow this)"
             end
         end
     end

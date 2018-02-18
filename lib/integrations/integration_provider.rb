@@ -16,7 +16,6 @@ module Syosset
           friendly_name.downcase
         end
       end
-
     end
   end
 end

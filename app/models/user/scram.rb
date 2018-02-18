@@ -6,7 +6,9 @@ class User
     included do
       # Sets up a relation where this user now stores "policy_ids". This is a one-way relationship!
       has_and_belongs_to_many :policies, class_name: "Scram::Policy"
-      alias_method :user_policies, :policies # NOTE: This macro remaps the actual mongoid relation to be under the name user_policies, since we override it in User#policies to union in the DEFAULT_POLICIES
+      # NOTE: This macro remaps the actual mongoid relation to be under the name user_policies, since we override it in
+      #       User#policies to union in the DEFAULT_POLICIES
+      alias_method :user_policies, :policies
       field :super_admin, type: Boolean, default: false
 
       # Overrides Scram::Holder#policies to union in this user's policies along with those default as default policies
@@ -42,6 +44,5 @@ class User
         $redis.del("user:#{self.id}:admin_until")
       end
     end
-
   end
 end

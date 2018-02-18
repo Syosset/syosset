@@ -17,8 +17,8 @@ Rails.application.config.assets.paths << Rails.root.join('vendor/assets')
 Rails.application.config.assets.precompile += %w( markdown.js support.js )
 
 # Adding Webfonts to the Asset Pipeline
-Rails.application.config.assets.precompile << Proc.new { |path|
+Rails.application.config.assets.precompile << Proc.new do |path|
   if path =~ /\.(eot|svg|ttf|woff)\z/
     true
   end
-}
+end
