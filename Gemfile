@@ -118,7 +118,6 @@ group :test do
   gem 'factory_girl'
   gem 'rails-controller-testing'
   gem 'guard-rspec', require: false
-  gem 'clockwork', github: 'Rykian/clockwork'
 end
 
 group :development do

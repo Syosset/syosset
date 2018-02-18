@@ -6,13 +6,6 @@ GIT
       mongoid (>= 3.0.4)
 
 GIT
-  remote: https://github.com/Rykian/clockwork.git
-  revision: 13e4dd3ba1c964ac4e85fe306a1249077c29204c
-  specs:
-    clockwork (2.0.3)
-      tzinfo
-
-GIT
   remote: https://github.com/kailan/peek-host.git
   revision: c692b152ff444b37f7d9ba265e347f8f6088e2fc
   specs:
@@ -1021,7 +1014,6 @@ DEPENDENCIES
   aws-sdk (~> 3)
   bootsnap
   capybara (~> 2)
-  clockwork!
   devise (~> 4.4)
   diffy
   dotenv-rails
