@@ -5,6 +5,8 @@
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    - if current_user.try(:staff?)
+      = javascript_include_tag 'support', 'data-turbolinks-track': 'reload'
 
     %link{rel: "apple-touch-icon", sizes: "60x60", href: asset_path("touch-icon.png")}
     %link{rel: "apple-touch-icon", sizes: "120x120", href: asset_path("touch-icon@2x.png")}
@@ -22,6 +24,10 @@
       %meta{name: "description", content: yield(:description)}
   %body{:class => yield(:body_class), "data-no-turbolink" => yield(:disable_turbolinks), "data-model-name" => yield(:model_name), "data-current-user-id" => current_user.try(:id), "data-params-id" => (params[:id] || yield(:model_id)) }
     %a.skip.screen-reader-text{:href => "#content"} Skip to content
+    - if current_user.try(:staff?)
+      %div#support{"data-turbolinks-permanent" => true}
+        = render 'partials/chat/chat_button'
+        = render 'partials/chat/chat'
     .wrapper
       = render 'partials/navbar'
       #content.container

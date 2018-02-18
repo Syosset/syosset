@@ -76,6 +76,11 @@ Rails.application.routes.draw do
     post :clear_failures, on: :member
   end
 
+  # Message Threads
+  get '/threads/create' => 'message_threads#create'
+  get '/threads/:id/messages' => 'message_threads#read_messages'
+  post '/threads/:id/messages' => 'message_threads#send_message'
+
   # Auditing
   resources :history_trackers, only: [:index, :show]
 

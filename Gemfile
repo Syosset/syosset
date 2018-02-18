@@ -103,6 +103,9 @@ gem 'record_tag_helper' # Thanks DHH
 # To cleanly organize our APIs
 gem 'jsonapi-rails'
 
+# Make HTTP requests with faraday
+gem 'faraday', '~> 0.12'
+
 group :development, :test do
   # Allow app to be configured with .env file
   gem 'dotenv-rails'
