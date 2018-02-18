@@ -2,8 +2,6 @@ class ApplicationController < ActionController::Base
   include ScramUtils
   helper_method :current_holder
 
-  around_action :set_current_user
-
   protect_from_forgery with: :exception
 
   before_action :initialize_markdown
@@ -53,14 +51,6 @@ class ApplicationController < ActionController::Base
   end
 
   private
-
-  def set_current_user
-    Current.user = current_user
-    yield
-  ensure
-    # to address the thread variable leak issues in Puma/Thin webserver
-    Current.user = nil
-  end
 
   def set_raven_context
     if current_user
