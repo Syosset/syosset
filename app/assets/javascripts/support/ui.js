@@ -12,6 +12,7 @@ function loadChat() {
     Support.openThread(function(thread) {
       $("#open_support").hide();
       $("#support_ui").show();
+      $('.messages').scrollTop($('.messages')[0].scrollHeight);
 
       $("#send_button").click(send);
       $("#send_field").keyup(function(e) {
