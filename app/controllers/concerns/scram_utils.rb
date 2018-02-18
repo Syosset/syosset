@@ -1,6 +1,10 @@
 module ScramUtils
   extend ActiveSupport::Concern
 
+  included do
+    helper_method :current_holder
+  end
+
   class Error < StandardError; end
   class NotAuthorizedError < Error
     attr_reader :query, :record, :policy

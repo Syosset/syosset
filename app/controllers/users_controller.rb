@@ -14,6 +14,18 @@ class UsersController < ApplicationController
     @users = User.all.includes(:badge).order([:super_admin, :desc], [:bot, :desc]).page(params[:page])
   end
 
+  def autocomplete
+    if params[:term]
+      @users = User.any_of({name: /.*#{params[:term]}.*/i}, {email: /.*#{params[:term]}.*/i}).limit(5)
+    else
+      @users = User.all
+    end
+
+    respond_to do |format|
+      format.json { render :json => @users.map{|u| {value: u.id.to_s, label: u.name, desc: u.email} }.to_json }
+    end
+  end
+
   def new
     authorize User
   end

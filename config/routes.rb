@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'users/registrations' }, skip: [:passwords]
   resources :users, only: [:index, :new, :show, :edit, :update] do
     post :populate, on: :collection # create multiple users and assign to collaborator groups
+    get :autocomplete, on: :collection
     resources :periods, on: :member, except: [:show]
   end
 
