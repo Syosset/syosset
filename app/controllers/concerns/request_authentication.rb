@@ -7,7 +7,7 @@ module RequestAuthentication
 
   def authenticate!
     unless Current.authorization
-      redirect_to new_session_path, notice: 'You need to be signed in to do this.'
+      redirect_to login_path, notice: 'You need to be signed in to do this.'
     end
   end
 
