@@ -6,7 +6,7 @@ module Concerns
       has_many :escalation_requests, :as => :escalatable, :class_name => "EscalationRequest"
 
       before_destroy do
-          escalation_requests.destroy_all
+        escalation_requests.destroy_all
       end
     end
 

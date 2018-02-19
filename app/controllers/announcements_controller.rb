@@ -5,14 +5,16 @@ class AnnouncementsController < ApplicationController
 
   def index
     actions_builder = ActionsBuilder.new(current_holder)
-    @announcements = if @announceable
-      actions_builder.require(:edit, @announceable)
-        .add_action("New Announcement", :get,
-          new_announcement_path("#{@announceable.class.to_s.downcase}_id" => @announceable.id))
-      @announceable.announcements.by_priority
-    else
-      Announcement.desc(:created_at)
-    end
+    @announcements =
+      if @announceable
+        actions_builder.require(:edit, @announceable)
+          .add_action("New Announcement", :get,
+            new_announcement_path("#{@announceable.class.to_s.downcase}_id" => @announceable.id))
+
+        @announceable.announcements.by_priority
+      else
+        Announcement.desc(:created_at)
+      end
 
     @actions = actions_builder.actions
   end
@@ -47,11 +49,11 @@ class AnnouncementsController < ApplicationController
     @announcement.save
 
     if @announcement.errors.empty?
-        flash[:notice] = 'Announcement successfully created.'
-        redirect_to @announcement
+      flash[:notice] = 'Announcement successfully created.'
+      redirect_to @announcement
     else
-        flash.now[:alert] = @announcement.errors.full_messages.first
-        render action: 'new'
+      flash.now[:alert] = @announcement.errors.full_messages.first
+      render action: 'new'
     end
   end
 

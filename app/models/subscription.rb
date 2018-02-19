@@ -37,14 +37,14 @@ class Subscription
     # Return true if the new alert should be kept, false to discard it.
     # The base implementation destroys self and returns true.
     def combine(newer)
-        destroy
-        true
+      destroy
+      true
     end
   end
   has_many :alerts, class_name: 'Subscription::Alert'
 
   before_destroy do
-      alerts.destroy_all
+    alerts.destroy_all
   end
 
   validates_presence_of :user

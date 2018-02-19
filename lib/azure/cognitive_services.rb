@@ -20,7 +20,7 @@ module Azure
         request.body = {url: image_url}.to_json
 
         response = Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == 'https') do |http|
-            http.request(request)
+          http.request(request)
         end
 
         if response.kind_of? Net::HTTPSuccess

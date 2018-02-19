@@ -7,5 +7,5 @@
 $LOAD_PATH << File.join(Rails.root, 'lib/ext')
 
 Dir[Rails.root + 'lib/ext/**/*.rb'].each do |file|
-    require file
+  require file
 end

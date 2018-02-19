@@ -9,7 +9,7 @@ module Concerns
       has_many :subscriptions, :as => :subscribable, :class_name => "Subscription"
 
       before_destroy do
-          subscriptions.destroy_all
+        subscriptions.destroy_all
       end
     end
 
@@ -32,13 +32,13 @@ module Concerns
 
     def subscribe_user(user)
       if can_view?(user)
-          Rails.logger.info "Subscribing #{user.name} to #{self}"
-          unless sub = subscriptions.user(user).one
-              sub = Subscription.new(subscribable: self, user: user)
-          end
-          sub.unsubscribed = false
-          sub.save!
-          true
+        Rails.logger.info "Subscribing #{user.name} to #{self}"
+        unless sub = subscriptions.user(user).one
+          sub = Subscription.new(subscribable: self, user: user)
+        end
+        sub.unsubscribed = false
+        sub.save!
+        true
       end
     end
 

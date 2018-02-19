@@ -48,9 +48,9 @@ class CoursesController < ApplicationController
     authorize @course
 
     if @course.save
-        redirect_to course_path(@course), flash: {:success => "Course has been created"}
+      redirect_to course_path(@course), flash: {:success => "Course has been created"}
     else
-        render action: 'new'
+      render action: 'new'
     end
   end
 

@@ -28,18 +28,18 @@ class Announcement
   track_history on: [:all]
 
   class Alert < Subscription::Alert
-      belongs_to :poster, class_name: 'User'
-      belongs_to :announcement
+    belongs_to :poster, class_name: 'User'
+    belongs_to :announcement
 
-      validates_presence_of :poster
-      validates_presence_of :announcement
+    validates_presence_of :poster
+    validates_presence_of :announcement
 
-      delegate :link, to: :announcement
+    delegate :link, to: :announcement
 
-      def rich_message
-        [{user: poster, message: " has posted an announcement in a #{announcement.announceable.class.to_s.humanize}
-          you are subscribed to."}]
-      end
+    def rich_message
+      [{user: poster, message: " has posted an announcement in a #{announcement.announceable.class.to_s.humanize}
+        you are subscribed to."}]
+    end
   end
 
   def link
