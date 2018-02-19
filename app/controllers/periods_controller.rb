@@ -69,6 +69,6 @@ class PeriodsController < ApplicationController
     end
 
     def get_user_courses
-      @courses = CollaboratorGroup.with_member(@user).select {|x| x.collaboratable.is_a? Course }.map(&:collaboratable)
+      @courses = CollaboratorGroup.with_member(@user).select { |x| x.collaboratable.is_a? Course }.map(&:collaboratable)
     end
 end

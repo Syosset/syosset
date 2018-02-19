@@ -1,1 +1,1 @@
-Dir[Rails.root + 'lib/azure/**/*.rb'].each {|file| require file}
+Dir[Rails.root + 'lib/azure/**/*.rb'].each { |file| require file }

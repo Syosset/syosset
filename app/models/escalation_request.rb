@@ -24,7 +24,7 @@ class EscalationRequest
     state :approved
     state :denied
 
-    event :approve, after: Proc.new {|reviewer| self.reviewer = reviewer } do
+    event :approve, after: Proc.new { |reviewer| self.reviewer = reviewer } do
       after do
         EscalationRequest::Alert::Accepted.create(user: self.requester, escalation_request: self)
       end
@@ -32,7 +32,7 @@ class EscalationRequest
       transitions from: [:pending, :denied], to: :approved
     end
 
-    event :deny, after: Proc.new {|reviewer| self.reviewer = reviewer } do
+    event :deny, after: Proc.new { |reviewer| self.reviewer = reviewer } do
       after do
         EscalationRequest::Alert::Denied.create(user: self.requester, escalation_request: self)
       end

@@ -19,14 +19,14 @@ RSpec.configure do |config|
 
   # Clean/Reset Mongoid DB prior to running each test.
   config.before(:each) do
-    Mongoid::Clients.default.collections.select {|c| c.name !~ /system/ }.each(&:drop)
+    Mongoid::Clients.default.collections.select { |c| c.name !~ /system/ }.each(&:drop)
   end
 
   # Reset warden after tests
   config.after(:each) do
     Warden.test_reset!
   end
-  
+
   config.before(:all) do
     FactoryGirl.reload
   end
