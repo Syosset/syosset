@@ -7,9 +7,9 @@ module ScramErrorRedirect
         format.json { head :forbidden }
         format.html do
           unless Current.user
-            redirect_to main_app.login_path, :alert => "You must be signed in to do that."
+            redirect_to main_app.login_path, :alert => 'You must be signed in to do that.'
           else
-            redirect_to root_path, :alert => "You do not have permission to do that."
+            redirect_to root_path, :alert => 'You do not have permission to do that.'
           end
         end
       end

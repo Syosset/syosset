@@ -7,7 +7,7 @@ class AnnouncementsController < ApplicationController
     @announcements =
       if @announceable
         actions_builder.require(:edit, @announceable)
-          .add_action("New Announcement", :get,
+          .add_action('New Announcement', :get,
             new_announcement_path("#{@announceable.class.to_s.downcase}_id" => @announceable.id))
 
         @announceable.announcements.by_priority
@@ -23,17 +23,17 @@ class AnnouncementsController < ApplicationController
     @announceable = @announcement.announceable
 
     actions_builder.require(:edit, @announceable)
-      .add_action("Edit Announcement", :get,
+      .add_action('Edit Announcement', :get,
         edit_announcement_path(@announcement, "#{@announceable.class.to_s.downcase}_id" => @announceable.id))
 
     actions_builder.require(:edit, @announceable)
-      .add_action("Destroy Announcement", :delete, announcement_path(@announcement), data: { confirm: 'Are you sure?' })
+      .add_action('Destroy Announcement', :delete, announcement_path(@announcement), data: { confirm: 'Are you sure?' })
 
     actions_builder.require(:edit, @announceable)
-      .add_action("Request Frontpage Visibility", :get, new_escalation_request_path(announcement_id: @announcement))
+      .add_action('Request Frontpage Visibility', :get, new_escalation_request_path(announcement_id: @announcement))
 
     actions_builder.require(:edit, @announceable)
-      .add_action("View Audit Log", :get, history_trackers_path(announcement_id: @announcement.id))
+      .add_action('View Audit Log', :get, history_trackers_path(announcement_id: @announcement.id))
 
     @actions = actions_builder.actions
   end
@@ -68,13 +68,13 @@ class AnnouncementsController < ApplicationController
   def update
     authorize @announcement, :edit
     @announcement.update!(announcement_params)
-    redirect_to @announcement, flash: {:success => "Announcement has been updated"}
+    redirect_to @announcement, flash: {:success => 'Announcement has been updated'}
   end
 
   def destroy
     authorize @announcement, :edit
     @announcement.destroy
-    redirect_to @announcement.announceable, flash: {:alert => "Announcement destroyed"}
+    redirect_to @announcement.announceable, flash: {:alert => 'Announcement destroyed'}
   end
 
   private

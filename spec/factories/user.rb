@@ -1,12 +1,12 @@
 FactoryGirl.define do
   sequence :email do |n|
-    "tommy#{n}@halloween.com"
+    'tommy#{n}@halloween.com'
   end
 
   factory :user do
-    name "Tommy Doyle"
+    name 'Tommy Doyle'
     email
-    password "tommydoyle"
+    password 'tommydoyle'
 
     after(:build) do |user, evaluator|
       user.user_policies << FactoryGirl.build(:policy, :collaborator, context: CollaboratableTestModel.to_s)

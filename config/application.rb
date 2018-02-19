@@ -1,16 +1,16 @@
 require_relative 'boot'
 
-require "rails"
+require 'rails'
 # Pick the frameworks you want:
-require "active_model/railtie"
-require "active_job/railtie"
-# require "active_record/railtie"
-require "action_controller/railtie"
-require "action_mailer/railtie"
-require "action_view/railtie"
-require "action_cable/engine"
-require "sprockets/railtie"
-# require "rails/test_unit/railtie"
+require 'active_model/railtie'
+require 'active_job/railtie'
+# require 'active_record/railtie'
+require 'action_controller/railtie'
+require 'action_mailer/railtie'
+require 'action_view/railtie'
+require 'action_cable/engine'
+require 'sprockets/railtie'
+# require 'rails/test_unit/railtie'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -40,8 +40,8 @@ module Syosset
         s3_region: ENV['AWS_REGION'] || 'us-east-1'
       },
       s3_host_name: "s3-#{ENV['AWS_REGION'] || 'us-east-1'}.amazonaws.com",
-      url: ENV['CDN_URL'].nil? ? ":s3_host_name" : ":s3_alias_url",
-      path: "/:class/:attachment/:id_partition/:style/:filename",
+      url: ENV['CDN_URL'].nil? ? ':s3_host_name' : ':s3_alias_url',
+      path: '/:class/:attachment/:id_partition/:style/:filename',
       s3_host_alias: ENV['CDN_URL'],
       s3_protocol: :https
     }

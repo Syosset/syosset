@@ -3,7 +3,7 @@ module Concerns
     extend ActiveSupport::Concern
 
     included do
-      has_many :announcements, :as => :announceable, :class_name => "Announcement"
+      has_many :announcements, :as => :announceable, :class_name => 'Announcement'
 
       before_destroy do
         announcements.destroy_all

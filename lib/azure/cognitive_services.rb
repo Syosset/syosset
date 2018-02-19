@@ -22,9 +22,9 @@ module Azure
         end
 
         if response.kind_of? Net::HTTPSuccess
-          desc = JSON.parse(response.body)["description"]["captions"][0]["text"]
+          desc = JSON.parse(response.body)['description']['captions'][0]['text']
         else
-          desc = "Unlabeled image"
+          desc = 'Unlabeled image'
         end
 
         $redis.set(redis_key, desc)

@@ -5,10 +5,10 @@ class PeriodsController < ApplicationController
   before_action :get_user_courses, only: [:new, :edit]
 
   def index
-    redirect_to root_path, alert: "Only students may view schedules." unless Current.user
+    redirect_to root_path, alert: 'Only students may view schedules.' unless Current.user
 
     unless @user.staff?
-      redirect_back fallback_location: root_path, alert: "Only staff can have schedules."
+      redirect_back fallback_location: root_path, alert: 'Only staff can have schedules.'
     else
       @periods = @user.periods.asc(:period)
     end
@@ -40,12 +40,12 @@ class PeriodsController < ApplicationController
   def destroy
     authorize @user, :edit
     @period.destroy!
-    redirect_to user_periods_path(@period.user), alert: "The period has been removed successfully."
+    redirect_to user_periods_path(@period.user), alert: 'The period has been removed successfully.'
   end
 
   private
     def check_staff
-      redirect_back fallback_location: root_path, alert: "Only staff can have schedules." unless Current.user.staff?
+      redirect_back fallback_location: root_path, alert: 'Only staff can have schedules.' unless Current.user.staff?
     end
 
     def get_user

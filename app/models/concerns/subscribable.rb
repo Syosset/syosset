@@ -6,7 +6,7 @@ module Concerns
     extend ActiveSupport::Concern
 
     included do
-      has_many :subscriptions, :as => :subscribable, :class_name => "Subscription"
+      has_many :subscriptions, :as => :subscribable, :class_name => 'Subscription'
 
       before_destroy do
         subscriptions.destroy_all

@@ -1,9 +1,9 @@
 class SyossetRenderer < Redcarpet::Render::HTML
   def table(header, body)
-    "<table class=\"table table-responsive\">" \
+    '<table class="table table-responsive">' \
       "<thead>#{header}</thead>" \
       "<tbody>#{body}</tbody>" \
-    "</table>"
+    '</table>'
   end
 
   def image(link, title, alt)

@@ -4,8 +4,8 @@ class EscalationRequest
   include Concerns::Filterable
   include AASM
 
-  belongs_to :requester, class_name: "User"
-  belongs_to :reviewer, class_name: "User", optional: true
+  belongs_to :requester, class_name: 'User'
+  belongs_to :reviewer, class_name: 'User', optional: true
 	belongs_to :escalatable, polymorphic: true
 
   field :note, type: String
@@ -62,19 +62,19 @@ class EscalationRequest
     class Accepted < Base
       def rich_message
         [{user: escalation_request.reviewer}, {message: " accepted your escalation request for
-          #{escalatable.send("name") || "a " + escalatable.class.name}" }]
+          #{escalatable.send('name') || "a " + escalatable.class.name}" }]
       end
     end
 
     class Denied < Base
       def rich_message
         [{user: escalation_request.reviewer}, {message: " denied your escalation request for
-          #{escalatable.send("name") || "a " + escalatable.class.name}" }]
+          #{escalatable.send('name') || "a " + escalatable.class.name}" }]
       end
     end
   end
 
-  has_many :alerts, dependent: :destroy, class_name: "EscalationRequest::Alert::Base"
+  has_many :alerts, dependent: :destroy, class_name: 'EscalationRequest::Alert::Base'
 
   delegate :link, :alert_class, to: :escalatable
 

@@ -11,22 +11,22 @@ class CoursesController < ApplicationController
     actions_builder = ActionsBuilder.new(current_holder)
 
     actions_builder.require(:edit, @course)
-      .add_action("Edit Course", :get, edit_course_path(department_id: @course.department))
+      .add_action('Edit Course', :get, edit_course_path(department_id: @course.department))
 
     actions_builder.require(:edit, @course)
-      .add_action("Manage Collaborators", :get, edit_collaborator_group_path(@course.collaborator_group))
+      .add_action('Manage Collaborators', :get, edit_collaborator_group_path(@course.collaborator_group))
 
     actions_builder.require(:edit, @course)
-      .add_action("View Audit Log", :get, history_trackers_path(course_id: @course.id))
+      .add_action('View Audit Log', :get, history_trackers_path(course_id: @course.id))
 
     actions_builder.require(:edit, @course)
-      .add_action("Make Announcement", :get, new_announcement_path(course_id: @course.id))
+      .add_action('Make Announcement', :get, new_announcement_path(course_id: @course.id))
 
     actions_builder.require(:edit, @course)
-      .add_action("Make Link", :get, new_link_path(course_id: @course.id))
+      .add_action('Make Link', :get, new_link_path(course_id: @course.id))
 
     actions_builder.require(:destroy, @course)
-      .add_action("Destroy Course", :delete, course_path(@course), data: { confirm: 'Are you sure?' })
+      .add_action('Destroy Course', :delete, course_path(@course), data: { confirm: 'Are you sure?' })
 
     @actions = actions_builder.actions
   end
@@ -47,7 +47,7 @@ class CoursesController < ApplicationController
     authorize @course
 
     if @course.save
-      redirect_to course_path(@course), flash: {:success => "Course has been created"}
+      redirect_to course_path(@course), flash: {:success => 'Course has been created'}
     else
       render action: 'new'
     end
@@ -64,7 +64,7 @@ class CoursesController < ApplicationController
   def update
     authorize @course
     if @course.update(course_params)
-      redirect_to course_path(@course), flash: {:success => "Course has been updated"}
+      redirect_to course_path(@course), flash: {:success => 'Course has been updated'}
     else
       render action: 'edit'
     end
@@ -74,7 +74,7 @@ class CoursesController < ApplicationController
     authorize @course
     @department = @course.department
     @course.destroy
-    redirect_to department_path(@department), flash: {:alert => "Course destroyed"}
+    redirect_to department_path(@department), flash: {:alert => 'Course destroyed'}
   end
 
   private

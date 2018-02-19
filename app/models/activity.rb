@@ -20,6 +20,6 @@ class Activity
 
   # enum :type, [:club, :group, :sport] TODO: Fix mongoid-enum to support symbol storage
   validates :type, inclusion: { in: %w(club group sport),
-    message: "%{value} must be a club, group, or sport" }
+    message: '%{value} must be a club, group, or sport' }
   field :type, type: String
 end

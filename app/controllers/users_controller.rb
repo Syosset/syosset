@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    redirect_to root_path, alert: "Only staff members can have profiles." unless @user.staff?
+    redirect_to root_path, alert: 'Only staff members can have profiles.' unless @user.staff?
     @periods = @user.periods.asc(:period)
     @onboarding = @user == Current.user ? @user.onboarding_steps : []
   end
@@ -33,8 +33,8 @@ class UsersController < ApplicationController
     authorize User, :create
 
     # parses users input and generates emails for users with only a name provided
-    users = params[:users].split("\n").map { |u| u.split(", ") }
-      .map { |u| u.size == 1 ? [u[0], (u[0][0] + u[0].split(" ")[1] + '@syosset.k12.ny.us').downcase] : u }
+    users = params[:users].split("\n").map { |u| u.split(', ') }
+      .map { |u| u.size == 1 ? [u[0], (u[0][0] + u[0].split(' ')[1] + '@syosset.k12.ny.us').downcase] : u }
       .map { |u| User.find_or_create_by(email: u[1]) { |u1| u1.name = u[0] } }
 
     unless params[:collaborator_group].empty?
@@ -64,7 +64,7 @@ class UsersController < ApplicationController
 
   def admin_update
     if @user.update_attributes(params.require(:user).permit(:name, :badge, :picture, :bio, :super_admin))
-      flash[:notice] = "Successfully updated User."
+      flash[:notice] = 'Successfully updated User.'
       redirect_to users_path
     else
       render :action => 'edit'

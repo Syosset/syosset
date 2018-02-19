@@ -7,7 +7,7 @@ class LinksController < ApplicationController
     @links =
       if @linkable
         actions_builder.require(:edit, @linkable)
-          .add_action("New Link", :get,new_link_path("#{@linkable.class.to_s.downcase}_id" => @linkable.id))
+          .add_action('New Link', :get,new_link_path("#{@linkable.class.to_s.downcase}_id" => @linkable.id))
         @linkable.links.full_text_search(params[:search], allow_empty_search: true).by_priority.desc(:created_at)
       else
         #(Link.escalated.sort_by!(&:created_at).to_a + Link.desc(:created_at).to_a).uniq
@@ -50,13 +50,13 @@ class LinksController < ApplicationController
   def update
     authorize @link, :edit
     @link.update!(announcement_params)
-    redirect_to @link.linkable, flash: {:success => "Link has been updated"}
+    redirect_to @link.linkable, flash: {:success => 'Link has been updated'}
   end
 
   def destroy
     authorize @link, :edit
     @link.destroy
-    redirect_to @link.linkable, flash: {:alert => "Link destroyed"}
+    redirect_to @link.linkable, flash: {:alert => 'Link destroyed'}
   end
 
   private
@@ -65,7 +65,7 @@ class LinksController < ApplicationController
       return @linkable =  $1.classify.constantize.find(value) if name =~ /(.+)_id$/
     end
     if params[:action] == 'create' || params[:action] == 'new'
-      redirect_to root_path, flash: {:alert => "Links can only be created from an linkable."}
+      redirect_to root_path, flash: {:alert => 'Links can only be created from an linkable.'}
     end
     nil
   end

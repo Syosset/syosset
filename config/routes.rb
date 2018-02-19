@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get 'about' => 'welcome#about'
   get 'status' => 'welcome#status' # to check that app is alive upon deploy
 
-  get 'z/index.html', to: redirect("/") # legacy endpoint -> still set on school devices (Syosset/syosset#83)
+  get 'z/index.html', to: redirect('/') # legacy endpoint -> still set on school devices (Syosset/syosset#83)
 
   # Authentication
   get '/login' => 'sessions#new'
@@ -45,20 +45,20 @@ Rails.application.routes.draw do
   # Alerts
   resources :alerts do
     collection do
-      post "read_all"
+      post 'read_all'
     end
   end
 
   # Escalation Requests
   resources :escalation_requests, path: 'escalations' do
-    post "approve", action: :approve, as: :approve
-    post "deny", action: :deny, as: :deny
+    post 'approve', action: :approve, as: :approve
+    post 'deny', action: :deny, as: :deny
   end
 
   # Collaborator Management
   resources :collaborator_groups, only: [:edit, :update] do
-    post "add_collaborator", action: :add_collaborator, as: :add_collaborator
-    post "remove_collaborator", action: :remove_collaborator, as: :remove_collaborator
+    post 'add_collaborator', action: :add_collaborator, as: :add_collaborator
+    post 'remove_collaborator', action: :remove_collaborator, as: :remove_collaborator
   end
 
   # Admin Panel
@@ -96,10 +96,10 @@ Rails.application.routes.draw do
   get 'autocomplete', to: 'application#autocomplete'
 
   # Sortable AJAX
-  post "/rankables/sort" => "rankables#sort", :as => :sort_rankable
+  post '/rankables/sort' => 'rankables#sort', :as => :sort_rankable
 
   # Attachments
-  post "/attachments" => "attachments#create"
+  post '/attachments' => 'attachments#create'
 
   # Utilities
   mount Peek::Railtie => '/peek'

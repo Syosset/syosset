@@ -27,8 +27,8 @@ module ScramUtils
     def authorize(holder, action, object)
       # clusters: (new, create), (edit, update)
       automap = {
-        "new" => "create",
-        "update" => "edit"
+        'new' => 'create',
+        'update' => 'edit'
       }
       action = automap[action] if automap[action]
 
@@ -39,8 +39,8 @@ module ScramUtils
   end
 
   def current_holder
-    if params["token"]
-      holder = Token.where(key: params["token"]).first.user
+    if params['token']
+      holder = Token.where(key: params['token']).first.user
     else
       holder = Current.user ? Current.user : Scram::DEFAULT_HOLDER
     end

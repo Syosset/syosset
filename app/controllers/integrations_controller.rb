@@ -53,7 +53,7 @@ class IntegrationsController < ApplicationController
     options = integration_params.require(:options).permit(@integration.provider.options.keys).to_hash
 
     if @integration.update(options: options)
-      flash[:notice] = "Successfully updated integration."
+      flash[:notice] = 'Successfully updated integration.'
       redirect_to edit_integration_path(@integration)
     else
       render :action => 'edit'

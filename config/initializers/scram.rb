@@ -7,32 +7,32 @@ end
 module Scram
   DEFAULT_POLICIES = []
   if Rails.env.test?
-    test_policy = Policy.new(name: "Test Policy")
+    test_policy = Policy.new(name: 'Test Policy')
     test_policy.targets.build(
-      conditions: {:equals => {:'*target_name' => "boing"}},
-      actions: ["create", "edit", "destroy"]
+      conditions: {:equals => {:'*target_name' => 'boing'}},
+      actions: ['create', 'edit', 'destroy']
     )
     DEFAULT_POLICIES << test_policy
   end
 
-  def add_collaborator_policy(model, actions=["edit"])
+  def add_collaborator_policy(model, actions=['edit'])
 
   end
 
-  collaborator_policy = ->(model, actions=["edit"]) {
+  collaborator_policy = ->(model, actions=['edit']) {
     policy = Policy.new(name: "#{model.to_s.humanize} Collaborator", context: model.to_s)
-    policy.targets.build(conditions: { :includes => { :'*collaborators' =>  "*holder"  } }, actions: actions)
+    policy.targets.build(conditions: { :includes => { :'*collaborators' =>  '*holder'  } }, actions: actions)
     return policy
   }
 
   DEFAULT_POLICIES << collaborator_policy.(Department)
-  DEFAULT_POLICIES << collaborator_policy.(Course, ["create", "edit", "destroy"])
+  DEFAULT_POLICIES << collaborator_policy.(Course, ['create', 'edit', 'destroy'])
   DEFAULT_POLICIES << collaborator_policy.(Activity)
   DEFAULT_POLICIES << collaborator_policy.(Announcement)
   DEFAULT_POLICIES << collaborator_policy.(Link)
 
-  profile_policy = Policy.new(name: "Profile Management", context: User.to_s)
-  profile_policy.targets.build(conditions: { :equals => { :scram_compare_value => :'*holder' } }, actions: ["edit"])
+  profile_policy = Policy.new(name: 'Profile Management', context: User.to_s)
+  profile_policy.targets.build(conditions: { :equals => { :scram_compare_value => :'*holder' } }, actions: ['edit'])
   DEFAULT_POLICIES << profile_policy
 
   DEFAULT_POLICIES.freeze
@@ -49,7 +49,7 @@ module Scram
 
     # This likely won't be used, since it wouldn't make sense to store actions that only logged out users can perform
     def scram_compare_value
-      "default-holder"
+      'default-holder'
     end
   end
 

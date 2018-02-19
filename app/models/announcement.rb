@@ -11,14 +11,14 @@ class Announcement
   after_create :alert_subscribers
 
   belongs_to :announceable, polymorphic: true
-  belongs_to :poster, class_name: "User"
+  belongs_to :poster, class_name: 'User'
 
   validates_presence_of :name, :markdown
 
   scram_define do
     condition :collaborators do |announcement|
       if announcement.announceable.is_a? Concerns::Collaboratable
-        announcement.announceable.send("*collaborators")
+        announcement.announceable.send('*collaborators')
       else
         User.all.select{ |u| u.can?(:edit, announcement.announceable) }.map(&:scram_compare_value).to_a
       end

@@ -5,11 +5,11 @@ class SubscribableTestModel
 
   class Alert < Subscription::Alert
     def link
-      "i-love-tests"
+      'i-love-tests'
     end
 
     def rich_message
-      [{user: user, message: "The tests went well."}]
+      [{user: user, message: 'The tests went well.'}]
     end
   end
 end

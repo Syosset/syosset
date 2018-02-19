@@ -3,7 +3,7 @@ module Concerns
     extend ActiveSupport::Concern
 
     included do
-      has_many :escalation_requests, :as => :escalatable, :class_name => "EscalationRequest"
+      has_many :escalation_requests, :as => :escalatable, :class_name => 'EscalationRequest'
 
       before_destroy do
         escalation_requests.destroy_all

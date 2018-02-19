@@ -8,6 +8,6 @@ module NotFoundRedirect
 
   private
     def not_found
-      redirect_to root_path, :alert => "The page you requested does not exist."
+      redirect_to root_path, :alert => 'The page you requested does not exist.'
     end
 end

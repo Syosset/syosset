@@ -9,7 +9,7 @@ class Closure
   validates :content, length: { in: 16..128 }
 
   def self.active_closure
-    start_date = Time.now.in_time_zone("EST").hour >= 18 ? Date.tomorrow : Date.today
+    start_date = Time.now.in_time_zone('EST').hour >= 18 ? Date.tomorrow : Date.today
     Closure.where(:start_date.lte => start_date, :end_date.gte => Date.today).first
   end
 end

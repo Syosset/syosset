@@ -4,8 +4,8 @@ class User
     include ::Scram::Holder
 
     included do
-      # Sets up a relation where this user now stores "policy_ids". This is a one-way relationship!
-      has_and_belongs_to_many :policies, class_name: "Scram::Policy"
+      # Sets up a relation where this user now stores 'policy_ids'. This is a one-way relationship!
+      has_and_belongs_to_many :policies, class_name: 'Scram::Policy'
       # NOTE: This macro remaps the actual mongoid relation to be under the name user_policies, since we override it in
       #       User#policies to union in the DEFAULT_POLICIES
       alias_method :user_policies, :policies
@@ -36,7 +36,7 @@ class User
       end
 
       define_method :renew_admin do
-        raise "User is not an administrator" unless super_admin
+        raise 'User is not an administrator' unless super_admin
         $redis.set("user:#{self.id}:admin_until", 15.minutes.from_now.to_i)
       end
 
