@@ -1,8 +1,26 @@
 %section.section.section-padded
   .section-header
-    %h3
-      Edit User
+    %h3 Edit User
   .container-fluid
     .row-fluid
       = render 'admin_form'
       = link_to 'Back', users_path, class: "btn btn-warning pull-right"
+
+%section.section.section-padded
+  .section-header
+    %h3 Authorizations
+
+  .container-fluid
+    .table-responsive
+      %table.table
+        %thead
+          %tr
+            %th ID
+            %th Provider
+            %th Age
+        %tbody
+          - @user.authorizations.each do |authorization|
+            %tr
+              %td= authorization.id
+              %td= authorization.provider
+              %td= time_ago_in_words(authorization.created_at)
