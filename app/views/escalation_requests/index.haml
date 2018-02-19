@@ -44,11 +44,11 @@
                   = request.escalation_end_at
                 %td
                   %a.btn.btn-xs.btn-success{href: escalation_request_approve_path(request), data: {method: 'post'}}
-                    %i.fa.fa-check
+                    = fa_icon 'check'
                   %a.btn.btn-xs.btn-danger{href: escalation_request_deny_path(request), data: {method: 'post'}}
-                    %i.fa.fa-times
+                    = fa_icon 'times'
                   %a.btn.btn-xs.btn-primary{href: edit_escalation_request_path(request, "#{request.escalatable.class.to_s.downcase}_id" => request.escalatable.id )}
-                    %i.fa.fa-gear
+                    = fa_icon 'gear'
               %tr
                 %td.hiddenRow{colspan: "8"}
                   .collapse{class: "more_info#{index}"}

@@ -1,9 +1,9 @@
 .closure-info
   .closure-icon
     - if @active_closure.type == 'snow'
-      %i.fa.fa-snowflake-o
+      = fa_icon 'snowflake-o'
     - else
-      %i.fa.fa-exclamation-triangle
+      = fa_icon 'exclamation-triangle'
   .closure-content
     %p.dates
       Syosset High School is closed

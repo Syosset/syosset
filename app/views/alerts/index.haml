@@ -1,7 +1,7 @@
 %h1
   Your alerts
   %a.btn.btn-primary.pull-right{:href => read_all_alerts_path, :data => {:method => "post", :confirm => "Are you sure you want to mark all alerts as read?"}}
-    %i.fa.fa-tasks.fa-inverse
+    = fa_icon "tasks inverse"
     Mark all read
 %ul.list-group
   - @all_alerts.each do |alert|

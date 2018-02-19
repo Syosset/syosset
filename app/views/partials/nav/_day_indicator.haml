@@ -2,9 +2,9 @@
   .red-white-display
     = link_to "javascript:;", class: "day", tabindex: 0, role: :button, "data-trigger" => :focus, title: "Period Schedule", "data-content" => "#{render 'partials/nav/dynamic_schedule'}", "data-html" => :true, "data-placement" => :bottom , "data-toggle" => :popover, "data-container" => :nav do
       - unless @current_day.color == 'No Color'
-        %i.fa{class: "#{@current_day.color == "Red Day" ? "fa-map-o" : "fa-map"}"}
+        = fa_icon "#{@current_day.color == "Red Day" ? "map-o" : "map"}"
         Today is a
         = @current_day.color
       - else
-        %i.fa.fa-thumbs-up
+        = fa_icon 'thumbs-up'
         No school today

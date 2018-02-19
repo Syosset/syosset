@@ -1,4 +1,4 @@
 - unless badge.nil?
   .user-badge{style: "background-color: ##{badge.color};"}
-    %i.fa{class: badge.icon}
+    = fa_icon badge.icon.gsub('fa-', '') # TODO: migrate away from storing 'fa-' in the DB for font names
     = badge.name

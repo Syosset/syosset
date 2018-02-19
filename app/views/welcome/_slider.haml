@@ -13,6 +13,6 @@
                   - unless promotion.blurb.empty?
                     .cta
                       Click to read more
-                      %i.fa.fa-arrow-circle-o-right
+                      = fa_icon 'arrow-circle-o-right'
     - else
       = link_to t('promotions.none'), promotions_path, class: 'btn btn-warning'

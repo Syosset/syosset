@@ -2,7 +2,7 @@
   %li= link_to 'Integrations', integrations_path
   %li
     = link_to new_integration_path do
-      %i.fa.fa-plug
+      = fa_icon 'plug'
       Create Integration
   %li.active
     %i.fa{class: "fa-#{@integration.provider.fa_icon}"}

@@ -20,7 +20,7 @@
       %aside.page-sidebar.col-md-3.col-md-offset-1.col-sm-4.col-sm-offset-1
         %section.widget.has-divider
           %h3.title
-            %i.fa.fa-bell
+            = fa_icon "bell"
             = link_to "Announcements", announcements_path(activity_id: @activity.id)
           %ul.rankable.list-group
             - @activity.announcements.by_priority.limit(5).each do |announcement|
@@ -30,7 +30,7 @@
                 = link_to announcement.name.truncate(38), announcement
         %section.widget.has-divider
           %h3.title
-            %i.fa.fa-link
+            = fa_icon "link"
             = link_to "Links", links_path(activity_id: @activity.id)
           %ul.rankable.list-group
             - @activity.links.by_priority.limit(5).each do |link|
@@ -38,10 +38,10 @@
                 - if current_holder.can?(:edit, link)
                   %i.handle.fa.fa-sort{"aria-hidden" => "true"}
                   = link_to link_path(link), method: :delete, data: { confirm: 'Are you sure?' } do
-                    %i.fa.fa-times
+                    = fa_icon "times"
                   = link_to new_escalation_request_path(link_id: link) do
                     - if link.escalated?
-                      %i.fa.fa-star
+                      = fa_icon "star"
                     - else
-                      %i.fa.fa-star-o
+                      = fa_icon "star-o"
                 = link_to link.name, link.target

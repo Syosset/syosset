@@ -2,5 +2,5 @@
   #adminControl{data: {expiry: Current.user.admin_expiry}}
     .bucket.peek-link#adminContainer
       %span#adminTime
-      %i.fa.fa-shield#renew
-      %i.fa.fa-times#resign
+      = fa_icon 'shield', id: :renew
+      = fa_icon 'times', id: :resign

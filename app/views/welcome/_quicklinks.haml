@@ -4,23 +4,23 @@
       = link_to "Quick Links", links_path
       %small
         = link_to links_path do
-          %i.fa.fa-ellipsis-v
+          = fa_icon 'ellipsis-v'
           Click to see all
   .section-content
     %p
       %a{:href => "https://ic.syosset.k12.ny.us/"}
-        %i.fa.fa-institution
+        = fa_icon 'institution'
         Parent and Teacher Portal
     %p
       %a{:href => "https://portal.office.com/"}
-        %i.fa.fa-envelope
+        = fa_icon 'envelope'
         Teacher Email
     %p
       %a{:href => "http://www.syossetschools.org/Calendar/Default.aspx?period=monthgrid"}
-        %i.fa.fa-calendar
+        = fa_icon 'calendar'
         District Calendar
     - @links.each do |link|
       %p
         = link_to link[:target] do
-          %i.fa{class: link.icon.nil? ? "fa-link" : "#{link.icon}"}
+          = fa_icon (link.icon.nil? ? "link" : link.icon.gsub('fa-', '')) # TODO: Don't store icons in DB prefixed with fa-
           = link.name

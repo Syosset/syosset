@@ -12,7 +12,7 @@
           %br
           .contact
             %p.phone
-              %i.fa.fa-phone
+              = fa_icon 'phone'
               = t('contact.phone')
 
 %nav.main-nav{role: :navigation, class: Current.user.try(:admin_enabled?) ? 'dark' : ''}
@@ -40,7 +40,7 @@
         %li.nav-item.dropdown
           %a.dropdown-toggle{"data-close-others" => "false", "data-delay" => "0", "data-hover" => "dropdown", "data-toggle" => "dropdown", :href => "#"}
             = t('nav.departments')
-            %i.fa.fa-angle-down
+            = fa_icon 'angle-down'
           %ul.dropdown-menu
             - @departments_summary.each do |department|
               %li= link_to department.name, department
@@ -62,11 +62,11 @@
             = link_to user_path(Current.user) do
               - unless Current.user.onboarding_steps.empty?
                 %span.label.label-info.onboarding-alert
-                  %i.fa.fa-pencil-square
+                  = fa_icon 'pencil-square'
                   NEW
                 &nbsp;
               - if Current.user.admin_enabled?
-                %i.fa.fa-shield
+                = fa_icon 'shield'
               = Current.user.name
           %li.nav-item
             = link_to t('menu.account.sign_out'), logout_path, :method => :delete
@@ -74,18 +74,18 @@
           %li.nav-item
             = link_to '/auth/google_oauth2', class: 'btn-loader' do
               = t('menu.account.sign_in_with')
-              %i.fa.fa-google-plus-square
+              = fa_icon 'google-plus-square'
           - if Rails.env.development?
             %li.nav-item
               = link_to '/auth/developer', class: 'btn-loader' do
                 Authorize
-                %i.fa.fa-cog
+                = fa_icon 'cog'
         - if Current.user
           %li.nav-item.dropdown
             %a.dropdown-toggle{"data-close-others" => "false", "data-delay" => "0", "data-hover" => "dropdown", "data-toggle" => "dropdown", :href => "#"}
               %span.badge.visible-md-inline.visible-lg-inline{class: @alert_count > 0 ? "badge-warning" : ""}= @alert_count
               .visible-xs.visible-sm
-                %i.fa.fa-exclamation-circle
+                = fa_icon 'exclamation-circle'
                 Alerts
                 %b.caret
             %ul.dropdown-menu.dropdown-menu-right

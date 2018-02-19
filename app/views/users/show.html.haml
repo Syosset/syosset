@@ -29,11 +29,11 @@
           %ul.list-group
             - unless @user.badge.nil?
               %li.list-group-item
-                %i.fa{class: @user.badge.icon}
+                = fa_icon @user.badge.icon.gsub('fa-', '') # TODO: Don't store icons in db prefixed with fa-
                 .user-badge{style: "background-color: ##{@user.badge.color};"}
                   = @user.badge.name
             %li.list-group-item
-              %i.fa.fa-envelope
+              = fa_icon 'envelope'
               = @user.email
 
     .col-md-9
@@ -42,7 +42,7 @@
           %p.lead= @markdown.render(@user.bio).html_safe
       - else
         %p.no-bio
-          %i.fa.fa-pencil-square-o
+          = fa_icon 'pencil-square-o'
           This user does not have a bio.
   - if Current.user
     .row
