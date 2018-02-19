@@ -648,8 +648,6 @@ GEM
     fast-stemmer (1.0.2)
     ffi (1.9.21)
     flex-slider-rails (2.6.4.1)
-    font-awesome-rails (4.7.0.3)
-      railties (>= 3.2, < 5.2)
     formatador (0.2.5)
     gli (2.17.1)
     globalid (0.4.1)
@@ -1001,7 +999,6 @@ DEPENDENCIES
   factory_girl
   faraday (~> 0.12)
   flex-slider-rails (~> 2)
-  font-awesome-rails (~> 4)
   groupify (~> 0.9)
   guard-rspec
   haml-rails (~> 1)
