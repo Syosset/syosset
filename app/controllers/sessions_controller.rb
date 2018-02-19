@@ -3,6 +3,9 @@ class SessionsController < ApplicationController
   skip_before_action :verify_authenticity_token, on: :create
 
   def new
+    if Current.authorization
+      redirect_to root_path, alert: 'You are already logged in.'
+    end
   end
 
   def create
@@ -28,7 +31,7 @@ class SessionsController < ApplicationController
   end
 
   def failure
-    redirect_to new_session_path,
+    redirect_to login_path,
       alert: 'You need to allow access to your account! Don\'t worry, we can\'t do anything bad.'
   end
 
