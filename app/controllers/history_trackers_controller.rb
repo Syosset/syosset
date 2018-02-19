@@ -25,5 +25,4 @@ class HistoryTrackersController < ApplicationController
   def get_track
     @track = HistoryTracker.find(params[:id])
   end
-
 end

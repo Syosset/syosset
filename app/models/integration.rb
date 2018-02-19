@@ -30,5 +30,4 @@ class Integration
   def create_provider
     provider.send('new', options.symbolize_keys)
   end
-
 end

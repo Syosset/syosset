@@ -1,5 +1,4 @@
 class SessionsController < ApplicationController
-
   skip_before_action :verify_authenticity_token, on: :create
 
   def new
@@ -45,5 +44,4 @@ class SessionsController < ApplicationController
       session[:authorization_id] = authorization.id
       redirect_to root_path
     end
-
 end

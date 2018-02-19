@@ -1,5 +1,4 @@
 class AdminController < ApplicationController
-
   def index
     authorize :admin_panel, :view
   end
@@ -17,5 +16,4 @@ class AdminController < ApplicationController
     Current.user.resign_admin
     render :json => {admin_until: -1}
   end
-
 end

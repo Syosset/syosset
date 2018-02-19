@@ -53,5 +53,4 @@ class User
     end
     required
   end
-
 end

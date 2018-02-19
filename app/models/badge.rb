@@ -8,5 +8,4 @@ class Badge
   validates :name, length: { maximum: 20 }
   validates :color, length: { is: 6 }
   validates :icon, presence: true
-
 end

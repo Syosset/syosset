@@ -1,5 +1,4 @@
 class LinksController < ApplicationController
-
   before_action :get_linkable, only: [:index, :new, :create, :edit, :update]
   before_action :get_link, only: [:update, :destroy, :edit]
 

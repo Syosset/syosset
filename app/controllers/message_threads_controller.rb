@@ -33,5 +33,4 @@ class MessageThreadsController < ApplicationController
     def get_thread
       @thread = MessageThread.find(params[:id])
     end
-
 end

@@ -11,5 +11,4 @@ class IntegrationFailure
 
   # hash of parameters passed to the event
   field :parameters, type: Hash
-
 end

@@ -19,5 +19,4 @@ class Message
   def notify_spagett
     Integration.notify_all :on_support_message, message_id: self.id.to_s
   end
-
 end

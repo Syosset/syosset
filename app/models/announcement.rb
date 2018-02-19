@@ -51,5 +51,4 @@ class Announcement
       announceable.alert_subscribers(except: [poster], announcement: self, poster: poster)
     end
   end
-
 end

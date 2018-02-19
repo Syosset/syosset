@@ -34,5 +34,4 @@ class Day
   def is_set?
     !@color.nil?
   end
-
 end

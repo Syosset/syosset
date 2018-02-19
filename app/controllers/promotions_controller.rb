@@ -1,5 +1,4 @@
 class PromotionsController < ApplicationController
-
   before_action :get_promotion, only: [:show, :edit, :update, :destroy]
 
   def index

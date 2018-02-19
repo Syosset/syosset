@@ -1,5 +1,4 @@
 class CoursesController < ApplicationController
-
   before_action :get_course, only: [:show, :subscribe, :unsubscribe, :edit, :update, :destroy]
   before_action :get_department, only: [:index, :create, :new]
 
@@ -90,5 +89,4 @@ class CoursesController < ApplicationController
   def course_params
     params.require(:course).permit(:name, :course_id, :short_description, :markdown).merge(modifier: Current.user)
   end
-
 end

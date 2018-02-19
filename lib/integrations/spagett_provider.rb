@@ -41,7 +41,6 @@ module Syosset
         message = Message.find(params[:message_id])
         @connection.post "/threads/#{message.message_thread.id.to_s}/messages", message.to_json
       end
-
     end
   end
 end

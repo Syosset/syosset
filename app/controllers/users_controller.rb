@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-
   before_action :verify_admin, only: [:index, :admin_edit, :admin_update]
   before_action :find_user, only: [:show, :edit, :update, :admin_edit, :admin_update]
 

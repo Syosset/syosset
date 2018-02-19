@@ -28,5 +28,4 @@ class Link
   def link
     target
   end
-
 end

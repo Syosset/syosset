@@ -1,5 +1,4 @@
 class IntegrationValidator < ActiveModel::Validator
-
   def validate(record)
     raise "Unable to validate a model that isn't an integration." unless record.is_a? Integration
 
@@ -14,5 +13,4 @@ class IntegrationValidator < ActiveModel::Validator
       record.errors[:integration] << error.message.downcase
     end
   end
-
 end

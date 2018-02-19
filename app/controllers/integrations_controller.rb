@@ -73,5 +73,4 @@ class IntegrationsController < ApplicationController
   def integration_params
     params.require(:integration).permit(:provider, options: {})
   end
-
 end

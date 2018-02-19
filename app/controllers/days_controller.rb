@@ -31,5 +31,4 @@ class DaysController < ApplicationController
   def get_day
     @day = Day.today
   end
-
 end

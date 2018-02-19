@@ -16,5 +16,4 @@ class Promotion
   validates_attachment :picture, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png"] }
 
   track_history on: [:all]
-
 end

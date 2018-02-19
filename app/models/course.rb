@@ -29,5 +29,4 @@ class Course
   validates_presence_of :course_id, :name, :short_description, :markdown
 
   field :course_id, type: Integer
-
 end

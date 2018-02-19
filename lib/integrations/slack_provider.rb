@@ -44,7 +44,6 @@ module Syosset
           User count is at #{User.count}."
         @client.chat_postMessage(channel: @channel, text: message, as_user: true)
       end
-
     end
   end
 end

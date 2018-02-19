@@ -1,5 +1,4 @@
 class BadgesController < ApplicationController
-
   before_action :get_badge, only: [:edit, :update, :destroy]
 
   def index

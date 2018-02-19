@@ -1,5 +1,4 @@
 class ClosuresController < ApplicationController
-
   before_action :get_closure, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -58,5 +57,4 @@ class ClosuresController < ApplicationController
   def closure_params
     params.require(:closure).permit(:start_date, :end_date, :type, :content)
   end
-
 end

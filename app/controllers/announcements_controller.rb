@@ -1,5 +1,4 @@
 class AnnouncementsController < ApplicationController
-
   before_action :get_announcement, only: [:show, :update, :destroy, :edit]
   before_action :get_announceable, only: [:index, :new, :create, :edit, :update]
 

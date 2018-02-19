@@ -19,5 +19,4 @@ class MessageThread
       self.update(notified: true)
     end
   end
-
 end

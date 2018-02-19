@@ -1,5 +1,4 @@
 class PeriodsController < ApplicationController
-
   before_action :get_user
   before_action :check_staff, except: [:index]
   before_action :get_period, only: [:edit, :update, :destroy]
@@ -72,6 +71,4 @@ class PeriodsController < ApplicationController
     def get_user_courses
       @courses = CollaboratorGroup.with_member(@user).select {|x| x.collaboratable.is_a? Course }.map(&:collaboratable)
     end
-
-
 end

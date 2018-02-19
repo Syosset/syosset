@@ -81,6 +81,4 @@ class EscalationRequest
   def self.request_for(escalatable)
     EscalationRequest.where(escalatable: escalatable).first
   end
-
-
 end
