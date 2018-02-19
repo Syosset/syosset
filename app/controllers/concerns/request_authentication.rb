@@ -1,8 +1,14 @@
-module RequestAuthorization
+module RequestAuthentication
   extend ActiveSupport::Concern
 
   included do
     before_action :fetch_authorization
+  end
+
+  def authenticate!
+    unless Current.authorization
+      redirect_to new_session_path, notice: 'You need to be signed in to do this.'
+    end
   end
 
   private

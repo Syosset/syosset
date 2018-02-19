@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  include RequestAuthorization
+  include RequestAuthentication
   include RavenContext
   include NotFoundRedirect
   include CachedResources

@@ -1,5 +1,5 @@
 class AlertsController < ApplicationController
-  before_action :ensure_signed_in
+  before_action :authenticate!
 
   def index
     @all_alerts = Alert.user(Current.user).desc(:updated_at)
@@ -21,9 +21,4 @@ class AlertsController < ApplicationController
     Alert.user(Current.user).mark_read!
     redirect_to alerts_path, alert: "Marked all alerts as read"
   end
-
-  private
-    def ensure_signed_in
-      redirect_to new_session_path, :alert => 'You must be signed in to do this.' unless Current.user
-    end
 end

@@ -1,5 +1,5 @@
 class MessageThreadsController < ApplicationController
-  before_action :authenticate_user!, except: [:send_message]
+  before_action :authenticate!, except: [:send_message]
   skip_before_action :verify_authenticity_token, only: [:send_message]
   before_action :get_thread, only: [:read_messages, :send_message]
 
