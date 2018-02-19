@@ -8,9 +8,7 @@ class WelcomeController < ApplicationController
   end
 
   def landing
-    unless Current.user
-      expires_in 5.minutes, public: true
-    end
+    expires_in 5.minutes, public: true unless Current.user
   end
 
   def status

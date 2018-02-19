@@ -71,9 +71,7 @@ class EscalationRequestsController < ApplicationController
 
   def get_escalatable
     params.each do |name, value|
-      if name =~ /(.+)_id$/
-        return @escalatable =  $1.classify.constantize.find(value)
-      end
+      return @escalatable =  $1.classify.constantize.find(value) if name =~ /(.+)_id$/
     end
     nil
     redirect_to root_path, flash: {:alert => "Escalation requests can only be made from an escalatable."}

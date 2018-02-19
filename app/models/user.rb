@@ -44,12 +44,8 @@ class User
   def onboarding_steps
     required = []
     if staff?
-      unless picture.present?
-        required << :picture
-      end
-      if bio.empty?
-        required << :bio
-      end
+      required << :picture unless picture.present?
+      required << :bio if bio.empty?
     end
     required
   end

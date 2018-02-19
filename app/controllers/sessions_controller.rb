@@ -2,9 +2,7 @@ class SessionsController < ApplicationController
   skip_before_action :verify_authenticity_token, on: :create
 
   def new
-    if Current.authorization
-      redirect_to root_path, alert: 'You are already logged in.'
-    end
+    redirect_to root_path, alert: 'You are already logged in.' if Current.authorization
   end
 
   def create
@@ -16,10 +14,7 @@ class SessionsController < ApplicationController
     else
       info = auth_hash['info']
       @user = User.where(email: info['email']).first
-
-      unless @user
-        @user = User.new name: info['name'], email: info['email']
-      end
+      @user = User.new name: info['name'], email: info['email'] unless @user
 
       @auth = @user.authorizations.build provider: auth_hash['provider'], uid: auth_hash['uid']
       @user.save

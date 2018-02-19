@@ -31,9 +31,8 @@ module ScramUtils
         "update" => "edit"
       }
       action = automap[action] if automap[action]
-      unless holder.can?(action, object)
-        raise NotAuthorizedError, action: action, object: object
-      end
+
+      raise NotAuthorizedError, action: action, object: object unless holder.can?(action, object)
 
       object
     end

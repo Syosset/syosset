@@ -5,9 +5,7 @@ class DepartmentsController < ApplicationController
     @order_mode = Current.user.try(:admin_enabled?)
 
     @departments = Department.full_text_search(params[:search], allow_empty_search: true).by_priority
-    unless @order_mode
-      @departments = @departments.page params[:page]
-    end
+    @departments = @departments.page params[:page] unless @order_mode
 
     actions_builder = ActionsBuilder.new(current_holder)
     actions_builder.require(:create, @department).add_action("New Department", :get, new_department_path(@department))

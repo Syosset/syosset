@@ -5,9 +5,7 @@ class PeriodsController < ApplicationController
   before_action :get_user_courses, only: [:new, :edit]
 
   def index
-    unless Current.user
-      redirect_to root_path, alert: "Only students may view schedules."
-    end
+    redirect_to root_path, alert: "Only students may view schedules." unless Current.user
 
     unless @user.staff?
       redirect_back fallback_location: root_path, alert: "Only staff can have schedules."
@@ -47,9 +45,7 @@ class PeriodsController < ApplicationController
 
   private
     def check_staff
-      unless Current.user.staff?
-        redirect_back fallback_location: root_path, alert: "Only staff can have schedules."
-      end
+      redirect_back fallback_location: root_path, alert: "Only staff can have schedules." unless Current.user.staff?
     end
 
     def get_user
@@ -58,9 +54,8 @@ class PeriodsController < ApplicationController
 
     def period_params
       pp = params.require(:period).permit(:period, :course, :room)
-      unless pp[:course].nil?
-        pp[:course] = Course.find(pp[:course])
-      end
+      pp[:course] = Course.find(pp[:course]) unless pp[:course].nil?
+
       pp
     end
 

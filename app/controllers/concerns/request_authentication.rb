@@ -6,9 +6,7 @@ module RequestAuthentication
   end
 
   def authenticate!
-    unless Current.authorization
-      redirect_to login_path, notice: 'You need to be signed in to do this.'
-    end
+    redirect_to login_path, notice: 'You need to be signed in to do this.' unless Current.authorization
   end
 
   private

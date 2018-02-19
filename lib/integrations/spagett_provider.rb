@@ -4,10 +4,8 @@ module Syosset
       include IntegrationProvider
 
       def initialize(opts = {})
-        unless opts and opts.key? :host
-          raise "Host must be provided."
-        end
-
+        raise "Host must be provided." unless opts and opts.key? :host
+  
         @connection = Faraday.new(url: opts[:host])
       end
 

@@ -84,9 +84,7 @@ class AnnouncementsController < ApplicationController
 
   def get_announceable
     params.each do |name, value|
-      if name =~ /(.+)_id$/
-        return @announceable =  $1.classify.constantize.find(value)
-      end
+      return @announceable =  $1.classify.constantize.find(value) if name =~ /(.+)_id$/
     end
     nil
   end

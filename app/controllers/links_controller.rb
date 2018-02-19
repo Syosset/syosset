@@ -62,9 +62,7 @@ class LinksController < ApplicationController
   private
   def get_linkable
     params.each do |name, value|
-      if name =~ /(.+)_id$/
-        return @linkable =  $1.classify.constantize.find(value)
-      end
+      return @linkable =  $1.classify.constantize.find(value) if name =~ /(.+)_id$/
     end
     if params[:action] == 'create' || params[:action] == 'new'
       redirect_to root_path, flash: {:alert => "Links can only be created from an linkable."}

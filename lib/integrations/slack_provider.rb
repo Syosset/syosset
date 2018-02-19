@@ -4,15 +4,11 @@ module Syosset
       include IntegrationProvider
 
       def initialize(opts = {})
-        unless opts and opts.key? :token
-          raise "Token must be provided."
-        end
+        raise "Token must be provided." unless opts and opts.key? :token
 
         @client = ::Slack::Web::Client.new(opts)
         begin
-          unless @client.api_test['ok']
-            raise 'failure'
-          end
+          raise 'failure' unless @client.api_test['ok']
         rescue Exception
           raise 'Token is not valid.'
         end

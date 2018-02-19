@@ -8,9 +8,7 @@ module Azure
       if (desc = $redis.get(redis_key = "azure:cognitive_services:#{image_url}:alt_description")).nil?
         region = ENV['AZURE_REGION'] || 'eastus'
         key = ENV['AZURE_COGNITIVE_SERVICES_KEY']
-        if key.nil?
-          return nil
-        end
+        return nil if key.nil?
 
         uri = URI("https://#{region}.api.cognitive.microsoft.com/vision/v1.0/describe")
 
