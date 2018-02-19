@@ -36,11 +36,11 @@
               %td
                 - if current_holder.can?(:delete, link)
                   = link_to link_path(link), method: :delete do
-                    %i.fa.fa-times
+                    = fa_icon 'times'
                 - if link.escalated?
-                  %i.fa.fa-star
+                  = fa_icon 'star'
                 - else
-                  %i.fa.fa-star-o
+                  = fa_icon 'star-o'
               - unless @linkable
                 - linkable = link.linkable
                 %td= link_to "#{linkable.send("name") || "a #{linkable.class.to_s.humanize}"}", linkable

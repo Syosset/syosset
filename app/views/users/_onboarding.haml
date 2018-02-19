@@ -5,18 +5,18 @@
   = link_to edit_user_path do
     - if @onboarding.include? :picture
       .step
-        %i.fa.fa-cloud-upload
+        = fa_icon 'cloud-upload'
         .prompt Upload a profile picture.
     - else
       .step.complete
-        %i.fa.fa-check
+        = fa_icon 'check'
         .prompt You've uploaded a profile picture. Looking great!
 
     - if @onboarding.include? :bio
       .step
-        %i.fa.fa-pencil-square-o
+        = fa_icon 'pencil-square-o'
         .prompt Tell us about yourself! Write a bio.
     - else
       .step.complete
-        %i.fa.fa-check
+        = fa_icon 'check'
         .prompt You've written a bio.

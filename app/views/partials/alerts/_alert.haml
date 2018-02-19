@@ -1,6 +1,6 @@
 %a{href: alert_path(alert)}
     - if alert.read?
-        %i.fa.fa-eye
+        = fa_icon 'eye'
     - alert.rich_message.each do |element|
         - if element[:user]
             = element[:user].name

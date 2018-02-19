@@ -6,13 +6,13 @@
     #start-date.input-group.date
       = f.text_field :start_date, class: "form-control", placeholder: "First day of closure"
       %span.input-group-addon
-        %i.fa.fa-calendar
+        = fa_icon 'calendar'
   .form-group
     = f.label :end_date
     #end-date.input-group.date
       = f.text_field :end_date, class: "form-control", placeholder: "Last day of closure"
       %span.input-group-addon
-        %i.fa.fa-calendar
+        = fa_icon 'calendar'
   .form-group
     = f.label :type, 'Type'
     = f.select :type, ['none', 'snow'], class: "form-control"

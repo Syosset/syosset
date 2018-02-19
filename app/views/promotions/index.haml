@@ -10,7 +10,7 @@
             %td
               %i.handle.fa.fa-sort{"aria-hidden" => "true"}
               = link_to edit_promotion_path(promotion) do
-                %i.fa.fa-pencil
+                = fa_icon 'pencil'
             %td
               = image_tag promotion.picture.url(:thumb)
             %td

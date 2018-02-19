@@ -9,13 +9,13 @@
       #datetimepicker_start.input-group.date
         = f.text_field("escalation_start_at", class: "form-control", placeholder: "Start frontpage visibilty date")
         %span.input-group-addon
-          %i.fa.fa-calendar
+          = fa_icon 'calendar'
     .form-group.col-md-6
       = f.label :escalation_end_at, "End Date"
       #datetimepicker_end.input-group.date
         = f.text_field("escalation_end_at", class: "form-control", placeholder: "End frontpage visibilty date")
         %span.input-group-addon
-          %i.fa.fa-calendar
+          = fa_icon 'calendar'
   = f.submit "Save Escalation Request", class: "btn btn-success pull-right", id: "submit-button"
 
 

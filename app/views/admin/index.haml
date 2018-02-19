@@ -10,23 +10,23 @@
     %small announcements
 
 = link_to escalation_requests_path, class: "btn btn-admin" do
-  %i.fa.fa-star
+  = fa_icon "star"
   View Escalation Requests
 = link_to users_path, class: "btn btn-admin" do
-  %i.fa.fa-user
+  = fa_icon "user"
   Manage Users
 = link_to badges_path, class: "btn btn-admin" do
-  %i.fa.fa-shield
+  = fa_icon "shield"
   Manage Badges
 = link_to closures_path, class: "btn btn-admin" do
-  %i.fa.fa-snowflake-o
+  = fa_icon "snowflake-o"
   Manage Closures
 = link_to edit_day_path, class: "btn btn-admin" do
-  %i.fa.fa-calendar
+  = fa_icon "calendar"
   Update Day Color
 = link_to promotions_path, class: "btn btn-admin" do
-  %i.fa.fa-home
+  = fa_icon "home"
   Manage Promotions
 = link_to integrations_path, class: "btn btn-admin" do
-  %i.fa.fa-plug
+  = fa_icon "plug"
   Manage Integrations

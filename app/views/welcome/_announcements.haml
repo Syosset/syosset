@@ -4,13 +4,13 @@
       = link_to t('.announcements'), announcements_path
       %small
         = link_to announcements_path do
-          %i.fa.fa-ellipsis-v
+          = fa_icon 'ellipsis-v'
           Click to see all
   .carousel-controls
     %a.prev{"data-slide" => "prev", :href => "#news-carousel"}
-      %i.fa.fa-caret-left
+      = fa_icon 'caret-left'
     %a.next{"data-slide" => "next", :href => "#news-carousel"}
-      %i.fa.fa-caret-right
+      = fa_icon 'caret-right'
   .section-content.clearfix
     #news-carousel.news-carousel.carousel.slide
       .carousel-inner
@@ -23,4 +23,4 @@
                 %p= truncate(strip_tags(announcement.markdown.blank? ? announcement.content : @markdown.render(announcement.markdown)), length: 140)
                 = link_to announcement do
                   Read more
-                  %i.fa.fa-chevron-right
+                  = fa_icon 'chevron-right'
