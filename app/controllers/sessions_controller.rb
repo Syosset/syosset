@@ -21,6 +21,8 @@ class SessionsController < ApplicationController
 
       @auth = @user.authorizations.build provider: auth_hash['provider'], uid: auth_hash['uid']
       @user.save
+
+      Integration.notify_all :user_signed_in, authorization_id: @auth.id.to_s
       sign_in_and_redirect @auth
     end
   end

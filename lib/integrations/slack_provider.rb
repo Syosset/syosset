@@ -37,8 +37,11 @@ module Syosset
       end
 
       def user_signed_in(params)
-        user = User.find(params[:user_id])
-        message = "*#{user.name}* (#{user.email}) just signed in with Google. User count is at #{User.count}."
+        authorization = Authorization.find(params[:authorization_id])
+        user = authorization.user
+
+        message = "*#{user.name}* (#{user.email}) just signed in with #{authorization.provider}.
+          User count is at #{User.count}."
         @client.chat_postMessage(channel: @channel, text: message, as_user: true)
       end
 
