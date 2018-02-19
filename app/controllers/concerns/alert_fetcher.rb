@@ -6,17 +6,18 @@ module AlertFetcher
   end
 
   private
-    def fetch_alerts
-      if Current.user
-        q = Current.user.alerts.unread.desc(:updated_at)
-        @alerts = q.lazy.select(&:valid?).take(26).to_a
 
-        if @alerts.size <= 25
-          @alert_count = @alerts.size
-        else
-          @alerts = @alerts.take(25)
-          @alert_count = q.count
-        end
+  def fetch_alerts
+    if Current.user
+      q = Current.user.alerts.unread.desc(:updated_at)
+      @alerts = q.lazy.select(&:valid?).take(26).to_a
+
+      if @alerts.size <= 25
+        @alert_count = @alerts.size
+      else
+        @alerts = @alerts.take(25)
+        @alert_count = q.count
       end
     end
+  end
 end

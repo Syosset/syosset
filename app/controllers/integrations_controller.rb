@@ -1,6 +1,6 @@
 class IntegrationsController < ApplicationController
   before_action :verify_admin
-  before_action :get_integration, only: [:clear_failures, :edit, :update, :destroy]
+  before_action :get_integration, only: %i[clear_failures edit update destroy]
 
   def index
     @integrations = Integration.all
@@ -26,7 +26,11 @@ class IntegrationsController < ApplicationController
 
     if @integration.save
       flash[:notice] = 'Integration successfully created.'
-      redirect_to edit_integration_path(@integration) rescue redirect_to integrations_path
+      begin
+        redirect_to edit_integration_path(@integration)
+      rescue StandardError
+        redirect_to integrations_path
+      end
     else
       flash.now[:alert] = @integration.errors.full_messages.first
       render action: 'new'
@@ -40,8 +44,7 @@ class IntegrationsController < ApplicationController
     redirect_to edit_integration_path(@integration), notice: 'Cleared all failures.'
   end
 
-  def edit
-  end
+  def edit; end
 
   def destroy
     $redis.decrby('integration_failures', @integration.failures.count)
@@ -56,7 +59,7 @@ class IntegrationsController < ApplicationController
       flash[:notice] = 'Successfully updated integration.'
       redirect_to edit_integration_path(@integration)
     else
-      render :action => 'edit'
+      render action: 'edit'
     end
   end
 

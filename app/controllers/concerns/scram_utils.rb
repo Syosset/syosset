@@ -39,17 +39,17 @@ module ScramUtils
   end
 
   def current_holder
-    if params['token']
-      holder = Token.where(key: params['token']).first.user
-    else
-      holder = Current.user ? Current.user : Scram::DEFAULT_HOLDER
-    end
+    holder = if params['token']
+               Token.where(key: params['token']).first.user
+             else
+               Current.user ? Current.user : Scram::DEFAULT_HOLDER
+             end
 
-    return holder
+    holder
   end
 
   def authorize(object, action = nil)
     action ||= params[:action].to_s
-    return ScramUtils.authorize(current_holder, action, object)
+    ScramUtils.authorize(current_holder, action, object)
   end
 end

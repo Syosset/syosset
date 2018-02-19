@@ -5,7 +5,7 @@ class Subscription
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  field :unsubscribed, :type => Boolean, :default => false
+  field :unsubscribed, type: Boolean, default: false
   scope :active, -> { where(:unsubscribed.ne => true) }
 
   def active?
@@ -15,7 +15,7 @@ class Subscription
   belongs_to :subscribable, polymorphic: true, index: true
 
   belongs_to :user, index: true
-  scope :user, -> (value) { where(user: value) }
+  scope :user, ->(value) { where(user: value) }
 
   class Alert < ::Alert
     belongs_to :subscription, index: true, validate: true
@@ -36,7 +36,7 @@ class Subscription
     # Combine a newer alert for the same subscription into this one.
     # Return true if the new alert should be kept, false to discard it.
     # The base implementation destroys self and returns true.
-    def combine(newer)
+    def combine(_newer)
       destroy
       true
     end
@@ -51,7 +51,7 @@ class Subscription
   validates_presence_of :subscribable
 
   # Pass the class of the subscribable
-  scope :subscribable_type, -> (type) { where(subscribable_type: type.name) }
+  scope :subscribable_type, ->(type) { where(subscribable_type: type.name) }
 
   class << self
     def alerts

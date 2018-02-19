@@ -8,6 +8,7 @@ class AttachmentsController < ApplicationController
   end
 
   private
+
   def get_attachable
     @attachable = params[:attachable_type].classify.constantize.find(params[:attachable_id])
   end

@@ -15,13 +15,13 @@ RSpec.describe DepartmentsController do
   describe 'GET #show' do
     it 'assigns the requested department to @department' do
       department = create(:department)
-      get :show, params: {id: department}
+      get :show, params: { id: department }
       expect(assigns(:department)).to eq(department)
     end
 
     it 'renders the #show view' do
       department = create(:department)
-      get :show, params: {id: department}
+      get :show, params: { id: department }
       expect(response).to render_template :show
     end
   end

@@ -5,7 +5,7 @@ module ApplicationHelper
 
   def svg(name)
     file_path = "#{Rails.root}/app/assets/images/#{name}.svg"
-    return File.read(file_path).html_safe if File.exists?(file_path)
+    return File.read(file_path).html_safe if File.exist?(file_path)
     '(not found)'
   end
 
@@ -42,8 +42,8 @@ module ApplicationHelper
 
   def diff(content1, content2)
     changes = Diffy::Diff.new(content1, content2,
-                             include_plus_and_minus_in_html: true,
-                             include_diff_info: true)
+                              include_plus_and_minus_in_html: true,
+                              include_diff_info: true)
     changes.to_s.present? ? changes.to_s(:html).html_safe : 'No Changes'
   end
 end

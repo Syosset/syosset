@@ -16,8 +16,8 @@ class ActionsBuilder
   # Chainable method to only add an action if a user has some permission
   # Queues up all the needed permissions into required_permissions for checking when `add_action` is finally called
   def require(node, context)
-    @required_permissions << {node: node, context: context}
-    return self
+    @required_permissions << { node: node, context: context }
+    self
   end
 
   # Adds an action to the set of actions
@@ -36,7 +36,6 @@ class ActionsBuilder
 
     action = [text, method, path, options]
     actions << action
-    return action
-
+    action
   end
 end

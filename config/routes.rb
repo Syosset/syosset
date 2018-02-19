@@ -10,11 +10,11 @@ Rails.application.routes.draw do
   # Authentication
   get '/login' => 'sessions#new'
   delete '/logout' => 'sessions#destroy'
-  match '/auth/:provider/callback' => 'sessions#create', via: [:get, :post]
+  match '/auth/:provider/callback' => 'sessions#create', via: %i[get post]
   get '/auth/failure' => 'sessions#failure'
 
   # Users
-  resources :users, only: [:index, :new, :show, :edit, :update] do
+  resources :users, only: %i[index new show edit update] do
     get '/admin/edit' => 'users#admin_edit'
     patch '/admin' => 'users#admin_update'
     post :populate, on: :collection # create multiple users and assign to collaborator groups
@@ -56,7 +56,7 @@ Rails.application.routes.draw do
   end
 
   # Collaborator Management
-  resources :collaborator_groups, only: [:edit, :update] do
+  resources :collaborator_groups, only: %i[edit update] do
     post 'add_collaborator', action: :add_collaborator, as: :add_collaborator
     post 'remove_collaborator', action: :remove_collaborator, as: :remove_collaborator
   end
@@ -67,7 +67,7 @@ Rails.application.routes.draw do
   post 'admin/resign' => 'admin#resign'
 
   # Day Color and Closures
-  resource :day, only: [:show, :edit, :update] do
+  resource :day, only: %i[show edit update] do
     post 'fetch'
   end
 
@@ -76,7 +76,7 @@ Rails.application.routes.draw do
   # Promotions
   resources :promotions
 
-  # Badge Management
+  #  Badge Management
   resources :badges, except: [:show]
 
   # Integration Management
@@ -90,7 +90,7 @@ Rails.application.routes.draw do
   post '/threads/:id/messages' => 'message_threads#send_message'
 
   # Auditing
-  resources :history_trackers, only: [:index, :show]
+  resources :history_trackers, only: %i[index show]
 
   # Autocomplete AJAX
   get 'autocomplete', to: 'application#autocomplete'

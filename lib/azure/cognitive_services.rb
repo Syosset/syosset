@@ -15,17 +15,17 @@ module Azure
         request = Net::HTTP::Post.new(uri.request_uri)
         request['Content-Type'] = 'application/json'
         request['Ocp-Apim-Subscription-Key'] = key
-        request.body = {url: image_url}.to_json
+        request.body = { url: image_url }.to_json
 
         response = Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == 'https') do |http|
           http.request(request)
         end
 
-        if response.kind_of? Net::HTTPSuccess
-          desc = JSON.parse(response.body)['description']['captions'][0]['text']
-        else
-          desc = 'Unlabeled image'
-        end
+        desc = if response.is_a? Net::HTTPSuccess
+                 JSON.parse(response.body)['description']['captions'][0]['text']
+               else
+                 'Unlabeled image'
+               end
 
         $redis.set(redis_key, desc)
         $redis.expire(redis_key, 12.hours)

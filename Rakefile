@@ -6,5 +6,4 @@ require 'resque/tasks'
 
 task 'resque:setup' => :environment
 
-
 Rails.application.load_tasks

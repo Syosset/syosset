@@ -1,16 +1,16 @@
 class PeriodsController < ApplicationController
   before_action :get_user
   before_action :check_staff, except: [:index]
-  before_action :get_period, only: [:edit, :update, :destroy]
-  before_action :get_user_courses, only: [:new, :edit]
+  before_action :get_period, only: %i[edit update destroy]
+  before_action :get_user_courses, only: %i[new edit]
 
   def index
     redirect_to root_path, alert: 'Only students may view schedules.' unless Current.user
 
-    unless @user.staff?
-      redirect_back fallback_location: root_path, alert: 'Only staff can have schedules.'
-    else
+    if @user.staff?
       @periods = @user.periods.asc(:period)
+    else
+      redirect_back fallback_location: root_path, alert: 'Only staff can have schedules.'
     end
   end
 
@@ -44,26 +44,27 @@ class PeriodsController < ApplicationController
   end
 
   private
-    def check_staff
-      redirect_back fallback_location: root_path, alert: 'Only staff can have schedules.' unless Current.user.staff?
-    end
 
-    def get_user
-      @user = User.find(params[:user_id])
-    end
+  def check_staff
+    redirect_back fallback_location: root_path, alert: 'Only staff can have schedules.' unless Current.user.staff?
+  end
 
-    def period_params
-      pp = params.require(:period).permit(:period, :course, :room)
-      pp[:course] = Course.find(pp[:course]) unless pp[:course].nil?
+  def get_user
+    @user = User.find(params[:user_id])
+  end
 
-      pp
-    end
+  def period_params
+    pp = params.require(:period).permit(:period, :course, :room)
+    pp[:course] = Course.find(pp[:course]) unless pp[:course].nil?
 
-    def get_period
-      @period = Period.find(params[:id])
-    end
+    pp
+  end
 
-    def get_user_courses
-      @courses = CollaboratorGroup.with_member(@user).select { |x| x.collaboratable.is_a? Course }.map(&:collaboratable)
-    end
+  def get_period
+    @period = Period.find(params[:id])
+  end
+
+  def get_user_courses
+    @courses = CollaboratorGroup.with_member(@user).select { |x| x.collaboratable.is_a? Course }.map(&:collaboratable)
+  end
 end

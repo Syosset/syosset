@@ -1,5 +1,5 @@
 class BadgesController < ApplicationController
-  before_action :get_badge, only: [:edit, :update, :destroy]
+  before_action :get_badge, only: %i[edit update destroy]
 
   def index
     @badges = Badge.all

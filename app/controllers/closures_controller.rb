@@ -1,8 +1,8 @@
 class ClosuresController < ApplicationController
-  before_action :get_closure, only: [:show, :edit, :update, :destroy]
+  before_action :get_closure, only: %i[show edit update destroy]
 
   def index
-    @closures = Closure.all.order([:start_date, :asc])
+    @closures = Closure.all.order(%i[start_date asc])
 
     respond_to do |format|
       format.html
@@ -10,8 +10,7 @@ class ClosuresController < ApplicationController
     end
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @closure = Closure.new

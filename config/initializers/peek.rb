@@ -1,13 +1,11 @@
 module Peek::Views
   class Admin < View
     # admin toggle view
-    def initialize(options = {})
-    end
+    def initialize(options = {}); end
   end
   class IntegrationFailures < View
     # integration failure count
-    def initialize(options = {})
-    end
+    def initialize(options = {}); end
 
     def failure_count
       $redis.get('integration_failures') || 0

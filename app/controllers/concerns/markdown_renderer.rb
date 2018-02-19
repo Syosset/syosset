@@ -6,7 +6,8 @@ module MarkdownRenderer
   end
 
   private
-    def create_markdown_renderer
-      @markdown = Redcarpet::Markdown.new(SyossetRenderer.new(filter_html: true), tables: true)
-    end
+
+  def create_markdown_renderer
+    @markdown = Redcarpet::Markdown.new(SyossetRenderer.new(filter_html: true), tables: true)
+  end
 end

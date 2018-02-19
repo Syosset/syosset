@@ -9,7 +9,7 @@ class SubscribableTestModel
     end
 
     def rich_message
-      [{user: user, message: 'The tests went well.'}]
+      [{ user: user, message: 'The tests went well.' }]
     end
   end
 end

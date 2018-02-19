@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :verify_admin, only: [:index, :admin_edit, :admin_update]
-  before_action :find_user, only: [:show, :edit, :update, :admin_edit, :admin_update]
+  before_action :verify_admin, only: %i[index admin_edit admin_update]
+  before_action :find_user, only: %i[show edit update admin_edit admin_update]
 
   def show
     @user = User.find(params[:id])
@@ -10,18 +10,18 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.all.includes(:badge).order([:super_admin, :desc], [:bot, :desc]).page(params[:page])
+    @users = User.all.includes(:badge).order(%i[super_admin desc], %i[bot desc]).page(params[:page])
   end
 
   def autocomplete
-    if params[:term]
-      @users = User.any_of({name: /.*#{params[:term]}.*/i}, {email: /.*#{params[:term]}.*/i}).limit(5)
-    else
-      @users = User.all
-    end
+    @users = if params[:term]
+               User.any_of({ name: /.*#{params[:term]}.*/i }, email: /.*#{params[:term]}.*/i).limit(5)
+             else
+               User.all
+             end
 
     respond_to do |format|
-      format.json { render :json => @users.map{ |u| {value: u.id.to_s, label: u.name, desc: u.email} }.to_json }
+      format.json { render json: @users.map { |u| { value: u.id.to_s, label: u.name, desc: u.email } }.to_json }
     end
   end
 
@@ -34,20 +34,19 @@ class UsersController < ApplicationController
 
     # parses users input and generates emails for users with only a name provided
     users = params[:users].split("\n").map { |u| u.split(', ') }
-      .map { |u| u.size == 1 ? [u[0], (u[0][0] + u[0].split(' ')[1] + '@syosset.k12.ny.us').downcase] : u }
-      .map { |u| User.find_or_create_by(email: u[1]) { |u1| u1.name = u[0] } }
+                          .map { |u| u.size == 1 ? [u[0], (u[0][0] + u[0].split(' ')[1] + '@syosset.k12.ny.us').downcase] : u }
+                          .map { |u| User.find_or_create_by(email: u[1]) { |u1| u1.name = u[0] } }
 
-    unless params[:collaborator_group].empty?
+    if params[:collaborator_group].empty?
+      redirect_to users_path, notice: "#{users.size} users created."
+    else
       group = CollaboratorGroup.find(params[:collaborator_group])
       users.each { |u| group.add u }
       redirect_to users_path, notice: "#{users.size} users created and added to #{group.collaboratable.name}."
-    else
-      redirect_to users_path, notice: "#{users.size} users created."
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     authorize Current.user
@@ -58,20 +57,19 @@ class UsersController < ApplicationController
     end
   end
 
-
-  def admin_edit
-  end
+  def admin_edit; end
 
   def admin_update
     if @user.update_attributes(params.require(:user).permit(:name, :badge, :picture, :bio, :super_admin))
       flash[:notice] = 'Successfully updated User.'
       redirect_to users_path
     else
-      render :action => 'edit'
+      render action: 'edit'
     end
   end
 
   private
+
   def verify_admin
     authorize :admin_panel, :users
   end

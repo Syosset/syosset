@@ -6,7 +6,7 @@ module Concerns
     extend ActiveSupport::Concern
 
     included do
-      has_many :subscriptions, :as => :subscribable, :class_name => 'Subscription'
+      has_many :subscriptions, as: :subscribable, class_name: 'Subscription'
 
       before_destroy do
         subscriptions.destroy_all
@@ -14,7 +14,7 @@ module Concerns
     end
 
     def link
-        # No link
+      # No link
     end
 
     # Return the subclass of Subscription::Alert to send for subscriptions
@@ -26,7 +26,7 @@ module Concerns
 
     # Can the given user view this object? This will be checked before each
     # alert is sent to the subscriber.
-    def can_view?(user)
+    def can_view?(_user)
       true
     end
 

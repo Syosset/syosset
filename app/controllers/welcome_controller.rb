@@ -1,21 +1,20 @@
 class WelcomeController < ApplicationController
-  before_action :get_information, only: [:index, :landing]
+  before_action :get_information, only: %i[index landing]
 
-  def index
-  end
+  def index; end
 
-  def about
-  end
+  def about; end
 
   def landing
     expires_in 5.minutes, public: true unless Current.user
   end
 
   def status
-    render json: {ok: true}
+    render json: { ok: true }
   end
 
   private
+
   def get_information
     @announcements = Rails.cache.fetch('announcements', expires_in: 5.minutes) do
       # First 8 escalated announcements, padded with latest if there are less than 8

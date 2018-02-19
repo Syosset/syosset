@@ -1,17 +1,17 @@
 class CollaboratorGroupsController < ApplicationController
   before_action :find_collaborator_group
-  before_action :find_user, only: [:add_collaborator, :remove_collaborator]
+  before_action :find_user, only: %i[add_collaborator remove_collaborator]
 
   def add_collaborator
     authorize @collaborator_group.collaboratable, :edit
     @collaborator_group.add(@user)
-    redirect_to edit_collaborator_group_path(@collaborator_group), flash: {:success => 'Collaborator was added'}
+    redirect_to edit_collaborator_group_path(@collaborator_group), flash: { success: 'Collaborator was added' }
   end
 
   def remove_collaborator
     authorize @collaborator_group.collaboratable, :edit
     @collaborator_group.users.delete(@user)
-    redirect_to edit_collaborator_group_path(@collaborator_group), flash: {:success => 'Collaborator was removed'}
+    redirect_to edit_collaborator_group_path(@collaborator_group), flash: { success: 'Collaborator was removed' }
   end
 
   def edit
@@ -21,10 +21,11 @@ class CollaboratorGroupsController < ApplicationController
   def update
     authorize @collaborator_group.collaboratable
     @collaborator_group.update!(collaborator_group)
-    redirect_to collaborator_group.collaboratable, flash: {:success => 'Collaborators have been updated'}
+    redirect_to collaborator_group.collaboratable, flash: { success: 'Collaborators have been updated' }
   end
 
   private
+
   def find_user
     @user = User.find(collaborator_group_params[:user_id])
   end

@@ -11,7 +11,7 @@ class ResolveDayColorJob < ApplicationJob
     Day.today.update(color: 'No Color')
   end
 
-  def perform(*args)
+  def perform(*_args)
     browser = Capybara.current_session
     browser.visit 'https://ic.syosset.k12.ny.us/'
     browser.find('#username').set(ENV['IC_USERNAME'])
@@ -30,8 +30,8 @@ class ResolveDayColorJob < ApplicationJob
     browser.within_frame 'frameDetail' do
       begin
         today = Time.find_zone!('America/New_York').today
-        browser.find(:xpath, "//span[contains(text(),\'#{today.strftime("%B")}\')]/../../..")
-          .first('td', text: "#{today.day}").click()
+        browser.find(:xpath, "//span[contains(text(),\'#{today.strftime('%B')}\')]/../../..")
+               .first('td', text: today.day.to_s).click
       rescue NoMethodError
         failure_with_assumption
         return
@@ -43,11 +43,11 @@ class ResolveDayColorJob < ApplicationJob
       begin
         color = browser.find('td', id: 'dow').text.split('(')[1].chomp(')') # Ex: 'Friday (W Day)' -> W Day
 
-        if color == 'R Day'
-          color = 'Red Day'
-        else
-          color = 'White Day'
-        end
+        color = if color == 'R Day'
+                  'Red Day'
+                else
+                  'White Day'
+                end
 
         puts 'ResolveDayColorJob | Today was determined to be a ' + color
         Day.today.update(color: color)

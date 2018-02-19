@@ -15,15 +15,15 @@ class DaysController < ApplicationController
     @day.update(params)
 
     respond_to do |format|
-      format.json { render json: {:success => true, :color => @day.color} }
-      format.html { redirect_back :fallback_location => root_path, :notice => "Day color set to #{@day.color}." }
+      format.json { render json: { success: true, color: @day.color } }
+      format.html { redirect_back fallback_location: root_path, notice: "Day color set to #{@day.color}." }
     end
   end
 
   def fetch
     authorize @day, :update
     ResolveDayColorJob.perform_later
-    render json: {:success => true, :message => 'Job queued.'}
+    render json: { success: true, message: 'Job queued.' }
   end
 
   private

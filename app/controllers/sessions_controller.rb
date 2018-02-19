@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
     else
       info = auth_hash['info']
       @user = User.where(email: info['email']).first
-      @user = User.new name: info['name'], email: info['email'] unless @user
+      @user ||= User.new name: info['name'], email: info['email']
 
       @auth = @user.authorizations.build provider: auth_hash['provider'], uid: auth_hash['uid']
       @user.save
@@ -26,7 +26,7 @@ class SessionsController < ApplicationController
 
   def failure
     redirect_to login_path,
-      alert: 'You need to allow access to your account! Don\'t worry, we can\'t do anything bad.'
+                alert: 'You need to allow access to your account! Don\'t worry, we can\'t do anything bad.'
   end
 
   def destroy
@@ -35,8 +35,9 @@ class SessionsController < ApplicationController
   end
 
   private
-    def sign_in_and_redirect(authorization)
-      session[:authorization_id] = authorization.id
-      redirect_to root_path
-    end
+
+  def sign_in_and_redirect(authorization)
+    session[:authorization_id] = authorization.id
+    redirect_to root_path
+  end
 end

@@ -45,8 +45,8 @@ gem 'kaminari-views-bootstrap'
 gem 'peek'
 gem 'peek-git'
 gem 'peek-host', github: 'kailan/peek-host'
-gem 'peek-redis'
 gem 'peek-mongo'
+gem 'peek-redis'
 gem 'peek-resque', github: 'kailan/peek-resque'
 
 # Integrations
@@ -94,7 +94,7 @@ gem 'resque'
 # Capybara is used to fetch day color from IC
 gem 'capybara', '~> 2'
 gem 'poltergeist', '~> 1'
-#gem 'launchy', '~> 2'
+# gem 'launchy', '~> 2'
 
 gem 'aasm'
 
@@ -113,16 +113,16 @@ group :development, :test do
 end
 
 group :test do
-  gem 'rspec-rails', '~> 3.7'
   gem 'factory_girl'
-  gem 'rails-controller-testing'
   gem 'guard-rspec', require: false
+  gem 'rails-controller-testing'
+  gem 'rspec-rails', '~> 3.7'
 end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
-  gem 'web-console'
   gem 'listen'
+  gem 'web-console'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen'
@@ -131,4 +131,4 @@ group :development do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

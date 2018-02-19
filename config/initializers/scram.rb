@@ -9,30 +9,28 @@ module Scram
   if Rails.env.test?
     test_policy = Policy.new(name: 'Test Policy')
     test_policy.targets.build(
-      conditions: {:equals => {:'*target_name' => 'boing'}},
-      actions: ['create', 'edit', 'destroy']
+      conditions: { equals: { :'*target_name' => 'boing' } },
+      actions: %w[create edit destroy]
     )
     DEFAULT_POLICIES << test_policy
   end
 
-  def add_collaborator_policy(model, actions=['edit'])
+  def add_collaborator_policy(model, actions = ['edit']); end
 
-  end
-
-  collaborator_policy = ->(model, actions=['edit']) {
+  collaborator_policy = lambda { |model, actions = ['edit']|
     policy = Policy.new(name: "#{model.to_s.humanize} Collaborator", context: model.to_s)
-    policy.targets.build(conditions: { :includes => { :'*collaborators' =>  '*holder'  } }, actions: actions)
+    policy.targets.build(conditions: { includes: { :'*collaborators' => '*holder' } }, actions: actions)
     return policy
   }
 
-  DEFAULT_POLICIES << collaborator_policy.(Department)
-  DEFAULT_POLICIES << collaborator_policy.(Course, ['create', 'edit', 'destroy'])
-  DEFAULT_POLICIES << collaborator_policy.(Activity)
-  DEFAULT_POLICIES << collaborator_policy.(Announcement)
-  DEFAULT_POLICIES << collaborator_policy.(Link)
+  DEFAULT_POLICIES << collaborator_policy.call(Department)
+  DEFAULT_POLICIES << collaborator_policy.call(Course, %w[create edit destroy])
+  DEFAULT_POLICIES << collaborator_policy.call(Activity)
+  DEFAULT_POLICIES << collaborator_policy.call(Announcement)
+  DEFAULT_POLICIES << collaborator_policy.call(Link)
 
   profile_policy = Policy.new(name: 'Profile Management', context: User.to_s)
-  profile_policy.targets.build(conditions: { :equals => { :scram_compare_value => :'*holder' } }, actions: ['edit'])
+  profile_policy.targets.build(conditions: { equals: { scram_compare_value: :'*holder' } }, actions: ['edit'])
   DEFAULT_POLICIES << profile_policy
 
   DEFAULT_POLICIES.freeze
@@ -43,7 +41,7 @@ module Scram
 
     attr_accessor :policies
 
-    def initialize()
+    def initialize
       @policies = DEFAULT_POLICIES
     end
 

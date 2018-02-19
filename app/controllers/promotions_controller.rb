@@ -1,5 +1,5 @@
 class PromotionsController < ApplicationController
-  before_action :get_promotion, only: [:show, :edit, :update, :destroy]
+  before_action :get_promotion, only: %i[show edit update destroy]
 
   def index
     @promotions = Promotion.all.by_priority
@@ -9,10 +9,10 @@ class PromotionsController < ApplicationController
     actions_builder = ActionsBuilder.new(current_holder)
 
     actions_builder.require(:edit, @promotion)
-      .add_action('Edit Promotion', :get, edit_promotion_path(@promotion))
+                   .add_action('Edit Promotion', :get, edit_promotion_path(@promotion))
 
     actions_builder.require(:edit, @promotion)
-      .add_action('View Audit Log', :get, history_trackers_path(promotion_id: @promotion.id))
+                   .add_action('View Audit Log', :get, history_trackers_path(promotion_id: @promotion.id))
 
     @actions = actions_builder.actions
   end

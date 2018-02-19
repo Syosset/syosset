@@ -28,13 +28,13 @@ Rails.application.configure do
 
   config.public_file_server.headers = {
     'Cache-Control' => 'public, max-age=15552000',
-    'Expires' => "#{1.year.from_now.to_formatted_s(:rfc822)}"
+    'Expires' => 1.year.from_now.to_formatted_s(:rfc822).to_s
   }
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
 
-  config.assets.precompile += %w( '.svg' )
+  config.assets.precompile += %w[.svg]
   config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
@@ -62,7 +62,7 @@ Rails.application.configure do
   config.log_level = :debug
 
   # Prepend all log lines with the following tags.
-  config.log_tags = [ :request_id ]
+  config.log_tags = [:request_id]
 
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store

@@ -6,22 +6,20 @@ class RankablesController < ApplicationController
     rankable_params[@model.name.downcase].each_with_index do |id, index|
       result = @model.find(id)
       authorize result, :edit
-      result.update!(priority: index+1)
+      result.update!(priority: index + 1)
     end
   end
 
   def get_model
-    begin
-      @model = rankable_params.to_h.keys.first.classify.constantize
-    rescue NameError => err
-      render :nothing => true, :status => 404
-    end
+    @model = rankable_params.to_h.keys.first.classify.constantize
+  rescue NameError => err
+    render nothing: true, status: 404
   end
 
   def rankable_params
     h = {}
     ObjectSpace.each_object(Class).select { |c| c.included_modules.include? Concerns::Rankable }
-      .each { |m| h[m.to_s.downcase.to_sym] = [] }
+               .each { |m| h[m.to_s.downcase.to_sym] = [] }
     params.permit(h)
   end
 end

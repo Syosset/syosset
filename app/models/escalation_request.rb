@@ -6,7 +6,7 @@ class EscalationRequest
 
   belongs_to :requester, class_name: 'User'
   belongs_to :reviewer, class_name: 'User', optional: true
-	belongs_to :escalatable, polymorphic: true
+  belongs_to :escalatable, polymorphic: true
 
   field :note, type: String
 
@@ -17,27 +17,27 @@ class EscalationRequest
 
   validates_presence_of :requester, :escalatable, :note, :escalation_start_at, :escalation_end_at
 
-  scope :status, -> (status) { where status: status }
+  scope :status, ->(status) { where status: status }
 
   aasm column: :status do
     state :pending, initial: true
     state :approved
     state :denied
 
-    event :approve, after: Proc.new { |reviewer| self.reviewer = reviewer } do
+    event :approve, after: proc { |reviewer| self.reviewer = reviewer } do
       after do
-        EscalationRequest::Alert::Accepted.create(user: self.requester, escalation_request: self)
+        EscalationRequest::Alert::Accepted.create(user: requester, escalation_request: self)
       end
 
-      transitions from: [:pending, :denied], to: :approved
+      transitions from: %i[pending denied], to: :approved
     end
 
-    event :deny, after: Proc.new { |reviewer| self.reviewer = reviewer } do
+    event :deny, after: proc { |reviewer| self.reviewer = reviewer } do
       after do
-        EscalationRequest::Alert::Denied.create(user: self.requester, escalation_request: self)
+        EscalationRequest::Alert::Denied.create(user: requester, escalation_request: self)
       end
 
-      transitions from: [:pending, :approved], to: :denied
+      transitions from: %i[pending approved], to: :denied
     end
   end
 
@@ -61,15 +61,15 @@ class EscalationRequest
 
     class Accepted < Base
       def rich_message
-        [{user: escalation_request.reviewer}, {message: " accepted your escalation request for
-          #{escalatable.send('name') || "a " + escalatable.class.name}" }]
+        [{ user: escalation_request.reviewer }, { message: " accepted your escalation request for
+          #{escalatable.send('name') || 'a ' + escalatable.class.name}" }]
       end
     end
 
     class Denied < Base
       def rich_message
-        [{user: escalation_request.reviewer}, {message: " denied your escalation request for
-          #{escalatable.send('name') || "a " + escalatable.class.name}" }]
+        [{ user: escalation_request.reviewer }, { message: " denied your escalation request for
+          #{escalatable.send('name') || 'a ' + escalatable.class.name}" }]
       end
     end
   end

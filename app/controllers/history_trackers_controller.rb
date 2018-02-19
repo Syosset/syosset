@@ -15,7 +15,7 @@ class HistoryTrackersController < ApplicationController
 
   def get_trackable
     params.each do |name, value|
-      return @trackable =  $1.classify.constantize.find(value) if name =~ /(.+)_id$/
+      return @trackable = Regexp.last_match(1).classify.constantize.find(value) if name =~ /(.+)_id$/
     end
     nil
   end

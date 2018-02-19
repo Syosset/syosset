@@ -20,7 +20,7 @@ class Announcement
       if announcement.announceable.is_a? Concerns::Collaboratable
         announcement.announceable.send('*collaborators')
       else
-        User.all.select{ |u| u.can?(:edit, announcement.announceable) }.map(&:scram_compare_value).to_a
+        User.all.select { |u| u.can?(:edit, announcement.announceable) }.map(&:scram_compare_value).to_a
       end
     end
   end
@@ -37,8 +37,8 @@ class Announcement
     delegate :link, to: :announcement
 
     def rich_message
-      [{user: poster, message: " has posted an announcement in a #{announcement.announceable.class.to_s.humanize}
-        you are subscribed to."}]
+      [{ user: poster, message: " has posted an announcement in a #{announcement.announceable.class.to_s.humanize}
+        you are subscribed to." }]
     end
   end
 

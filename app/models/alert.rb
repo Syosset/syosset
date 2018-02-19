@@ -6,11 +6,11 @@ class Alert
   include Mongoid::Timestamps
 
   belongs_to :user
-  field :read, :type => Boolean, :default => false
-  field :read_at, :type => Time
+  field :read, type: Boolean, default: false
+  field :read_at, type: Time
 
   scope :unread, -> { where(:read.ne => true) }
-  scope :user, -> (u) { where(user: u) }
+  scope :user, ->(u) { where(user: u) }
 
   validates_presence_of :user
 
@@ -33,6 +33,6 @@ class Alert
   end
 
   def rich_message
-    [{message: "<#{self.class} _type=#{self[:_type]}>"}]
+    [{ message: "<#{self.class} _type=#{self[:_type]}>" }]
   end
 end

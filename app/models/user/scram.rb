@@ -13,12 +13,12 @@ class User
 
       # Overrides Scram::Holder#policies to union in this user's policies along with those default as default policies
       define_method :policies do
-        ::Scram::DEFAULT_POLICIES | self.user_policies
+        ::Scram::DEFAULT_POLICIES | user_policies
       end
 
       # Defines the compare value used by Scram in the database. We choose to use ObjectIds.
       define_method :scram_compare_value do
-        self.id
+        id
       end
 
       define_method :can? do |*args|
@@ -32,16 +32,16 @@ class User
       end
 
       define_method :admin_expiry do
-        $redis.get("user:#{self.id}:admin_until").try(:to_i)
+        $redis.get("user:#{id}:admin_until").try(:to_i)
       end
 
       define_method :renew_admin do
         raise 'User is not an administrator' unless super_admin
-        $redis.set("user:#{self.id}:admin_until", 15.minutes.from_now.to_i)
+        $redis.set("user:#{id}:admin_until", 15.minutes.from_now.to_i)
       end
 
       define_method :resign_admin do
-        $redis.del("user:#{self.id}:admin_until")
+        $redis.del("user:#{id}:admin_until")
       end
     end
   end

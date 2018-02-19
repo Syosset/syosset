@@ -4,7 +4,7 @@ module Syosset
       include IntegrationProvider
 
       def initialize(opts = {})
-        raise 'Host must be provided.' unless opts and opts.key? :host
+        raise 'Host must be provided.' unless opts && opts.key?(:host)
 
         @connection = Faraday.new(url: opts[:host])
       end
@@ -23,21 +23,19 @@ module Syosset
       end
 
       def describe
-        begin
-          @connection.get('/status').body
-        rescue Exception
-          'Unable to fetch status. Possibly offline?'
-        end
+        @connection.get('/status').body
+      rescue Exception
+        'Unable to fetch status. Possibly offline?'
       end
 
       def on_support_thread(params)
         thread = MessageThread.find(params[:thread_id])
-        @connection.post '/threads', {id: thread.id.to_s, user_name: thread.user.name}
+        @connection.post '/threads', id: thread.id.to_s, user_name: thread.user.name
       end
 
       def on_support_message(params)
         message = Message.find(params[:message_id])
-        @connection.post "/threads/#{message.message_thread.id.to_s}/messages", message.to_json
+        @connection.post "/threads/#{message.message_thread.id}/messages", message.to_json
       end
     end
   end
