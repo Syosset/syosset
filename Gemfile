@@ -31,8 +31,6 @@ gem 'turbolinks', '~> 5.1'
 # Serve jquery and jquery-ui to clients
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
-# Use font-awesome for icons
-gem 'font-awesome-rails', '~> 4'
 # Use flexslider
 gem 'flex-slider-rails', '~> 2'
 

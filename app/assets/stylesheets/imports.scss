@@ -1,7 +1,9 @@
 @import "peek";
 @import "flexslider";
 @import "jquery-ui";
-@import "font-awesome";
+
+$fa-font-path: "font-awesome/fonts/";
+@import "font-awesome/scss/font-awesome";
 
 @import "eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker";
 @import "fontawesome-iconpicker/dist/css/fontawesome-iconpicker";
