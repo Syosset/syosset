@@ -7,11 +7,11 @@ module RavenContext
 
   private
     def set_raven_context
-      if current_user
+      if Current.user
         Raven.user_context(
-          id: current_user.id.to_s,
-          email: current_user.email,
-          name: current_user.name
+          id: Current.user.id.to_s,
+          email: Current.user.email,
+          name: Current.user.name
         )
       end
 

@@ -24,7 +24,7 @@ class LinksController < ApplicationController
     authorize @linkable, :edit
 
     @link = Link.new(link_params)
-    @link.poster = current_user
+    @link.poster = Current.user
     @link.linkable = @linkable
 
     @link.save

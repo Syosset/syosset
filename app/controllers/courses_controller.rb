@@ -33,12 +33,12 @@ class CoursesController < ApplicationController
   end
 
   def subscribe
-    @course.subscribe_user(current_user)
+    @course.subscribe_user(Current.user)
     redirect_to course_path(@course), :notice => 'Successfully subscribed to course.'
   end
 
   def unsubscribe
-    @course.unsubscribe_user(current_user)
+    @course.unsubscribe_user(Current.user)
     redirect_to course_path(@course), :notice => 'Successfully un-subscribed from course.'
   end
 
@@ -88,7 +88,7 @@ class CoursesController < ApplicationController
   end
 
   def course_params
-    params.require(:course).permit(:name, :course_id, :short_description, :markdown).merge(modifier: current_user)
+    params.require(:course).permit(:name, :course_id, :short_description, :markdown).merge(modifier: Current.user)
   end
 
 end

@@ -34,12 +34,12 @@ class ActivitiesController < ApplicationController
   end
 
   def subscribe
-    @activity.subscribe_user(current_user)
+    @activity.subscribe_user(Current.user)
     redirect_to activity_path(@activity), :notice => 'Successfully subscribed to activity.'
   end
 
   def unsubscribe
-    @activity.unsubscribe_user(current_user)
+    @activity.unsubscribe_user(Current.user)
     redirect_to activity_path(@activity), :notice => 'Successfully un-subscribed from activity.'
   end
 
@@ -81,6 +81,6 @@ class ActivitiesController < ApplicationController
   end
 
   def activity_params
-    params.require(:activity).permit(:name, :type, :short_description, :markdown).merge(modifier: current_user)
+    params.require(:activity).permit(:name, :type, :short_description, :markdown).merge(modifier: Current.user)
   end
 end

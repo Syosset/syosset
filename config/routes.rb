@@ -8,12 +8,18 @@ Rails.application.routes.draw do
 
   get 'z/index.html', to: redirect("/") # legacy endpoint -> still set on school devices (Syosset/syosset#83)
 
-  # Users and Profiles
-  devise_for :users,
-    controllers: {omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'users/registrations' },
-    skip: [:passwords]
+  # Authentication
+  get '/login' => 'sessions#new'
+  delete '/logout' => 'sessions#destroy'
+  match '/auth/:provider/callback' => 'sessions#create', via: [:get, :post]
+  get '/auth/failure' => 'sessions#failure'
+
+  # Users
   resources :users, only: [:index, :new, :show, :edit, :update] do
+    get '/admin/edit' => 'users#admin_edit'
+    patch '/admin' => 'users#admin_update'
     post :populate, on: :collection # create multiple users and assign to collaborator groups
+
     get :autocomplete, on: :collection
     resources :periods, on: :member, except: [:show]
   end

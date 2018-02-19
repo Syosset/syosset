@@ -65,10 +65,9 @@ gem 'sentry-raven'
 # Security Headers
 gem 'secure_headers', '~> 5'
 
-# Use Devise for user authentication
-gem 'devise', '~> 4.4'
+gem 'omniauth', '~> 1.8'
 # Allow users to sign in using Google accounts
-gem 'omniauth-google-oauth2', github: 'zquestz/omniauth-google-oauth2'
+gem 'omniauth-google-oauth2', '~> 0.5'
 
 # Use scram for authorization
 gem 'scram', '~> 0.1'

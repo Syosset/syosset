@@ -2,7 +2,7 @@
   %h1 Hi #{@user.name}, let's get your profile set up.
   %p Profiles make it easier for students to contact you and check your schedule.
 
-  = link_to edit_user_registration_path do
+  = link_to edit_user_path do
     - if @onboarding.include? :picture
       .step
         %i.fa.fa-cloud-upload

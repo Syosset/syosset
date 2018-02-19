@@ -41,7 +41,7 @@ class AnnouncementsController < ApplicationController
     authorize @announceable, :edit
 
     @announcement = Announcement.new(announcement_params)
-    @announcement.poster = current_user
+    @announcement.poster = Current.user
     @announcement.announceable = @announceable
 
     @announcement.save
@@ -91,6 +91,6 @@ class AnnouncementsController < ApplicationController
   end
 
   def announcement_params
-    params.require(:announcement).permit(:name, :markdown).merge(modifier: current_user)
+    params.require(:announcement).permit(:name, :markdown).merge(modifier: Current.user)
   end
 end

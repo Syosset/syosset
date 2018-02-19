@@ -1,13 +1,13 @@
 class UsersController < ApplicationController
 
-  before_action :verify_admin, only: [:index, :edit, :update]
-  before_action :find_user, only: [:show, :edit, :update]
+  before_action :verify_admin, only: [:index, :admin_edit, :admin_update]
+  before_action :find_user, only: [:show, :edit, :update, :admin_edit, :admin_update]
 
   def show
     @user = User.find(params[:id])
     redirect_to root_path, alert: "Only staff members can have profiles." unless @user.staff?
     @periods = @user.periods.asc(:period)
-    @onboarding = @user == current_user ? @user.onboarding_steps : []
+    @onboarding = @user == Current.user ? @user.onboarding_steps : []
   end
 
   def index
@@ -36,7 +36,7 @@ class UsersController < ApplicationController
     # parses users input and generates emails for users with only a name provided
     users = params[:users].split("\n").map {|u| u.split(", ")}
       .map {|u| u.size == 1 ? [u[0], (u[0][0] + u[0].split(" ")[1] + '@syosset.k12.ny.us').downcase] : u}
-      .map {|u| User.find_or_create_by(email: u[1]) {|u1| u1.name = u[0]; u1.password = Devise.friendly_token[0,20]}}
+      .map {|u| User.find_or_create_by(email: u[1]) {|u1| u1.name = u[0]}}
 
     unless params[:collaborator_group].empty?
       group = CollaboratorGroup.find(params[:collaborator_group])
@@ -51,11 +51,20 @@ class UsersController < ApplicationController
   end
 
   def update
-    params[:user].delete(:password) if params[:user][:password].blank?
-    if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
-      params[:user].delete(:password_confirmation)
+    authorize Current.user
+    if Current.user.update(params.require(:user).permit(:bio, :picture))
+      redirect_to user_path(Current.user)
+    else
+      render action: 'edit'
     end
-    if @user.update_attributes(user_params)
+  end
+
+
+  def admin_edit
+  end
+
+  def admin_update
+    if @user.update_attributes(params.require(:user).permit(:name, :badge, :picture, :bio, :super_admin))
       flash[:notice] = "Successfully updated User."
       redirect_to users_path
     else
@@ -69,10 +78,6 @@ class UsersController < ApplicationController
   end
 
   def find_user
-    @user = User.find(params[:id])
-  end
-
-  def user_params
-    params.require(:user).permit(:name, :badge, :picture, :bio, :super_admin)
+    @user = User.find(params[:id] || params[:user_id])
   end
 end

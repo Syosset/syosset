@@ -24,7 +24,7 @@
             - unless @linkable
               %th Posted Under
             %th Link
-            - if current_user.try(:admin_enabled?)
+            - if Current.user.try(:admin_enabled?)
               %th Poster
             %th Posted
         %tbody.rankable
@@ -45,7 +45,7 @@
                 - linkable = link.linkable
                 %td= link_to "#{linkable.send("name") || "a #{linkable.class.to_s.humanize}"}", linkable
               %td= link_to link.name.truncate(60), link[:target]
-              - if current_user.try(:admin_enabled?)
+              - if Current.user.try(:admin_enabled?)
                 %td
                   = link_to link.poster do
                     = link.poster.name

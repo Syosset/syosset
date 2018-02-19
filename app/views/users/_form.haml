@@ -1,20 +1,14 @@
 = content_for :model_name, User.name.underscore.to_sym
+= content_for :model_id, @user.id
 = javascript_include_tag "markdown"
 
+= errors_for(@user)
+
 = form_for @user do |f|
-  .form-group
-    = f.label :name
-    = f.text_field :name, placeholder: "Name", class: "form-control"
-  .form-group
-    = f.label :badge
-    = f.select :badge, options_for_select(Badge.all.collect {|b|[b.name,b.id]}, @user.badge.try(:id)), include_blank: true
   .form-group
     = f.label :picture
     = f.file_field :picture, class: "form-control"
   .form-group
     = f.label :bio
-    ~ f.text_area :bio, placeholder: "Bio", class: "form-control markdown"
-  .form-group
-    = f.label :super_admin
-    = f.check_box :super_admin
-  = f.submit "Save", class: "btn btn-success pull-right", id: "submit-button"
+    ~ f.text_area :bio, class: "form-control markdown"
+  = f.submit "Update", class: "btn btn-success pull-right"

@@ -7,8 +7,8 @@ module AlertFetcher
 
   private
     def fetch_alerts
-      if user_signed_in?
-        q = current_user.alerts.unread.desc(:updated_at)
+      if Current.user
+        q = Current.user.alerts.unread.desc(:updated_at)
         @alerts = q.lazy.select(&:valid?).take(26).to_a
 
         if @alerts.size <= 25

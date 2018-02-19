@@ -1,5 +1,5 @@
 %header.header
-  - unless params[:action] == 'landing' || current_user.try(:admin_enabled?)
+  - unless params[:action] == 'landing' || Current.user.try(:admin_enabled?)
     .header-main.container.hidden-xs
       .container
         %h1.logo.pull-left
@@ -15,7 +15,7 @@
               %i.fa.fa-phone
               = t('contact.phone')
 
-%nav.main-nav{role: :navigation, class: current_user.try(:admin_enabled?) ? 'dark' : ''}
+%nav.main-nav{role: :navigation, class: Current.user.try(:admin_enabled?) ? 'dark' : ''}
   .container
     .navbar-header
       = link_to root_path do
@@ -48,7 +48,7 @@
         %li.nav-item
           = link_to t('nav.extracurriculars'), activities_path
 
-        - if user_signed_in? && current_user.admin_enabled?
+        - if Current.user && Current.user.admin_enabled?
           %li.nav-item{class: active_controller('admin', 'index')}
             = link_to t('nav.admin'), admin_path
       %ul.nav.navbar-nav.pull-right
@@ -57,25 +57,30 @@
             = render "partials/nav/day_indicator"
           - else
             = render "partials/nav/closure_indicator"
-        - if user_signed_in?
+        - if Current.user
           %li.nav-item
-            = link_to user_path(current_user) do
-              - unless current_user.onboarding_steps.empty?
+            = link_to user_path(Current.user) do
+              - unless Current.user.onboarding_steps.empty?
                 %span.label.label-info.onboarding-alert
                   %i.fa.fa-pencil-square
                   NEW
                 &nbsp;
-              - if current_user.admin_enabled?
+              - if Current.user.admin_enabled?
                 %i.fa.fa-shield
-              = current_user.name
+              = Current.user.name
           %li.nav-item
-            = link_to t('menu.account.sign_out'), destroy_user_session_path, :method => :delete
+            = link_to t('menu.account.sign_out'), logout_path, :method => :delete
         - else
           %li.nav-item
-            = link_to user_google_oauth2_omniauth_authorize_path, class: 'btn-loader' do
+            = link_to '/auth/google_oauth2', class: 'btn-loader' do
               = t('menu.account.sign_in_with')
               %i.fa.fa-google-plus-square
-        - if user_signed_in?
+          - if Rails.env.development?
+            %li.nav-item
+              = link_to '/auth/developer', class: 'btn-loader' do
+                Authorize
+                %i.fa.fa-cog
+        - if Current.user
           %li.nav-item.dropdown
             %a.dropdown-toggle{"data-close-others" => "false", "data-delay" => "0", "data-hover" => "dropdown", "data-toggle" => "dropdown", :href => "#"}
               %span.badge.visible-md-inline.visible-lg-inline{class: @alert_count > 0 ? "badge-warning" : ""}= @alert_count

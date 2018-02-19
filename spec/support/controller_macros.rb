@@ -4,7 +4,7 @@ module ControllerMacros
       @request.env["devise.mapping"] = Devise.mappings[:admin]
       user = FactoryGirl.create(:user, :super_admin)
       sign_in user
-      user.toggle_admin unless user.admin_enabled? 
+      user.toggle_admin unless user.admin_enabled?
     end
   end
 end

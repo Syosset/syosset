@@ -4,14 +4,14 @@ class EscalationRequestsController < ApplicationController
 
   def approve
     authorize @escalation_request, :approve
-    @escalation_request.approve!(current_user)
+    @escalation_request.approve!(Current.user)
     flash[:notice] = 'Escalation request successfully approved.'
     redirect_back(fallback_location: root_path)
   end
 
   def deny
     authorize @escalation_request, :deny
-    @escalation_request.deny!(current_user)
+    @escalation_request.deny!(Current.user)
     flash[:notice] = 'Escalation request successfully denied.'
     redirect_back(fallback_location: root_path)
   end
@@ -26,7 +26,7 @@ class EscalationRequestsController < ApplicationController
     authorize @escalatable, :edit
 
     @escalation_request = EscalationRequest.new(escalation_request_params)
-    @escalation_request.requester = current_user
+    @escalation_request.requester = Current.user
     @escalation_request.escalatable = @escalatable
 
     @escalation_request.save

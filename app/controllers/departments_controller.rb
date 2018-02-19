@@ -2,7 +2,7 @@ class DepartmentsController < ApplicationController
   before_action :get_department, only: [:show, :edit, :update, :destroy, :subscribe, :unsubscribe]
 
   def index
-    @order_mode = current_user.try(:admin_enabled?)
+    @order_mode = Current.user.try(:admin_enabled?)
 
     @departments = Department.full_text_search(params[:search], allow_empty_search: true).by_priority
     unless @order_mode
@@ -42,12 +42,12 @@ class DepartmentsController < ApplicationController
   end
 
   def subscribe
-    @department.subscribe_user(current_user)
+    @department.subscribe_user(Current.user)
     redirect_to department_path(@department), :notice => 'Successfully subscribed to department.'
   end
 
   def unsubscribe
-    @department.unsubscribe_user(current_user)
+    @department.unsubscribe_user(Current.user)
     redirect_to department_path(@department), :notice => 'Successfully un-subscribed from department.'
   end
 
@@ -91,7 +91,7 @@ class DepartmentsController < ApplicationController
   end
 
   def department_params
-    params.require(:department).permit(:name, :phone, :short_description, :markdown).merge(modifier: current_user)
+    params.require(:department).permit(:name, :phone, :short_description, :markdown).merge(modifier: Current.user)
   end
 
 end

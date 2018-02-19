@@ -6,7 +6,7 @@
   .form-group
     = f.label :name
     = f.text_field :name, placeholder: "Name", class: "form-control"
-  - if !@announcement.content.blank? && current_user.super_admin
+  - if !@announcement.content.blank? && Current.user.super_admin
     .form-group
       = f.label :content, "OLD CONTENT"
       = f.text_area :content, rows: 10, class: "form-control", disabled: true

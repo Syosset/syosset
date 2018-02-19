@@ -43,7 +43,7 @@ module ScramUtils
     if params["token"]
       holder = Token.where(key: params["token"]).first.user
     else
-      holder = user_signed_in? ? current_user : Scram::DEFAULT_HOLDER
+      holder = Current.user ? Current.user : Scram::DEFAULT_HOLDER
     end
 
     return holder

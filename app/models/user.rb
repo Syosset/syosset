@@ -5,6 +5,7 @@ class User
   include Mongoid::Paperclip
   include Mongoid::Slug
   include Concerns::Attachable
+  include Authorizable
   include Scram
   include Alerts
 
@@ -12,34 +13,9 @@ class User
 
   groupify :group_member, group_class_name: 'CollaboratorGroup'
 
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable,
-         :omniauthable, omniauth_providers: [:google_oauth2]
+  field :name, type: String
+  field :email, type: String
 
-  # Omniauthable
-  field :name
-
-  ## Database authenticatable
-  field :email,              type: String, default: ""
-  field :encrypted_password, type: String, default: ""
-
-  ## Recoverable
-  field :reset_password_token,   type: String
-  field :reset_password_sent_at, type: Time
-
-  ## Rememberable
-  field :remember_created_at, type: Time
-
-  ## Trackable
-  field :sign_in_count,      type: Integer, default: 0
-  field :current_sign_in_at, type: Time
-  field :last_sign_in_at,    type: Time
-  field :current_sign_in_ip, type: String
-  field :last_sign_in_ip,    type: String
-
-  # Administrator
   field :bot, type: Boolean, default: false
 
   # Profiles
@@ -55,19 +31,6 @@ class User
 
   # Schedules
   has_many :periods
-
-  def self.from_omniauth(access_token)
-      data = access_token.info
-      user = User.where(email: data['email']).first
-
-      unless user
-           user = User.create(name: data['name'],
-              email: data['email'],
-              password: Devise.friendly_token[0,20]
-           )
-      end
-      user
-  end
 
   def username
     match = email.match(/^([a-z]+)\@.*$/)

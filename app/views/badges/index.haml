@@ -4,7 +4,7 @@
     = link_to "Create", new_badge_path, class: "btn btn-primary pull-right"
   .page-content
     - @badges.each do |badge|
-      = current_user.try(:name)
+      = Current.user.try(:name)
       = link_to edit_badge_path(badge) do
         = render 'badge', badge: badge
       %br

@@ -11,7 +11,7 @@
   .form-group
     = f.label :short_description
     = f.text_field :short_description, placeholder: "Short Description", class: "form-control"
-  - if !@department.content.blank? && current_user.super_admin
+  - if !@department.content.blank? && Current.user.super_admin
     .form-group
       = f.label :content, "OLD CONTENT"
       = f.text_area :content, rows: 10, class: "form-control", disabled: true

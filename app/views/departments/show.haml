@@ -7,8 +7,8 @@
     = render partial: "partials/modtools", locals: {actions: @actions}
     %ul.nav.navbar-nav.pull-right
       %li
-        - if user_signed_in?
-          - if @department.subscriber? current_user
+        - if Current.user
+          - if @department.subscriber? Current.user
             %a{:href => unsubscribe_department_path(@department), data: {method: 'post'}} Unsubscribe
           - else
             %a{:href => subscribe_department_path(@department), data: {method: 'post'}} Subscribe

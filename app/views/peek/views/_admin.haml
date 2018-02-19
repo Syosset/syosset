@@ -1,5 +1,5 @@
-- if user_signed_in? && current_user.super_admin
-  #adminControl{data: {expiry: current_user.admin_expiry}}
+- if Current.user && Current.user.super_admin
+  #adminControl{data: {expiry: Current.user.admin_expiry}}
     .bucket.peek-link#adminContainer
       %span#adminTime
       %i.fa.fa-shield#renew

@@ -3,7 +3,7 @@
   .form-group
     = f.label :name
     = f.text_field :name, placeholder: "Name", class: "form-control"
-  - if current_user.admin_enabled?
+  - if Current.user.admin_enabled?
     .form-group
       = f.label :icon, "Font Awesome Icon Name"
       = f.text_field :icon, placeholder: "book", class: "form-control fontawesome-picker"

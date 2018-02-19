@@ -1,8 +1,5 @@
-%section.section.section-padded
-  .section-header
-    %h3
-      Edit User
-  .container-fluid
-    .row-fluid
-      = render 'form'
-      = link_to 'Back',  @announceable, class: "btn btn-warning pull-right"
+= content_for :model_name, User.name.underscore.to_sym
+= content_for :model_id, @user.id
+
+%h2 Edit User
+= render 'form'

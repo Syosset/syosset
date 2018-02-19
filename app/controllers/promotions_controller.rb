@@ -60,6 +60,6 @@ class PromotionsController < ApplicationController
   end
 
   def promotion_params
-    params.require(:promotion).permit(:enabled, :text, :blurb, :picture).merge(modifier: current_user)
+    params.require(:promotion).permit(:enabled, :text, :blurb, :picture).merge(modifier: Current.user)
   end
 end
