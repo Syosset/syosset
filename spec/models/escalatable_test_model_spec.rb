@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe "Escalatable Models", type: :model do
-
   subject { build(:escalatable_test_model) }
   let(:user) { build(:user) }
 

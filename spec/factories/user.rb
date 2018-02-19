@@ -33,6 +33,5 @@ FactoryGirl.define do
         create_list(:alert, evaluator.alerts_count, user: user)
       end
     end
-
   end
 end

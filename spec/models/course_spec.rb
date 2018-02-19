@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Course, type: :model do
-
   subject { create(:course) }
   let(:course_collaborators) { subject.collaborator_group }
 
@@ -17,5 +16,4 @@ RSpec.describe Course, type: :model do
     user = build(:user)
     expect { department_collaborators.add(user) }.to change { subject.send("*collaborators") }.from([]).to([user.id])
   end
-
 end

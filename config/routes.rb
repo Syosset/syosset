@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   # Main pages
   root 'welcome#index'
   get 'landing' => 'welcome#landing' # browser homepage on school devices
@@ -104,5 +103,4 @@ Rails.application.routes.draw do
 
   # Utilities
   mount Peek::Railtie => '/peek'
-
 end

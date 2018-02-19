@@ -31,5 +31,4 @@ RSpec.describe EscalationRequest do
     subject.deny!(reviewer)
     expect(EscalationRequest::Alert::Denied.user(subject.requester).first).to be_truthy
   end
-
 end

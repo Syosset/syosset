@@ -9,5 +9,4 @@ RSpec.describe Concerns::Collaboratable do
     model.collaborator_group.add member
     expect(member.can?(:edit, model)).to be true
   end
-
 end

@@ -60,5 +60,4 @@ RSpec.describe "Subscribable Models", type: :model do
       expect(element[:message]).to eq "The tests went well."
     end
   end
-
 end
