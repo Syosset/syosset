@@ -8,7 +8,7 @@ class NotifyIntegrationJob < ApplicationJob
     rescue Exception => error
       integration.failures << IntegrationFailure.new(error: error.message, event: event, parameters: parameters)
       integration.save
-      $redis.incr('integration_failures')
+      Redis.current.incr('integration_failures')
     end
   end
 end

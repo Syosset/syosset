@@ -8,7 +8,7 @@ module Peek::Views
     def initialize(options = {}); end
 
     def failure_count
-      $redis.get('integration_failures') || 0
+      Redis.current.get('integration_failures') || 0
     end
   end
 end

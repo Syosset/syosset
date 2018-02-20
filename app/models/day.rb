@@ -11,7 +11,7 @@ class Day
 
   def self.today
     today = Date.today
-    new(Date.today, $redis.get("day##{today.to_time.to_i}:color"))
+    new(Date.today, Redis.current.get("day##{today.to_time.to_i}:color"))
   end
 
   def update(params)
@@ -20,7 +20,7 @@ class Day
   end
 
   def save
-    $redis.set("#{prefix}:color", @color)
+    Redis.current.set("#{prefix}:color", @color)
   end
 
   def id

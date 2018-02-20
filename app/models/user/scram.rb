@@ -32,16 +32,16 @@ class User
       end
 
       define_method :admin_expiry do
-        $redis.get("user:#{id}:admin_until").try(:to_i)
+        Redis.current.get("user:#{id}:admin_until").try(:to_i)
       end
 
       define_method :renew_admin do
         raise 'User is not an administrator' unless super_admin
-        $redis.set("user:#{id}:admin_until", 15.minutes.from_now.to_i)
+        Redis.current.set("user:#{id}:admin_until", 15.minutes.from_now.to_i)
       end
 
       define_method :resign_admin do
-        $redis.del("user:#{id}:admin_until")
+        Redis.current.del("user:#{id}:admin_until")
       end
     end
   end

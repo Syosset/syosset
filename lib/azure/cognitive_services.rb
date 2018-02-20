@@ -5,7 +5,7 @@ require 'json'
 module Azure
   class CognitiveServices
     def self.alt_description(image_url)
-      if (desc = $redis.get(redis_key = "azure:cognitive_services:#{image_url}:alt_description")).nil?
+      if (desc = Redis.current.get(redis_key = "azure:cognitive_services:#{image_url}:alt_description")).nil?
         region = ENV['AZURE_REGION'] || 'eastus'
         key = ENV['AZURE_COGNITIVE_SERVICES_KEY']
         return nil if key.nil?
@@ -27,8 +27,8 @@ module Azure
                  'Unlabeled image'
                end
 
-        $redis.set(redis_key, desc)
-        $redis.expire(redis_key, 12.hours)
+        Redis.current.set(redis_key, desc)
+        Redis.current.expire(redis_key, 12.hours)
       end
 
       desc

@@ -38,7 +38,7 @@ class IntegrationsController < ApplicationController
   end
 
   def clear_failures
-    $redis.decrby('integration_failures', @integration.failures.count)
+    Redis.current.decrby('integration_failures', @integration.failures.count)
     @integration.failures.clear
     @integration.save
     redirect_to edit_integration_path(@integration), notice: 'Cleared all failures.'
@@ -47,7 +47,7 @@ class IntegrationsController < ApplicationController
   def edit; end
 
   def destroy
-    $redis.decrby('integration_failures', @integration.failures.count)
+    Redis.current.decrby('integration_failures', @integration.failures.count)
     @integration.destroy
     redirect_to integrations_path, notice: 'Integration succesfully removed.'
   end
