@@ -2,8 +2,8 @@ class Promotion
   include Mongoid::Document
   include Mongoid::History::Trackable
   include Mongoid::Paperclip
-  include Concerns::Attachable
-  include Concerns::Rankable
+  include Attachable
+  include Rankable
 
   field :enabled, type: Mongoid::Boolean, default: true
   field :text, type: String

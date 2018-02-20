@@ -1,7 +1,7 @@
 class EscalationRequest
   include Mongoid::Document
   include Mongoid::Timestamps
-  include Concerns::Filterable
+  include Filterable
   include AASM
 
   belongs_to :requester, class_name: 'User'
@@ -18,7 +18,6 @@ class EscalationRequest
   validates :escalation_end_at, presence: true
 
   field :status
-
   scope :status, ->(status) { where status: status }
 
   aasm column: :status do

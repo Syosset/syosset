@@ -18,7 +18,7 @@ class RankablesController < ApplicationController
 
   def rankable_params
     h = {}
-    ObjectSpace.each_object(Class).select { |c| c.included_modules.include? Concerns::Rankable }
+    ObjectSpace.each_object(Class).select { |c| c.included_modules.include? Rankable }
                .each { |m| h[m.to_s.downcase.to_sym] = [] }
     params.permit(h)
   end

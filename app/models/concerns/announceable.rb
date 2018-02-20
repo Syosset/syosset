@@ -1,17 +1,15 @@
-module Concerns
-  module Announceable
-    extend ActiveSupport::Concern
+module Announceable
+  extend ActiveSupport::Concern
 
-    included do
-      has_many :announcements, as: :announceable, class_name: 'Announcement'
+  included do
+    has_many :announcements, as: :announceable, class_name: 'Announcement'
 
-      before_destroy do
-        announcements.destroy_all
-      end
+    before_destroy do
+      announcements.destroy_all
     end
+  end
 
-    def alert_class
-      Announcement::Alert
-    end
+  def alert_class
+    Announcement::Alert
   end
 end

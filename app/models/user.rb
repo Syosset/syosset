@@ -4,7 +4,7 @@ class User
   include Mongoid::Document
   include Mongoid::Paperclip
   include Mongoid::Slug
-  include Concerns::Attachable
+  include Attachable
   include Authorizable
   include Scram
   include Alerts

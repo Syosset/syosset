@@ -3,8 +3,8 @@ class Link
   include Mongoid::Timestamps
   include Mongoid::Search
   include Scram::DSL::ModelConditions
-  include Concerns::Rankable
-  include Concerns::Escalatable
+  include Rankable
+  include Escalatable
 
   belongs_to :linkable, polymorphic: true
   belongs_to :poster, class_name: 'User'
@@ -20,7 +20,7 @@ class Link
   search_in :name, :target
   scram_define do
     condition :collaborators do |link|
-      if link.linkable.is_a? Concerns::Collaboratable
+      if link.linkable.is_a? Collaboratable
         link.linkable.send('*collaborators')
       else
         User.all.select { |u| u.can?(:edit, link.linkable) }.map(&:scram_compare_value).to_a

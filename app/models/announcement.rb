@@ -3,10 +3,10 @@ class Announcement
   include Mongoid::Timestamps
   include Mongoid::History::Trackable
   include Scram::DSL::ModelConditions
-  include Concerns::Descriptable
-  include Concerns::Escalatable
-  include Concerns::Rankable
-  include Concerns::Attachable
+  include Descriptable
+  include Escalatable
+  include Rankable
+  include Attachable
 
   after_create :alert_subscribers
 
@@ -18,7 +18,7 @@ class Announcement
 
   scram_define do
     condition :collaborators do |announcement|
-      if announcement.announceable.is_a? Concerns::Collaboratable
+      if announcement.announceable.is_a? Collaboratable
         announcement.announceable.send('*collaborators')
       else
         User.all.select { |u| u.can?(:edit, announcement.announceable) }.map(&:scram_compare_value).to_a
@@ -45,7 +45,7 @@ class Announcement
   end
 
   def alert_subscribers
-    return unless announceable.is_a? Concerns::Subscribable
+    return unless announceable.is_a? Subscribable
     announceable.alert_subscribers(except: [poster], announcement: self, poster: poster)
   end
 end

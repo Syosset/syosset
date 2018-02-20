@@ -3,13 +3,13 @@ class Department
   include Mongoid::Slug
   include Mongoid::Search
   include Mongoid::History::Trackable
-  include Concerns::Descriptable
-  include Concerns::Rankable
-  include Concerns::Subscribable
-  include Concerns::Collaboratable
-  include Concerns::Announceable
-  include Concerns::Linkable
-  include Concerns::Attachable
+  include Descriptable
+  include Rankable
+  include Subscribable
+  include Collaboratable
+  include Announceable
+  include Linkable
+  include Attachable
 
   slug :name
   paginates_per 12

@@ -3,12 +3,12 @@ class Course
   include Mongoid::Slug
   include Mongoid::Search
   include Mongoid::History::Trackable
-  include Concerns::Descriptable
-  include Concerns::Subscribable
-  include Concerns::Collaboratable
-  include Concerns::Announceable
-  include Concerns::Linkable
-  include Concerns::Attachable
+  include Descriptable
+  include Subscribable
+  include Collaboratable
+  include Announceable
+  include Linkable
+  include Attachable
 
   paginates_per 12
   slug :name

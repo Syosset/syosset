@@ -4,12 +4,12 @@ class Activity
   include Mongoid::Search
   include Mongoid::History::Trackable
   # include Mongoid::Enum
-  include Concerns::Descriptable
-  include Concerns::Rankable
-  include Concerns::Subscribable
-  include Concerns::Collaboratable
-  include Concerns::Announceable
-  include Concerns::Linkable
+  include Descriptable
+  include Rankable
+  include Subscribable
+  include Collaboratable
+  include Announceable
+  include Linkable
 
   validates :name, uniqueness: true
 
