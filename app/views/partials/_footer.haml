@@ -15,15 +15,9 @@
       %li
         %a{:href => "https://github.com/Syosset/syosset"}
           = fa_icon 'github'
-      %li
-        = fa_icon 'ellipsis-v'
-      %li#google_translate_element
-        %script{:defer => "", :src => "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit", :type => "text/javascript"}
-
-:javascript
-  function googleTranslateElementInit() {
-    new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, gaTrack: true, gaId: 'UA-105323459-1'}, 'google_translate_element');
-    $("#google_translate_element div").eq(1).css("background-color", "rgba(255, 255, 255, 0)");
-    $("#google_translate_element span").first("span").html("<i class=\"fa fa-google\" aria-hidden=\"true\"></i> Translate <i class=\"fa fa-caret-down\" aria-hidden=\"true\"></i>");
-    $("#google_translate_element img").eq(0).replaceWith("");
-  }
+    %ul.actions
+      %li.translate{'data-turbolinks-permanent': true}
+        .btn.btn-loader#translate_trigger
+          = fa_icon 'google'
+          Translate
+        #google_translate_element
