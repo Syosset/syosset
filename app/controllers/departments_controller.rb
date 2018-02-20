@@ -2,7 +2,7 @@ class DepartmentsController < ApplicationController
   before_action :get_department, only: %i[show edit update destroy subscribe unsubscribe]
 
   def index
-    @order_mode = Current.user.try(:admin_enabled?)
+    @order_mode = Current.user&.admin_enabled?
 
     @departments = Department.full_text_search(params[:search], allow_empty_search: true).by_priority
     @departments = @departments.page params[:page] unless @order_mode

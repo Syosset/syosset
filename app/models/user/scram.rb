@@ -32,7 +32,7 @@ class User
       end
 
       define_method :admin_expiry do
-        Redis.current.get("user:#{id}:admin_until").try(:to_i)
+        Redis.current.get("user:#{id}:admin_until")&.to_i
       end
 
       define_method :renew_admin do

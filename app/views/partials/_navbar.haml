@@ -1,5 +1,5 @@
 %header.header
-  - unless params[:action] == 'landing' || Current.user.try(:admin_enabled?)
+  - unless params[:action] == 'landing' || Current.user&.admin_enabled?
     .header-main.container.hidden-xs
       .container
         %h1.logo.pull-left
@@ -15,7 +15,7 @@
               = fa_icon 'phone'
               = t('contact.phone')
 
-%nav.main-nav{role: :navigation, class: Current.user.try(:admin_enabled?) ? 'dark' : ''}
+%nav.main-nav{role: :navigation, class: Current.user&.admin_enabled? ? 'dark' : ''}
   .container
     .navbar-header
       = link_to root_path do
