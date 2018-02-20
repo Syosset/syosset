@@ -32,7 +32,6 @@ class EscalationRequestsController < ApplicationController
     @escalation_request.save
 
     if @escalation_request.errors.empty?
-      type_name = @escalation_request.escalatable.class.to_s.downcase
       flash[:notice] = 'Escalation request successfully created.'
       safe_redirect_to @escalatable
     else

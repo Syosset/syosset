@@ -1,7 +1,11 @@
 class WelcomeController < ApplicationController
   before_action :get_information, only: %i[index landing]
 
-  def index; end
+  def index
+    @active_promotions = Rails.cache.fetch('active_promotions', expires_in: 5.minutes) do
+      Promotion.where(enabled: true).by_priority
+    end
+  end
 
   def about; end
 

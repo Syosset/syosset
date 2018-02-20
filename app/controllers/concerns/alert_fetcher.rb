@@ -1,3 +1,4 @@
+# Fetches alerts for the current user, if any
 module AlertFetcher
   extend ActiveSupport::Concern
 
@@ -8,16 +9,16 @@ module AlertFetcher
   private
 
   def fetch_alerts
-    if Current.user
-      q = Current.user.alerts.unread.desc(:updated_at)
-      @alerts = q.lazy.select(&:valid?).take(26).to_a
+    return unless Current.user
 
-      if @alerts.size <= 25
-        @alert_count = @alerts.size
-      else
-        @alerts = @alerts.take(25)
-        @alert_count = q.count
-      end
+    q = Current.user.alerts.unread.desc(:updated_at)
+    @alerts = q.lazy.select(&:valid?).take(26).to_a
+
+    if @alerts.size <= 25
+      @alert_count = @alerts.size
+    else
+      @alerts = @alerts.take(25)
+      @alert_count = q.count
     end
   end
 end

@@ -1,3 +1,4 @@
+# Provides utility methods for checking permissions
 module ScramUtils
   extend ActiveSupport::Concern
 
@@ -6,6 +7,8 @@ module ScramUtils
   end
 
   class Error < StandardError; end
+
+  # Raised when a holder does not have permission to perform an action
   class NotAuthorizedError < Error
     attr_reader :query, :record, :policy
 

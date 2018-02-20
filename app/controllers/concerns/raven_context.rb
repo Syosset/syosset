@@ -1,3 +1,4 @@
+# Provides request context to Raven to be used in error reports
 module RavenContext
   extend ActiveSupport::Concern
 

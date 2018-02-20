@@ -1,3 +1,4 @@
+# Fetches authorization and user info from current session
 module RequestAuthentication
   extend ActiveSupport::Concern
 
@@ -12,12 +13,10 @@ module RequestAuthentication
   private
 
   def fetch_authorization
-    if authorization_id = session[:authorization_id]
-      authorization = Authorization.includes(:user).find(authorization_id)
-      if authorization
-        Current.authorization = authorization
-        Current.user = authorization.user
-      end
-    end
+    authorization = Authorization.includes(:user).find(session[:authorization_id]) if session[:authorization_id]
+    return unless authorization
+
+    Current.authorization = authorization
+    Current.user = authorization.user
   end
 end

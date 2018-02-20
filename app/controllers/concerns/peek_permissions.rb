@@ -1,3 +1,4 @@
+# Ensures that the peek bar is only visible in the correct environments
 module PeekPermissions
   extend ActiveSupport::Concern
 

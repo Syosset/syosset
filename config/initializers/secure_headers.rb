@@ -20,14 +20,14 @@ SecureHeaders::Configuration.default do |config|
     form_action: ['\'self\''],
     frame_ancestors: ['\'none\''],
     connect_src: ['\'self\'', 'accounts.google.com', 'www.google-analytics.com', 'translate.googleapis.com',
-      'cdn.jsdelivr.net'],
+                  'cdn.jsdelivr.net'],
     font_src: ['\'self\'', 'data:'],
     object_src: ['\'none\''],
     img_src: ['\'self\'', 'data:', 'uploads.syosseths.com', 'www.google-analytics.com', 'www.gstatic.com',
-      'www.google.com', 'translate.googleapis.com', 'translate.google.com'],
+              'www.google.com', 'translate.googleapis.com', 'translate.google.com'],
     style_src: ['\'self\'', '\'unsafe-inline\'', 'translate.googleapis.com'],
     script_src: ['\'self\'', '\'unsafe-inline\'', '\'unsafe-eval\'', 'www.google-analytics.com', 'translate.google.com',
-      'translate.googleapis.com'],
+                 'translate.googleapis.com'],
     report_uri: [ENV['CSP_REPORT_URI']]
   }
 end

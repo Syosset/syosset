@@ -1,3 +1,4 @@
+# Redirects users and sets a flash upon 404
 module NotFoundRedirect
   extend ActiveSupport::Concern
 

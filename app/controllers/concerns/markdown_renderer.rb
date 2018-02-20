@@ -1,3 +1,4 @@
+# Initializes a markdown renderer for use in views
 module MarkdownRenderer
   extend ActiveSupport::Concern
 
