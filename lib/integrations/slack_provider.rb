@@ -36,8 +36,8 @@ module Syosset
         authorization = Authorization.find(params[:authorization_id])
         user = authorization.user
 
-        message = "*#{user.name}* (#{user.email}) just signed in with #{authorization.provider}.
-          User count is at #{User.count}."
+        message = "*#{user.name}* (#{user.email}) just signed in with #{authorization.provider}. " \
+                  "User count is at #{User.count}."
         @client.chat_postMessage(channel: @channel, text: message, as_user: true)
       end
     end
