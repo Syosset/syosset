@@ -11,7 +11,7 @@ class Activity
   include Concerns::Announceable
   include Concerns::Linkable
 
-  validates_uniqueness_of :name
+  validates :name, uniqueness: true
 
   slug :name
   paginates_per 12

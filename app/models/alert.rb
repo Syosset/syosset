@@ -12,15 +12,13 @@ class Alert
   scope :unread, -> { where(:read.ne => true) }
   scope :user, ->(u) { where(user: u) }
 
-  validates_presence_of :user
-
   class << self
     def mark_read!
       unread.mark_read_now!
     end
 
     def mark_read_now!
-      update_all(read: true, read_at: Time.now)
+      update(read: true, read_at: Time.now)
     end
   end
 

@@ -25,8 +25,10 @@ class Course
   belongs_to :department
   has_many :periods
 
-  validates_numericality_of :course_id
-  validates_presence_of :course_id, :name, :short_description, :markdown
-
   field :course_id, type: Integer
+  validates :course_id, presence: true, numericality: true
+
+  validates :name, presence: true
+  validates :short_description, presence: true
+  validates :markdown, presence: true
 end

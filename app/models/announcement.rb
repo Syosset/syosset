@@ -13,7 +13,8 @@ class Announcement
   belongs_to :announceable, polymorphic: true
   belongs_to :poster, class_name: 'User'
 
-  validates_presence_of :name, :markdown
+  validates :name, presence: true
+  validates :markdown, presence: true
 
   scram_define do
     condition :collaborators do |announcement|
@@ -31,9 +32,6 @@ class Announcement
     belongs_to :poster, class_name: 'User'
     belongs_to :announcement
 
-    validates_presence_of :poster
-    validates_presence_of :announcement
-
     delegate :link, to: :announcement
 
     def rich_message
@@ -47,8 +45,7 @@ class Announcement
   end
 
   def alert_subscribers
-    if announceable.is_a? Concerns::Subscribable
-      announceable.alert_subscribers(except: [poster], announcement: self, poster: poster)
-    end
+    return unless announceable.is_a? Concerns::Subscribable
+    announceable.alert_subscribers(except: [poster], announcement: self, poster: poster)
   end
 end

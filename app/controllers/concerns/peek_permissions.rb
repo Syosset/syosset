@@ -5,6 +5,6 @@ module PeekPermissions
   private
 
   def peek_enabled?
-    Rails.env.development? || (Current.user && Current.user.super_admin)
+    Rails.env.development? || Current.user&.super_admin
   end
 end

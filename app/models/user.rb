@@ -38,14 +38,14 @@ class User
   end
 
   def staff?
-    super_admin || (/^[a-z]+\@syosset\.k12\.ny\.us$/ =~ email) == 0
+    super_admin || (/^[a-z]+\@syosset\.k12\.ny\.us$/ =~ email).zero?
   end
 
   def onboarding_steps
     required = []
     if staff?
-      required << :picture unless picture.present?
-      required << :bio if bio.empty?
+      required << :picture unless picture.blank?
+      required << :bio if bio.blank?
     end
     required
   end

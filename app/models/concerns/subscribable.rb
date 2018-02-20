@@ -31,15 +31,14 @@ module Concerns
     end
 
     def subscribe_user(user)
-      if can_view?(user)
-        Rails.logger.info "Subscribing #{user.name} to #{self}"
-        unless sub = subscriptions.user(user).one
-          sub = Subscription.new(subscribable: self, user: user)
-        end
-        sub.unsubscribed = false
-        sub.save!
-        true
+      return unless can_view?(user)
+
+      unless (sub = subscriptions.user(user).one)
+        sub = Subscription.new(subscribable: self, user: user)
       end
+      sub.unsubscribed = false
+      sub.save!
+      true
     end
 
     def unsubscribe_user(user)

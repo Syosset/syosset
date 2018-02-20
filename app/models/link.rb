@@ -10,9 +10,12 @@ class Link
   belongs_to :poster, class_name: 'User'
 
   field :name, type: String
+  validates :name, presence: true
+
   field :icon, type: String
+
   field :target, type: String
-  validates_presence_of :name, :target
+  validates :target, presence: true
 
   search_in :name, :target
   scram_define do

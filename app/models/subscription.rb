@@ -20,9 +20,7 @@ class Subscription
   class Alert < ::Alert
     belongs_to :subscription, index: true, validate: true
     field :subscription_type, type: String
-
-    validates_presence_of :subscription
-    validates_presence_of :subscription_type
+    validates :subscription_type, presence: true
 
     delegate :link, :subscribable, to: :subscription
 
@@ -47,9 +45,6 @@ class Subscription
     alerts.destroy_all
   end
 
-  validates_presence_of :user
-  validates_presence_of :subscribable
-
   # Pass the class of the subscribable
   scope :subscribable_type, ->(type) { where(subscribable_type: type.name) }
 
@@ -59,7 +54,7 @@ class Subscription
     end
 
     def cancel!
-      active.update_all(unsubscribed: true)
+      active.update(unsubscribed: true)
     end
   end
 
@@ -69,10 +64,10 @@ class Subscription
   # allowed to view the subscribable object, and the subscriber is not passed
   # in the :except: argument.
   def alert_subscriber(except: nil, **opts)
-    if active? && ![*except].include?(user) && subscribable.can_view?(user)
-      older = alerts.unread.desc(:updated_at).first
-      newer = alert_class.new(subscription: self, **opts)
-      newer.save! if older.nil? || older.combine(newer)
-    end
+    return unless active? && ![*except].include?(user) && subscribable.can_view?(user)
+
+    older = alerts.unread.desc(:updated_at).first
+    newer = alert_class.new(subscription: self, **opts)
+    newer.save! if older.nil? || older.combine(newer)
   end
 end

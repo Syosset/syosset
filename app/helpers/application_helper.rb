@@ -4,7 +4,7 @@ module ApplicationHelper
   end
 
   def svg(name)
-    file_path = "#{Rails.root}/app/assets/images/#{name}.svg"
+    file_path = Rails.root.join('app', 'assets', 'images', "#{name}.svg")
     return File.read(file_path).html_safe if File.exist?(file_path)
     '(not found)'
   end
@@ -21,22 +21,22 @@ module ApplicationHelper
   end
 
   def errors_for(object)
-    if object.errors.any?
-      content_tag(:div, class: 'panel panel-danger') do
-        concat(content_tag(:div, class: 'panel-heading') do
-          concat(content_tag(:h4, class: 'panel-title') do
-            concat "#{pluralize(object.errors.count, 'error')} prohibited this #{object.class.name.downcase}
-              from being saved:"
-          end)
+    return unless object.errors.any?
+
+    content_tag(:div, class: 'panel panel-danger') do
+      concat(content_tag(:div, class: 'panel-heading') do
+        concat(content_tag(:h4, class: 'panel-title') do
+          concat "#{pluralize(object.errors.count, 'error')} prohibited this #{object.class.name.downcase}
+            from being saved:"
         end)
-        concat(content_tag(:div, class: 'panel-body') do
-          concat(content_tag(:ul) do
-            object.errors.full_messages.each do |msg|
-              concat content_tag(:li, msg)
-            end
-          end)
+      end)
+      concat(content_tag(:div, class: 'panel-body') do
+        concat(content_tag(:ul) do
+          object.errors.full_messages.each do |msg|
+            concat content_tag(:li, msg)
+          end
         end)
-      end
+      end)
     end
   end
 

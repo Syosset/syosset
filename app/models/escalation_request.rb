@@ -9,13 +9,15 @@ class EscalationRequest
   belongs_to :escalatable, polymorphic: true
 
   field :note, type: String
+  validates :note, presence: true
 
   field :escalation_start_at, type: Time, default: Time.now
+  validates :escalation_start_at, presence: true
+
   field :escalation_end_at, type: Time, default: Time.now + 1.week
+  validates :escalation_end_at, presence: true
 
   field :status
-
-  validates_presence_of :requester, :escalatable, :note, :escalation_start_at, :escalation_end_at
 
   scope :status, ->(status) { where status: status }
 
@@ -45,9 +47,7 @@ class EscalationRequest
     class Base < ::Alert
       belongs_to :escalation_request
       field :escalatable_type, type: String
-
-      validates_presence_of :escalatable
-      validates_presence_of :escalatable_type
+      validates :escalatable_type, presence: true
 
       delegate :link, :escalatable, to: :escalation_request
 

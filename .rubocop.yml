@@ -1,4 +1,17 @@
+AllCops:
+  TargetRubyVersion: 2.3
 Metrics/LineLength:
   Max: 120
 Layout/TrailingBlankLines:
+  Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Style/FormatStringToken:
+  Enabled: false
+Rails/Present:
+  # sometimes, this cop will conflict with Rails/Blank to create an un-solvable conflict
+  # prefer .blank? in this project :)
+  Enabled: false
+Rails/FindBy:
+  # mongoid likes to throw errors when using find_by, so prefer .where().first
   Enabled: false

@@ -18,5 +18,8 @@ class Department
 
   has_many :courses
 
-  validates_presence_of :name, :short_description, :markdown
+  validates :name, presence: true
+  validates :short_description, presence: true
+  validates :markdown, presence: true
+
 end

@@ -31,7 +31,7 @@ class Day
     "day##{id}"
   end
 
-  def is_set?
+  def set?
     !@color.nil?
   end
 end
