@@ -1,4 +1,4 @@
-class IntegrationValidator < ActiveModel::Validator
+class Integration::Validator < ActiveModel::Validator
   def validate(record)
     raise "Unable to validate a model that isn't an integration." unless record.is_a? Integration
 

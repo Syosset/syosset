@@ -1,5 +1,3 @@
-require_dependencies 'integration/*'
-
 class Integration
   include Mongoid::Document
 
@@ -17,9 +15,9 @@ class Integration
   validates :provider_id, presence: true
 
   field :options, type: Hash, default: {}
-  validates_with IntegrationValidator
+  validates_with Integration::Validator
 
-  embeds_many :failures, class_name: 'IntegrationFailure'
+  embeds_many :failures, class_name: 'Integration::Failure'
 
   def provider
     self.class.providers[provider_id]

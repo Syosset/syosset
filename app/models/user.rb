@@ -1,12 +1,10 @@
-require_dependencies 'user/*'
-
 class User
   include Mongoid::Document
   include Mongoid::Paperclip
   include Mongoid::Slug
   include Attachable
   include Authorizable
-  include Scram
+  include Permissible
   include Alerts
 
   paginates_per 12

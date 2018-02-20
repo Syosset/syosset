@@ -1,4 +1,4 @@
-class IntegrationFailure
+class Integration::Failure
   include Mongoid::Document
   include Mongoid::Timestamps
 
