@@ -51,10 +51,11 @@ html, body {
 
 .goog-te-gadget {
   @extend .footer-muted;
+  margin-top: -4px;
 }
 
-#google_translate_element {
-  margin-top: 4px;
+.goog-te-combo {
+  color: rgba(0, 0, 0, 1) !important;
 }
 
 .goog-te-gadget-simple {
@@ -64,4 +65,14 @@ html, body {
     border-bottom: 0px !important;
     border-radius: 25px;
     height: 25px;
+}
+
+.btn-loader {
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.translate {
+  margin-top: 15px;
+  padding-left: 10px;
 }
