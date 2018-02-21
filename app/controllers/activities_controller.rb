@@ -2,33 +2,24 @@ class ActivitiesController < ApplicationController
   before_action :get_activity, only: %i[show edit update destroy subscribe unsubscribe]
 
   def index
-    actions_builder = ActionsBuilder.new(current_holder)
-    actions_builder.require(:create, @activity).add_action('New Activity', :get, new_activity_path)
+    actions_builder = ActionsBuilder.new(holder: current_holder, resource: @activity)
+    actions_builder.require(:create).render('New Activity', :get, new_activity_path)
     @actions = actions_builder.actions
 
     @activities = Activity.full_text_search(params[:search], allow_empty_search: true).asc(:name).page params[:page]
   end
 
   def show
-    actions_builder = ActionsBuilder.new(current_holder)
+    actions_builder = ActionsBuilder.new(holder: current_holder, resource: @activity)
 
-    actions_builder.require(:edit, @activity)
-                   .add_action('Edit Activity', :get, edit_activity_path(@activity))
-
-    actions_builder.require(:edit, @activity)
-                   .add_action('Manage Collaborators', :get, edit_collaborator_group_path(@activity.collaborator_group))
-
-    actions_builder.require(:edit, @activity)
-                   .add_action('View Audit Log', :get, history_trackers_path(activity_id: @activity.id))
-
-    actions_builder.require(:edit, @activity)
-                   .add_action('Make Announcement', :get, new_announcement_path(activity_id: @activity.id))
-
-    actions_builder.require(:edit, @activity)
-                   .add_action('Make Link', :get, new_link_path(activity_id: @activity.id))
-
-    actions_builder.require(:destroy, @activity)
-                   .add_action('Destroy Activity', :delete, activity_path(@activity), data: { confirm: 'Are you sure?' })
+    actions_builder.require(:edit) do
+      render('Edit Activity', :get, edit_activity_path(resource))
+      render('Manage Collaborators', :get, edit_collaborator_group_path(resource.collaborator_group))
+      render('View Audit Log', :get, history_trackers_path(activity_id: resource.id))
+      render('Make Announcement', :get, new_announcement_path(activity_id: resource.id))
+      render('Make Link', :get, new_link_path(activity_id: resource.id))
+      render('Destroy Activity', :delete, activity_path(resource), data: { confirm: 'Are you sure?' })
+    end
 
     @actions = actions_builder.actions
   end

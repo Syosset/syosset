@@ -3,18 +3,16 @@ class LinksController < ApplicationController
   before_action :get_link, only: %i[update destroy edit]
 
   def index
-    actions_builder = ActionsBuilder.new(current_holder)
+    actions_builder = ActionsBuilder.new(holder: current_holder, resource: @linkable)
     @links =
       if @linkable
-        actions_builder.require(:edit, @linkable)
-                       .add_action('New Link', :get, new_link_path("#{@linkable.class.to_s.downcase}_id" => @linkable.id))
+        actions_builder.require(:edit)
+                       .render('New Link', :get, new_link_path("#{@linkable.class.to_s.downcase}_id" => @linkable))
         @linkable.links.full_text_search(params[:search], allow_empty_search: true).by_priority.desc(:created_at)
       else
-        # (Link.escalated.sort_by!(&:created_at).to_a + Link.desc(:created_at).to_a).uniq
         Link.full_text_search(params[:search], allow_empty_search: true).by_priority.desc(:created_at)
       end
 
-    # @links = Kaminari.paginate_array(@links).page(params[:page]).per(12)
     @links = @links.page params[:page]
 
     @actions = actions_builder.actions
