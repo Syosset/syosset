@@ -66,11 +66,9 @@ Rails.application.routes.draw do
   end
 
   # Admin Panel
-  namespace :admin do
-    root 'base#index'
-    scope module: 'base' do
-      resources :privilege_renewals, only: %i[create]
-      resources :privilege_resignations, only: %i[create]
+  resource :administration, only: :show do
+    scope module: 'administration' do
+      resource :privileges, only: %i[create destroy]
     end
   end
 

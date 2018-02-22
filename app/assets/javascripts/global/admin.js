@@ -10,13 +10,14 @@ $(document).on('turbolinks:load', function setup() {
     setInterval(updateTimer, 1000);
 });
 
-function renew() {updateStatus('renewals')}
-function resign() {updateStatus('resignations')}
+function renew() {updateStatus('POST')}
+function resign() {updateStatus('DELETE')}
 
 function updateStatus(method) {
+  $('#adminTime').text("Updating...");
   $.ajax({
-    type: 'POST',
-    url: '/admin/privilege_' + method,
+    type: method,
+    url: '/administration/privileges',
     success: function(data) {
       $('#adminContainer').removeClass('bg-warning');
       now = getTimestamp();
