@@ -47,30 +47,31 @@ en:
     none: "No promotions loaded. Create one?"
   welcome:
     about:
-      title: "About Us"
-      principal:
-        name: "Giovanni Durante"
-        statement: "Let's get out there and make it a great day!"
-      info:
-        title: "Philosophy"
-        text: "At Syosset High School, we strive to provide an education that is
-        challenging, thorough and useful, in an environment where students find
-        joy in learning. We believe high school is a unique experience, valuable
-        for its own sake. As individuals, our students deserve the opportunity
-        to develop their distinctive talents. While all students should be
-        challenged to think for themselves, we encourage them to work together
-        to share their talents. Our goal is to create lifelong learners who
-        continue to grow and explore long after their last test is taken. It is
-        our hope that Syosset students will emerge as discerning, educated
-        citizens—with the skills necessary to find success in the university, in
-        the workplace, and in all the challenges life offers. Our administration and
-        staff serve to model the values and character we expect of our students:
-        patience, respect, integrity, dignity and empathy. We share our
-        responsibility with parents and our community, and, in turn, hope to
-        make Syosset High School students aware of their responsibility and
-        connection to the larger world."
-    announcements:
-      announcements: "Announcements"
+      show:
+        title: "About Us"
+        principal:
+          name: "Giovanni Durante"
+          statement: "Let's get out there and make it a great day!"
+        info:
+          title: "Philosophy"
+          text: "At Syosset High School, we strive to provide an education that is
+          challenging, thorough and useful, in an environment where students find
+          joy in learning. We believe high school is a unique experience, valuable
+          for its own sake. As individuals, our students deserve the opportunity
+          to develop their distinctive talents. While all students should be
+          challenged to think for themselves, we encourage them to work together
+          to share their talents. Our goal is to create lifelong learners who
+          continue to grow and explore long after their last test is taken. It is
+          our hope that Syosset students will emerge as discerning, educated
+          citizens—with the skills necessary to find success in the university, in
+          the workplace, and in all the challenges life offers. Our administration and
+          staff serve to model the values and character we expect of our students:
+          patience, respect, integrity, dignity and empathy. We share our
+          responsibility with parents and our community, and, in turn, hope to
+          make Syosset High School students aware of their responsibility and
+          connection to the larger world."
+  announcements:
+    announcements: "Announcements"
   integrations:
     slack:
       description: "Posts notifications to Slack as a bot user."

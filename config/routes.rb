@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
   # Main pages
-  root 'welcome#index'
-  get 'landing' => 'welcome#landing' # browser homepage on school devices
-  get 'about' => 'welcome#about'
-  get 'status' => 'welcome#status' # to check that app is alive upon deploy
+  root 'welcome/home#show'
+  scope module: 'welcome' do
+    resource :landing, controller: :landing, only: :show # browser homepage on school devices
+    resource :about, controller: :about, only: :show
+    resource :status, controller: :status, only: :show # to check that app is alive upon deploy
+  end
 
   get 'z/index.html', to: redirect('/') # legacy endpoint -> still set on school devices (Syosset/syosset#83)
 

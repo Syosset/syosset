@@ -1,25 +1,14 @@
-class WelcomeController < ApplicationController
-  before_action :get_information, only: %i[index landing]
+# Fetches and caches resources used by the home and landing pages
+module HomeResources
+  extend ActiveSupport::Concern
 
-  def index
-    @active_promotions = Rails.cache.fetch('active_promotions', expires_in: 5.minutes) do
-      Promotion.where(enabled: true).by_priority
-    end
-  end
-
-  def about; end
-
-  def landing
-    expires_in 5.minutes, public: true unless Current.user
-  end
-
-  def status
-    render json: { ok: true }
+  included do
+    before_action :set_home_resources
   end
 
   private
 
-  def get_information
+  def set_home_resources
     @announcements = Rails.cache.fetch('announcements', expires_in: 5.minutes) do
       # First 8 escalated announcements, padded with latest if there are less than 8
       (Announcement.escalated(8).sort_by!(&:created_at).reverse + Announcement.desc(:created_at).limit(8).to_a)
