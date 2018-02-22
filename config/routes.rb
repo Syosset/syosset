@@ -67,7 +67,7 @@ Rails.application.routes.draw do
 
   # Admin Panel
   resource :administration, only: :show do
-    scope module: 'administration' do
+    scope module: 'administrations' do
       resource :privileges, only: %i[create destroy]
     end
   end

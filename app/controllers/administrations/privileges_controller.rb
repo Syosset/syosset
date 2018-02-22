@@ -1,4 +1,4 @@
-class Administration::PrivilegesController < ApplicationController
+class Administrations::PrivilegesController < ApplicationController
   def create
     if Current.user.super_admin
       Current.user.renew_admin
