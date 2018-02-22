@@ -12,11 +12,11 @@
           %li.list-group-item
             = user.name
             %span.pull-right
-              %a.btn.btn-xs.btn-warning{href: collaborator_group_remove_collaborator_path(@collaborator_group, user_id: user), data: {method: 'post'}}
+              %a.btn.btn-xs.btn-warning{href: collaborator_group_membership_path(@collaborator_group, user_id: user), data: {method: :delete}}
                 = fa_icon 'times'
       .panel-footer
         %b Search by name or email address
-        = form_for @collaborator_group, url: collaborator_group_add_collaborator_path(@collaborator_group), method: :post do |f|
+        = form_for @collaborator_group, url: collaborator_group_memberships_path(@collaborator_group), method: :post do |f|
           .input-group
             %input#search.form-control{:placeholder => "Search", :type => "text",  "data-provide" => "typeahead"}
             %span.input-group-btn

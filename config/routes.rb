@@ -55,16 +55,21 @@ Rails.application.routes.draw do
     post 'deny', action: :deny, as: :deny
   end
 
-  # Collaborator Management
+  # Collaborator Groups
   resources :collaborator_groups, only: %i[edit update] do
-    post 'add_collaborator', action: :add_collaborator, as: :add_collaborator
-    post 'remove_collaborator', action: :remove_collaborator, as: :remove_collaborator
+    scope module: 'collaborator_groups' do
+      resources :memberships, only: %i[create destroy]
+    end
   end
 
   # Admin Panel
-  get 'admin' => 'admin#index'
-  post 'admin/renew' => 'admin#renew'
-  post 'admin/resign' => 'admin#resign'
+  namespace :admin do
+    root 'base#index'
+    scope module: 'base' do
+      resources :privilege_renewals, only: %i[create]
+      resources :privilege_resignations, only: %i[create]
+    end
+  end
 
   # Day Color and Closures
   resource :day, only: %i[show edit update] do
@@ -93,7 +98,7 @@ Rails.application.routes.draw do
   resources :history_trackers, only: %i[index show]
 
   # Autocomplete AJAX
-  get 'autocomplete', to: 'application#autocomplete'
+  get 'autocomplete', to: 'users#autocomplete'
 
   # Sortable AJAX
   post '/rankables/sort' => 'rankables#sort', :as => :sort_rankable

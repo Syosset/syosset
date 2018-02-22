@@ -10,18 +10,20 @@ $(document).on('turbolinks:load', function setup() {
     setInterval(updateTimer, 1000);
 });
 
-function renew() {updateStatus('renew')}
-function resign() {updateStatus('resign')}
+function renew() {updateStatus('renewals')}
+function resign() {updateStatus('resignations')}
 
-function updateStatus(action) {
-    $('#adminTime').text("Updating...");
-    $.post('/admin/' + action, function(data) {
-        $('#adminContainer').removeClass('bg-warning');
-
-        now = getTimestamp();
-        wasAdmin = expiry > now;
-        expiry = data.admin_until;
-    });
+function updateStatus(method) {
+  $.ajax({
+    type: 'POST',
+    url: '/admin/privilege_' + method,
+    success: function(data) {
+      $('#adminContainer').removeClass('bg-warning');
+      now = getTimestamp();
+      wasAdmin = expiry > now;
+      expiry = data.admin_until;
+    }
+  });
 }
 
 function updateTimer() {

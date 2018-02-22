@@ -50,7 +50,7 @@
 
         - if Current.user && Current.user.admin_enabled?
           %li.nav-item{class: active_controller('admin', 'index')}
-            = link_to t('nav.admin'), admin_path
+            = link_to t('nav.admin'), admin_root_path
       %ul.nav.navbar-nav.pull-right
         %li.nav-item.hidden-xs
           - if @active_closure.nil?
