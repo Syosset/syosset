@@ -14,14 +14,13 @@ Rails.application.routes.draw do
   get '/auth/failure' => 'sessions#failure'
 
   # Users
-  resources :users, only: %i[new show edit update] do
+  resources :users, only: %i[index new show edit update] do
     post :populate, on: :collection # create multiple users and assign to collaborator groups
     resources :periods, on: :member, except: [:show]
 
     scope module: 'users' do
       collection do
         resources :user_autocompletions, only: :index, controller: :autocompletions, path: :autocompletions
-        resources :user_admin, only: %i[index edit update], controller: :admin, path: :admin
       end
     end
 

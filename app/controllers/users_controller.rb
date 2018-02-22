@@ -1,8 +1,13 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update]
 
+  def index
+    authorize User
+    @users = User.all.includes(:badge).order(%i[super_admin desc], %i[bot desc]).page(params[:page])
+  end
+
   def show
-    @user = User.find(params[:id])
+    authorize @user
     redirect_to root_path, alert: 'Only staff members can have profiles.' unless @user.staff?
     @periods = @user.periods.asc(:period)
     @onboarding = @user == Current.user ? @user.onboarding_steps : []
@@ -29,12 +34,16 @@ class UsersController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit
+    authorize @user
+  end
 
   def update
-    authorize Current.user
-    if Current.user.update(params.require(:user).permit(:bio, :picture))
-      redirect_to user_path(Current.user)
+    authorize @user
+
+    if @user.update_attributes(user_params)
+      flash[:notice] = 'Successfully updated User.'
+      redirect_to user_path(@user)
     else
       render action: 'edit'
     end
@@ -44,5 +53,13 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def user_params
+    if @user.super_admin
+      return params.require(:user).permit(:bio, :picture, :name, :badge, :super_admin)
+    else
+      return params.require(:user).permit(:bio, :picture)
+    end
   end
 end

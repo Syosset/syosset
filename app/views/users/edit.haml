@@ -1,5 +1,32 @@
 = content_for :model_name, User.name.underscore.to_sym
 = content_for :model_id, @user.id
 
-%h2 Edit User
-= render 'form'
+%section.section.section-padded
+  .section-header
+    %h3 Edit User
+  .container-fluid
+    .row-fluid
+      = render 'form'
+      - if Current.user&.can? :view, User
+        = link_to 'Back', users_path, class: "btn btn-warning pull-right"
+
+
+- if Current.user&.can? :view, Authorization
+  %section.section.section-padded
+    .section-header
+      %h3 Authorizations
+
+    .container-fluid
+      .table-responsive
+        %table.table
+          %thead
+            %tr
+              %th ID
+              %th Provider
+              %th Age
+          %tbody
+            - @user.authorizations.each do |authorization|
+              %tr
+                %td= authorization.id
+                %td= authorization.provider
+                %td= time_ago_in_words(authorization.created_at)

@@ -37,7 +37,7 @@
               = @user.email
 
     .col-md-9
-      - unless @user.bio.empty?
+      - if @user.bio
         .well
           %p.lead= @markdown.render(@user.bio).html_safe
       - else

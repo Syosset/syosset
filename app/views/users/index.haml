@@ -14,7 +14,7 @@
           - @users.each do |user|
             %tr
               %td
-                = link_to user.name, edit_user_admin_path(user)
+                = link_to user.name, edit_user_path(user)
                 = render 'badges/badge', badge: user.badge
                 &nbsp;
                 - if user.super_admin
