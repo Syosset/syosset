@@ -14,7 +14,7 @@
           - @users.each do |user|
             %tr
               %td
-                = link_to user.name, user_admin_edit_path(user)
+                = link_to user.name, edit_user_admin_path(user)
                 = render 'badges/badge', badge: user.badge
                 &nbsp;
                 - if user.super_admin
@@ -28,7 +28,7 @@
   $(function() {
     $('#search').autocomplete({
       minLength: 2,
-      source: '#{autocomplete_path(:json)}',
+      source: '#{user_autocompletions_path(:json)}',
       focus: function(event, ui) {
         $('#search').val(ui.item.label);
         return false;

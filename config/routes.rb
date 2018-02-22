@@ -14,13 +14,17 @@ Rails.application.routes.draw do
   get '/auth/failure' => 'sessions#failure'
 
   # Users
-  resources :users, only: %i[index new show edit update] do
-    get '/admin/edit' => 'users#admin_edit'
-    patch '/admin' => 'users#admin_update'
+  resources :users, only: %i[new show edit update] do
     post :populate, on: :collection # create multiple users and assign to collaborator groups
-
-    get :autocomplete, on: :collection
     resources :periods, on: :member, except: [:show]
+
+    scope module: 'users' do
+      collection do
+        resources :user_autocompletions, only: :index, controller: :autocompletions, path: :autocompletions
+        resources :user_admin, only: %i[index edit update], controller: :admin, path: :admin
+      end
+    end
+
   end
 
   # User content
@@ -96,9 +100,6 @@ Rails.application.routes.draw do
 
   # Auditing
   resources :history_trackers, only: %i[index show]
-
-  # Autocomplete AJAX
-  get 'autocomplete', to: 'users#autocomplete'
 
   # Sortable AJAX
   post '/rankables/sort' => 'rankables#sort', :as => :sort_rankable
