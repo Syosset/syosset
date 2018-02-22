@@ -20,7 +20,7 @@ class ActionsBuilder
     @required_permissions.each do |permission|
       if holder.cannot? permission[:node], permission[:context]
         @required_permissions = [] # Reset method chain
-        return nil
+        return NullActionsBuilder.new
       end
     end
 
