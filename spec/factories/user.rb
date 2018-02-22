@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   sequence :email do |_n|
     'tommy#{n}@halloween.com'
   end
@@ -6,15 +6,16 @@ FactoryGirl.define do
   factory :user do
     name 'Tommy Doyle'
     email
-    password 'tommydoyle'
 
     after(:build) do |user, _evaluator|
-      user.user_policies << FactoryGirl.build(:policy, :collaborator, context: CollaboratableTestModel.to_s)
+      user.user_policies << FactoryBot.build(:policy, :collaborator, context: CollaboratableTestModel.to_s)
+      user.authorizations.build(provider: 'test', uid: 'testing')
+      user.save
     end
 
     trait :admin_panel_acess do
       after(:build) do |user, _evaluator|
-        user.user_policies << FactoryGirl.build(:policy, :admin_info)
+        user.user_policies << FactoryBot.build(:policy, :admin_info)
       end
     end
 

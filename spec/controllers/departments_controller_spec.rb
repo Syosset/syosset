@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe DepartmentsController do
-  describe 'GET index' do
+  describe 'GET #index' do
     it 'populates an array of departments' do
       department = create(:department)
       get :index

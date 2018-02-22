@@ -14,6 +14,7 @@ require 'mongoid'
 # it.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
+
 RSpec.configure do |config|
   Mongoid.load!('./spec/config/mongoid.yml', :test)
 
@@ -22,13 +23,13 @@ RSpec.configure do |config|
     Mongoid::Clients.default.collections.reject { |c| c.name =~ /system/ }.each(&:drop)
   end
 
-  # Reset warden after tests
-  config.after(:each) do
-    Warden.test_reset!
-  end
-
   config.before(:all) do
-    FactoryGirl.reload
+    FactoryBot.reload
+    FactoryBot.define do
+      trait :with_modifier do
+        modifier { FactoryBot.create(:user) }
+      end
+    end
   end
 
   # rspec-expectations config goes here. You can use an alternate

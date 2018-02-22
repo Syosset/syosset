@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Concerns::Collaboratable do
+RSpec.describe Collaboratable do
   let(:group) { create(:collaborator_group) }
 
   it 'tells scram to allow collaborators to edit the model' do

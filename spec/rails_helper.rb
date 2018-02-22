@@ -1,11 +1,10 @@
 require 'capybara/rspec'
-require 'support/warden'
-require 'support/factory_girl'
-require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 # Prevent database truncation if the environment is production
 abort('The Rails environment is running in production mode!') if Rails.env.production? || Rails.env.staging?
+require 'support/factory_bot'
+require 'spec_helper'
 require 'rspec/rails'
 require 'support/controller_macros'
 # Add additional requires below this line. Rails is not loaded until this point!
@@ -28,7 +27,6 @@ require 'support/controller_macros'
 RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
   config.include Capybara::DSL
-  config.include Devise::Test::ControllerHelpers, type: :controller
   config.extend ControllerMacros, type: :controller
 
   # RSpec Rails can automatically mix in different behaviours to your tests

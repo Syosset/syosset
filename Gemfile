@@ -111,7 +111,7 @@ group :development, :test do
 end
 
 group :test do
-  gem 'factory_girl'
+  gem 'factory_bot', '~> 4.8'
   gem 'guard-rspec', require: false
   gem 'rails-controller-testing'
   gem 'rspec-rails', '~> 3.7'

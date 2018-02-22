@@ -54,7 +54,7 @@ class Subscription
     end
 
     def cancel!
-      active.update(unsubscribed: true)
+      active.update_all(unsubscribed: true)
     end
   end
 
