@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     authorize User
   end
 
-  def populate
+  def create
     authorize User, :create
 
     # parses users input and generates emails for users with only a name provided
