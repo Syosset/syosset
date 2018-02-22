@@ -50,6 +50,7 @@ module Syosset
     Raven.configure do |config|
       config.environments = %w[production staging]
       config.release = ENV['GIT_REV']
+      config.silence_ready = true
     end
 
     config.time_zone = 'Eastern Time (US & Canada)'
