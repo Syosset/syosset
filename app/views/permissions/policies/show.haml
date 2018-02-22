@@ -1,0 +1,8 @@
+%ol.breadcrumb
+  %li= link_to 'Policies', policies_path
+  %li.active= @policy.name
+  = link_to edit_policy_path(@policy), class: 'pull-right' do
+    = fa_icon 'key'
+    Edit Policy
+
+%pre= JSON.pretty_generate(@policy.serializable_hash).gsub(/\n/, '<br/>').html_safe

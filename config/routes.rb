@@ -108,7 +108,7 @@ Rails.application.routes.draw do
   post '/attachments' => 'attachments#create'
 
   # Policies/Permissions
-  scope module: 'scram' do
+  scope module: 'permissions' do
     resources :policies
   end
 
