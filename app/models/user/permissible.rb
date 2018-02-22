@@ -36,7 +36,7 @@ module User::Permissible
 
     define_method :renew_admin do
       raise 'User is not an administrator' unless super_admin
-      Redis.current.set("user:#{id}:admin_until", 15.minutes.from_now.to_i)
+      Redis.current.set("user:#{id}:admin_until", (Rails.env.development? ? 30 : 15).minutes.from_now.to_i)
     end
 
     define_method :resign_admin do
