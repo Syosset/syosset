@@ -109,7 +109,9 @@ Rails.application.routes.draw do
 
   # Policies/Permissions
   scope module: 'permissions' do
-    resources :policies
+    resources :policies do
+      resources :targets
+    end
   end
 
   # Utilities

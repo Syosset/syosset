@@ -1,0 +1,12 @@
+= errors_for @target
+= form_for [@policy, @target] do |f|
+  = f.label :actions
+  = f.text_field 'actions', class: 'form-control'
+
+  = f.label :priority
+  = f.number_field :priority, class: 'form-control'
+
+  = f.label :allow
+  = f.check_box :allow, class: 'form-control'
+
+  = f.submit "Save", class: "btn btn-success pull-right", id: "submit-button"
