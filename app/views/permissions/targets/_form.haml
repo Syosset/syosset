@@ -1,4 +1,5 @@
 = errors_for @target
+
 = form_for [@policy, @target] do |f|
   = f.label :actions
   = f.text_field 'actions', class: 'form-control'
@@ -7,6 +8,23 @@
   = f.number_field :priority, class: 'form-control'
 
   = f.label :allow
-  = f.check_box :allow, class: 'form-control'
+  = f.check_box :allow
 
+  %br
+  - Scram::DSL::Definitions::COMPARATORS.keys.each do |comparator|
+    %b= comparator
+    - @target[:conditions][comparator]&.each do |attribute, value|
+      - next unless value
+      %br
+      .mapping{id: comparator}
+        = text_field_tag "", attribute, class: :attribute_name
+        = text_field_tag "target[conditions][#{comparator}][#{attribute}]", @target[:conditions][comparator][attribute], class: :model_value
+    %br
   = f.submit "Save", class: "btn btn-success pull-right", id: "submit-button"
+
+:javascript
+  $('.attribute_name').change(function() {
+    comparator = $(this).closest('.mapping').attr('id');
+    model_value = $(this).closest('.mapping').children('.model_value').first();
+    model_value.attr("name", "target[conditions][" + comparator + "][" + $(this).val() + "]");
+  });

@@ -36,7 +36,6 @@ class Permissions::TargetsController < ApplicationController
 
   def update
     authorize @target
-
     @target.actions = params[:target][:actions].split(',')
 
     if @target.update(target_params)
@@ -60,6 +59,6 @@ class Permissions::TargetsController < ApplicationController
   end
 
   def target_params
-    params.require(:target).permit(:conditions, :priority, :allow)
+    params.require(:target).permit(:priority, :allow, conditions: {})
   end
 end
