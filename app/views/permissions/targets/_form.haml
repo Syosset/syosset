@@ -15,20 +15,69 @@
       %input.form-control.attribute_name{type: :text}
       %input.form-control.model_value{type: :text}
       %a.remove_mapping{:href => "#"} Remove
+      %br/
+      %br/
 
-  %h4= f.label :conditions
+  %h3
+    Conditions
+    %btn.btn.btn-info{'data-toggle' => 'collapse', 'data-target' => '#cheatsheet'} Toggle Cheatsheet
+  #cheatsheet.collapse
+    %table.table
+      %thead
+        %th Special Keyword
+        %th Description
+        %th Expected Location
+        %th Usage
+      %tbody
+        %tr.active
+          %td
+            %code *target_name
+          %td This is used for string permissions. The second parameter of a `can? :action, :string_perm` is checked against the value assigned to the attribute.
+          %td Attribute (first parameter of a condition)
+          %td
+            Example:
+            %code {:equals => { :'*target_name' =>  "peek_bar"}}
+            %br
+            %br
+            In
+            %code can? :view, "something_else"
+            Scram would check if "something_else" == "peek_bar"
+        %tr.active
+          %td
+            %code *holder
+          %td This is used to compare the current user (or holder) with a model's field.
+          %td Value (second parameter of a condition)
+          %td
+            Example:
+            %code {:equals => {:user => "*holder"}}
+            %br
+            %br
+            In
+            %code holder.can? :edit, model
+            Scram would check if the user attribute of the model is equal to the current user (or holder)
+
+      - @policy.model&.scram_conditions.keys.each do |detected_keyword|
+        %tr.info
+          %td
+            %code= "*#{detected_keyword}"
+          %td This target's policy is bound to a model which defined this conditional.
+          %td Value (second parameter of a condition)
+          %td Refer to source code.
+  %h4 Manage Conditions
   - Scram::DSL::Definitions::COMPARATORS.keys.each do |comparator|
-    %b= comparator
-    .comparator{id: comparator}
-      = link_to 'Add Mapping', '#', class: 'add_mapping'
-      - @target[:conditions][comparator]&.each do |attribute, value|
-        - next unless value
-        %br
-        .form-inline.mapping
-          = text_field_tag '', attribute, class: 'attribute_name form-control'
-          = text_field_tag "target[conditions][#{comparator}][#{attribute}]", @target[:conditions][comparator][attribute], class: 'model_value form-control'
-          = link_to 'Remove', '#', class: 'remove_mapping'
-      %br
+    .panel.panel-default
+      .panel-heading= comparator.to_s.humanize
+      .panel-body.comparator{id: comparator}
+        = link_to 'Add Condition', '#', class: 'btn btn-warning add_mapping'
+        %br/
+        %br/
+        - @target[:conditions][comparator]&.each do |attribute, value|
+          - next unless value
+          .form-inline.mapping
+            = link_to 'Remove', '#', class: 'btn btn-danger remove_mapping'
+            = text_field_tag '', attribute, class: 'attribute_name form-control'
+            = text_field_tag "target[conditions][#{comparator}][#{attribute}]", @target[:conditions][comparator][attribute], class: 'model_value form-control'
+          %br
   = f.submit 'Save', class: 'btn btn-success pull-right', id: 'submit-button'
 
 :javascript
