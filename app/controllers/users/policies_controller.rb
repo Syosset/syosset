@@ -7,16 +7,14 @@ class Users::PoliciesController < ApplicationController
     authorize @policy, :edit
     authorize @user, :edit
 
-    @user.policies.add(@policy)
-    @user.save
+    PolicyHolder.create(policy: @policy, user: @user)
   end
 
   def destroy
     authorize @policy, :edit
     authorize @user, :edit
 
-    @user.policies.delete(@policy)
-    @user.save
+    PolicyHolder.where(policy: @policy, user: @user).destroy_all
   end
 
   private
