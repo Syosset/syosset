@@ -5,6 +5,7 @@ class Permissions::TargetsController < ApplicationController
 
   def index
     authorize @policy
+    @targets = @policy.targets
   end
 
   def show

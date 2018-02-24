@@ -1,10 +1,15 @@
 %ol.breadcrumb
   %li= link_to 'Policies', policies_path
   %li.active= @policy.name
-.row
-  = link_to edit_policy_path(@policy), class: 'btn btn-warning pull-right' do
+  = link_to edit_policy_path(@policy), class: 'pull-right' do
+    = fa_icon 'key'
     Edit Policy
-  = link_to policy_targets_path(@policy), class: 'btn btn-warning pull-right' do
-    Manage Targets
-.row
-  %pre= JSON.pretty_generate(@policy.serializable_hash).gsub(/\n/, '<br/>').html_safe
+
+%h1
+  = @policy.name
+  Targets
+  %small
+    - unless @policy.context.empty?
+      Context:
+      = @policy.context
+= render partial: 'permissions/targets/targets', collection: @targets

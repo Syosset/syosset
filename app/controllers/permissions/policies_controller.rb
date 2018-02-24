@@ -8,6 +8,7 @@ class Permissions::PoliciesController < ApplicationController
 
   def show
     authorize @policy
+    @targets = @policy.targets
   end
 
   def new

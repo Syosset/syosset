@@ -2,7 +2,7 @@
 
 = form_for [@policy, @target] do |f|
   = f.label :actions
-  = f.text_field 'actions', class: 'form-control'
+  = f.text_field 'actions', id: :actions_tags, value: @target.actions.join(',')
 
   = f.label :priority
   = f.number_field :priority, class: 'form-control'
@@ -32,6 +32,13 @@
   = f.submit 'Save', class: 'btn btn-success pull-right', id: 'submit-button'
 
 :javascript
+  $('#actions_tags').tagsInput({
+    'delimiter': ',',
+    'height':'42px',
+    'width':'100%',
+    'autocomplete_url': ['show', 'create', 'new', 'edit', 'update', 'destroy']
+  });
+
   $(document).on('change', '.attribute_name', function() {
     comparator = $(this).closest('.mapping').parent().attr('id');
     model_value = $(this).closest('.mapping').children('.model_value').first();
