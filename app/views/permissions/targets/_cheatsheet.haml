@@ -1,0 +1,41 @@
+#cheatsheet.collapse
+  %table.table
+    %thead
+      %th Special Keyword
+      %th Description
+      %th Expected Location
+      %th Usage
+    %tbody
+      %tr.active
+        %td
+          %code *target_name
+        %td This is used for string permissions. The second parameter of a `can? :action, :string_perm` is checked against the value assigned to the attribute.
+        %td Attribute (first parameter of a condition)
+        %td
+          Example:
+          %code {:equals => { :'*target_name' =>  "peek_bar"}}
+          %br
+          %br
+          In
+          %code can? :view, "something_else"
+          Scram would check if "something_else" == "peek_bar"
+      %tr.active
+        %td
+          %code *holder
+        %td This is used to compare the current user (or holder) with a model's field.
+        %td Value (second parameter of a condition)
+        %td
+          Example:
+          %code {:equals => {:user => "*holder"}}
+          %br
+          %br
+          In
+          %code holder.can? :edit, model
+          Scram would check if the user attribute of the model is equal to the current user (or holder)
+    - @policy.model&.scram_conditions.keys.each do |detected_keyword|
+      %tr.info
+        %td
+          %code= "*#{detected_keyword}"
+        %td This target's policy is bound to a model which defined this conditional.
+        %td Value (second parameter of a condition)
+        %td Refer to source code.
