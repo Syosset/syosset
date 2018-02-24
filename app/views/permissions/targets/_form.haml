@@ -10,21 +10,40 @@
   = f.label :allow
   = f.check_box :allow
 
-  %br
+  .template_mapping{hidden: :true}
+    .form-inline.mapping
+      %input.form-control.attribute_name{type: :text}
+      %input.form-control.model_value{type: :text}
+      %a.remove_mapping{:href => "#"} Remove
+
+  %h4= f.label :conditions
   - Scram::DSL::Definitions::COMPARATORS.keys.each do |comparator|
     %b= comparator
-    - @target[:conditions][comparator]&.each do |attribute, value|
-      - next unless value
+    .comparator{id: comparator}
+      = link_to 'Add Mapping', '#', class: 'add_mapping'
+      - @target[:conditions][comparator]&.each do |attribute, value|
+        - next unless value
+        %br
+        .form-inline.mapping
+          = text_field_tag '', attribute, class: 'attribute_name form-control'
+          = text_field_tag "target[conditions][#{comparator}][#{attribute}]", @target[:conditions][comparator][attribute], class: 'model_value form-control'
+          = link_to 'Remove', '#', class: 'remove_mapping'
       %br
-      .mapping{id: comparator}
-        = text_field_tag "", attribute, class: :attribute_name
-        = text_field_tag "target[conditions][#{comparator}][#{attribute}]", @target[:conditions][comparator][attribute], class: :model_value
-    %br
-  = f.submit "Save", class: "btn btn-success pull-right", id: "submit-button"
+  = f.submit 'Save', class: 'btn btn-success pull-right', id: 'submit-button'
 
 :javascript
-  $('.attribute_name').change(function() {
-    comparator = $(this).closest('.mapping').attr('id');
+  $(document).on('change', '.attribute_name', function() {
+    comparator = $(this).closest('.mapping').parent().attr('id');
     model_value = $(this).closest('.mapping').children('.model_value').first();
     model_value.attr("name", "target[conditions][" + comparator + "][" + $(this).val() + "]");
+  });
+
+  $('.remove_mapping').click(function(event) {
+    $(this).closest('.mapping').remove();
+    event.preventDefault();
+  });
+
+  $('.add_mapping').click(function(event) {
+    $('.template_mapping .mapping').clone(true, true).appendTo($(this).closest('.comparator'));
+    event.preventDefault();
   });

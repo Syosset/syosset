@@ -37,7 +37,7 @@ class Permissions::TargetsController < ApplicationController
   def update
     authorize @target
     @target.actions = params[:target][:actions].split(',')
-
+    @target.conditions = {}
     if @target.update(target_params)
       redirect_to policy_target_path(@policy, @target)
     else
@@ -59,6 +59,6 @@ class Permissions::TargetsController < ApplicationController
   end
 
   def target_params
-    params.require(:target).permit(:priority, :allow, conditions: {})
+    params.require(:target).permit(:priority, :allow, actions: [], conditions: {})
   end
 end
