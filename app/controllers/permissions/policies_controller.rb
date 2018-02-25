@@ -29,6 +29,7 @@ class Permissions::PoliciesController < ApplicationController
 
   def edit
     authorize @policy
+    @users = @policy.holders.select { |h| h.is_a? User } # The system in place allows any type of Holder, but our UI will be focused on user management
   end
 
   def update

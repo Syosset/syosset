@@ -1,23 +1,3 @@
-module Scram::Holder
-  def cannot?(*args)
-    !can?(*args)
-  end
-end
-
-module Holdable
-  extend ActiveSupport::Concern
-
-  included do
-    has_many :policy_holders
-
-    define_method :holders do
-      policy_holders.map(&:holder)
-    end
-  end
-end
-
-Scram::Policy.include(Holdable)
-
 module Scram
   DEFAULT_POLICIES = []
   if Rails.env.test?

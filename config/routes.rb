@@ -21,7 +21,6 @@ Rails.application.routes.draw do
     resources :periods, on: :member, except: [:show]
 
     scope module: 'users' do
-      resources :policies, only: [:create, :destroy]
       collection do
         resources :user_autocompletions, only: :index, controller: :autocompletions, path: :autocompletions
       end
@@ -111,6 +110,7 @@ Rails.application.routes.draw do
   scope module: 'permissions' do
     resources :policies do
       resources :targets
+      resources :users, only: [:create, :destroy]
     end
   end
 

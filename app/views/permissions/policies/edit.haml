@@ -2,4 +2,45 @@
   %li= link_to 'Policies', policies_path
   %li.active= link_to @policy.name, @policy
 
-= render 'form'
+
+%br
+.panel.panel-default
+  .panel-heading
+    %h3.panel-title Manage Holders
+  %ul.list-group
+    - @users.each do |user|
+      %li.list-group-item
+        = user.name
+        %span.pull-right
+          %a.btn.btn-xs.btn-warning{href: policy_user_path(user, policy_id: @policy), data: {method: :delete}}
+            = fa_icon 'times'
+  .panel-footer
+    %b Search by name or email address
+    = form_for @policy, url: policy_users_path(policy_id: @policy), method: :post do |f|
+      .input-group
+        %input#search.form-control{:placeholder => "Search", :type => "text",  "data-provide" => "typeahead"}
+        %span.input-group-btn
+          = f.submit "Add Holder", class: "btn btn-default"
+        %input#search_id{:name => "id", :type => "hidden"}/
+
+:javascript
+  $(function() {
+        $('#search').autocomplete({
+              minLength: 2,
+            source: '#{user_autocompletions_path(:json)}',
+              focus: function(event, ui) {
+                  $('#search').val(ui.item.label);
+                  return false;
+              },
+              select: function(event, ui) {
+                  $('#search').val(ui.item.label);
+                  $('#search_id').val(ui.item.value);
+                  return false;
+              }
+          })
+           .autocomplete( "instance" )._renderItem = function( ul, item ) {
+            return $( "<li>" )
+              .append( "<div>" + item.label + "<br>" + item.desc + "</div>" )
+              .appendTo( ul );
+          };
+      });
