@@ -32,7 +32,7 @@
           In
           %code holder.can? :edit, model
           Scram would check if the user attribute of the model is equal to the current user (or holder)
-    - @policy.model&.scram_conditions.keys.each do |detected_keyword|
+    - @policy.model&.scram_conditions&.keys&.each do |detected_keyword|
       %tr.info
         %td
           %code= "*#{detected_keyword}"
