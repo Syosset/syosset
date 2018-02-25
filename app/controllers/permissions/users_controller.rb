@@ -7,7 +7,7 @@ class Permissions::UsersController < ApplicationController
     authorize @policy, :edit
     authorize @user, :edit
 
-    PolicyHolder.create(policy: @policy, holder: @user)
+    Scram::PolicyHolder.create(policy: @policy, holder: @user)
     redirect_to edit_policy_path(@policy), flash: { success: 'Holder was added successfully' }
   end
 
@@ -15,7 +15,7 @@ class Permissions::UsersController < ApplicationController
     authorize @policy, :edit
     authorize @user, :edit
 
-    PolicyHolder.where(policy: @policy, holder: @user).destroy_all
+    Scram::PolicyHolder.where(policy: @policy, holder: @user).destroy_all
     redirect_to edit_policy_path(@policy), flash: { success: 'Holder was removed successfully' }
   end
 

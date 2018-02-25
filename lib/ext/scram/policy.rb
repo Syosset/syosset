@@ -3,7 +3,7 @@ module Ext
     module Policy
       def self.included(base)
         base.class_eval do
-          has_many :policy_holders
+          has_many :policy_holders, class_name: "Scram::PolicyHolder"
           define_method :holders do
             policy_holders.map(&:holder)
           end

@@ -1,20 +1,10 @@
 module User::Permissible
   extend ActiveSupport::Concern
   include ::Scram::Holder
+  include ::Scram::PolicyHoldable
 
   included do
-    # Sets up a relation where this user now stores 'policy_ids'. This is a one-way relationship!
-    has_many :policy_holders, as: :holder
-
-    # NOTE: This macro remaps the actual mongoid relation to be under the name user_policies, since we override it in
-    #       User#policies to union in the DEFAULT_POLICIES
-    alias_method :user_policies, :policy_holders
     field :super_admin, type: Boolean, default: false
-
-    # Overrides Scram::Holder#policies to union in this user's policies along with those default as default policies
-    define_method :policies do
-      ::Scram::DEFAULT_POLICIES | user_policies.map(&:policy)
-    end
 
     # Defines the compare value used by Scram in the database. We choose to use ObjectIds.
     define_method :scram_compare_value do
