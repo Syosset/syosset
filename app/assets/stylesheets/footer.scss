@@ -26,27 +26,11 @@ html, body {
   color: #ff4949;
 }
 
-.footer .social {
-  margin-top: 6px;
-  display: flex;
-  flex: 1;
-}
-.footer .social li {
-  margin-left: 10px;
-  text-align: center;
-  font-size: 18px;
-  line-height: 2;
-}
-
 .footer-muted {
   color: rgba(255, 255, 255, 0.8) !important;
   &:hover {
     color: rgba(255, 255, 255, 1) !important;
   }
-}
-
-.footer .social li a {
-  @extend .footer-muted;
 }
 
 .goog-te-gadget {
