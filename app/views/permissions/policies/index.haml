@@ -1,9 +1,9 @@
 %ol.breadcrumb
   %li.active Policies
-  = link_to new_policy_path, class: 'pull-right' do
-    = fa_icon 'key'
-    Create Policy
-%h1 Policies
+%h1
+  Policies
+  .pull-right
+    = render 'partials/modtools'
 %table.table.table-responsive
   %thead
     %th ID

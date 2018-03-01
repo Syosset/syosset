@@ -4,11 +4,20 @@ class Permissions::PoliciesController < ApplicationController
   def index
     authorize Scram::Policy
     @policies = Scram::Policy.all
+
+    @actions = ActionsBuilder.new(current_holder).require(:edit, Scram::Policy) do
+      render 'Create Policy', :get, new_policy_path
+    end.actions
   end
 
   def show
     authorize @policy
     @targets = @policy.targets
+
+    @actions = ActionsBuilder.new(current_holder, policy: @policy).require(:edit) do
+      render('Edit Policy', :get, edit_policy_path(policy))
+      render('Create Target', :get, new_policy_target_path(policy_id: policy))
+    end.actions
   end
 
   def new

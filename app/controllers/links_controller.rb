@@ -3,7 +3,7 @@ class LinksController < ApplicationController
   before_action :get_link, only: %i[update destroy edit]
 
   def index
-    actions_builder = ActionsBuilder.new(holder: current_holder, resource: @linkable)
+    actions_builder = ActionsBuilder.new(current_holder, resource: @linkable)
     @links =
       if @linkable
         actions_builder.require(:edit)

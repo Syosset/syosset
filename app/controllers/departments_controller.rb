@@ -7,22 +7,22 @@ class DepartmentsController < ApplicationController
     @departments = Department.full_text_search(params[:search], allow_empty_search: true).by_priority
     @departments = @departments.page params[:page] unless @order_mode
 
-    actions_builder = ActionsBuilder.new(holder: current_holder, resource: @department)
+    actions_builder = ActionsBuilder.new(current_holder, department: @department)
     actions_builder.require(:create).render('New Department', :get, new_department_path(@department))
     @actions = actions_builder.actions
   end
 
   def show
-    actions_builder = ActionsBuilder.new(holder: current_holder, resource: @department)
+    actions_builder = ActionsBuilder.new(current_holder, department: @department)
 
     actions_builder.require(:edit) do
-      render('Edit Department', :get, edit_department_path(resource))
-      render('Manage Collaborators', :get, edit_collaborator_group_path(resource.collaborator_group))
-      render('View Audit Log', :get, history_trackers_path(department_id: resource.id))
-      render('Make Course', :get, new_department_course_path(department_id: resource.id))
-      render('Make Announcement', :get, new_announcement_path(department_id: resource.id))
-      render('Make Link', :get, new_link_path(department_id: resource.id))
-      render('Destroy Department', :delete, department_path(resource), data: { confirm: 'Are you sure?' })
+      render('Edit Department', :get, edit_department_path(department))
+      render('Manage Collaborators', :get, edit_collaborator_group_path(department.collaborator_group))
+      render('View Audit Log', :get, history_trackers_path(department_id: department.id))
+      render('Make Course', :get, new_department_course_path(department_id: department.id))
+      render('Make Announcement', :get, new_announcement_path(department_id: department.id))
+      render('Make Link', :get, new_link_path(department_id: department.id))
+      render('Destroy Department', :delete, department_path(department), data: { confirm: 'Are you sure?' })
     end
 
     @actions = actions_builder.actions

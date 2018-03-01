@@ -2,7 +2,7 @@ class ActivitiesController < ApplicationController
   before_action :get_activity, only: %i[show edit update destroy subscribe unsubscribe]
 
   def index
-    actions_builder = ActionsBuilder.new(holder: current_holder, resource: @activity)
+    actions_builder = ActionsBuilder.new(current_holder, activity: @activity)
     actions_builder.require(:create).render('New Activity', :get, new_activity_path)
     @actions = actions_builder.actions
 
@@ -10,15 +10,15 @@ class ActivitiesController < ApplicationController
   end
 
   def show
-    actions_builder = ActionsBuilder.new(holder: current_holder, resource: @activity)
+    actions_builder = ActionsBuilder.new(current_holder, activity: @activity)
 
     actions_builder.require(:edit) do
-      render('Edit Activity', :get, edit_activity_path(resource))
-      render('Manage Collaborators', :get, edit_collaborator_group_path(resource.collaborator_group))
-      render('View Audit Log', :get, history_trackers_path(activity_id: resource.id))
-      render('Make Announcement', :get, new_announcement_path(activity_id: resource.id))
-      render('Make Link', :get, new_link_path(activity_id: resource.id))
-      render('Destroy Activity', :delete, activity_path(resource), data: { confirm: 'Are you sure?' })
+      render('Edit Activity', :get, edit_activity_path(activity))
+      render('Manage Collaborators', :get, edit_collaborator_group_path(activity.collaborator_group))
+      render('View Audit Log', :get, history_trackers_path(activity_id: activity.id))
+      render('Make Announcement', :get, new_announcement_path(activity_id: activity.id))
+      render('Make Link', :get, new_link_path(activity_id: activity.id))
+      render('Destroy Activity', :delete, activity_path(activity), data: { confirm: 'Are you sure?' })
     end
 
     @actions = actions_builder.actions

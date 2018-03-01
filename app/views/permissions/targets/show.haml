@@ -3,8 +3,12 @@
   %li= link_to @policy.name, policy_path(@policy)
   %li= link_to 'Targets', policy_targets_path(@policy)
   %li.active= @target.id
-  = link_to edit_policy_target_path(@policy, @target), class: 'pull-right' do
-    = fa_icon 'bullseye'
-    Edit Target
-
-%pre= JSON.pretty_generate(@target.serializable_hash).gsub(/\n/, '<br/>').html_safe
+%h1
+  Target
+  %small
+    ID:
+    = @target.id
+  .pull-right
+    = render 'partials/modtools'
+.well
+  %pre= JSON.pretty_generate(@target.serializable_hash).gsub(/\n/, '<br/>').html_safe

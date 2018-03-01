@@ -3,7 +3,7 @@ class AnnouncementsController < ApplicationController
   before_action :get_announceable, only: %i[index new create edit update]
 
   def index
-    actions_builder = ActionsBuilder.new(holder: current_holder, resource: @announceable)
+    actions_builder = ActionsBuilder.new(current_holder, announceable: @announceable)
     @announcements =
       if @announceable
         actions_builder.require(:edit)
@@ -20,16 +20,16 @@ class AnnouncementsController < ApplicationController
 
   def show
 
-    actions_builder = ActionsBuilder.new(holder: current_holder, resource: @announcement)
+    actions_builder = ActionsBuilder.new(current_holder, announcement: @announcement)
 
     actions_builder.require(:edit) do
-      announceable = resource.announceable
+      announceable = announcement.announceable
 
       render('Edit Announcement', :get,
-                 edit_announcement_path(resource, "#{announceable.class.to_s.downcase}_id" => announceable))
-      render('Destroy Announcement', :delete, announcement_path(resource), data: { confirm: 'Are you sure?' })
-      render('Request Frontpage Visibility', :get, new_escalation_request_path(announcement_id: resource))
-      render('View Audit Log', :get, history_trackers_path(announcement_id: resource))
+                 edit_announcement_path(announcement, "#{announceable.class.to_s.downcase}_id" => announceable))
+      render('Destroy Announcement', :delete, announcement_path(announcement), data: { confirm: 'Are you sure?' })
+      render('Request Frontpage Visibility', :get, new_escalation_request_path(announcement_id: announcement))
+      render('View Audit Log', :get, history_trackers_path(announcement_id: announcement))
     end
 
     @actions = actions_builder.actions

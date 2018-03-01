@@ -6,11 +6,11 @@ class PromotionsController < ApplicationController
   end
 
   def show
-    actions_builder = ActionsBuilder.new(holder: current_holder, resource: @promotion)
+    actions_builder = ActionsBuilder.new(current_holder, promotion: @promotion)
 
     actions_builder.require(:edit) do
-      render('Edit Promotion', :get, edit_promotion_path(resource))
-      render('View Audit Log', :get, history_trackers_path(promotion_id: resource))
+      render('Edit Promotion', :get, edit_promotion_path(promotion))
+      render('View Audit Log', :get, history_trackers_path(promotion_id: promotion))
     end
 
     @actions = actions_builder.actions

@@ -2,10 +2,10 @@
 # Optionally, the user can be required to have certain permissions by chaining `require` repeatedly.
 # The final set of built actions is available as `actions`
 class ActionsBuilder
-  attr_accessor :resource, :actions, :holder
+  attr_accessor :locals, :actions, :holder
 
-  def initialize(holder: holder, resource: resource)
-    @resource = resource
+  def initialize(holder, locals = {})
+    @locals = locals
     @actions = []
     @holder = holder
 
@@ -14,7 +14,7 @@ class ActionsBuilder
 
   # Chainable method to only add an action if a user has some permission
   # This method is quick fail; if any permission is missing, the chain dies
-  def require(node, context = @resource, &block)
+  def require(node, context = locals.values&.first, &block)
     @required_permissions << { node: node, context: context }
 
     @required_permissions.each do |permission|
@@ -41,6 +41,7 @@ class ActionsBuilder
   def method_missing(method, *args, &block)
     routes =  Rails.application.routes.url_helpers
     return routes.send(method, *args, &block) if routes.respond_to?(method)
+    return locals[method] if locals[method]
     super
   end
 

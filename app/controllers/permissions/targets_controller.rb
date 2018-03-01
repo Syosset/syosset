@@ -1,15 +1,24 @@
 class Permissions::TargetsController < ApplicationController
   include PolicyScoped
 
-  before_action :set_target, only: %i[show edit update]
+  before_action :set_target, only: %i[show edit update destroy]
 
   def index
     authorize @policy
     @targets = @policy.targets
+
+    @actions = ActionsBuilder.new(current_holder, policy: @policy).require(:edit) do
+      render('Create', :get, new_policy_target_path(policy))
+    end.actions
   end
 
   def show
     authorize @target
+
+    @actions = ActionsBuilder.new(current_holder, policy: @policy, target: @target).require(:edit) do
+      render('Edit', :get, edit_policy_target_path(policy, target))
+      render('Destroy', :delete, policy_target_path(policy, target), data: {confirm: "Are you sure?"})
+    end.actions
   end
 
   def new
@@ -50,7 +59,7 @@ class Permissions::TargetsController < ApplicationController
     authorize @target
 
     @target.destroy
-    redirect_to policy_targets_path(@policy)
+    redirect_to policy_targets_path(@policy), flash: { alert: 'Target destroyed' }
   end
 
   private

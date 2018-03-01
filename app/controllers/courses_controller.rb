@@ -8,15 +8,15 @@ class CoursesController < ApplicationController
   end
 
   def show
-    actions_builder = ActionsBuilder.new(holder: current_holder, resource: @course)
+    actions_builder = ActionsBuilder.new(current_holder, course: @course)
 
     actions_builder.require(:edit) do
-      render('Edit Course', :get, edit_course_path(resource))
-      render('Manage Collaborators', :get, edit_collaborator_group_path(resource.collaborator_group))
-      render('View Audit Log', :get, history_trackers_path(course_id: resource))
-      render('Make Announcement', :get, new_announcement_path(course_id: resource))
-      render('Make Link', :get, new_link_path(course_id: resource))
-      render('Destroy Course', :delete, course_path(resource), data: { confirm: 'Are you sure?' })
+      render('Edit Course', :get, edit_course_path(course))
+      render('Manage Collaborators', :get, edit_collaborator_group_path(course.collaborator_group))
+      render('View Audit Log', :get, history_trackers_path(course_id: course))
+      render('Make Announcement', :get, new_announcement_path(course_id: course))
+      render('Make Link', :get, new_link_path(course_id: course))
+      render('Destroy Course', :delete, course_path(course), data: { confirm: 'Are you sure?' })
     end
 
     @actions = actions_builder.actions
