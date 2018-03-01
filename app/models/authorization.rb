@@ -10,4 +10,8 @@ class Authorization
   def self.from_omniauth(auth_hash)
     where(provider: auth_hash['provider'], uid: auth_hash['uid']).first
   end
+
+  def self.from_token(token)
+    where(provider: 'bearer_token', uid: token).first
+  end
 end

@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   resources :users do
     post :populate, on: :collection # create multiple users and assign to collaborator groups
     resources :periods, on: :member, except: [:show]
+    resources :authorizations, except: [:index, :show]
 
     scope module: 'users' do
       collection do

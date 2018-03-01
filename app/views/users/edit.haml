@@ -12,21 +12,30 @@
 
 
 - if Current.user&.can? :view, Authorization
+  %hr/
   %section.section.section-padded
     .section-header
-      %h3 Authorizations
+      %h3
+        Authorizations
+        = link_to "Create Authorization", new_user_authorization_path(@user), class: 'btn btn-primary pull-right'
 
     .container-fluid
       .table-responsive
         %table.table
           %thead
             %tr
+              %th
               %th ID
               %th Provider
               %th Age
           %tbody
             - @user.authorizations.each do |authorization|
               %tr
+                %td
+                  = link_to user_authorization_path(@user, authorization), method: :delete do
+                    = fa_icon 'times'
+                  = link_to edit_user_authorization_path(@user, authorization) do
+                    = fa_icon 'pencil'
                 %td= authorization.id
                 %td= authorization.provider
                 %td= time_ago_in_words(authorization.created_at)
