@@ -8,7 +8,7 @@ class Permissions::TargetsController < ApplicationController
     @targets = @policy.targets
 
     @actions = ActionsBuilder.new(current_holder, policy: @policy).require(:edit) do
-      render('Create', :get, new_policy_target_path(policy))
+      render('Create Target', :get, new_policy_target_path(policy))
     end.actions
   end
 
@@ -16,8 +16,8 @@ class Permissions::TargetsController < ApplicationController
     authorize @target
 
     @actions = ActionsBuilder.new(current_holder, policy: @policy, target: @target).require(:edit) do
-      render('Edit', :get, edit_policy_target_path(policy, target))
-      render('Destroy', :delete, policy_target_path(policy, target), data: {confirm: "Are you sure?"})
+      render('Edit Target', :get, edit_policy_target_path(policy, target))
+      render('Destroy Target', :delete, policy_target_path(policy, target), data: {confirm: "Are you sure?"})
     end.actions
   end
 

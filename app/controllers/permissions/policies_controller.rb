@@ -6,7 +6,7 @@ class Permissions::PoliciesController < ApplicationController
     @policies = Scram::Policy.all
 
     @actions = ActionsBuilder.new(current_holder).require(:edit, Scram::Policy) do
-      render 'Create Policy', :get, new_policy_path
+      render('Create Policy', :get, new_policy_path)
     end.actions
   end
 
@@ -17,6 +17,7 @@ class Permissions::PoliciesController < ApplicationController
     @actions = ActionsBuilder.new(current_holder, policy: @policy).require(:edit) do
       render('Edit Policy', :get, edit_policy_path(policy))
       render('Create Target', :get, new_policy_target_path(policy_id: policy))
+      render('Destroy Policy', :delete, policy_path(policy), data: { confirm: "Are you sure?" })
     end.actions
   end
 
@@ -55,7 +56,7 @@ class Permissions::PoliciesController < ApplicationController
     authorize @policy
 
     @policy.destroy
-    redirect_to policies_path
+    redirect_to policies_path, flash: { alert: 'Policy destroyed' }
   end
 
   private
