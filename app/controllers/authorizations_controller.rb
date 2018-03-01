@@ -3,10 +3,12 @@ class AuthorizationsController < ApplicationController
   before_action :get_authorization, only: [:edit, :update, :destroy]
 
   def new
+    authorize @authorization
     @authorization = @user.authorizations.build
   end
 
   def create
+    authorize @authorization
     @authorization = @user.authorizations.build(authorization_params)
 
     if @authorization.save
@@ -17,9 +19,11 @@ class AuthorizationsController < ApplicationController
   end
 
   def edit
+    authorize @authorization
   end
 
   def update
+    authorize @authorization
     if @authorization.update(authorization_params)
       redirect_to user_authorizations_path(@user), notice: 'Authorization updated.'
     else
@@ -28,6 +32,7 @@ class AuthorizationsController < ApplicationController
   end
 
   def destroy
+    authorize @authorization
     @authorization.destroy
     redirect_to user_authorizations_path(@user), notice: 'Authorization deleted.'
   end
