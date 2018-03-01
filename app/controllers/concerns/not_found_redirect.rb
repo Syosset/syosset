@@ -4,7 +4,7 @@ module NotFoundRedirect
 
   included do
     rescue_from ActionController::RoutingError, with: :not_found
-    #rescue_from Mongoid::Errors::DocumentNotFound, with: :not_found
+    rescue_from Mongoid::Errors::DocumentNotFound, with: :not_found
   end
 
   private
