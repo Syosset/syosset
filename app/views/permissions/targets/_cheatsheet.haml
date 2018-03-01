@@ -32,10 +32,11 @@
           In
           %code holder.can? :edit, model
           Scram would check if the user attribute of the model is equal to the current user (or holder)
-    - @policy.model&.scram_conditions&.keys&.each do |detected_keyword|
-      %tr.info
-        %td
-          %code= "*#{detected_keyword}"
-        %td This target's policy is bound to a model which defined this conditional.
-        %td Value (second parameter of a condition)
-        %td Refer to source code.
+    - if @policy.model&.respond_to?(:scram_conditions)
+      - @policy.model.scram_conditions.keys.each do |detected_keyword|
+        %tr.info
+          %td
+            %code= "*#{detected_keyword}"
+          %td This target's policy is bound to a model which defined this conditional.
+          %td Value (second parameter of a condition)
+          %td Refer to source code.
