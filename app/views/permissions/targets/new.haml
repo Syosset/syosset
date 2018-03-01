@@ -1,0 +1,7 @@
+%ol.breadcrumb
+  %li= link_to 'Policies', policies_path
+  %li= link_to @policy.name, policy_path(@policy)
+  %li= link_to 'Targets', policy_targets_path(@policy)
+  %li.active Create Target
+
+= render 'form'

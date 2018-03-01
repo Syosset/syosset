@@ -84,7 +84,7 @@ Rails.application.routes.draw do
   # Promotions
   resources :promotions
 
-  #  Badge Management
+  # Badge Management
   resources :badges, except: [:show]
 
   # Integration Management
@@ -105,6 +105,14 @@ Rails.application.routes.draw do
 
   # Attachments
   post '/attachments' => 'attachments#create'
+
+  # Policies/Permissions
+  scope module: 'permissions' do
+    resources :policies do
+      resources :targets
+      resources :users, only: [:create, :destroy]
+    end
+  end
 
   # Utilities
   mount Peek::Railtie => '/peek'

@@ -1,9 +1,3 @@
-module Scram::Holder
-  def cannot?(*args)
-    !can?(*args)
-  end
-end
-
 module Scram
   DEFAULT_POLICIES = []
   if Rails.env.test?

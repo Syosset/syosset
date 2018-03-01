@@ -1,0 +1,10 @@
+%ol.breadcrumb
+  %li= link_to 'Policies', policies_path
+  %li= link_to @policy.name, policy_path(@policy)
+  %li.active Targets
+
+  = link_to new_policy_target_path(@policy), class: 'pull-right' do
+    = fa_icon 'bullseye'
+    Create Target
+
+= render partial: 'targets', collection: @targets

@@ -1,0 +1,4 @@
+.form-inline.mapping
+  = link_to 'Remove', '#', class: 'btn btn-danger remove_mapping'
+  = text_field_tag '', attribute, class: 'attribute_name form-control'
+  = text_field_tag "target[conditions][#{comparator}][#{attribute}]", value, class: 'model_value form-control'

@@ -1,0 +1,13 @@
+= errors_for @policy
+= form_for @policy do |f|
+  = f.label :name
+  = f.text_field :name, class: 'form-control'
+
+  = f.label :context
+  = f.text_field :context, class: 'form-control'
+
+  = f.label :priority
+  = f.number_field :priority, class: 'form-control'
+
+  = f.submit "Save", class: "btn btn-success pull-right", id: "submit-button"
+

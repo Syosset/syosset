@@ -1,0 +1,15 @@
+%ol.breadcrumb
+  %li= link_to 'Policies', policies_path
+  %li.active= @policy.name
+  = link_to edit_policy_path(@policy), class: 'pull-right' do
+    = fa_icon 'key'
+    Edit Policy
+
+%h1
+  = @policy.name
+  Targets
+  %small
+    - unless @policy.context.empty?
+      Context:
+      = @policy.context
+= render partial: 'permissions/targets/targets', collection: @targets

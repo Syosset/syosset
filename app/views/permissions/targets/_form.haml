@@ -1,0 +1,54 @@
+= errors_for @target
+
+= form_for [@policy, @target] do |f|
+  = f.label :actions
+  = f.text_field 'actions', id: :actions_tags, value: @target.actions.join(',')
+
+  = f.label :priority
+  = f.number_field :priority, class: 'form-control'
+
+  = f.label :allow
+  = f.check_box :allow
+
+  %h3
+    Conditions
+    %btn.btn.btn-info{'data-toggle' => 'collapse', 'data-target' => '#cheatsheet'} Toggle Cheatsheet
+  = render partial: 'permissions/targets/cheatsheet', policy: @policy
+
+  %h4 Manage Conditions
+  - Scram::DSL::Definitions::COMPARATORS.keys.each do |comparator|
+    .panel.panel-default
+      .panel-heading= comparator.to_s.humanize
+      .panel-body.comparator{id: comparator}
+        = link_to 'Add Condition', '#', class: 'btn btn-warning add_mapping'
+        %br/
+        %br/
+        - @target[:conditions][comparator]&.each do |attribute, value|
+          - next unless value
+          = render partial: 'permissions/targets/condition', locals: {comparator: comparator, attribute: attribute, value: value}
+
+  = f.submit 'Save', class: 'btn btn-success pull-right', id: 'submit-button'
+
+:javascript
+  $('#actions_tags').tagsInput({
+    'delimiter': ',',
+    'height':'42px',
+    'width':'100%',
+    'autocomplete_url': ['show', 'create', 'new', 'edit', 'update', 'destroy']
+  });
+
+  $(document).on('change', '.attribute_name', function() {
+    comparator = $(this).closest('.mapping').parent().attr('id');
+    model_value = $(this).closest('.mapping').children('.model_value').first();
+    model_value.attr("name", "target[conditions][" + comparator + "][" + $(this).val() + "]");
+  });
+
+  $('.remove_mapping').click(function(event) {
+    $(this).closest('.mapping').remove();
+    event.preventDefault();
+  });
+
+  $('.add_mapping').click(function(event) {
+    $(this).closest('.comparator').append("#{j render(partial: 'condition', locals: {comparator: '', attribute: '', value: ''})}");
+    event.preventDefault();
+  });
