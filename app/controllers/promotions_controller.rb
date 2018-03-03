@@ -2,6 +2,8 @@ class PromotionsController < ApplicationController
   before_action :get_promotion, only: %i[show edit update destroy]
 
   def index
+    authorize Promotion
+    
     @promotions = Promotion.all.by_priority
   end
 

@@ -48,7 +48,7 @@
         %li.nav-item
           = link_to t('nav.extracurriculars'), activities_path
 
-        - if Current.user && Current.user.admin_enabled?
+        - if Current.user&.can? :show, :admin_panel
           %li.nav-item{class: active_controller('admin', 'index')}
             = link_to t('nav.admin'), administration_path
       %ul.nav.navbar-nav.pull-right

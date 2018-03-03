@@ -2,6 +2,8 @@ class BadgesController < ApplicationController
   before_action :get_badge, only: %i[edit update destroy]
 
   def index
+    authorize Badge
+
     @badges = Badge.all
   end
 

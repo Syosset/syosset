@@ -1,35 +1,53 @@
 .admin-stats
-  %h1
-    = User.count
-    %small users
-  %h1
-    = Activity.count
-    %small activities
-  %h1
-    = Announcement.count
-    %small announcements
+  - if Current.user&.can? :index, User
+    %h1
+      = User.count
+      %small users
+  - if Current.user&.can? :index, Activity
+    %h1
+      = Activity.count
+      %small activities
+  - if Current.user&.can? :index, Announcement
+    %h1
+      = Announcement.count
+      %small announcements
 
-= link_to escalation_requests_path, class: "btn btn-admin" do
-  = fa_icon "star"
-  View Escalation Requests
-= link_to users_path, class: "btn btn-admin" do
-  = fa_icon "user"
-  Manage Users
-= link_to policies_path, class: "btn btn-admin" do
-  = fa_icon "key"
-  Manage Permissions
-= link_to badges_path, class: "btn btn-admin" do
-  = fa_icon "shield"
-  Manage Badges
-= link_to closures_path, class: "btn btn-admin" do
-  = fa_icon "snowflake-o"
-  Manage Closures
-= link_to edit_day_path, class: "btn btn-admin" do
-  = fa_icon "calendar"
-  Update Day Color
-= link_to promotions_path, class: "btn btn-admin" do
-  = fa_icon "home"
-  Manage Promotions
-= link_to integrations_path, class: "btn btn-admin" do
-  = fa_icon "plug"
-  Manage Integrations
+- if Current.user&.can? :index, EscalationRequest
+  = link_to escalation_requests_path, class: "btn btn-admin" do
+    = fa_icon "star"
+    View Escalation Requests
+
+- if Current.user&.can? :index, User
+  = link_to users_path, class: "btn btn-admin" do
+    = fa_icon "user"
+    Manage Users
+
+- if Current.user&.can? :index, Scram::Policy
+  = link_to policies_path, class: "btn btn-admin" do
+    = fa_icon "key"
+    Manage Permissions
+
+- if Current.user&.can? :index, Badge
+  = link_to badges_path, class: "btn btn-admin" do
+    = fa_icon "shield"
+    Manage Badges
+
+- if Current.user&.can? :edit, Closure
+  = link_to closures_path, class: "btn btn-admin" do
+    = fa_icon "snowflake-o"
+    Manage Closures
+
+- if Current.user&.can? :edit, Day
+  = link_to edit_day_path, class: "btn btn-admin" do
+    = fa_icon "calendar"
+    Update Day Color
+
+- if Current.user&.can? :index, Promotion
+  = link_to promotions_path, class: "btn btn-admin" do
+    = fa_icon "home"
+    Manage Promotions
+
+- if Current.user&.can? :index, Integration
+  = link_to integrations_path, class: "btn btn-admin" do
+    = fa_icon "plug"
+    Manage Integrations
