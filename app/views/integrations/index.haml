@@ -1,8 +1,8 @@
 %ol.breadcrumb
-  %li.active Integrations
+  %li.active= t('integrations.title')
   = link_to new_integration_path, class: 'pull-right' do
     = fa_icon 'plug'
-    Create Integration
+    = t('integrations.new.title')
 
 - @integrations.each do |integration|
   .integration-provider
@@ -13,5 +13,5 @@
         .name
           = link_to integration.provider.friendly_name, edit_integration_path(integration)
           - if integration.failures.count > 0
-            %span.label.label-danger= pluralize(integration.failures.count, 'failure')
+            %span.label.label-danger= t('integrations.failures.count', count: integration.failures.count)
         .description= integration.create_provider.describe

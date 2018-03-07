@@ -1,0 +1,36 @@
+en:
+  integrations:
+    title: "Integrations"
+    failures:
+      title: "Failures"
+      clear: "Clear All"
+      count:
+        one: "1 failure"
+        other: "%{count} failures"
+      time: "Time"
+      error: "Error"
+      event: "Event"
+      parameters: "Parameters"
+    new:
+      title: "Create Integration"
+      create: "Create"
+    save: "Save Integration"
+    destroy: "Delete Integration"
+    slack:
+      description: "Posts notifications to Slack as a bot user."
+      options:
+        token:
+          name: "API Token"
+          description: "This is the bot token that this integration will use to connect to your team."
+          placeholder: "xoxb-xxxxxxxxxxxx-xxxxxxxxxxxxxxxxxxxxxxxx"
+        channel:
+          name: "Channel"
+          description: "The channel to post messages to. Defaults to #general."
+          placeholder: "#general"
+    spagett:
+      description: "Allows support threads to be handled in messaging channels."
+      options:
+        host:
+          name: "Host"
+          description: "The URL pointing to a Spagett instance."
+          placeholder: "https://spagett.syosseths.com"

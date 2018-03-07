@@ -3,7 +3,7 @@
     .panel-heading= link_to announcement.name, announcement
     .panel-body
       = truncate(strip_tags(announcement.markdown.blank? ? announcement.content : @markdown.render(announcement.markdown)), length: 300) do
-        = link_to " &raquo; Read more".html_safe, announcement
+        = link_to " " + t('announcements.show'), announcement
 .panel.panel-default
   .panel-body
-    = link_to "See more announcements", announcements_path
+    = link_to t('announcements.see_more'), announcements_path

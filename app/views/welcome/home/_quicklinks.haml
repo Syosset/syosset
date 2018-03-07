@@ -1,24 +1,24 @@
 %section.links
   %h1.section-heading.text-highlight
     %span.line
-      = link_to "Quick Links", links_path
+      = link_to t('links.title'), links_path
       %small
         = link_to links_path do
           = fa_icon 'ellipsis-v'
-          Click to see all
+          = t('links.see_more')
   .section-content
     %p
       %a{:href => "https://ic.syosset.k12.ny.us/"}
         = fa_icon 'institution'
-        Parent and Teacher Portal
+        = t('links.default.portal')
     %p
       %a{:href => "https://portal.office.com/"}
         = fa_icon 'envelope'
-        Teacher Email
+        = t('links.default.email')
     %p
       %a{:href => "http://www.syossetschools.org/Calendar/Default.aspx?period=monthgrid"}
         = fa_icon 'calendar'
-        District Calendar
+        = t('links.default.calendar')
     - @links.each do |link|
       %p
         = link_to link[:target] do

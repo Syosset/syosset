@@ -69,11 +69,11 @@
                 = fa_icon 'shield'
               = Current.user.name
           %li.nav-item
-            = link_to t('menu.account.sign_out'), logout_path, :method => :delete
+            = link_to t('sessions.destroy'), logout_path, :method => :delete
         - else
           %li.nav-item
             = link_to '/auth/google_oauth2', class: 'btn-loader' do
-              = t('menu.account.sign_in_with')
+              = t('sessions.new')
               = fa_icon 'google-plus-square'
           - if Rails.env.development?
             %li.nav-item

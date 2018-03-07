@@ -1,38 +1,8 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   'true': 'foo'
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
-  menu:
-    account:
-      sign_in_with: "Sign In"
+  sessions:
+    new: "Sign In"
+    destroy: "Sign Out"
+  confirm: "Are you sure you want to do this?"
   name:
     abbr: "SHS"
     full: "Syosset High School"
@@ -43,56 +13,24 @@ en:
     departments: "Departments"
     departments_all: "View all departments..."
     extracurriculars: "Activities"
+    admin: "Admin"
+  welcome:
+    landing:
+      show:
+        search:
+          prompt: "Search"
+          submit: "Google Search"
   promotions:
     none: "No promotions loaded. Create one?"
-  welcome:
-    about:
-      show:
-        title: "About Us"
-        principal:
-          name: "Giovanni Durante"
-          statement: "Let's get out there and make it a great day!"
-        info:
-          title: "Philosophy"
-          text: "At Syosset High School, we strive to provide an education that is
-          challenging, thorough and useful, in an environment where students find
-          joy in learning. We believe high school is a unique experience, valuable
-          for its own sake. As individuals, our students deserve the opportunity
-          to develop their distinctive talents. While all students should be
-          challenged to think for themselves, we encourage them to work together
-          to share their talents. Our goal is to create lifelong learners who
-          continue to grow and explore long after their last test is taken. It is
-          our hope that Syosset students will emerge as discerning, educated
-          citizens—with the skills necessary to find success in the university, in
-          the workplace, and in all the challenges life offers. Our administration and
-          staff serve to model the values and character we expect of our students:
-          patience, respect, integrity, dignity and empathy. We share our
-          responsibility with parents and our community, and, in turn, hope to
-          make Syosset High School students aware of their responsibility and
-          connection to the larger world."
+    show: "Click to read more"
+  links:
+    title: "Quick Links"
+    see_more: "Click to see more"
+    default:
+      portal: "Parent and Teacher Portal"
+      email: "Teacher Email"
+      calendar: "District Calendar"
   announcements:
-    announcements: "Announcements"
-  integrations:
-    slack:
-      description: "Posts notifications to Slack as a bot user."
-      options:
-        token:
-          name: "API Token"
-          description: "This is the bot token that this integration will use to connect to your team."
-          placeholder: "xoxb-xxxxxxxxxxxx-xxxxxxxxxxxxxxxxxxxxxxxx"
-        channel:
-          name: "Channel"
-          description: "The channel to post messages to. Defaults to #general."
-          placeholder: "#general"
-    spagett:
-      description: "Allows support threads to be handled in messaging channels."
-      options:
-        host:
-          name: "Host"
-          description: "The URL pointing to a Spagett instance."
-          placeholder: "https://spagett.syosseths.com"
-  contact:
-    phone: "Call us today (516) 364-5675"
-    email: "admin@syosseths.com" #TODO: email
-    address: "70 Southwoods Road Syosset, New York 11791"
-  copyright: "© Copyright %{year} Syosset High School"
+    title: "Announcements"
+    see_more: "Click to see more announcements"
+    show: "» Read more"

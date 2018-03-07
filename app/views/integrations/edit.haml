@@ -1,25 +1,25 @@
 %ol.breadcrumb
-  %li= link_to 'Integrations', integrations_path
+  %li= link_to t('integrations.title'), integrations_path
   %li.active
     = fa_icon @integration.provider.fa_icon
     = @integration.provider.friendly_name
 
 = render 'form'
-= link_to "Delete Integration", integration_path(@integration), class: 'btn btn-danger', method: :delete, data: {confirm: "Are you sure?"}
+= link_to t('integrations.destroy'), integration_path(@integration), class: 'btn btn-danger', method: :delete, data: {confirm: t(:confirm)}
 
 - if @integration.failures.count > 0
   %hr
   %h4
-    Failures
-    = link_to "(Clear All)", clear_failures_integration_path(@integration), method: :post
+    = t('integrations.failures.title')
+    = link_to "(#{t('integrations.failures.clear')})", clear_failures_integration_path(@integration), method: :post
   .table-responsive
     %table.table
       %thead
         %tr
-          %th Time
-          %th Error
-          %th Event
-          %th Parameters
+          %th= t('integrations.failures.time')
+          %th= t('integrations.failures.error')
+          %th= t('integrations.failures.event')
+          %th= t('integrations.failures.parameters')
       %tbody
         - @integration.failures.sort_by(&:created_at).reverse.each do |failure|
           %tr

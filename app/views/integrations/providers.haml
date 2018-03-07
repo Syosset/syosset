@@ -1,8 +1,8 @@
 %ol.breadcrumb
-  %li= link_to 'Integrations', integrations_path
+  %li= link_to t('integrations.title'), integrations_path
   %li.active
     = fa_icon 'plug'
-    Create Integration
+    = t('integrations.new.title')
 
 - @providers.each do |provider|
   .integration-provider
@@ -14,4 +14,4 @@
         .description= t("integrations.#{provider.id}.description")
     = link_to new_integration_path(provider: provider.id), class: 'btn' do
       = fa_icon 'plug'
-      Create
+      = t('integrations.new.create')

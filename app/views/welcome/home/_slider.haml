@@ -12,7 +12,7 @@
                     %b= promotion.text.upcase
                   - unless promotion.blurb.empty?
                     .cta
-                      Click to read more
+                      = t('promotions.show')
                       = fa_icon 'arrow-circle-o-right'
     - else
       = link_to t('promotions.none'), promotions_path, class: 'btn btn-warning'

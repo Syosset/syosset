@@ -6,9 +6,9 @@
   .row
     %form.search-form{action: "https://www.google.com/search", method: :get}
       .input-group
-        %input.form-control{name: :q, placeholder: "Search", type: :text, autofocus: true}
+        %input.form-control{name: :q, placeholder: t('.search.prompt'), type: :text, autofocus: true}
         %span.input-group-btn
-          %input.btn.btn-default.landing-search{type: :submit, value: "Google Search"}
+          %input.btn.btn-default.landing-search{type: :submit, value: t('.search.submit')}
 
 .row.table-row
   .col-md-9

@@ -30,6 +30,9 @@ module Syosset
     # Don't generate system test files.
     config.generators.system_tests = nil
 
+    # Load i18n files from subdirectories
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.yml')]
+
     # Paperclip storage configuration
     config.paperclip_defaults = {
       storage: :s3,
