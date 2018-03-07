@@ -25,7 +25,7 @@ en:
     show: "Click to read more"
   links:
     title: "Quick Links"
-    see_more: "Click to see more"
+    see_more: "Click for more"
     default:
       portal: "Parent and Teacher Portal"
       email: "Teacher Email"
