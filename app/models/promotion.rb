@@ -2,12 +2,12 @@ class Promotion
   include Mongoid::Document
   include Mongoid::History::Trackable
   include Mongoid::Paperclip
-  include Attachable
+  include Publishable, Attachable
   include Rankable
 
   field :enabled, type: Mongoid::Boolean, default: true
   field :text, type: String
-  field :blurb, type: String, default: ''
+  validates :text, presence: true
 
   has_mongoid_attached_file :picture, styles: {
     thumb: ['250x100', :jpg],

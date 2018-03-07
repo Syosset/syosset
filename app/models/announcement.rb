@@ -3,18 +3,13 @@ class Announcement
   include Mongoid::Timestamps
   include Mongoid::History::Trackable
   include Scram::DSL::ModelConditions
-  include Descriptable
-  include Escalatable
-  include Rankable
-  include Attachable
+  include Summarizable, Publishable, Attachable
+  include Escalatable, Rankable
 
   after_create :alert_subscribers
 
   belongs_to :announceable, polymorphic: true
   belongs_to :poster, class_name: 'User'
-
-  validates :name, presence: true
-  validates :markdown, presence: true
 
   scram_define do
     condition :collaborators do |announcement|

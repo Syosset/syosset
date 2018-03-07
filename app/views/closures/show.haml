@@ -12,4 +12,4 @@
         = @closure.end_date.strftime("%B %-d %Y")
     = link_to "Edit", edit_closure_path(@closure), class: "btn btn-primary pull-right"
   .page-content
-    %p= @closure.content
+    %p= @markdown.render(@closure.markdown).html_safe

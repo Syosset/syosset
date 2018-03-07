@@ -13,10 +13,7 @@
   .page-content
     .row.page-row
       .courses-wrapper.col-md-8.col-sm-7
-        - unless @activity.markdown
-          = @activity.content.html_safe
-        - else
-          = @markdown.render(@activity.markdown).html_safe
+        = @markdown.render(@activity.markdown).html_safe
       %aside.page-sidebar.col-md-3.col-md-offset-1.col-sm-4.col-sm-offset-1
         %section.widget.has-divider
           %h3.title

@@ -3,8 +3,7 @@ class Link
   include Mongoid::Timestamps
   include Mongoid::Search
   include Scram::DSL::ModelConditions
-  include Rankable
-  include Escalatable
+  include Escalatable, Rankable
 
   belongs_to :linkable, polymorphic: true
   belongs_to :poster, class_name: 'User'

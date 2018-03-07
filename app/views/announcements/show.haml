@@ -1,5 +1,5 @@
 = content_for :title, @announcement.name
-= content_for :description, truncate(strip_tags(@announcement.content), length: 200)
+= content_for :description, truncate(strip_tags(@announcement.markdown), length: 200)
 
 .page-wrapper
   %header.page-heading.clearfix
@@ -12,7 +12,4 @@
     = render partial: "partials/modtools", locals: {actions: @actions}
   .page-content
     .row-fluid.page-row
-      - unless @announcement.markdown
-        = @announcement.content.html_safe
-      - else
-        = @markdown.render(@announcement.markdown).html_safe
+      = @markdown.render(@announcement.markdown).html_safe

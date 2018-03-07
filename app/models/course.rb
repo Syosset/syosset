@@ -3,12 +3,9 @@ class Course
   include Mongoid::Slug
   include Mongoid::Search
   include Mongoid::History::Trackable
-  include Descriptable
-  include Subscribable
-  include Collaboratable
-  include Announceable
-  include Linkable
-  include Attachable
+  include Summarizable, Publishable, Attachable
+  include Announceable, Linkable
+  include Collaboratable, Subscribable
 
   paginates_per 12
   slug :name
@@ -27,8 +24,4 @@ class Course
 
   field :course_id, type: Integer
   validates :course_id, presence: true, numericality: true
-
-  validates :name, presence: true
-  validates :short_description, presence: true
-  validates :markdown, presence: true
 end

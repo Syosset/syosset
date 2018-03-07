@@ -30,7 +30,7 @@
                 - announceable = announcement.announceable
                 %td= link_to "#{announceable.send("name") || "a #{announceable.class.to_s.humanize}"}", announceable
               %td= link_to announcement.name.truncate(60), announcement
-              %td= truncate(strip_tags(announcement.markdown.blank? ? announcement.content : @markdown.render(announcement.markdown)), length: 50)
+              %td= announcement.summary || truncate(strip_tags(@markdown.render(announcement.markdown)), length: 50)
               - if Current.user&.admin_enabled?
                 %td
                   = link_to announcement.poster do

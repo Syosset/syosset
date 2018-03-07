@@ -3,13 +3,10 @@ class Department
   include Mongoid::Slug
   include Mongoid::Search
   include Mongoid::History::Trackable
-  include Descriptable
+  include Summarizable, Publishable, Attachable
+  include Announceable, Linkable
+  include Collaboratable, Subscribable
   include Rankable
-  include Subscribable
-  include Collaboratable
-  include Announceable
-  include Linkable
-  include Attachable
 
   slug :name
   paginates_per 12
@@ -17,9 +14,4 @@ class Department
   track_history on: [:all]
 
   has_many :courses
-
-  validates :name, presence: true
-  validates :short_description, presence: true
-  validates :markdown, presence: true
-
 end

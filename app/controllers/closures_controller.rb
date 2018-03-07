@@ -54,6 +54,6 @@ class ClosuresController < ApplicationController
   end
 
   def closure_params
-    params.require(:closure).permit(:start_date, :end_date, :type, :content)
+    params.require(:closure).permit(:start_date, :end_date, :type, :markdown)
   end
 end

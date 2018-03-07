@@ -10,7 +10,7 @@
                 = link_to promotion_path(promotion) do
                   %h1.super
                     %b= promotion.text.upcase
-                  - unless promotion.blurb.empty?
+                  - unless promotion.markdown.empty?
                     .cta
                       = t('promotions.show')
                       = fa_icon 'arrow-circle-o-right'

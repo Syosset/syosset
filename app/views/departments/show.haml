@@ -1,5 +1,5 @@
 = content_for :title, @department.name
-= content_for :description, truncate(strip_tags(@department.content), length: 200)
+= content_for :description, @dep
 
 .page-wrapper
   %header.page-heading.clearfix
@@ -15,10 +15,7 @@
   .page-content
     .row.page-row
       .courses-wrapper.col-md-8.col-sm-7
-        - unless @department.markdown
-          = @department.content.html_safe
-        - else
-          = @markdown.render(@department.markdown).html_safe
+        = @markdown.render(@department.markdown).html_safe
         %span.row
           %h3= link_to "#{@department.name} Staff", "#"
           %table.table

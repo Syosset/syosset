@@ -88,6 +88,6 @@ class AnnouncementsController < ApplicationController
   end
 
   def announcement_params
-    params.require(:announcement).permit(:name, :markdown).merge(modifier: Current.user)
+    params.require(:announcement).permit(:name, :summary, :markdown).merge(modifier: Current.user)
   end
 end

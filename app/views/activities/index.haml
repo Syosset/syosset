@@ -23,5 +23,5 @@
             %tr
               %td= link_to activity.name, activity
               %td= activity.type.to_s.humanize
-              %td= activity.short_description
+              %td= activity.summary
     = paginate @activities, theme: 'tb3'

@@ -1,5 +1,5 @@
 = content_for :title, @course.name
-= content_for :description, truncate(strip_tags(@course.content), length: 200)
+= content_for :description, @course.summary
 
 .page-wrapper
   %header.page-heading.clearfix
@@ -20,10 +20,7 @@
   .page-content
     .row.page-row
       .courses-wrapper.col-md-8.col-sm-7
-        - unless @course.markdown
-          = @course.content.html_safe
-        - else
-          = @markdown.render(@course.markdown).html_safe
+        = @markdown.render(@course.markdown).html_safe
       %aside.page-sidebar.col-md-3.col-md-offset-1.col-sm-4.col-sm-offset-1
         %section.widget.has-divider
           %h3.title

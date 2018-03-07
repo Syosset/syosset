@@ -15,4 +15,4 @@
         = @active_closure.start_date.strftime("%A")
         to
         = @active_closure.end_date.strftime("%A") + '.'
-    %p= @active_closure.content
+    %p= @markdown.render(@active_closure.markdown).html_safe

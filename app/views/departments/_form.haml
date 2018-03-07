@@ -9,12 +9,8 @@
     = f.label :name
     = f.text_field :name, placeholder: "Name", class: "form-control"
   .form-group
-    = f.label :short_description
-    = f.text_field :short_description, placeholder: "Short Description", class: "form-control"
-  - if !@department.content.blank? && Current.user.super_admin
-    .form-group
-      = f.label :content, "OLD CONTENT"
-      = f.text_area :content, rows: 10, class: "form-control", disabled: true
+    = f.label :summary
+    = f.text_field :summary, placeholder: "Short Description", class: "form-control"
   .form-group
     = f.label :markdown
     ~ f.text_area :markdown, placeholder: "Content", rows: 10, class: "form-control markdown"

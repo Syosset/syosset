@@ -3,6 +3,8 @@ module User::Profiled
   include Mongoid::Paperclip
 
   included do
+    include Attachable
+
     field :name, type: String
     validates :name, presence: true
 

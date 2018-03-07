@@ -3,7 +3,7 @@ class PromotionsController < ApplicationController
 
   def index
     authorize Promotion
-    
+
     @promotions = Promotion.all.by_priority
   end
 
@@ -60,6 +60,6 @@ class PromotionsController < ApplicationController
   end
 
   def promotion_params
-    params.require(:promotion).permit(:enabled, :text, :blurb, :picture).merge(modifier: Current.user)
+    params.require(:promotion).permit(:enabled, :text, :markdown, :picture).merge(modifier: Current.user)
   end
 end

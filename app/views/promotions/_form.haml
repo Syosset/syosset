@@ -13,7 +13,7 @@
     = f.label :text
     = f.text_field :text, placeholder: "Text", class: "form-control"
   .form-group
-    = f.label :blurb
-    ~ f.text_area :blurb, placeholder: "Describe the content here", class: "form-control markdown"
+    = f.label :markdown
+    ~ f.text_area :markdown, placeholder: "Describe the content here", class: "form-control markdown"
 
   = f.submit "Save", class: "btn btn-success pull-right", id: "submit-button"

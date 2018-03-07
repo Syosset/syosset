@@ -1,15 +1,11 @@
 class User
   include Mongoid::Document
   include Mongoid::Slug
-  include Alerts
-  include Attachable
   include Authorizable
+  include Permissible, Collaborator
+  include Alertable
   include Badged
-  include Collaborator
-  include Onboarded
-  include Permissible
-  include Profiled
-  include Scheduled
+  include Profiled, Onboarded, Scheduled
 
   paginates_per 12
   field :bot, type: Boolean, default: false

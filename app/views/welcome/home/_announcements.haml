@@ -20,7 +20,7 @@
               .col-md-3.news-item
                 %h2.title
                   = link_to announcement.name, announcement
-                %p= truncate(strip_tags(announcement.markdown.blank? ? announcement.content : @markdown.render(announcement.markdown)), length: 140)
+                %p= announcement.summary || truncate(strip_tags(@markdown.render(announcement.markdown)), length: 140)
                 = link_to announcement do
                   Read more
                   = fa_icon 'chevron-right'

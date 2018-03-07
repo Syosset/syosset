@@ -21,6 +21,6 @@
                 - if current_holder.can?(:rank, :departments)
                   %i.handle.fa.fa-sort{"aria-hidden" => "true"}
               %td= link_to department.name, department
-              %td= department.short_description
+              %td= department.summary
     - unless @order_mode
       = paginate @departments, theme: 'tb3'

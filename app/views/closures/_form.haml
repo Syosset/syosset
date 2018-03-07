@@ -1,5 +1,6 @@
-= errors_for(@closure)
+= javascript_include_tag "markdown"
 
+= errors_for(@closure)
 = form_for @closure do |f|
   .form-group
     = f.label :start_date
@@ -17,8 +18,8 @@
     = f.label :type, 'Type'
     = f.select :type, ['none', 'snow'], class: "form-control"
   .form-group
-    = f.label :content
-    = f.text_area :content, placeholder: "Content", rows: 2, class: "form-control"
+    = f.label :markdown
+    = f.text_area :markdown, placeholder: "Content", rows: 2, class: "form-control markdown"
 
   = f.submit "Save", class: "btn btn-success pull-right", id: "submit-button"
 

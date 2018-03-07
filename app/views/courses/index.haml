@@ -23,5 +23,5 @@
           - @courses.each do |course|
             = content_tag_for(:tr, course) do
               %td= link_to course.name, course
-              %td= course.short_description
+              %td= course.summary
     = paginate @courses, theme: 'tb3'

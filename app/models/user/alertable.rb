@@ -1,4 +1,4 @@
-module User::Alerts
+module User::Alertable
   extend ActiveSupport::Concern
 
   included do
