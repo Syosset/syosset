@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   def index
     authorize User
-    @users = User.all.includes(:badge).order(%i[super_admin desc], %i[bot desc]).page(params[:page])
+    @users = User.all.includes(:badge).order(%i[bot desc], %i[super_admin desc], %i[badge desc]).page(params[:page])
   end
 
   def show
