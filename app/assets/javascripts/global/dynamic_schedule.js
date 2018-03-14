@@ -6,7 +6,7 @@ $(document).on('turbolinks:load', function() {
   $(".day").each((function() {
     $(this).on('inserted.bs.popover', function () {
       var curTime = new Date();
-      var curSeconds = ((curTime.getUTCHours()-5) * 60 * 60) + (curTime.getMinutes() * 60) + curTime.getSeconds();
+      var curSeconds = ((curTime.getUTCHours()-4) * 60 * 60) + (curTime.getMinutes() * 60) + curTime.getSeconds();
       curSeconds = valBetween(curSeconds, 27540, 51660);
       if(curSeconds == 27540 || curSeconds == 51660) {
         $("#movable").hide();
