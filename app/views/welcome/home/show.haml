@@ -4,6 +4,11 @@
 .row
   .col-md-9
     = render "slider"
+    .hidden-xs
+      = render "announcements"
   .col-md-3
     = render "quicklinks"
-= render "announcements"
+.row
+  .col-md-9
+    .hidden-sm.hidden-md.hidden-lg
+      = render "announcements"
