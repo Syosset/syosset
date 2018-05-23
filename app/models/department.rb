@@ -13,5 +13,8 @@ class Department
   search_in :name, courses: %i[name course_id]
   track_history on: [:all]
 
+  # either 'instructional' or 'administrative'
+  field :type, type: String, default: 'instructional'
+
   has_many :courses
 end

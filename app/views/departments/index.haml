@@ -7,20 +7,28 @@
         = render partial: "partials/index_search_bar", locals: {path: departments_path}
         = render partial: "partials/modtools", locals: {actions: @actions}
   .page-content
-    .table-responsive
-      %table.table
-        %thead
-          %tr
-            %th
-            %th Department Name
-            %th Description
-        %tbody{class: @order_mode ? 'rankable' : ''}
-          - @departments.each do |department|
-            = content_tag_for(:tr, department) do
-              %td
-                - if current_holder.can?(:rank, :departments)
-                  %i.handle.fa.fa-sort{"aria-hidden" => "true"}
-              %td= link_to department.name, department
-              %td= department.summary
-    - unless @order_mode
-      = paginate @departments, theme: 'tb3'
+
+    .department-type
+      %h1.department-type-header Administrative
+      .row
+        - @departments.select {|d| d.type == 'administrative'}.each do |department|
+          .col-md-4
+            = link_to department_path(department) do
+              .department-panel
+                %h2= department.name
+                %p= department.summary.truncate(120)
+
+    .department-type
+      %h1.department-type-header Instructional
+      .row
+        - @departments.select {|d| d.type == 'instructional'}.each do |department|
+          .col-md-3
+            = link_to department_path(department) do
+              .department-panel
+                %h2= department.name
+                %p= department.summary.truncate(120)
+
+  - if @order_mode
+    -# allow admins to re-order departments
+    %h2 All Departments
+    = render 'table'

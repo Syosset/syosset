@@ -1,0 +1,15 @@
+.table-responsive
+  %table.table
+    %thead
+      %tr
+        %th
+        %th Department Name
+        %th Description
+    %tbody{class: @order_mode ? 'rankable' : ''}
+      - @departments.each do |department|
+        = content_tag_for(:tr, department) do
+          %td
+            - if current_holder.can?(:rank, :departments)
+              %i.handle.fa.fa-sort{"aria-hidden" => "true"}
+          %td= link_to department.name, department
+          %td= department.summary

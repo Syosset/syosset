@@ -9,6 +9,9 @@
     = f.label :name
     = f.text_field :name, placeholder: "Name", class: "form-control"
   .form-group
+    = f.label :type
+    = f.select :type, ['instructional', 'administrative']
+  .form-group
     = f.label :summary
     = f.text_field :summary, placeholder: "Short Description", class: "form-control"
   .form-group

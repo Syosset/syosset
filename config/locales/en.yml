@@ -10,9 +10,9 @@ en:
     home: "Home"
     about: "About"
     contact: "Contact"
-    departments: "Departments"
+    departments: "Departments and Courses"
     departments_all: "View all departments..."
-    extracurriculars: "Activities"
+    extracurriculars: "Extra-Curricular Activities"
     admin: "Admin"
   welcome:
     landing:
