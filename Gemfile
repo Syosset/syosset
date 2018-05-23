@@ -8,7 +8,7 @@ git_source(:github) do |repo_name|
 end
 
 # Rails framework
-gem 'rails', '5.2.0.rc1'
+gem 'rails', '~> 5.2'
 # Bootsnap decreases boot time
 gem 'bootsnap', require: false
 # Use Puma as the app server
