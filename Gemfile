@@ -12,7 +12,7 @@ gem 'rails', '~> 5.2'
 # Bootsnap decreases boot time
 gem 'bootsnap', require: false
 # Use Puma as the app server
-gem 'puma', '~> 3.11'
+gem 'puma', '~> 3.12'
 
 # # Use HAML to render templates
 gem 'haml-rails', '~> 1'
@@ -27,7 +27,7 @@ gem 'autoprefixer-rails', '~> 7'
 gem 'uglifier', '~> 4'
 
 # Turbolinks makes navigating the app faster
-gem 'turbolinks', '~> 5.1'
+gem 'turbolinks', '~> 5.2'
 # Serve jquery and jquery-ui to clients
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
@@ -55,7 +55,7 @@ gem 'mongoid-paperclip', '~> 0.0.11'
 # Compress uploaded images
 gem 'paperclip-compression'
 # Files are stored in S3
-gem 'aws-sdk', '~> 3'
+gem 'aws-sdk-s3', '~> 1.17'
 
 # Error Reporting
 gem 'sentry-raven'
@@ -90,7 +90,7 @@ gem 'redis'
 gem 'resque'
 
 # Capybara is used to fetch day color from IC
-gem 'capybara', '~> 2'
+gem 'capybara', '~> 3'
 gem 'poltergeist', '~> 1'
 # gem 'launchy', '~> 2'
 
@@ -111,10 +111,10 @@ group :development, :test do
 end
 
 group :test do
-  gem 'factory_bot', '~> 4.8'
+  gem 'factory_bot', '~> 4.11'
   gem 'guard-rspec', require: false
   gem 'rails-controller-testing'
-  gem 'rspec-rails', '~> 3.7'
+  gem 'rspec-rails', '~> 3.8'
 end
 
 group :development do
@@ -125,7 +125,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen'
   # Rubocop enforces Ruby styling
-  gem 'rubocop', '~> 0.52.1', require: false
+  gem 'rubocop', '~> 0.58', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
