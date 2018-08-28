@@ -113,6 +113,7 @@ group :development, :test do
 end
 
 group :test do
+  gem 'rails-controller-testing', '~> 1'
   gem 'rspec-rails', '~> 3.8'
 end
 
