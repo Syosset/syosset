@@ -3,7 +3,7 @@ module Scram
   if Rails.env.test?
     test_policy = Policy.new(name: 'Test Policy')
     test_policy.targets.build(
-      conditions: { equals: { :'*target_name' => 'boing' } },
+      conditions: { equals: { '*target_name': 'boing' } },
       actions: %w[create edit destroy]
     )
     DEFAULT_POLICIES << test_policy
@@ -13,7 +13,7 @@ module Scram
 
   collaborator_policy = lambda { |model, actions = ['edit']|
     policy = Policy.new(name: "#{model.to_s.humanize} Collaborator", context: model.to_s)
-    policy.targets.build(conditions: { includes: { :'*collaborators' => '*holder' } }, actions: actions)
+    policy.targets.build(conditions: { includes: { '*collaborators': '*holder' } }, actions: actions)
     return policy
   }
 

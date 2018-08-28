@@ -24,7 +24,7 @@ module Syosset
 
       def describe
         @connection.get('/status').body
-      rescue Exception
+      rescue StandardError
         'Unable to fetch status. Possibly offline?'
       end
 

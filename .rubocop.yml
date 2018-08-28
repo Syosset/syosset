@@ -1,17 +1,23 @@
 AllCops:
   TargetRubyVersion: 2.3
+  Exclude:
+    - bin/*
+    - vendor/**/*
+
+
 Metrics/LineLength:
   Max: 120
-Layout/TrailingBlankLines:
+
+Style/Documentation:
   Enabled: false
-Style/FrozenStringLiteralComment:
-  Enabled: false
-Style/FormatStringToken:
-  Enabled: false
+
+# sometimes, this cop will conflict with Rails/Blank to create an un-solvable conflict
+# prefer .blank? in this project :)
 Rails/Present:
-  # sometimes, this cop will conflict with Rails/Blank to create an un-solvable conflict
-  # prefer .blank? in this project :)
   Enabled: false
+
+# mongoid likes to throw errors when using find_by, so prefer .where().first
 Rails/FindBy:
-  # mongoid likes to throw errors when using find_by, so prefer .where().first
   Enabled: false
+
+inherit_from: .rubocop_todo.yml

@@ -9,7 +9,7 @@ module Syosset
         @client = ::Slack::Web::Client.new(opts)
         begin
           raise 'failure' unless @client.api_test['ok']
-        rescue Exception
+        rescue StandardError
           raise 'Token is not valid.'
         end
 

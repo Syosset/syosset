@@ -3,8 +3,11 @@ class Announcement
   include Mongoid::Timestamps
   include Mongoid::History::Trackable
   include Scram::DSL::ModelConditions
-  include Summarizable, Publishable, Attachable
-  include Escalatable, Rankable
+  include Attachable
+  include Publishable
+  include Summarizable
+  include Rankable
+  include Escalatable
 
   after_create :alert_subscribers
 

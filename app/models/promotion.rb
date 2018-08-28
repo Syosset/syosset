@@ -2,7 +2,8 @@ class Promotion
   include Mongoid::Document
   include Mongoid::History::Trackable
   include Mongoid::Paperclip
-  include Publishable, Attachable
+  include Attachable
+  include Publishable
   include Rankable
 
   field :enabled, type: Mongoid::Boolean, default: true

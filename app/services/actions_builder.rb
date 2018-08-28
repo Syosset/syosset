@@ -25,7 +25,7 @@ class ActionsBuilder
     end
 
     if block_given?
-      self.instance_eval(&block)
+      instance_eval(&block)
       required_permissions = []
     end
 
@@ -39,7 +39,7 @@ class ActionsBuilder
   end
 
   def method_missing(method, *args, &block)
-    routes =  Rails.application.routes.url_helpers
+    routes = Rails.application.routes.url_helpers
     return routes.send(method, *args, &block) if routes.respond_to?(method)
     return locals[method] if locals[method]
     super

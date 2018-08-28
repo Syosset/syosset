@@ -1,9 +1,9 @@
 class NullActionsBuilder
-  def require(node, context, &block)
-    return self
+  def require(_node, _context)
+    self
   end
 
-  def render(text, method, path, options = {})
-    return ''
+  def render(_text, _method, _path, _options = {})
+    ''
   end
 end

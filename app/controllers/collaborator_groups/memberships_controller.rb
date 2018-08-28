@@ -1,5 +1,6 @@
 class CollaboratorGroups::MembershipsController < ApplicationController
-  include UserScoped, CollaboratorGroupScoped
+  include CollaboratorGroupScoped
+  include UserScoped
 
   def create
     authorize @collaborator_group.collaboratable, :edit

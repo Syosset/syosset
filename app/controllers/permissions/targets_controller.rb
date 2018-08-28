@@ -17,7 +17,7 @@ class Permissions::TargetsController < ApplicationController
 
     @actions = ActionsBuilder.new(current_holder, policy: @policy, target: @target).require(:edit) do
       render('Edit Target', :get, edit_policy_target_path(policy, target))
-      render('Destroy Target', :delete, policy_target_path(policy, target), data: {confirm: "Are you sure?"})
+      render('Destroy Target', :delete, policy_target_path(policy, target), data: { confirm: 'Are you sure?' })
     end.actions
   end
 

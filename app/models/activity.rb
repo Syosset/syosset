@@ -3,9 +3,13 @@ class Activity
   include Mongoid::Slug
   include Mongoid::Search
   include Mongoid::History::Trackable
-  include Summarizable, Publishable
-  include Announceable, Linkable
-  include Collaboratable, Subscribable, Rankable
+  include Publishable
+  include Summarizable
+  include Linkable
+  include Announceable
+  include Rankable
+  include Subscribable
+  include Collaboratable
 
   slug :name
   paginates_per 12
