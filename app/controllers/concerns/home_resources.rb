@@ -15,7 +15,7 @@ module HomeResources
         .first(8).uniq
     end
     @links = Rails.cache.fetch('links', expires_in: 5.minutes) do
-      Link.escalated(5).sort_by!(&:created_at)
+      Link.escalated(8).sort_by!(&:created_at)
     end
   end
 end
