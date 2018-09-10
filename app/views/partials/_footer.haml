@@ -17,23 +17,3 @@
           = fa_icon 'google'
           Translate
         #google_translate_element
--# ---Little Documentation
--#
--# = succeed "...str" do
--#   = ...tags
--# place ...str immediately after ...tags without return
--#          when parsed to HTML
--#
--# ----SAMPLE----
--# display "Begin text link1, link2, and link 3. End text"
--#          excluding commas or the period as the link
--# 
--# Begin text
--# = succeed "," do
--#   = link_to "link1", "URL"[,[...]]
--# = succeed "," do
--#   = link_to "link2", "URL"
--# and
--# = succeed "." do
--#   = link_to "link3", "URL"
--# End text
