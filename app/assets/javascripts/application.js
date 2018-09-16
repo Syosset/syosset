@@ -24,6 +24,7 @@
 //= require college_green/bootstrap-hover-dropdown
 //= require jquery-tags-input/dist/jquery.tagsinput.min
 //= require_tree ./global
+//= require morning_announcement
 
 
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
