@@ -223,6 +223,8 @@ GEM
     mongoid-paperclip (0.0.11)
       mongoid
       paperclip (>= 2.3.6, != 4.3.0)
+    mongoid-sadstory (0.0.2)
+      mongoid
     mongoid-slug (6.0.0)
       mongoid (>= 3.0)
       mongoid-compatibility
@@ -467,6 +469,7 @@ DEPENDENCIES
   mongoid (~> 6.3)
   mongoid-history
   mongoid-paperclip (~> 0.0.11)
+  mongoid-sadstory
   mongoid-slug
   mongoid_search
   mongoid_userstamp!
@@ -505,4 +508,4 @@ RUBY VERSION
    ruby 2.3.4p301
 
 BUNDLED WITH
-   1.16.1
+   1.16.2

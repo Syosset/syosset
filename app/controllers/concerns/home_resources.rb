@@ -17,5 +17,6 @@ module HomeResources
     @links = Rails.cache.fetch('links', expires_in: 5.minutes) do
       Link.escalated(16).sort_by!(&:created_at)
     end
+    @bulletin_today = Bulletin.where(date: Date.today).first
   end
 end

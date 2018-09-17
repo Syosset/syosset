@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   end
 
   # User content
+  resources :bulletins
   resources :activities
 
   resources :departments, shallow: true do

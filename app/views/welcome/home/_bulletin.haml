@@ -1,0 +1,9 @@
+- if @bulletin_today
+  %section.links
+    %h1.section-heading.text-highlight
+      %span.line
+        = link_to "#{@bulletin_today.date.strftime('%A')}'s Announcements", @bulletin_today
+    .section-content
+      = fa_icon 'bullhorn'
+      = truncate(strip_tags(@markdown.render(@bulletin_today.markdown)), length: 140)
+      = link_to 'click to read more...', @bulletin_today

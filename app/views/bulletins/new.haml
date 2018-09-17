@@ -1,0 +1,8 @@
+%section.section.section-padded
+  .section-header
+    %h3
+      New Bulletin
+  .container-fluid
+    .row-fluid
+      = render 'form'
+      = link_to 'Back', bulletins_path, class: "btn btn-warning pull-right"
