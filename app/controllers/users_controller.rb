@@ -21,9 +21,11 @@ class UsersController < ApplicationController
     authorize User, :create
 
     # parses users input and generates emails for users with only a name provided
-    users = params[:users].split("\n").map { |u| u.split(', ') }
-                          .map { |u| u.size == 1 ? [u[0], (u[0][0] + u[0].split(' ')[1] + '@syosset.k12.ny.us').downcase] : u }
-                          .map { |u| User.find_or_create_by(email: u[1]) { |u1| u1.name = u[0] } }
+    users = params[:users]
+            .split("\n")
+            .map { |u| u.split(', ') }
+            .map { |u| u.size == 1 ? [u[0], (u[0][0] + u[0].split(' ')[1] + '@syosset.k12.ny.us').downcase] : u }
+            .map { |u| User.find_or_create_by(email: u[1]) { |u1| u1.name = u[0] } }
 
     if params[:collaborator_group].empty?
       redirect_to users_path, notice: "#{users.size} users created."
@@ -57,9 +59,9 @@ class UsersController < ApplicationController
 
   def user_params
     if @user.super_admin
-      return params.require(:user).permit(:bio, :picture, :name, :badge, :super_admin)
+      params.require(:user).permit(:bio, :picture, :name, :badge, :super_admin)
     else
-      return params.require(:user).permit(:bio, :picture)
+      params.require(:user).permit(:bio, :picture)
     end
   end
 end

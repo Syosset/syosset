@@ -17,7 +17,7 @@ class Permissions::PoliciesController < ApplicationController
     @actions = ActionsBuilder.new(current_holder, policy: @policy).require(:edit) do
       render('Edit Policy', :get, edit_policy_path(policy))
       render('Create Target', :get, new_policy_target_path(policy_id: policy))
-      render('Destroy Policy', :delete, policy_path(policy), data: { confirm: "Are you sure?" })
+      render('Destroy Policy', :delete, policy_path(policy), data: { confirm: 'Are you sure?' })
     end.actions
   end
 
@@ -39,7 +39,8 @@ class Permissions::PoliciesController < ApplicationController
 
   def edit
     authorize @policy
-    @users = @policy.holders.select { |h| h.is_a? User } # The system in place allows any type of Holder, but our UI will be focused on user management
+    # The system in place allows any type of Holder, but our UI will be focused on user management
+    @users = @policy.holders.select { |h| h.is_a? User }
   end
 
   def update

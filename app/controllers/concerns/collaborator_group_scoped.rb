@@ -6,6 +6,7 @@ module CollaboratorGroupScoped
   end
 
   private
+
   def set_collaborator_group
     @collaborator_group = CollaboratorGroup.find(params[:collaborator_group_id])
   end

@@ -108,12 +108,12 @@ group :development, :test do
   gem 'dotenv-rails'
   # Debugging during execution with pry
   gem 'pry-rails'
+  # Rubocop enforces Ruby styling
+  gem 'rubocop', '~> 0.58', require: false
 end
 
 group :test do
-  gem 'factory_bot', '~> 4.11'
-  gem 'guard-rspec', require: false
-  gem 'rails-controller-testing'
+  gem 'factory_bot_rails', '~> 4.11'
   gem 'rspec-rails', '~> 3.8'
 end
 
@@ -124,8 +124,6 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen'
-  # Rubocop enforces Ruby styling
-  gem 'rubocop', '~> 0.58', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

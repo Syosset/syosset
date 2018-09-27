@@ -12,8 +12,8 @@ class CollaboratorGroupsController < ApplicationController
   end
 
   private
+
   def set_collaborator_group
     @collaborator_group = CollaboratorGroup.find(params[:id])
   end
-
 end

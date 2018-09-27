@@ -8,7 +8,7 @@ class AnnouncementsController < ApplicationController
       if @announceable
         actions_builder.require(:edit)
                        .render('New Announcement', :get,
-                                   new_announcement_path("#{@announceable.class.to_s.downcase}_id" => @announceable.id))
+                               new_announcement_path("#{@announceable.class.to_s.downcase}_id" => @announceable.id))
 
         @announceable.announcements.by_priority
       else
@@ -19,14 +19,13 @@ class AnnouncementsController < ApplicationController
   end
 
   def show
-
     actions_builder = ActionsBuilder.new(current_holder, announcement: @announcement)
 
     actions_builder.require(:edit) do
       announceable = announcement.announceable
 
       render('Edit Announcement', :get,
-                 edit_announcement_path(announcement, "#{announceable.class.to_s.downcase}_id" => announceable))
+             edit_announcement_path(announcement, "#{announceable.class.to_s.downcase}_id" => announceable))
       render('Destroy Announcement', :delete, announcement_path(announcement), data: { confirm: 'Are you sure?' })
       render('Request Frontpage Visibility', :get, new_escalation_request_path(announcement_id: announcement))
       render('View Audit Log', :get, history_trackers_path(announcement_id: announcement))

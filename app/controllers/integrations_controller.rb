@@ -76,6 +76,7 @@ class IntegrationsController < ApplicationController
   end
 
   private
+
   def get_integration
     @integration = Integration.find(params[:id])
   end

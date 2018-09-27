@@ -3,9 +3,13 @@ class Course
   include Mongoid::Slug
   include Mongoid::Search
   include Mongoid::History::Trackable
-  include Summarizable, Publishable, Attachable
-  include Announceable, Linkable
-  include Collaboratable, Subscribable
+  include Attachable
+  include Publishable
+  include Summarizable
+  include Linkable
+  include Announceable
+  include Subscribable
+  include Collaboratable
 
   paginates_per 12
   slug :name

@@ -6,6 +6,7 @@ module PolicyScoped
   end
 
   private
+
   def set_policy
     @policy = Scram::Policy.find(params[:policy_id]) if params[:policy_id]
   end

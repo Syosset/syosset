@@ -1,6 +1,6 @@
 class AuthorizationsController < ApplicationController
   before_action :get_user
-  before_action :get_authorization, only: [:edit, :update, :destroy]
+  before_action :get_authorization, only: %i[edit update destroy]
 
   def new
     authorize @authorization
