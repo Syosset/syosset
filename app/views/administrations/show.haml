@@ -17,6 +17,11 @@
     = fa_icon "star"
     View Escalation Requests
 
+- if Current.user&.can? :edit, Bulletin
+  = link_to bulletins_path, class: "btn btn-admin" do
+    = fa_icon "bullhorn"
+    Manage Bulletins
+
 - if Current.user&.can? :index, User
   = link_to users_path, class: "btn btn-admin" do
     = fa_icon "user"

@@ -82,6 +82,8 @@ gem 'mongoid_search'
 gem 'mongoid-history'
 # Use mongoid_userstamp to store modifier information automatically
 gem 'mongoid_userstamp', github: 'AndreiMotinga/mongoid_userstamp'
+# Add support for multi-parameter attributes to Mongoid
+gem 'mongoid-sadstory'
 # Use diffy to compute diffs between documents for auditing
 gem 'diffy'
 # Use Redis for caching

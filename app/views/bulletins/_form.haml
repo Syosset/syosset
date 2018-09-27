@@ -1,0 +1,11 @@
+= content_for :model_name, Bulletin.name.underscore.to_sym
+= javascript_include_tag "markdown"
+
+= form_for @bulletin do |f|
+  .form-group
+    = f.label :date
+    = f.date_select :date, class: "form-control"
+  .form-group
+    = f.label :markdown
+    ~ f.text_area :markdown, placeholder: "Content", rows: 10, class: "form-control markdown"
+  = f.submit "Save", class: "btn btn-success pull-right", id: "submit-button"
