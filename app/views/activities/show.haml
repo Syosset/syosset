@@ -1,3 +1,7 @@
+-# Morning Anouncement temporary makeshift
+- isMorning = @activity.name == "SHS Morning Announcement"
+-# javascript_path "morning_announcement.js"
+-#
 .page-wrapper
   %header.page-heading.clearfix
     %h1.heading-title.pull-left= @activity.name
@@ -12,9 +16,20 @@
 
   .page-content
     .row.page-row
-      .courses-wrapper.col-md-8.col-sm-7
+      - if isMorning
+        %h6#morning_loading{:style => "position: absolute; padding-left: 15px;"} Loading...
+      .courses-wrapper.col-md-8.col-sm-7{:style => isMorning ? "opacity: 0;" : nil}
         = @markdown.render(@activity.markdown).html_safe
       %aside.page-sidebar.col-md-3.col-md-offset-1.col-sm-4.col-sm-offset-1
+        -# makeshift start
+        - if isMorning
+          %section.widget.has-divider
+            %h3.title
+              = fa_icon "calendar"
+              Select date to view
+            %ul.rankable.list-group#morning_list
+          :javascript
+            morning_announcement_compile();
         - unless @activity.announcements.empty?
           %section.widget.has-divider
             %h3.title
