@@ -9,7 +9,7 @@ task 'resque:setup' => :environment
 Rails.application.load_tasks
 
 # Testing
-unless Rails.env.production?
+if Rails.env.development? || Rails.env.test?
   require 'rubocop/rake_task'
   require 'rspec/core/rake_task'
 
