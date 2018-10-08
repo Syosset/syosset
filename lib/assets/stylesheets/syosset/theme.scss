@@ -1,0 +1,10 @@
+/**
+ * This directory contains common styles for the Syosset High School site that can be extracted out and used in
+ * other applications. It should contain no application-specific styles, they can go in app/assets/stylesheets.
+ */
+
+@import 'bootstrap/scss/bootstrap';
+
+@import 'color';
+@import 'type';
+@import 'footer';

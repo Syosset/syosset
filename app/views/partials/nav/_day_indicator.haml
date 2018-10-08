@@ -1,6 +1,6 @@
 - if @current_day.set?
-  .red-white-display
-    = link_to "javascript:;", class: "day", tabindex: 0, role: :button, "data-trigger" => :focus, title: "Period Schedule", "data-content" => "#{render 'partials/nav/dynamic_schedule'}", "data-html" => :true, "data-placement" => :bottom , "data-toggle" => :popover, "data-container" => :nav do
+  = link_to "javascript:;", class: 'nav-link day', tabindex: 0, role: :button, "data-trigger" => :focus, title: "Period Schedule", "data-content" => "#{render 'partials/nav/dynamic_schedule'}", "data-html" => :true, "data-placement" => :bottom , "data-toggle" => :popover, "data-container" => :nav do
+    .badge.badge-light
       - unless @current_day.color == 'No Color'
         = fa_icon "#{@current_day.color == "Red Day" ? "map-o" : "map"}"
         Today is a

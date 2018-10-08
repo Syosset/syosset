@@ -29,7 +29,10 @@
         = render 'partials/chat/chat_button'
         = render 'partials/chat/chat'
     .wrapper
+      - unless params[:action] == 'landing' || Current.user&.admin_enabled?
+        = render 'partials/header'
       = render 'partials/navbar'
+      = render 'peek/bar'
       #content.container
         = render 'partials/flash'
         = yield

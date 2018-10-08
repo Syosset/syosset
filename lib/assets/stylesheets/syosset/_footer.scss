@@ -1,0 +1,12 @@
+.footer {
+  width: 100%;
+  margin-top: 16px;
+
+  background-color: darken($syosset-red, 35%);
+  color: white;
+
+  .social-icon {
+    color: white;
+    font-size: 16px;
+  }
+}
