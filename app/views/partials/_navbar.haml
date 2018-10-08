@@ -1,13 +1,13 @@
 %header.header
   - unless params[:action] == 'landing' || Current.user&.admin_enabled?
     .header-main.container.hidden-xs
-      .container
-        %h1.logo.pull-left
-          = link_to root_path do
+      .row
+        .col-8
+          = link_to root_path, class: 'logo' do
             = svg 'logo'
-            .full-name.pull-right.visible-lg
+            .full-name.visible-lg
               SYOSSET HIGH SCHOOL
-        .info.col-md-4-col-sm-4.pull-right
+        .info.col-4.pull-right
           %br
           %br
           .contact
@@ -74,7 +74,7 @@
           %li.nav-item
             = link_to '/auth/google_oauth2', class: 'btn-loader' do
               = t('sessions.new')
-              = fa_icon 'google-plus-square'
+              = fa_brand_icon 'google-plus-square'
           - if Rails.env.development?
             %li.nav-item
               = link_to '/auth/developer', class: 'btn-loader' do
