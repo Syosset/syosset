@@ -1,9 +1,13 @@
 - if @bulletin_today
-  %section.links
-    %h1.section-heading.text-highlight
-      %span.line
-        = link_to "#{@bulletin_today.date.strftime('%A')}'s Announcements", @bulletin_today
-    .section-content
-      = fa_icon 'bullhorn'
-      = truncate(strip_tags(@markdown.render(@bulletin_today.markdown)), length: 140)
-      = link_to 'click to read more...', @bulletin_today
+  .card.mb-3
+    .card-header.bg-syosset.text-white
+      Morning Announcements
+    .card-body
+      %h5.card-title
+        = link_to @bulletin_today.pretty_date, @bulletin_today
+      %p.card-text
+        = fa_icon 'bullhorn'
+        = truncate(strip_tags(@markdown.render(@bulletin_today.markdown)), length: 150)
+      = link_to @bulletin_today, class: 'card-link' do
+        Read more
+        = fa_icon 'chevron-right'
