@@ -1,10 +1,8 @@
 - if @actions.size > 0
-  %nav.mod-tools
-    %ul.nav.navbar-nav.pull-right
-      %li.nav-item.dropdown
-        %a.dropdown-toggle{"data-close-others" => "false", "data-delay" => "0", "data-hover" => "dropdown", "data-toggle" => "dropdown", :href => "#"}
-          Actions
-          %b.caret
-        %ul.dropdown-menu.dropdown-menu-right
-          - @actions.each do |text, method, path, options|
-            %li= link_to text, path, options.merge(method: method)
+  .dropdown.mx-2
+    %a.dropdown-toggle.btn.btn-dark{'data-hover': 'dropdown', 'data-toggle': 'dropdown', href: '#'}
+      = fa_icon 'wrench'
+      Manage
+    %ul.dropdown-menu
+      - @actions.each do |text, method, path, options|
+        %li= link_to text, path, options.merge(method: method, class: 'dropdown-item')

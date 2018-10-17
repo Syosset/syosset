@@ -2,8 +2,12 @@
   width: 100%;
   margin-top: 16px;
 
-  background-color: darken($syosset-red, 35%);
+  background-color: darken($syosset-red, 25%);
   color: white;
+
+  a {
+    color: lighten($syosset-red, 25%);
+  }
 
   .social-icon {
     color: white;

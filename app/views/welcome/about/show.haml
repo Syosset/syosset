@@ -1,20 +1,22 @@
-.page-wrapper
-  %header.page-heading.clearfix
-    %h1.heading-title.pull-left= t('.title')
-  .page-content
-    .row.page-row
-      %article.welcome.container
-        .col-md-6
-          %h3.title= t('.info.title')
-          %blockquote.custom-quote
+%article
+  %h1= t('.title')
+
+  .row
+    .col-lg-8
+      .card.mb-3
+        .card-body
+          %blockquote.blockquote.m-0
             %p
               = fa_icon 'quote-left'
               = t('.principal.statement')
-            %p.people
-              %span.name= t('.principal.name')
+            %footer.blockquote-footer
+              %span= t('.principal.name')
               %br/
-              %span.title Principal, Syosset High School
-          %p= t('.info.text')
+              %span Principal, Syosset High School
 
-        .col-md-6
-          %p= image_tag("shs-picture-4.jpg", alt: "Picture of Syosset High School building. Courtesy of Kevin Ho (Class of 2018).", class: "img-responsive img-thumbnail")
+      %p= t('.info.text')
+
+    .col
+      %figure.figure
+        = image_tag("shs-picture-4.jpg", alt: "Picture of Syosset High School building", class: "figure-img img-fluid")
+        %figcaption.figure-caption Picture of Syosset High School building. Courtesy of Kevin Ho (Class of 2018).

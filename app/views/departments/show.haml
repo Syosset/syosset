@@ -1,102 +1,143 @@
 = content_for :title, @department.name
 = content_for :description, @dep
 
-.page-wrapper
-  %header.page-heading.clearfix
-    %h1.heading-title.pull-left= @department.name
+.row
+  .col
+    %h1= @department.name
+  .col.d-flex.justify-content-end
     = render partial: "partials/modtools", locals: {actions: @actions}
-    %ul.nav.navbar-nav.pull-right
-      %li
-        - if Current.user
-          - if @department.subscriber? Current.user
-            %a{:href => unsubscribe_department_path(@department), data: {method: 'post'}} Unsubscribe
-          - else
-            %a{:href => subscribe_department_path(@department), data: {method: 'post'}} Subscribe
-  .page-content
-    .row.page-row
-      .courses-wrapper.col-md-8.col-sm-7
-        = @markdown.render(@department.markdown).html_safe
-        %span.row
-          %h3= link_to "#{@department.name} Staff", "#"
-          %table.table
-            %thead
-              %tr
-                %th{:scope => "col"} Name
-                %th{:scope => "col"} Email
-            %tbody
-              - @department.collaborator_group.users.includes(:badge).sort_by {|u| u.name.split(" ").last}.each_with_index do |user, index|
-                %tr.teacher{class: index > 8 ? 'hidden' : ''}
-                  %td
-                    = link_to user do
-                      = user.name
-                      = render 'badges/badge', badge: user.badge
-                  %td= link_to user.email, "mailto:#{user.email}"
-          .pull-right
-            - excess_teachers = @department.collaborator_group.users.count - 8
-            - if excess_teachers >= 1
-              = link_to "javascript:;", id: "show-more-teachers", class: "btn btn-sm btn-info" do
-                = fa_icon 'ellipsis-h'
-                = "Click to see #{excess_teachers} more staff"
-        %span.row
-          - unless @department.courses.empty?
-            %h3
-              = link_to "Courses", department_courses_path(@department)
-              %small
-                = link_to department_courses_path(@department) do
-                  = fa_icon 'ellipsis-v'
-                  Click to see all
-            %input.course-search.form-control{type: 'text', placeholder: 'Search courses'}
-            %hr
-            - @department.courses.in_groups_of(4).each_with_index do |courses, index|
-              .row
-                - courses.compact.each do |course|
-                  .col-xs-6.col-md-3.course{data: {name: course.name, course_id: course.course_id}, class: index >= 2 ? 'hidden' : ''}
-                    = link_to course.name.truncate(50), course, class: "thumbnail"
-            .pull-right
-              - excess_courses = @department.courses.count - 8
-              - if excess_courses >= 1
-                = link_to "javascript:;", id: "show-more-courses", class: "btn btn-sm btn-info" do
-                  = fa_icon 'ellipsis-h'
-                  = "Click to see #{excess_courses} more courses"
+    .mx-2
+      - if Current.user
+        - if @department.subscriber? Current.user
+          = link_to unsubscribe_department_path(@department), method: :post, class: 'btn btn-danger' do
+            = fa_icon 'times-circle'
+            Unsubscribe
+        - else
+          = link_to subscribe_department_path(@department), method: :post, class: 'btn btn-primary' do
+            = fa_icon 'rss'
+            Subscribe
 
-      %aside.page-sidebar.col-md-3.col-md-offset-1.col-sm-4.col-sm-offset-1
-        - unless @department.announcements.empty?
-          %section.widget.has-divider
-            %h3.title
-              = fa_icon "bell"
-              = link_to "Announcements", announcements_path(department_id: @department.id)
-            %ul.rankable.list-group
-              - @department.announcements.by_priority.limit(5).each do |announcement|
-                = content_tag_for(:li, announcement, class: "list-group-item") do
-                  - if current_holder.can?(:edit, announcement)
-                    %i.handle.fa.fa-sort{"aria-hidden" => "true"}
-                  = link_to announcement.name.truncate(38), announcement
-              - if @department.announcements.by_priority.count > 5
-                %li.list-group-item.shaded
-                  = link_to announcements_path(department_id: @department.id) do
-                    Click to see all announcements
-        - unless @department.links.empty?
-          %section.widget.has-divider
-            %h3.title
-              = fa_icon 'link'
-              = link_to "Links", links_path(department_id: @department.id)
-            %ul.rankable.list-group
-              - @department.links.by_priority.limit(5).each do |link|
-                = content_tag_for(:li, link, class: "list-group-item") do
-                  - if current_holder.can?(:edit, link)
-                    %i.handle.fa.fa-sort{"aria-hidden" => "true"}
-                    = link_to link_path(link), method: :delete, data: { confirm: 'Are you sure?' } do
-                      = fa_icon 'times'
-                    = link_to new_escalation_request_path(link_id: link) do
-                      - if link.escalated?
-                        = fa_icon 'star'
-                      - else
-                        = fa_icon 'star-o'
-                  = link_to link.name, link.target
-              - if @department.links.by_priority.count > 5
-                %li.list-group-item.shaded
-                  = link_to links_path(department_id: @department.id) do
-                    Click to see all links
+.row
+  .col-md-8
+    = @markdown.render(@department.markdown).html_safe
+  .col
+    - unless @department.announcements.empty?
+      .card.mb-3
+        .card-header.bg-syosset.text-white
+          = fa_icon 'bell'
+          Announcements
+        %ul.rankable.list-group.list-group-flush
+          - @department.announcements.by_priority.limit(5).each do |announcement|
+            = content_tag_for(:li, announcement, class: 'list-group-item') do
+              - if current_holder.can?(:edit, announcement)
+                %i.handle.fa.fa-sort{"aria-hidden" => "true"}
+              = link_to announcement.name.truncate(38), announcement
+
+    - unless @department.links.empty?
+      .card.mb-3
+        .card-header.bg-syosset.text-white
+          = fa_icon 'link'
+          Links
+        %ul.rankable.list-group.list-group-flush
+          - @department.links.by_priority.limit(5).each do |link|
+            = content_tag_for(:li, link, class: 'list-group-item') do
+              - if current_holder.can?(:edit, link)
+                %i.handle.fa.fa-sort{"aria-hidden" => "true"}
+                = link_to link_path(link), method: :delete, data: { confirm: 'Are you sure?' } do
+                  = fa_icon 'times'
+                = link_to new_escalation_request_path(link_id: link) do
+                  - if link.escalated?
+                    = fa_icon 'star'
+                  - else
+                    = fa_icon 'star-o'
+              = link_to link.name, link.target
+-#
+  .page-wrapper
+    .page-content
+      .row.page-row
+        .courses-wrapper.col-md-8.col-sm-7
+          = @markdown.render(@department.markdown).html_safe
+          %span.row
+            %h3= link_to "#{@department.name} Staff", "#"
+            %table.table
+              %thead
+                %tr
+                  %th{:scope => "col"} Name
+                  %th{:scope => "col"} Email
+              %tbody
+                - @department.collaborator_group.users.includes(:badge).sort_by {|u| u.name.split(" ").last}.each_with_index do |user, index|
+                  %tr.teacher{class: index > 8 ? 'hidden' : ''}
+                    %td
+                      = link_to user do
+                        = user.name
+                        = render 'badges/badge', badge: user.badge
+                    %td= link_to user.email, "mailto:#{user.email}"
+            .pull-right
+              - excess_teachers = @department.collaborator_group.users.count - 8
+              - if excess_teachers >= 1
+                = link_to "javascript:;", id: "show-more-teachers", class: "btn btn-sm btn-info" do
+                  = fa_icon 'ellipsis-h'
+                  = "Click to see #{excess_teachers} more staff"
+          %span.row
+            - unless @department.courses.empty?
+              %h3
+                = link_to "Courses", department_courses_path(@department)
+                %small
+                  = link_to department_courses_path(@department) do
+                    = fa_icon 'ellipsis-v'
+                    Click to see all
+              %input.course-search.form-control{type: 'text', placeholder: 'Search courses'}
+              %hr
+              - @department.courses.in_groups_of(4).each_with_index do |courses, index|
+                .row
+                  - courses.compact.each do |course|
+                    .col-xs-6.col-md-3.course{data: {name: course.name, course_id: course.course_id}, class: index >= 2 ? 'hidden' : ''}
+                      = link_to course.name.truncate(50), course, class: "thumbnail"
+              .pull-right
+                - excess_courses = @department.courses.count - 8
+                - if excess_courses >= 1
+                  = link_to "javascript:;", id: "show-more-courses", class: "btn btn-sm btn-info" do
+                    = fa_icon 'ellipsis-h'
+                    = "Click to see #{excess_courses} more courses"
+
+        %aside.page-sidebar.col-md-3.col-md-offset-1.col-sm-4.col-sm-offset-1
+          - unless @department.announcements.empty?
+            %section.widget.has-divider
+              %h3.title
+                = fa_icon "bell"
+                = link_to "Announcements", announcements_path(department_id: @department.id)
+              %ul.rankable.list-group
+                - @department.announcements.by_priority.limit(5).each do |announcement|
+                  = content_tag_for(:li, announcement, class: "list-group-item") do
+                    - if current_holder.can?(:edit, announcement)
+                      %i.handle.fa.fa-sort{"aria-hidden" => "true"}
+                    = link_to announcement.name.truncate(38), announcement
+                - if @department.announcements.by_priority.count > 5
+                  %li.list-group-item.shaded
+                    = link_to announcements_path(department_id: @department.id) do
+                      Click to see all announcements
+          - unless @department.links.empty?
+            %section.widget.has-divider
+              %h3.title
+                = fa_icon 'link'
+                = link_to "Links", links_path(department_id: @department.id)
+              %ul.rankable.list-group
+                - @department.links.by_priority.limit(5).each do |link|
+                  = content_tag_for(:li, link, class: "list-group-item") do
+                    - if current_holder.can?(:edit, link)
+                      %i.handle.fa.fa-sort{"aria-hidden" => "true"}
+                      = link_to link_path(link), method: :delete, data: { confirm: 'Are you sure?' } do
+                        = fa_icon 'times'
+                      = link_to new_escalation_request_path(link_id: link) do
+                        - if link.escalated?
+                          = fa_icon 'star'
+                        - else
+                          = fa_icon 'star-o'
+                    = link_to link.name, link.target
+                - if @department.links.by_priority.count > 5
+                  %li.list-group-item.shaded
+                    = link_to links_path(department_id: @department.id) do
+                      Click to see all links
 
 :javascript
   $(document).on('turbolinks:load', function() {

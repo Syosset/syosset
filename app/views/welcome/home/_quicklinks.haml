@@ -1,5 +1,7 @@
 .card.mb-3
-  .card-header.bg-syosset.text-white= t('links.title')
+  .card-header.bg-syosset.text-white
+    = fa_icon 'link'
+    = t('links.title')
   %ul.list-group.list-group-flush
     %li.list-group-item
       %a{:href => "https://ic.syosset.k12.ny.us/"}

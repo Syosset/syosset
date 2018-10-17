@@ -20,8 +20,9 @@
             = t('nav.departments')
           %ul.dropdown-menu
             - @departments_summary.each do |department|
-              %li= link_to department.name, department
-            %li= link_to "#{t('nav.departments_all')}", departments_path
+              %li= link_to department.name, department, class: 'dropdown-item'
+            .dropdown-divider
+            %li= link_to "#{t('nav.departments_all')}", departments_path, class: 'dropdown-item'
         %li.nav-item{class: active_controller('activities')}
           = link_to t('nav.extracurriculars'), activities_path, class: 'nav-link'
 
@@ -64,7 +65,7 @@
               Alerts
               %span.badge.badge-light= @alert_count
               %b.caret
-            %ul.dropdown-menu.dropdown-menu-right
+            %ul.dropdown-menu
               %li= link_to "Click to see all alerts", alerts_path
               - @alerts.each do |alert|
                 %li= render partial: 'partials/alerts/alert', object: alert

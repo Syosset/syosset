@@ -16,8 +16,8 @@
             Actions
             %b.caret
           %ul.dropdown-menu.dropdown-menu-right
-            %li= link_to "Edit profile", edit_user_path(@user)
-            %li= link_to "Edit schedule", user_periods_path(@user)
+            %li= link_to "Edit profile", edit_user_path(@user), class: 'dropdown-item'
+            %li= link_to "Edit schedule", user_periods_path(@user), class: 'dropdown-item'
 
   .row
     .col-md-3

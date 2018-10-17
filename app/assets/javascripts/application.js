@@ -16,7 +16,7 @@
 //= require jquery-ui
 //= require peek
 //= require turbolinks
-//= require bootstrap/dist/js/bootstrap
+//= require bootstrap/dist/js/bootstrap.bundle
 //= require moment/min/moment.min
 //= require eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min
 //= require fontawesome-iconpicker/dist/js/fontawesome-iconpicker.min

@@ -1,18 +1,20 @@
-.slider.flexslider#promo-slider
+.flexslider.mb-5
   %ul.slides
     - unless @active_promotions.empty?
       - @active_promotions.each do |promotion|
         %li
-          .super-hero-unit
-            %figure
-              %img.center-block.img-responsive{src: promotion.picture.url(:large)}
-              %figcaption.flex-caption
-                = link_to promotion_path(promotion) do
-                  %h1.super
-                    %b= promotion.text.upcase
-                  - unless promotion.markdown.empty?
-                    .cta
-                      = t('promotions.show')
-                      = fa_icon 'arrow-circle-o-right'
+          .card
+            %img.card-img{src: promotion.picture.url(:large)}
+            .card-img-overlay
+              = link_to promotion_path(promotion), class: 'text-white' do
+                %h1= promotion.text.upcase
+                - unless promotion.markdown.empty?
+                  = link_to promotion_path(promotion), class: 'btn btn-outline-light' do
+                    = t('promotions.show')
+                    = fa_icon 'chevron-right'
+
     - else
-      = link_to t('promotions.none'), promotions_path, class: 'btn btn-warning'
+      .d-flex.justify-content-center.p-5.mt-5
+        = link_to promotions_path, class: 'btn btn-warning' do
+          = fa_icon 'exclamation-triangle'
+          = t('promotions.none')

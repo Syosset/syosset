@@ -27,3 +27,14 @@ $fa-font-path: '@fortawesome/fontawesome-free/webfonts';
 @import "@fortawesome/fontawesome-free/scss/fontawesome";
 @import "@fortawesome/fontawesome-free/scss/solid";
 @import "@fortawesome/fontawesome-free/scss/brands";
+
+@font-face {
+  font-family: 'flexslider-icon';
+  src: font_url('flexslider-icon.eot');
+  src: font_url('flexslider-icon.eot?#iefix') format('embedded-opentype'),
+  font_url('flexslider-icon.woff') format('woff'),
+  font_url('flexslider-icon.ttf') format('truetype'),
+  font_url('flexslider-icon.svg#flexslider-icon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}

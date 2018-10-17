@@ -1,4 +1,4 @@
-%a{href: alert_path(alert)}
+%a.dropdown-item{href: alert_path(alert)}
     - if alert.read?
         = fa_icon 'eye'
     - alert.rich_message.each do |element|

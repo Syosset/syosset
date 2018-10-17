@@ -1,7 +1,7 @@
-.red-white-display.closed
-  = link_to "javascript:;", "data-content" => "#{render 'partials/nav/closure_info'}", "data-html" => :true, "data-placement" => :bottom , "data-toggle" => :popover, "data-container" => :nav do
+= link_to "javascript:;", class: 'nav-link', "data-content" => "#{render 'partials/nav/closure_info'}", "data-html" => :true, "data-placement" => :bottom , "data-toggle" => :popover, "data-container" => :nav do
+  %span.closure-indicator.badge.badge-light.p-2
     - if @active_closure.type == 'snow'
-      = fa_icon 'snowflake-o'
+      = fa_icon 'snowflake'
     - else
       = fa_icon 'exclamation-triangle'
     School is closed
