@@ -1,21 +1,25 @@
-.card.mb-3
-  .card-header.d-flex.bg-syosset.text-white
+.card.mb-3.carousel.slide#announcementCarousel
+  .card-header.d-flex.bg-syosset.text-white.justify-content-between
     .title
       = fa_icon 'bell'
       = t('announcements.title')
-    .carousel-controls.ml-3
-      %a.prev{'data-slide': 'prev', href: '#'}
-        = fa_icon 'caret-left'
-      %a.next{'data-slide': 'next', href: '#'}
-        = fa_icon 'caret-right'
-  .card-body
-    #news-carousel.row
-      - @announcements.each do |announcement|
-        .item
-          .card
-            .card-header= link_to announcement.name, announcement
-            .card-body
-              %p.card-text= announcement.summary || truncate(strip_tags(@markdown.render(announcement.markdown)), length: 140)
-              = link_to announcement, class: 'card-link' do
-                Read more
-                = fa_icon 'chevron-right'
+    .carousel-controls
+      %a.text-light{'data-slide': 'prev', href: '#announcementCarousel'}
+        = fa_icon 'caret-square-left'
+        %span.sr-only Previous
+      %a.text-light{'data-slide': 'next', href: '#announcementCarousel'}
+        = fa_icon 'caret-square-right'
+        %span.sr-only Next
+  .card-body.carousel-inner
+    - @announcements.in_groups_of(2).each_with_index do |group, index|
+      .carousel-item{class: index == 0 ? 'active' : ''}
+        .row
+          - group.compact.each do |announcement|
+            .col-6
+              .card
+                .card-header= link_to announcement.name, announcement
+                .card-body
+                  %p.card-text= truncate(announcement.summary || strip_tags(@markdown.render(announcement.markdown)), length: 140)
+                  = link_to announcement, class: 'card-link' do
+                    Read more
+                    = fa_icon 'chevron-right'

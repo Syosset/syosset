@@ -1,20 +1,25 @@
-.flexslider.mb-5
-  %ul.slides
+.carousel.slide.mb-4#promoCarousel{'data-ride': 'carousel'}
+  .carousel-inner
     - unless @active_promotions.empty?
-      - @active_promotions.each do |promotion|
-        %li
-          .card
-            %img.card-img{src: promotion.picture.url(:large)}
-            .card-img-overlay
-              = link_to promotion_path(promotion), class: 'text-white' do
-                %h1= promotion.text.upcase
-                - unless promotion.markdown.empty?
-                  = link_to promotion_path(promotion), class: 'btn btn-outline-light' do
-                    = t('promotions.show')
-                    = fa_icon 'chevron-right'
-
+      - @active_promotions.each_with_index do |promotion, index|
+        .carousel-item{class: index == 0 ? 'active' : ''}
+          %img{src: promotion.picture.url(:large)}
+          .carousel-caption
+            = link_to promotion_path(promotion), class: 'text-white' do
+              %h2= promotion.text.upcase
+              - unless promotion.markdown.empty?
+                = link_to promotion_path(promotion), class: 'btn btn-outline-light' do
+                  = t('promotions.show')
+                  = fa_icon 'chevron-right'
     - else
       .d-flex.justify-content-center.p-5.mt-5
         = link_to promotions_path, class: 'btn btn-warning' do
           = fa_icon 'exclamation-triangle'
           = t('promotions.none')
+
+  %a.carousel-control-prev{href: '#promoCarousel', 'data-slide': 'prev'}
+    %span.carousel-control-prev-icon{'aria-hidden': true}
+    %span.sr-only Previous
+  %a.carousel-control-next{href: '#promoCarousel', 'data-slide': 'next'}
+    %span.carousel-control-next-icon{'aria-hidden': true}
+    %span.sr-only Next

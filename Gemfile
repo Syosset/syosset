@@ -31,8 +31,6 @@ gem 'turbolinks', '~> 5.2'
 # Serve jquery and jquery-ui to clients
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
-# Use flexslider
-gem 'flex-slider-rails', '~> 2'
 
 # Pagination
 gem 'kaminari'
