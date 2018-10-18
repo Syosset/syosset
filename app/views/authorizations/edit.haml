@@ -1,8 +1,8 @@
 %ol.breadcrumb
-  %li= link_to 'Users', users_path
-  %li= link_to @user.name, user_path(@user)
-  %li= link_to 'Authorizations', edit_user_path(@user)
-  %li.active
+  %li.breadcrumb-item= link_to 'Users', users_path
+  %li.breadcrumb-item= link_to @user.name, user_path(@user)
+  %li.breadcrumb-item= link_to 'Authorizations', edit_user_path(@user)
+  %li.breadcrumb-item.active
     = @authorization.provider
 
 = render 'form'

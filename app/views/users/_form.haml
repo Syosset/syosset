@@ -13,7 +13,7 @@
       = f.select :badge, options_for_select(Badge.all.collect {|b|[b.name,b.id]}, @user.badge&.id), include_blank: true
   .form-group
     = f.label :picture
-    = f.file_field :picture, class: "form-control"
+    = f.file_field :picture, class: "form-control-file"
   .form-group
     = f.label :bio
     ~ f.text_area :bio, placeholder: "Bio", class: "form-control markdown"
@@ -21,4 +21,7 @@
     .form-group
       = f.label :super_admin
       = f.check_box :super_admin
-  = f.submit "Save", class: "btn btn-success pull-right", id: "submit-button"
+  .btn-group
+    = f.submit "Save", class: "btn btn-success pull-right", id: "submit-button"
+    - if Current.user&.can? :view, User
+      = link_to 'Back', users_path, class: 'btn btn-primary'

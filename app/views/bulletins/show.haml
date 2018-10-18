@@ -1,14 +1,12 @@
 = content_for :title, @bulletin.pretty_date
 = content_for :description, truncate(strip_tags(@bulletin.markdown), length: 200)
 
-.page-wrapper
-  %header.page-heading.clearfix
-    %ol.breadcrumb
-      %li= link_to 'Morning Announcements', bulletins_path
-      %li.active= @bulletin.date
-    %h1.heading-title.pull-left
-      = @bulletin.pretty_date
-    = render partial: "partials/modtools", locals: {actions: @actions}
-  .page-content
-    .row-fluid.page-row
-      = @markdown.render(@bulletin.markdown).html_safe
+%ol.breadcrumb
+  %li.breadcrumb-item= link_to 'Morning Announcements', bulletins_path
+  %li.breadcrumb-item.active= @bulletin.date
+
+.d-flex.justify-content-between
+  %h1= @bulletin.pretty_date
+  = render partial: 'partials/modtools', locals: {actions: @actions}
+
+= @markdown.render(@bulletin.markdown).html_safe

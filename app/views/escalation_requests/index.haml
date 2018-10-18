@@ -1,64 +1,61 @@
-%section.section.section-padded
-  .section-header.container-fluid.row-fluid
-    %h3
-      View Escalation Requests
-  .container-fluid
-    .row-fluid
-      = link_to "All", escalation_requests_path(status: ""), class: "btn btn-default"
-      = link_to "Pending", escalation_requests_path(status: "pending"), class: "btn btn-primary"
-      = link_to "Approved", escalation_requests_path(status: "approved"), class: "btn btn-success"
-      = link_to "Denied", escalation_requests_path(status: "denied"), class: "btn btn-danger"
-      .table-responsive
-        %table.table
-          %thead
-            %tr
-              %th Escalatable
-              %th Requester
-              %th Reviewer
-              %th Status
-              %th Created
-              %th Start
-              %th End
-              %th Action
-          %tbody
-            - @escalation_requests.each_with_index do |request, index|
-              - case request.status # TODO: Refactor into a view helper
-                - when "pending"
-                - color = "active"
-                - when "approved"
-                - color = "success"
-                - when "denied"
-                - color = "danger"
+.d-flex.justify-content-between
+  %h1 Escalation Requests
+  .d-flex
+    .text-muted.py-2 Filter:
+    .ml-2
+      = link_to 'All', escalation_requests_path(status: ''), class: "btn btn-outline-dark #{params[:status].blank? ? 'active' : ''}"
+      = link_to 'Pending', escalation_requests_path(status: 'pending'), class: "btn btn-outline-warning #{params[:status] == 'pending' ? 'active' : ''}"
+      = link_to 'Approved', escalation_requests_path(status: 'approved'), class: "btn btn-outline-success #{params[:status] == 'approved' ? 'active' : ''}"
+      = link_to 'Denied', escalation_requests_path(status: 'denied'), class: "btn btn-outline-danger #{params[:status] == 'denied' ? 'active' : ''}"
 
-              %tr{class: color, "data-toggle" => "collapse", "data-target" => ".more_info#{index}"}
-                %td= link_to "#{request.escalatable.class.to_s.humanize}", url_for(request.escalatable) rescue "#{request.escalatable.class.to_s.humanize}"
-                %td= request.requester.name
-                %td= request.reviewer ? request.reviewer.name : ""
-                %td= request.status
-                %td
-                  = time_ago_in_words(request.created_at)
-                  ago
-                %td
-                  = request.escalation_start_at
-                %td
-                  = request.escalation_end_at
-                %td
-                  %a.btn.btn-xs.btn-success{href: escalation_request_approve_path(request), data: {method: 'post'}}
-                    = fa_icon 'check'
-                  %a.btn.btn-xs.btn-danger{href: escalation_request_deny_path(request), data: {method: 'post'}}
-                    = fa_icon 'times'
-                  %a.btn.btn-xs.btn-primary{href: edit_escalation_request_path(request, "#{request.escalatable.class.to_s.downcase}_id" => request.escalatable.id )}
-                    = fa_icon 'gear'
-              %tr
-                %td.hiddenRow{colspan: "8"}
-                  .collapse{class: "more_info#{index}"}
-                    %b Special Note:
-                    = request.note
-              %tr
-                %td.hiddenRow{colspan: "8"}
-                  .collapse{class: "more_info#{index}"}
-                    - for attribute in request.escalatable.attributes.keys
-                      %b= attribute.humanize
-                      = ":"
-                      = request.escalatable.attributes[attribute].to_s
-                      %br
+.table-responsive
+  %table.table.table-hover
+    %thead
+      %tr
+        %th Type
+        %th Requester
+        %th Status
+        %th Created
+        %th Start
+        %th End
+        %th
+    %tbody
+      - @escalation_requests.each_with_index do |request, index|
+        - case request.status # TODO: Refactor into a view helper
+          - when 'pending'
+            - color = 'warning'
+          - when 'approved'
+            - color = 'success'
+          - when 'denied'
+            - color = 'danger'
+
+        %tr{'data-toggle' => 'collapse', 'data-target' => ".more_info#{index}"}
+          %td= link_to "#{request.escalatable.class.to_s.humanize}", url_for(request.escalatable) rescue "#{request.escalatable.class.to_s.humanize}"
+          %td= request.requester.name
+          %td
+            %span.badge{class: "badge-#{color}"}= request.status.capitalize
+          %td
+            = time_ago_in_words(request.created_at)
+            ago
+          %td
+            = request.escalation_start_at.strftime('%Y-%m-%d %H:%M')
+          %td
+            = request.escalation_end_at.strftime('%Y-%m-%d %H:%M')
+          %td
+            %a.btn.btn-sm.btn-outline-success{href: escalation_request_approve_path(request), data: {method: 'post'}}
+              = fa_icon 'check'
+            %a.btn.btn-sm.btn-outline-danger{href: escalation_request_deny_path(request), data: {method: 'post'}}
+              = fa_icon 'times'
+        %tr
+          %td.hiddenRow{colspan: "8"}
+            .collapse{class: "more_info#{index}"}
+              %b Special Note:
+              = request.note
+        %tr
+          %td.hiddenRow{colspan: "8"}
+            .collapse{class: "more_info#{index}"}
+              - for attribute in [:name, :summary, :markdown]
+                %b= attribute.to_s.capitalize
+                = ":"
+                = request.escalatable.attributes[attribute]&.to_s
+                %br

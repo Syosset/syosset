@@ -3,14 +3,13 @@
     - unless @active_promotions.empty?
       - @active_promotions.each_with_index do |promotion, index|
         .carousel-item{class: index == 0 ? 'active' : ''}
-          %img{src: promotion.picture.url(:large)}
-          .carousel-caption
-            = link_to promotion_path(promotion), class: 'text-white' do
-              %h2= promotion.text.upcase
-              - unless promotion.markdown.empty?
-                = link_to promotion_path(promotion), class: 'btn btn-outline-light' do
-                  = t('promotions.show')
-                  = fa_icon 'chevron-right'
+          %img.w-100{src: promotion.picture.url(:large)}
+          .carousel-caption.promo-caption
+            %h2.promo-title= promotion.text
+            - unless promotion.markdown.empty?
+              = link_to promotion_path(promotion), class: 'btn btn-outline-light' do
+                = t('promotions.show')
+                = fa_icon 'chevron-right'
     - else
       .d-flex.justify-content-center.p-5.mt-5
         = link_to promotions_path, class: 'btn btn-warning' do

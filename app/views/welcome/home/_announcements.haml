@@ -13,13 +13,13 @@
   .card-body.carousel-inner
     - @announcements.in_groups_of(2).each_with_index do |group, index|
       .carousel-item{class: index == 0 ? 'active' : ''}
-        .row
+        .card-deck
           - group.compact.each do |announcement|
-            .col-6
-              .card
-                .card-header= link_to announcement.name, announcement
-                .card-body
-                  %p.card-text= truncate(announcement.summary || strip_tags(@markdown.render(announcement.markdown)), length: 140)
-                  = link_to announcement, class: 'card-link' do
-                    Read more
-                    = fa_icon 'chevron-right'
+            .card
+              .card-body
+                %h5.card-title= announcement.name
+                %p.card-text= truncate(announcement.summary || strip_tags(@markdown.render(announcement.markdown)), length: 140)
+              .card-footer
+                = link_to announcement, class: 'card-link' do
+                  Read more
+                  = fa_icon 'chevron-right'

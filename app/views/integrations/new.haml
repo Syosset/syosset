@@ -1,10 +1,10 @@
 %ol.breadcrumb
-  %li= link_to t('integrations.title'), integrations_path
-  %li
+  %li.breadcrumb-item= link_to t('integrations.title'), integrations_path
+  %li.breadcrumb-item
     = link_to new_integration_path do
       = fa_icon 'plug'
       = t(:title)
-  %li.active
+  %li.breadcrumb-item.active
     %i.fa{class: "fa-#{@integration.provider.fa_icon}"}
     = @integration.provider.friendly_name
 

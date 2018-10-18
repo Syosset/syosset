@@ -1,4 +1,9 @@
-= render partial: "partials/modtools", locals: {actions: @actions}
+.card
+  = image_tag @promotion.picture.url(:large), class: 'card-img-top'
 
-= image_tag @promotion.picture.url(:large), class: "img-responsive"
-%p.lead= @markdown.render(@promotion.markdown).html_safe
+  .card-body
+    %p.card-text= @markdown.render(@promotion.markdown).html_safe
+
+  - unless @actions.empty?
+    .card-footer.d-flex.justify-content-end
+      = render partial: "partials/modtools", locals: {actions: @actions}
