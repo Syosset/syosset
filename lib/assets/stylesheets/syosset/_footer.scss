@@ -1,7 +1,9 @@
+.wrapper {
+  min-height: 100vh;
+}
+
 .footer {
   width: 100%;
-  margin-top: 16px;
-
   background-color: darken($syosset-red, 25%);
   color: white;
 
