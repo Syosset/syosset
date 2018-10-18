@@ -30,7 +30,12 @@ Rails.application.routes.draw do
 
   # User content
   resources :bulletins
-  resources :activities
+  resources :activities do
+    member do
+      post :subscribe
+      post :unsubscribe
+    end
+  end
 
   resources :departments, shallow: true do
     member do

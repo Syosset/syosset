@@ -1,27 +1,28 @@
-.page-wrapper
-  %header.page-heading.clearfix
-    .row
-      .col-xs-12.col-sm-5
-        %h1.heading-title.pull-left
-          Courses
-          %small
-            For
-            = link_to @department.name, @department
-      .col-xs-12.col-sm-7
-        = render partial: "partials/index_search_bar", locals: {path: department_courses_path(@department)}
+%ol.breadcrumb
+  %li.breadcrumb-item= link_to "Departments", departments_path
+  %li.breadcrumb-item= link_to @department.name, @department
+  %li.breadcrumb-item.active Courses
 
-    .row
-      = render partial: "partials/modtools", locals: {actions: @actions}
-  .page-content
-    .table-responsive
-      %table.table
-        %thead
-          %tr
-            %th Title
-            %th Description
-        %tbody
-          - @courses.each do |course|
-            = content_tag_for(:tr, course) do
-              %td= link_to course.name, course
-              %td= course.summary
-    = paginate @courses, theme: 'tb3'
+.row
+  .col
+    %h1 Courses
+  .col-4
+    = render partial: "partials/index_search_bar", locals: {path: department_courses_path(@department)}
+
+%table.table.table-hover
+  %thead
+    %tr
+      %th Title
+      %th Description
+  %tbody
+    - if @courses.empty?
+      %tr
+        %td{colspan: '100%'}
+          = fa_icon 'exclamation-triangle'
+          No courses available.
+    - @courses.each do |course|
+      = content_tag_for(:tr, course) do
+        %td= link_to course.name, course
+        %td= course.summary
+
+= paginate @courses, theme: 'twitter-bootstrap-4'

@@ -1,6 +1,6 @@
 class SyossetRenderer < Redcarpet::Render::HTML
   def table(header, body)
-    '<table class="table table-responsive">' \
+    '<table class="table">' \
       "<thead>#{header}</thead>" \
       "<tbody>#{body}</tbody>" \
     '</table>'
@@ -8,6 +8,10 @@ class SyossetRenderer < Redcarpet::Render::HTML
 
   def image(link, title, alt)
     alt = Azure::CognitiveServices.alt_description(link) if alt.nil?
-    "<img class=\"img-responsive\" src=\"#{link}\" title=\"#{title}\" alt=\"#{alt}\">"
+    "<img class=\"img-fluid\" src=\"#{link}\" title=\"#{title}\" alt=\"#{alt}\">"
+  end
+
+  def block_quote(quote)
+    "<blockquote class=\"blockquote\">#{quote}</blockquote>"
   end
 end

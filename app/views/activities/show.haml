@@ -1,46 +1,28 @@
-.page-wrapper
-  %header.page-heading.clearfix
-    %h1.heading-title.pull-left= @activity.name
-    = render partial: "partials/modtools", locals: {actions: @actions}
-    %ul.nav.navbar-nav.pull-right
-      %li
-        -# if Current.user
-          - if @activity.subscriber? Current.user
-            %a{:href => unsubscribe_activity_path(@activity), data: {method: 'post'}} Unsubscribe
-          - else
-            %a{:href => subscribe_activity_path(@activity), data: {method: 'post'}} Subscribe
+= content_for :title, @activity.name
+= content_for :description, @activity.summary
 
-  .page-content
-    .row.page-row
-      .courses-wrapper.col-md-8.col-sm-7
-        = @markdown.render(@activity.markdown).html_safe
-      %aside.page-sidebar.col-md-3.col-md-offset-1.col-sm-4.col-sm-offset-1
-        - unless @activity.announcements.empty?
-          %section.widget.has-divider
-            %h3.title
-              = fa_icon "bell"
-              = link_to "Announcements", announcements_path(activity_id: @activity.id)
-            %ul.rankable.list-group
-              - @activity.announcements.by_priority.limit(5).each do |announcement|
-                = content_tag_for(:li, announcement, class: "list-group-item") do
-                  - if current_holder.can?(:edit, announcement)
-                    %i.handle.fa.fa-sort{"aria-hidden" => "true"}
-                  = link_to announcement.name.truncate(38), announcement
-        - unless @activity.links.empty?
-          %section.widget.has-divider
-            %h3.title
-              = fa_icon "link"
-              = link_to "Links", links_path(activity_id: @activity.id)
-            %ul.rankable.list-group
-              - @activity.links.by_priority.limit(5).each do |link|
-                = content_tag_for(:li, link, class: "list-group-item") do
-                  - if current_holder.can?(:edit, link)
-                    %i.handle.fa.fa-sort{"aria-hidden" => "true"}
-                    = link_to link_path(link), method: :delete, data: { confirm: 'Are you sure?' } do
-                      = fa_icon "times"
-                    = link_to new_escalation_request_path(link_id: link) do
-                      - if link.escalated?
-                        = fa_icon "star"
-                      - else
-                        = fa_icon "star-o"
-                  = link_to link.name, link.target
+.row
+  .col
+    %h1= @activity.name
+  .col.d-flex.justify-content-end
+    = render partial: "partials/modtools", locals: {actions: @actions}
+    .m-0
+      - if Current.user
+        - if @activity.subscriber? Current.user
+          = link_to unsubscribe_activity_path(@activity), method: :post, class: 'btn btn-danger' do
+            = fa_icon 'times-circle'
+            Unsubscribe
+        - else
+          = link_to subscribe_activity_path(@activity), method: :post, class: 'btn btn-primary' do
+            = fa_icon 'rss'
+            Subscribe
+
+.row
+  .col-md-8
+    - unless @activity.markdown.blank?
+      = @markdown.render(@activity.markdown).html_safe
+    - else
+      .text-muted= t('missing_content')
+  .col
+    = render 'partials/announcements', announcements: @activity.announcements
+    = render 'partials/links', links: @activity.links

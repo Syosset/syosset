@@ -6,25 +6,27 @@
     .flex-grow-1
       = render partial: 'partials/index_search_bar', locals: {path: departments_path}
 
-.department-type
-  %h1.department-type-header Administrative
-  .row
-    - @departments.select {|d| d.type == 'administrative'}.each do |department|
-      .col-lg-4
-        = link_to department_path(department) do
-          .department-panel
-            %h2= department.name
-            %p= department.summary.truncate(120)
+- unless (@admins = @departments.select {|d| d.type == 'administrative'}).empty?
+  .department-type
+    %h1.department-type-header Administrative
+    .row
+      - @admins.each do |department|
+        .col-lg-4
+          = link_to department_path(department) do
+            .department-panel
+              %h4= department.name
+              %p= department.summary.truncate(120)
 
-.department-type
-  %h1.department-type-header Instructional
-  .row
-    - @departments.select {|d| d.type == 'instructional'}.each do |department|
-      .col-lg-3
-        = link_to department_path(department) do
-          .department-panel
-            %h2= department.name
-            %p= department.summary.truncate(120)
+- unless (@instructionals = @departments.select {|d| d.type == 'instructional'}).empty?
+  .department-type
+    %h1.department-type-header Instructional
+    .row
+      - @instructionals.each do |department|
+        .col-lg-3
+          = link_to department_path(department) do
+            .department-panel
+              %h4= department.name
+              %p= department.summary.truncate(120)
 
 - if @order_mode
   -# allow admins to re-order departments

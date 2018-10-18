@@ -10,11 +10,23 @@
 }
 
 #peek.development {
-  background: #7b008e;
+  background: repeating-linear-gradient(
+    45deg,
+    #1f3450,
+    #1f3450 10px,
+    #162841 10px,
+    #162841 20px
+  );
 }
 
 #peek.staging {
-  background: #1b2b41;
+  background: repeating-linear-gradient(
+    45deg,
+    rgb(128, 42, 42),
+    rgb(128, 42, 42) 10px,
+    rgb(141, 50, 50) 10px,
+    rgb(141, 50, 50) 20px
+  );
 }
 
 #peek .wrapper {

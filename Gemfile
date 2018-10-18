@@ -35,7 +35,7 @@ gem 'jquery-ui-rails'
 # Pagination
 gem 'kaminari'
 gem 'kaminari-mongoid'
-gem 'kaminari-views-bootstrap'
+gem 'bootstrap4-kaminari-views'
 
 # Peek shows performance stats
 gem 'peek'

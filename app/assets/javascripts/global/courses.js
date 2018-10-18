@@ -5,9 +5,9 @@ $(document).on('turbolinks:load', function() {
       course_id = $(course).data('course-id').toString();
       name = $(course).data('name');
       if(name.toLowerCase().indexOf(query) == -1 && course_id.indexOf(query) == -1) {
-        $(course).addClass('hidden');
+        $(course).addClass('d-none');
       } else {
-        $(course).removeClass('hidden');
+        $(course).removeClass('d-none');
       }
     });
   });

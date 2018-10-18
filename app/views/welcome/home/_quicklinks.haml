@@ -17,6 +17,6 @@
         = t('links.default.calendar')
     - @links.each do |link|
       %li.list-group-item
-        = link_to link[:target] do
-          = fa_icon (link.icon.nil? ? 'link' : link.icon.gsub('fa-', ''))
+        = link_to link.target do
+          = fa_icon link.icon.blank? ? 'link' : link.icon.gsub('fa-', '')
           = link.name

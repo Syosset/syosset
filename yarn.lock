@@ -33,9 +33,9 @@ eonasdan-bootstrap-datetimepicker@^4.17.47:
     moment "^2.10"
     moment-timezone "^0.4.0"
 
-fontawesome-iconpicker@^1.4.1:
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/fontawesome-iconpicker/-/fontawesome-iconpicker-1.4.1.tgz#2d39bb1cb14fc99ede0e4e1d0b38a23d65264e83"
+fontawesome-iconpicker@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/fontawesome-iconpicker/-/fontawesome-iconpicker-3.1.0.tgz#8de5e32b3c85b9afa74446984cc1ea0d43e7c726"
 
 inline-attachment@^2.0.3:
   version "2.0.3"
