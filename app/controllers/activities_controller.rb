@@ -38,8 +38,11 @@ class ActivitiesController < ApplicationController
     @activity = Activity.new(activity_params)
     authorize @activity
 
-    @activity.save!
-    redirect_to activity_path(@activity), flash: { success: 'Activity has been created' }
+    if @activity.save
+      redirect_to activity_path(@activity), flash: { success: 'Activity has been created' }
+    else
+      render action: 'new'
+    end
   end
 
   def new

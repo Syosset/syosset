@@ -1,30 +1,17 @@
-= javascript_include_tag "markdown"
+= javascript_include_tag 'markdown'
 
-= errors_for(@closure)
 = form_for @closure do |f|
   .form-group
     = f.label :start_date
-    #start-date.input-group.date
-      = f.text_field :start_date, class: "form-control", placeholder: "First day of closure"
-      %span.input-group-addon
-        = fa_icon 'calendar'
+    = f.date_select :start_date, {}, class: 'form-control'
   .form-group
     = f.label :end_date
-    #end-date.input-group.date
-      = f.text_field :end_date, class: "form-control", placeholder: "Last day of closure"
-      %span.input-group-addon
-        = fa_icon 'calendar'
+    = f.date_select :end_date, {}, class: 'form-control'
   .form-group
     = f.label :type, 'Type'
-    = f.select :type, ['none', 'snow'], class: "form-control"
+    = f.select :type, ['none', 'snow'], {}, class: 'form-control'
   .form-group
     = f.label :markdown
-    = f.text_area :markdown, placeholder: "Content", rows: 2, class: "form-control markdown"
+    = f.text_area :markdown, placeholder: 'Content', rows: 2, class: 'form-control markdown'
 
-  = f.submit "Save", class: "btn btn-success pull-right", id: "submit-button"
-
-:javascript
-  $(function () {
-      $('#start-date').datetimepicker({format: 'YYYY-MM-DD'});
-      $('#end-date').datetimepicker({format: 'YYYY-MM-DD'});
-  });
+  = f.submit 'Save', class: 'btn btn-success'

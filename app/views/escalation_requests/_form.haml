@@ -2,34 +2,13 @@
   = hidden_field_tag "#{@escalatable.class.to_s.downcase}_id", "#{@escalatable.id}"
   .form-group
     = f.label :note
-    = f.text_field :note, placeholder: "Briefly describe why you want frontpage visibility...", class: "form-control"
-  .row
+    = f.text_field :note, placeholder: 'Briefly describe why you want frontpage visibility...', class: 'form-control'
+  .form-row
     .form-group.col-md-6
-      = f.label :escalation_start_at, "Start Date"
-      #datetimepicker_start.input-group.date
-        = f.text_field("escalation_start_at", class: "form-control", placeholder: "Start frontpage visibilty date")
-        %span.input-group-addon
-          = fa_icon 'calendar'
+      = f.label :escalation_start_at, 'Start Date'
+      = f.datetime_select :escalation_start_at, {}, class: 'form-control'
     .form-group.col-md-6
       = f.label :escalation_end_at, "End Date"
-      #datetimepicker_end.input-group.date
-        = f.text_field("escalation_end_at", class: "form-control", placeholder: "End frontpage visibilty date")
-        %span.input-group-addon
-          = fa_icon 'calendar'
-  = f.submit "Save Escalation Request", class: "btn btn-success pull-right", id: "submit-button"
+      = f.datetime_select :escalation_end_at, {}, class: 'form-control'
 
-
-:javascript
-  $(function () {
-      $('#datetimepicker_start').datetimepicker({format: 'YYYY-MM-DD HH:mm a'});
-      $('#datetimepicker_end').datetimepicker({
-          useCurrent: true,
-          format: 'YYYY-MM-DD HH:mm a'
-      });
-      $("#datetimepicker_start").on("dp.change", function (e) {
-          $('#datetimepicker_end').data("DateTimePicker").minDate(e.date);
-      });
-      $("#datetimepicker_end").on("dp.change", function (e) {
-          $('#datetimepicker_start').data("DateTimePicker").maxDate(e.date);
-      });
-  });
+  = f.submit 'Save', class: 'btn btn-success'

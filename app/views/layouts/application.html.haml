@@ -23,7 +23,7 @@
     - if content_for?(:description)
       %meta{name: "description", content: yield(:description)}
   %body{"data-no-turbolink" => yield(:disable_turbolinks), "data-model-name" => yield(:model_name), "data-current-user-id" => Current.user&.id, "data-params-id" => (params[:id] || yield(:model_id)) }
-    %a.skip.screen-reader-text{:href => "#content"} Skip to content
+    %a.skip.sr-only{:href => "#content"} Skip to content
     -# if Current.user&.staff? TEMPORARILY DISABLED
       %div#support{"data-turbolinks-permanent" => true}
         = render 'partials/chat/chat_button'

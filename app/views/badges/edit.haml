@@ -1,8 +1,3 @@
-%section.section.section-padded
-  .section-header
-    %h3
-      Edit Badge
-  .container-fluid
-    .row-fluid
-      = render 'form'
-      = link_to "Delete", badge_path(@badge), method: :delete, class: "btn btn-warning pull-right"
+%h1 Edit Badge
+
+= render 'form'

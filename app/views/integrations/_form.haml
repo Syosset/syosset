@@ -7,4 +7,4 @@
       %p= t("integrations.#{@integration.provider.id}.options.#{option.to_s}.description")
       - if properties[:type] == String
         = text_field_tag "integration[options][#{option.to_s}]", @integration.options[option], class: 'form-control', placeholder: t("integrations.#{@integration.provider.id}.options.#{option.to_s}.placeholder")
-  = f.submit t('integrations.save'), class: "btn btn-success pull-right", id: "submit-button"
+  = f.submit t('integrations.save'), class: 'btn btn-success'

@@ -1,11 +1,3 @@
-%section.section.section-padded
-  .section-header
-    %h3
-      Edit
-      %span.light
-        = @department.name
-        Department
-  .container-fluid
-    .row-fluid
-      = render 'form'
-      = link_to 'Back',  department_path(@department), class: "btn btn-warning pull-right"
+%h1 Edit Department
+
+= render 'form'

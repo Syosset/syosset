@@ -18,7 +18,6 @@
 //= require turbolinks
 //= require bootstrap/dist/js/bootstrap.bundle
 //= require moment/min/moment.min
-//= require eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min
 //= require fontawesome-iconpicker/dist/js/fontawesome-iconpicker
 //= require jquery-tags-input/dist/jquery.tagsinput.min
 //= require_tree ./global

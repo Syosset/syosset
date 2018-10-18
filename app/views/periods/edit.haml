@@ -1,8 +1,3 @@
-%section.section.section-padded
-  .section-header
-    %h3
-      Edit Period
-  .container-fluid
-    .row-fluid
-      = render 'form'
-      = link_to 'Back', user_periods_path(user: @period.user), class: "btn btn-warning pull-right"
+%h1 Edit Period
+
+= render 'form'
