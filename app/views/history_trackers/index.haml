@@ -1,5 +1,6 @@
-%h2 Previous Versions
-%table.table
+%h1 Previous Versions
+
+%table.table.table-hover
   %thead
     %tr
       %th Version
@@ -14,9 +15,14 @@
           = time_ago_in_words(track.created_at)
           ago
         %td
-          = link_to track.modifier do
-            = track.modifier.name
-            = render 'badges/badge', badge: track.modifier.badge
-        %td= track.action
-= paginate @tracks, theme: 'twitter-bootstrap-4'
-= link_to 'Back',  @trackable, class: "btn btn-warning pull-right"
+          - if track.modifier
+            = link_to track.modifier do
+              = track.modifier&.name
+              = render 'badges/badge', badge: track.modifier&.badge
+          - else
+            Unknown
+        %td
+          %span.badge{class: "badge-#{track.action == 'create' ? 'success' : 'primary'}"}= track.action.capitalize
+
+.d-flex.justify-content-center
+  = paginate @tracks, theme: 'twitter-bootstrap-4'

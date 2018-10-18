@@ -1,11 +1,11 @@
-%a.dropdown-item{href: alert_path(alert)}
-    - if alert.read?
-        = fa_icon 'eye'
-    - alert.rich_message.each do |element|
-        - if element[:user]
-            = element[:user].name
-        - if element[:message]
-            = element[:message].html_safe # TODO sanitize?
-        - if element[:time]
-            = time_ago_in_words(alert.updated_at, false, vague: true)
-            ago
+%a{href: alert_path(alert)}
+  - if alert.read?
+    = fa_icon 'eye'
+  - alert.rich_message.each do |element|
+    - if element[:user]
+      = element[:user].name
+    - if element[:message]
+      = element[:message].html_safe # TODO sanitize?
+    - if element[:time]
+      = time_ago_in_words(alert.updated_at, false, vague: true)
+      ago
