@@ -1,0 +1,46 @@
+= content_for :title, "#{@user.name}#{@user.badge ? ", #{@user.badge.name}" : ""}"
+= content_for :description, strip_tags(@user.bio)
+= content_for :meta do
+  %meta{name: 'og:type', content: 'profile'}
+  %meta{name: 'og:image', content: @user.picture.url}
+
+- if current_holder == @user && !@onboarding.empty?
+  .mb-3
+    = render 'onboarding'
+
+.row.mb-3
+  .col-md-3
+    .card
+      = image_tag(@user.picture.url(:large), class: 'card-img-top')
+      .card-body
+        %h5.card-title.mb-0= @user.name
+        %p.card-text= @user.email
+      - if @actions.size > 0
+        .card-footer
+          = render partial: "partials/modtools", locals: {actions: @actions}
+
+  .col
+    - unless @user.bio.empty?
+      %p= @markdown.render(@user.bio).html_safe
+    - else
+      .text-muted= t('missing_content')
+
+- if Current.user && @periods.count > 0
+  %table.table.table-hover
+    %thead
+      %tr
+        - if current_holder.can? :edit, @user
+          %th
+        %th Period
+        %th Course
+        %th Room
+    %tbody
+      - @periods.each do |period|
+        %tr
+          - if current_holder.can? :edit, @user
+            %td
+              = link_to 'Edit', edit_user_period_path(period, user_id: @user.id), class: 'btn btn-outline-primary'
+              = link_to 'Remove', user_period_path(@user, period), method: :delete, class: 'btn btn-outline-danger', data: { confirm: 'Are you sure you want to remove this period?' }
+          %td= period.period
+          %td= link_to period.course.name, period.course
+          %td= period.room
