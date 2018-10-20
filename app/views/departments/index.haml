@@ -7,26 +7,30 @@
       = render partial: 'partials/index_search_bar', locals: {path: departments_path}
 
 - unless (@admins = @departments.select {|d| d.type == 'administrative'}).empty?
-  .department-type
-    %h1.department-type-header Administrative
-    .row
-      - @admins.each do |department|
-        .col-lg-4
-          = link_to department_path(department) do
-            .department-panel
-              %h4= department.name
-              %p= department.summary.truncate(120)
+  %h4.department-type-header Administrative
+  .card-columns
+    - @admins.each do |department|
+      .card.bg-syosset.text-white
+        .card-body
+          %h5.card-title
+            = link_to department.name, department_path(department), class: 'text-white'
+          %p.card-text= department.summary.truncate(120)
 
 - unless (@instructionals = @departments.select {|d| d.type == 'instructional'}).empty?
-  .department-type
-    %h1.department-type-header Instructional
-    .row
-      - @instructionals.each do |department|
-        .col-lg-3
-          = link_to department_path(department) do
-            .department-panel
-              %h4= department.name
-              %p= department.summary.truncate(120)
+  %h4.department-type-header Instructional
+  .card-columns
+    - @instructionals.each do |department|
+      .card
+        .card-body
+          %h5.card-title
+            = link_to department.name, department_path(department)
+          %p.card-text= department.summary.truncate(120)
+        - unless department.links.empty?
+          .card-footer
+            - link = department.links.first
+            = link_to link[:target], class: 'card-link' do
+              = fa_icon link.icon.blank? ? 'link' : link.icon.gsub('fa-', '')
+              = link.name
 
 - if @order_mode
   -# allow admins to re-order departments
