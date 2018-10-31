@@ -2,37 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.login-container {
-  border: 1px solid #e4e4e4;
-  background-color: #fafafa;
-  border-radius: 2px;
-
-  width: 90%;
-  margin: auto;
-  padding: 24px;
-  text-align: center;
-
-  h1 {
-    margin: 0;
-  }
-  a.btn {
-    width: 90%;
-    margin: 20px 0;
-    background-color: #a93636;
-    color: white;
-    border-radius: 4px;
-
-    transition: transform 0.25s ease;
-    &:hover {
-      transform: translateY(-1px);
-      box-shadow: 1px 1px rgba(0, 0, 0, 0.1);
-    }
-    &:active {
-      transform: translateY(1px);
-    }
-  }
-}
-
 .user-badge {
   display: inline-block;
   color: #ffffff;
@@ -59,22 +28,14 @@
   }
 }
 
-.onboarding {
-  padding: 15px 30px;
-  background-color: #ffffff;
-  border: 2px solid #f4f4f4;
-  border-radius: 4px;
-}
-
-.onboarding p {
-  font-size: 16px;
+.onboarding .step-link {
+  text-decoration: none;
 }
 
 .onboarding .step {
   padding: 15px;
   margin: 15px 0;
 
-  background-color: #f9f9f9;
   color: #000000;
 
   border-radius: 4px;

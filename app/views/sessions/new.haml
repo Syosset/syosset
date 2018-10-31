@@ -1,6 +1,8 @@
-.login-container
-  %h1 Sign in
-  %h4 Signing in gives you access to exclusive features such as course subscriptions and student-only content.
-  = link_to '/auth/google_oauth2', class: "btn btn-loader" do
-    = fa_brand_icon 'google'
-    Sign in with your school Google account
+.card
+  .card-body
+    %h1.card-title Sign in
+    %p.card-text Signing in gives you access to exclusive features such as course subscriptions and student-only content.
+  .card-footer
+    = link_to '/auth/google_oauth2', class: 'btn btn-primary btn-loader' do
+      = fa_brand_icon 'google'
+      Sign in with your school Google account
