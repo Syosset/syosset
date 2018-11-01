@@ -1,15 +1,14 @@
-.page-wrapper
-  %header.page-heading
-    %h1.heading-title
-      Closure
-      - if @closure.start_date == @closure.end_date
-        on
-        = @closure.start_date.strftime("%B %-d %Y")
-      - else
-        from
-        = @closure.start_date.strftime("%B %-d %Y")
-        to
-        = @closure.end_date.strftime("%B %-d %Y")
-    = link_to "Edit", edit_closure_path(@closure), class: "btn btn-primary pull-right"
-  .page-content
-    %p= @markdown.render(@closure.markdown).html_safe
+.d-flex.justify-content-between
+  %h1
+    Closure
+    - if @closure.start_date == @closure.end_date
+      on
+      = @closure.start_date.strftime("%B %-d %Y")
+    - else
+      from
+      = @closure.start_date.strftime("%B %-d %Y")
+      to
+      = @closure.end_date.strftime("%B %-d %Y")
+  = render partial: 'partials/modtools', locals: {actions: @actions}
+
+%p= @markdown.render(@closure.markdown).html_safe

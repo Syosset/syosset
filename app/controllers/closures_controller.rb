@@ -4,13 +4,29 @@ class ClosuresController < ApplicationController
   def index
     @closures = Closure.all.order(%i[start_date asc])
 
+    actions_builder = ActionsBuilder.new(current_holder)
+
+    actions_builder.require(:edit)
+                   .render('New Closure', :get, new_closure_path)
+
+    @actions = actions_builder.actions
+
     respond_to do |format|
       format.html
       format.json { render jsonapi: @closures }
     end
   end
 
-  def show; end
+  def show
+    actions_builder = ActionsBuilder.new(current_holder, closure: @closure)
+
+    actions_builder.require(:edit) do
+      render('Edit Closure', :get, edit_closure_path(closure))
+      render('Destroy Bulletin', :delete, closure_path(closure), data: { confirm: 'Are you sure?' })
+    end
+
+    @actions = actions_builder.actions
+  end
 
   def new
     @closure = Closure.new

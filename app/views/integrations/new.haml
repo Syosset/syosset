@@ -3,7 +3,7 @@
   %li.breadcrumb-item
     = link_to new_integration_path do
       = fa_icon 'plug'
-      = t(:title)
+      = t('integrations.new.title')
   %li.breadcrumb-item.active
     %i.fa{class: "fa-#{@integration.provider.fa_icon}"}
     = @integration.provider.friendly_name

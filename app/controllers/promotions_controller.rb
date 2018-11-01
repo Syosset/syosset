@@ -4,6 +4,13 @@ class PromotionsController < ApplicationController
   def index
     authorize Promotion
 
+    actions_builder = ActionsBuilder.new(current_holder)
+
+    actions_builder.require(:edit)
+                   .render('New Promotion', :get, new_promotion_path)
+
+    @actions = actions_builder.actions
+
     @promotions = Promotion.all.by_priority
   end
 

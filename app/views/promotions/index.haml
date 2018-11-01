@@ -1,19 +1,18 @@
-.page-wrapper
-  %header.page-heading
-    %h1.heading-title Promotions
-    = link_to "Create", new_promotion_path, class: "btn btn-primary pull-right"
-  .page-content
-    %table.table
-      %tbody.rankable
-        - @promotions.each do |promotion|
-          = content_tag_for(:tr, promotion, class: "promotion-preview#{promotion.enabled ? '' : ' disabled'}") do
-            %td
-              %i.handle.fa.fa-sort{"aria-hidden" => "true"}
-              = link_to edit_promotion_path(promotion) do
-                = fa_icon 'edit'
-            %td
-              = image_tag promotion.picture.url(:thumb)
-            %td
-              - unless promotion.enabled
-                %span.label.label-warning Hidden
-              = link_to promotion.text, promotion_path(promotion)
+.d-flex.justify-content-between
+  %h1 Promotions
+  = render partial: 'partials/modtools', locals: {actions: @actions}
+
+%table.table
+  %tbody.rankable
+    - @promotions.each do |promotion|
+      = content_tag_for(:tr, promotion, class: "promotion-preview#{promotion.enabled ? '' : ' disabled'}") do
+        %td
+          %i.handle.fa.fa-sort{'aria-hidden' => 'true'}
+          = link_to edit_promotion_path(promotion) do
+            = fa_icon 'edit'
+        %td
+          = image_tag promotion.picture.url(:thumb)
+        %td
+          - unless promotion.enabled
+            %span.badge.badge-warning Hidden
+          = link_to promotion.text, promotion_path(promotion)

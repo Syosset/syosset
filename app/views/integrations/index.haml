@@ -1,8 +1,11 @@
-%ol.breadcrumb
-  %li.breadcrumb-item.active= t('integrations.title')
-  = link_to new_integration_path, class: 'pull-right' do
-    = fa_icon 'plug'
-    = t('integrations.new.title')
+.row
+  .col-10
+    %ol.breadcrumb
+      %li.breadcrumb-item.active= t('integrations.title')
+  .col-2
+    = link_to new_integration_path, class: 'btn btn-primary' do
+      = fa_icon 'plug'
+      = t('integrations.new.title')
 
 - @integrations.each do |integration|
   .integration-provider
