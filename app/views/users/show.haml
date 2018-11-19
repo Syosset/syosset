@@ -20,7 +20,7 @@
           = render partial: "partials/modtools", locals: {actions: @actions}
 
   .col
-    - unless @user.bio.empty?
+    - unless @user.bio.blank?
       %p= @markdown.render(@user.bio).html_safe
     - else
       .text-muted= t('missing_content')
