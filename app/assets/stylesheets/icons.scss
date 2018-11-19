@@ -1,4 +1,5 @@
 $fa-font-path: '@fortawesome/fontawesome-free/webfonts';
+@import "@fortawesome/fontawesome-free/scss/fontawesome";
 
 @font-face {
   font-family: 'Font Awesome 5 Free';
@@ -24,6 +25,12 @@ $fa-font-path: '@fortawesome/fontawesome-free/webfonts';
   asset-url('#{$fa-font-path}/fa-brands-400.svg#fontawesome') format('svg');
 }
 
-@import "@fortawesome/fontawesome-free/scss/fontawesome";
-@import "@fortawesome/fontawesome-free/scss/solid";
-@import "@fortawesome/fontawesome-free/scss/brands";
+.fa,
+.fas {
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+}
+
+.fab {
+  font-family: 'Font Awesome 5 Brands';
+}
