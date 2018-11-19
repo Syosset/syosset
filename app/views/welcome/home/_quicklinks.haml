@@ -1,22 +1,22 @@
-%section.links
-  %h1.section-heading.text-highlight
-    %span.line
-      = link_to t('links.title'), links_path
-  .section-content
-    %p
+.card.mb-3
+  .card-header.bg-syosset.text-white
+    = fa_icon 'link'
+    = t('links.title')
+  %ul.list-group.list-group-flush
+    %li.list-group-item
       %a{:href => "https://ic.syosset.k12.ny.us/"}
-        = fa_icon 'institution'
+        = fa_icon 'university'
         = t('links.default.portal')
-    %p
+    %li.list-group-item
       %a{:href => "https://portal.office.com/"}
         = fa_icon 'envelope'
         = t('links.default.email')
-    %p
+    %li.list-group-item
       %a{:href => "http://www.syossetschools.org/Calendar/Default.aspx?period=monthgrid"}
         = fa_icon 'calendar'
         = t('links.default.calendar')
     - @links.each do |link|
-      %p
+      %li.list-group-item
         = link_to link[:target] do
-          = fa_icon (link.icon.nil? ? "link" : link.icon.gsub('fa-', '')) # TODO: Don't store icons in DB prefixed with fa-
+          = fa_icon link.icon.blank? ? 'link' : link.icon.gsub('fa-', '')
           = link.name

@@ -1,15 +1,13 @@
 = content_for :title, @announcement.name
 = content_for :description, truncate(strip_tags(@announcement.markdown), length: 200)
 
-.page-wrapper
-  %header.page-heading.clearfix
-    %ol.breadcrumb
-      %li= link_to @announcement.announceable.name, @announcement.announceable
-      %li Announcements
-      %li.active=@announcement.name
-    %h1.heading-title.pull-left
-      = @announcement.name
-    = render partial: "partials/modtools", locals: {actions: @actions}
-  .page-content
-    .row-fluid.page-row
-      = @markdown.render(@announcement.markdown).html_safe
+%ol.breadcrumb
+  %li.breadcrumb-item= link_to @announcement.announceable.name, @announcement.announceable
+  %li.breadcrumb-item Announcements
+  %li.breadcrumb-item.active=@announcement.name
+
+.d-flex.justify-content-between
+  %h1= @announcement.name
+  = render partial: 'partials/modtools', locals: {actions: @actions}
+
+= @markdown.render(@announcement.markdown).html_safe

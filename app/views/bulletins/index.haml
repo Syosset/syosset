@@ -1,15 +1,12 @@
-.page-wrapper
-  %header.page-heading.clearfix
-    %h1.heading-title.pull-left
-      Morning Announcements
-    = render partial: "partials/modtools", locals: {actions: @actions}
-  .page-content
-    .table-responsive
-      %table.table
-        %thead
-          %tr
-            %th Date
-        %tbody.rankable
-          - @bulletins.each do |bulletin|
-            = content_tag_for(:tr, bulletin) do
-              %td= link_to bulletin.pretty_date, bulletin
+.d-flex.justify-content-between
+  %h1 Morning Announcements
+  = render partial: 'partials/modtools', locals: {actions: @actions}
+
+%table.table.table-hover
+  %thead
+    %tr
+      %th Date
+  %tbody.rankable
+    - @bulletins.each do |bulletin|
+      = content_tag_for(:tr, bulletin) do
+        %td= link_to bulletin.pretty_date, bulletin

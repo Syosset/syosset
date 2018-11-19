@@ -11,6 +11,11 @@ class UsersController < ApplicationController
     redirect_to root_path, alert: 'Only staff members can have profiles.' unless @user.staff?
     @periods = @user.periods.asc(:period)
     @onboarding = @user == Current.user ? @user.onboarding_steps : []
+
+    actions_builder = ActionsBuilder.new(current_holder, user: @user)
+    actions_builder.require(:edit).render('Edit Profile', :get, edit_user_path(@user))
+    actions_builder.require(:edit).render('Manage Schedule', :get, user_periods_path(@user))
+    @actions = actions_builder.actions
   end
 
   def new

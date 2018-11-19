@@ -1,15 +1,9 @@
-= content_for :body_class, "home-page" # College Green theme
 = content_for :description, t('welcome.home.description')
 
 .row
-  .col-md-9
-    = render "slider"
-    .hidden-xs
-      = render "announcements"
-  .col-md-3
-    = render "bulletin"
-    = render "quicklinks"
-.row
-  .col-md-9
-    .hidden-sm.hidden-md.hidden-lg
-      = render "announcements"
+  .col-md-8.d-flex.flex-column
+    = render 'slider'
+    = render 'announcements'
+  .col.d-flex.flex-column
+    = render 'bulletin'
+    = render 'quicklinks'

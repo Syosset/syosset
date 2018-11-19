@@ -15,5 +15,5 @@
   = yield
   .input-group
     %input#search.form-control{placeholder: placeholder, type: :text, name: :search, value: value}
-    %span.input-group-btn
-      = submit_tag submit_button_text, name: nil, class: "btn btn-default"
+    .input-group-append
+      = submit_tag submit_button_text, name: nil, class: 'btn btn-default input-group-btn'

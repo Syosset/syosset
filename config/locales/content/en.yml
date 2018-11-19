@@ -11,7 +11,6 @@ en:
           name: "Giovanni Durante"
           statement: "Let's get out there and make it a great day!"
         info:
-          title: "Philosophy"
           text: "At Syosset High School, we strive to provide an education that is
           challenging, thorough and useful, in an environment where students find
           joy in learning. We believe high school is a unique experience, valuable
@@ -29,4 +28,4 @@ en:
           make Syosset High School students aware of their responsibility and
           connection to the larger world."
   contact:
-    phone: "Call us today (516) 364-5675"
+    phone: "Call us today: (516) 364-5675"

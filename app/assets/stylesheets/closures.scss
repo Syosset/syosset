@@ -1,4 +1,4 @@
-.red-white-display.closed {
+.closure-indicator {
   animation: scale-flash linear 1s alternate infinite;
 }
 
@@ -12,7 +12,7 @@
 }
 
 .closure-info {
-  margin: -10px -15px;
+  margin: -8px -12px;
   display: flex;
 }
 

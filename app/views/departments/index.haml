@@ -1,34 +1,38 @@
-.page-wrapper
-  %header.page-heading.clearfix
-    .row
-      .col-xs-12.col-sm-5
-        %h1.heading-title.pull-left Departments
-      .col-xs-12.col-sm-7
-        = render partial: "partials/index_search_bar", locals: {path: departments_path}
-        = render partial: "partials/modtools", locals: {actions: @actions}
-  .page-content
+.row
+  .col
+    %h1 Departments
+  .col.d-flex
+    = render partial: 'partials/modtools', locals: {actions: @actions}
+    .flex-grow-1
+      = render partial: 'partials/index_search_bar', locals: {path: departments_path}
 
-    .department-type
-      %h1.department-type-header Administrative
-      .row
-        - @departments.select {|d| d.type == 'administrative'}.each do |department|
-          .col-md-4
-            = link_to department_path(department) do
-              .department-panel
-                %h2= department.name
-                %p= department.summary.truncate(120)
+- unless (@admins = @departments.select {|d| d.type == 'administrative'}).empty?
+  %h4.department-type-header Administrative
+  .card-columns
+    - @admins.each do |department|
+      .card.bg-syosset.text-white
+        .card-body
+          %h5.card-title
+            = link_to department.name, department_path(department), class: 'text-white'
+          %p.card-text= department.summary.truncate(120)
 
-    .department-type
-      %h1.department-type-header Instructional
-      .row
-        - @departments.select {|d| d.type == 'instructional'}.each do |department|
-          .col-md-3
-            = link_to department_path(department) do
-              .department-panel
-                %h2= department.name
-                %p= department.summary.truncate(120)
+- unless (@instructionals = @departments.select {|d| d.type == 'instructional'}).empty?
+  %h4.department-type-header Instructional
+  .card-columns
+    - @instructionals.each do |department|
+      .card
+        .card-body
+          %h5.card-title
+            = link_to department.name, department_path(department)
+          %p.card-text= department.summary.truncate(120)
+        - unless department.links.empty?
+          .card-footer
+            - link = department.links.first
+            = link_to link[:target], class: 'card-link' do
+              = fa_icon link.icon.blank? ? 'link' : link.icon.gsub('fa-', '')
+              = link.name
 
-  - if @order_mode
-    -# allow admins to re-order departments
-    %h2 All Departments
-    = render 'table'
+- if @order_mode
+  -# allow admins to re-order departments
+  %h2 All Departments
+  = render 'table'

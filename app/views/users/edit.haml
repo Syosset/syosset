@@ -1,41 +1,30 @@
 = content_for :model_name, User.name.underscore.to_sym
 = content_for :model_id, @user.id
 
-%section.section.section-padded
-  .section-header
-    %h3 Edit User
-  .container-fluid
-    .row-fluid
-      = render 'form'
-      - if Current.user&.can? :view, User
-        = link_to 'Back', users_path, class: "btn btn-warning pull-right"
-
+%h1 Edit User
+= render 'form'
 
 - if Current.user&.can? :view, Authorization
-  %hr/
-  %section.section.section-padded
-    .section-header
-      %h3
-        Authorizations
-        = link_to "Create Authorization", new_user_authorization_path(@user), class: 'btn btn-primary pull-right'
+  .d-flex.justify-content-between.mt-3
+    %h2 Authorizations
+    .m-0
+      = link_to "Create Authorization", new_user_authorization_path(@user), class: 'btn btn-primary'
 
-    .container-fluid
-      .table-responsive
-        %table.table
-          %thead
-            %tr
-              %th
-              %th ID
-              %th Provider
-              %th Age
-          %tbody
-            - @user.authorizations.each do |authorization|
-              %tr
-                %td
-                  = link_to user_authorization_path(@user, authorization), method: :delete do
-                    = fa_icon 'times'
-                  = link_to edit_user_authorization_path(@user, authorization) do
-                    = fa_icon 'pencil'
-                %td= authorization.id
-                %td= authorization.provider
-                %td= time_ago_in_words(authorization.created_at)
+  %table.table
+    %thead
+      %tr
+        %th
+        %th ID
+        %th Provider
+        %th Age
+    %tbody
+      - @user.authorizations.each do |authorization|
+        %tr
+          %td
+            = link_to user_authorization_path(@user, authorization), method: :delete do
+              = fa_icon 'times'
+            = link_to edit_user_authorization_path(@user, authorization) do
+              = fa_icon 'edit'
+          %td= authorization.id
+          %td= authorization.provider
+          %td= time_ago_in_words(authorization.created_at)

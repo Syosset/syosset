@@ -1,19 +1,18 @@
 = content_for :model_name, Promotion.name.underscore.to_sym
-= errors_for(@promotion)
-= javascript_include_tag "markdown"
+= javascript_include_tag 'markdown'
 
 = form_for @promotion do |f|
   .form-group
     = f.label :picture
-    = f.file_field :picture, class: "form-control"
-  .form-group
-    = f.label :enabled
-    = f.check_box :enabled
+    = f.file_field :picture, class: 'form-control-file'
+  .form-group.form-check
+    = f.check_box :enabled, class: 'form-check-input'
+    = f.label :enabled, class: 'form-check-label'
   .form-group
     = f.label :text
-    = f.text_field :text, placeholder: "Text", class: "form-control"
+    = f.text_field :text, placeholder: 'Text', class: 'form-control'
   .form-group
     = f.label :markdown
-    ~ f.text_area :markdown, placeholder: "Describe the content here", class: "form-control markdown"
+    ~ f.text_area :markdown, placeholder: 'Describe the content here', class: 'form-control markdown'
 
-  = f.submit "Save", class: "btn btn-success pull-right", id: "submit-button"
+  = f.submit 'Save', class: 'btn btn-success'

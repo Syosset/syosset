@@ -1,10 +1,12 @@
 %ol.breadcrumb
-  %li= link_to 'Policies', policies_path
-  %li= link_to @policy.name, policy_path(@policy)
-  %li.active Targets
+  %li.breadcrumb-item= link_to 'Policies', policies_path
+  %li.breadcrumb-item= link_to @policy.name, policy_path(@policy)
+  %li.breadcrumb-item.active Targets
 
-%h1
-  Targets
-  .pull-right
+.d-flex.justify-content-between
+  %h1
+    Targets
+  .m-0
     = render 'partials/modtools'
+
 = render partial: 'targets', collection: @targets

@@ -1,27 +1,25 @@
-.page-wrapper
-  %header.page-heading.clearfix
-    .row
-      .col-xs-12.col-sm-5
-        %h1.heading-title.pull-left
-          = @user.name + "'s Schedule"
+.d-flex.justify-content-between
+  %h1
+    = @user.name + "'s Schedule"
+  .my-1
+    - if current_holder.can? :edit, @user
+      = link_to 'Add Period', new_user_period_path(@user), class: 'btn btn-primary'
+
+%table.table.table-hover
+  %thead
+    %tr
       - if current_holder.can? :edit, @user
-        = link_to "Add period", new_user_period_path(@user), class: "btn btn-primary pull-right"
-  .page-content
-    .table-responsive
-      %table.table
-        %thead
-          %tr
-            %th
-            %th Period
-            %th Course
-            %th Room
-        %tbody
-          - @periods.each do |period|
-            %tr
-              %td
-                - if current_holder.can? :edit, @user
-                  = link_to "Edit", edit_user_period_path(period, user_id: @user.id), class: "btn btn-warning"
-                  = link_to "Remove", user_period_path(@user, period), method: :delete, class: "btn btn-danger", data: { confirm: 'Are you sure you want to remove this period?' }
-              %td= period.period
-              %td= link_to period.course.name, period.course
-              %td= period.room
+        %th
+      %th Period
+      %th Course
+      %th Room
+  %tbody
+    - @periods.each do |period|
+      %tr
+        - if current_holder.can? :edit, @user
+          %td
+            = link_to 'Edit', edit_user_period_path(period, user_id: @user.id), class: 'btn btn-outline-primary'
+            = link_to 'Remove', user_period_path(@user, period), method: :delete, class: 'btn btn-outline-danger', data: { confirm: 'Are you sure you want to remove this period?' }
+        %td= period.period
+        %td= link_to period.course.name, period.course
+        %td= period.room

@@ -1,0 +1,19 @@
+.wrapper {
+  min-height: 100vh;
+  padding-bottom: 32px;
+}
+
+.footer {
+  width: 100%;
+  background-color: darken($syosset-red, 25%);
+  color: white;
+
+  a {
+    color: lighten($syosset-red, 25%);
+  }
+
+  .social-icon {
+    color: white;
+    font-size: 16px;
+  }
+}

@@ -26,7 +26,7 @@ class SessionsController < ApplicationController
 
   def failure
     redirect_to login_path,
-                alert: 'You need to allow access to your account! Don\'t worry, we can\'t do anything bad.'
+                alert: 'You need to allow access to your account! This will only give us access to your name and email.'
   end
 
   def destroy

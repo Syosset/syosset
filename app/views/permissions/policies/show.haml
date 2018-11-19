@@ -1,13 +1,15 @@
 %ol.breadcrumb
-  %li= link_to 'Policies', policies_path
-  %li.active= @policy.name
+  %li.breadcrumb-item= link_to 'Policies', policies_path
+  %li.breadcrumb-item.active= @policy.name
 
-%h1
-  = @policy.name
-  %small
-    - unless @policy.context.empty?
-      Context:
-      = @policy.context
-  .pull-right
+.d-flex.justify-content-between
+  %h1
+    = @policy.name
+    %small
+      - unless @policy.context.empty?
+        Context:
+        = @policy.context
+  .m-0
     = render 'partials/modtools'
+
 = render partial: 'permissions/targets/targets', collection: @targets

@@ -1,10 +1,10 @@
 = form_for [@user, @authorization] do |f|
-  = f.label :provider
-  = f.select :provider, options_for_select(['bearer_token', 'google_oauth2'], @authorization.provider)
+  .form-group
+    = f.label :provider
+    = f.select :provider, options_for_select(['bearer_token', 'google_oauth2'], @authorization.provider), {}, class: 'form-control'
 
-  %br/
+  .form-group
+    = f.label :uid, 'Token'
+    = f.text_field :uid, class: 'form-control'
 
-  = f.label :uid
-  = f.text_field :uid, class: 'form-control'
-
-  = f.submit "Save", class: "btn btn-success pull-right", id: "submit-button"
+  = f.submit 'Save', class: 'btn btn-success'

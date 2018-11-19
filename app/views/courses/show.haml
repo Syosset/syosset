@@ -1,61 +1,36 @@
 = content_for :title, @course.name
 = content_for :description, @course.summary
 
-.page-wrapper
-  %header.page-heading.clearfix
-    %h1.heading-title.pull-left
+%ol.breadcrumb
+  %li.breadcrumb-item= link_to "Departments", departments_path
+  %li.breadcrumb-item= link_to @course.department.name, @course.department
+  %li.breadcrumb-item= link_to "Courses", department_courses_path(@course.department)
+  %li.breadcrumb-item.active= @course.name
+
+.d-flex.justify-content-between
+  .flex-grow-1
+    %h1
       %span.text-muted= "##{@course.course_id}"
       = @course.name
-      %small
-        - department = @course.department
-        = link_to "For #{department.name}", department
+  .d-flex
     = render partial: "partials/modtools", locals: {actions: @actions}
-    %ul.nav.navbar-nav.pull-right
-      %li
-        - if Current.user
-          - if @course.subscriber? Current.user
-            %a{:href => unsubscribe_course_path(@course), data: {method: 'post'}} Unsubscribe
-          - else
-            %a{:href => subscribe_course_path(@course), data: {method: 'post'}} Subscribe
-  .page-content
-    .row.page-row
-      .courses-wrapper.col-md-8.col-sm-7
-        = @markdown.render(@course.markdown).html_safe
-      %aside.page-sidebar.col-md-3.col-md-offset-1.col-sm-4.col-sm-offset-1
-        - unless @course.announcements.empty?
-          %section.widget.has-divider
-            %h3.title
-              = fa_icon "bell"
-              = link_to "Announcements", announcements_path(course_id: @course.id)
-            %ul.rankable.list-group
-              - @course.announcements.by_priority.limit(5).each do |announcement|
-                = content_tag_for(:li, announcement, class: "list-group-item") do
-                  - if current_holder.can?(:edit, announcement)
-                    %i.handle.fa.fa-sort{"aria-hidden" => "true"}
-                  = link_to announcement.name.truncate(38), announcement
-              - if @course.announcements.by_priority.count > 5
-                %li.list-group-item.shaded
-                  = link_to announcements_path(course_id: @course.id) do
-                    Click to see all announcements
-        - unless @course.links.empty?
-          %section.widget.has-divider
-            %h3.title
-              = fa_icon 'link'
-              = link_to "Links", links_path(course_id: @course.id)
-            %ul.rankable.list-group
-              - @course.links.by_priority.limit(5).each do |link|
-                = content_tag_for(:li, link, class: "list-group-item") do
-                  - if current_holder.can?(:edit, link)
-                    %i.handle.fa.fa-sort{"aria-hidden" => "true"}
-                    = link_to link_path(link), method: :delete, data: { confirm: 'Are you sure?' } do
-                      = fa_icon 'times'
-                    = link_to new_escalation_request_path(link_id: link) do
-                      - if link.escalated?
-                        = fa_icon 'star'
-                      - else
-                        = fa_icon 'star-o'
-                  = link_to link.name, link.target
-              - if @course.links.by_priority.count > 5
-                %li.list-group-item.shaded
-                  = link_to links_path(course_id: @course.id) do
-                    Click to see all links
+    .m-0
+      - if Current.user
+        - if @course.subscriber? Current.user
+          = link_to unsubscribe_course_path(@course), method: :post, class: 'btn btn-danger' do
+            = fa_icon 'times-circle'
+            Unsubscribe
+        - else
+          = link_to subscribe_course_path(@course), method: :post, class: 'btn btn-primary' do
+            = fa_icon 'rss'
+            Subscribe
+
+.row
+  .col-md-8
+    - unless @course.markdown.blank?
+      = @markdown.render(@course.markdown).html_safe
+    - else
+      .text-muted= t('missing_content')
+  .col
+    = render 'partials/announcements', announcements: @course.announcements
+    = render 'partials/links', links: @course.links

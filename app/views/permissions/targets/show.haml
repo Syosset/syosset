@@ -1,14 +1,18 @@
 %ol.breadcrumb
-  %li= link_to 'Policies', policies_path
-  %li= link_to @policy.name, policy_path(@policy)
-  %li= link_to 'Targets', policy_targets_path(@policy)
-  %li.active= @target.id
-%h1
-  Target
-  %small
-    ID:
-    = @target.id
-  .pull-right
+  %li.breadcrumb-item= link_to 'Policies', policies_path
+  %li.breadcrumb-item= link_to @policy.name, policy_path(@policy)
+  %li.breadcrumb-item= link_to 'Targets', policy_targets_path(@policy)
+  %li.breadcrumb-item.active= @target.id
+
+.d-flex.justify-content-between
+  %h1
+    Target
+    %small
+      ID:
+      = @target.id
+  .m-0
     = render 'partials/modtools'
-.well
-  %pre= JSON.pretty_generate(@target.serializable_hash).gsub(/\n/, '<br/>').html_safe
+
+.card
+  .card-body
+    %pre= JSON.pretty_generate(@target.serializable_hash).gsub(/\n/, '<br/>').html_safe

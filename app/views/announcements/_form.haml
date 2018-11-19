@@ -1,15 +1,16 @@
 = content_for :model_name, Announcement.name.underscore.to_sym
-= javascript_include_tag "markdown"
+= javascript_include_tag 'markdown'
 
 = form_for @announcement do |f|
   = hidden_field_tag "#{@announceable.class.to_s.downcase}_id", "#{@announceable.id}"
   .form-group
     = f.label :name
-    = f.text_field :name, placeholder: "Name", class: "form-control"
+    = f.text_field :name, placeholder: 'Name', class: 'form-control'
   .form-group
     = f.label :summary
-    = f.text_field :summary, placeholder: "Short Description", class: "form-control"
+    = f.text_field :summary, placeholder: 'Short Description', class: 'form-control'
   .form-group
     = f.label :markdown
-    ~ f.text_area :markdown, placeholder: "Content", rows: 10, class: "form-control markdown"
-  = f.submit "Save", class: "btn btn-success pull-right", id: "submit-button"
+    ~ f.text_area :markdown, placeholder: 'Content', rows: 10, class: 'form-control markdown'
+
+  = f.submit 'Save', class: 'btn btn-success'

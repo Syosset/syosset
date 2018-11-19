@@ -1,0 +1,18 @@
+- unless links.empty?
+  .card.mb-3
+    .card-header.bg-syosset.text-white
+      = fa_icon 'link'
+      Links
+    %ul.rankable.list-group.list-group-flush
+      - links.by_priority.limit(5).each do |link|
+        = content_tag_for(:li, link, class: 'list-group-item') do
+          - if current_holder.can?(:edit, link)
+            %i.handle.fa.fa-sort{"aria-hidden" => "true"}
+            = link_to link_path(link), method: :delete, data: { confirm: 'Are you sure?' } do
+              = fa_icon 'times'
+            = link_to new_escalation_request_path(link_id: link) do
+              - if link.escalated?
+                = fa_icon 'star'
+              - else
+                = fa_icon 'star-o'
+          = link_to link.name, link.target

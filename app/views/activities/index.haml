@@ -1,27 +1,28 @@
-.page-wrapper
-  %header.page-heading.clearfix
-    .row
-      .col-xs-12.col-sm-5
-        %h1.heading-title.pull-left Activities
-      .col-xs-12.col-sm-7
-        = render partial: "partials/index_search_bar", locals: {path: activities_path}
-    .row
-      = render partial: "partials/modtools", locals: {actions: @actions}
-  .page-content
-    .alert.alert-info{:role => "alert"}
-      %strong Want to add your club/group/sport?
-      = link_to "Click here!", "https://goo.gl/forms/5NyEFmoWkSbtIHEM2"
-    .table-responsive
-      %table.table
-        %thead
-          %tr
-            %th Activity Name
-            %th Type
-            %th Description
-        %tbody
-          - @activities.each do |activity|
-            %tr
-              %td= link_to activity.name, activity
-              %td= activity.type.to_s.humanize
-              %td= activity.summary
-    = paginate @activities, theme: 'tb3'
+.row
+  .col
+    %h1 Activities
+  .col.d-flex
+    = render partial: 'partials/modtools', locals: {actions: @actions}
+    .flex-grow-1
+      = render partial: 'partials/index_search_bar', locals: {path: activities_path}
+
+.alert.alert-info
+  Want to add your club/group/sport?
+  = link_to "Click here!", "https://goo.gl/forms/5NyEFmoWkSbtIHEM2"
+
+.table-responsive
+  %table.table
+    %thead
+      %tr
+        %th Activity Name
+        %th Type
+        %th Description
+    %tbody
+      - @activities.each do |activity|
+        %tr
+          %td= link_to activity.name, activity
+          %td= activity.type.to_s.humanize
+          %td= activity.summary
+
+.d-flex.justify-content-center
+  = paginate @activities, theme: 'twitter-bootstrap-4'

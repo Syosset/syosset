@@ -1,17 +1,17 @@
-%footer.footer
+%footer.footer.py-4
   .container
-    %small.copyright
-      Made by
-      = link_to "Neil Johari", "https://github.com/neiljohari/"
-      and
-      = link_to "Kailan Blanks", "https://github.com/kailan/"
-    %ul.social
-      %li
-        %a{:href => "https://github.com/Syosset/syosset"}
-          = fa_icon 'github'
-    %ul.actions
-      %li.translate{'data-turbolinks-permanent': true}
-        .btn-loader#translate_trigger
-          = fa_icon 'google'
-          Translate
-        #google_translate_element
+    .row
+      .col
+        Made by
+        = link_to "Neil Johari", "https://github.com/neiljohari/"
+        and
+        = link_to "Kailan Blanks", "https://github.com/kailan/"
+      .col.d-flex.justify-content-center
+        %a.social-icon{:href => "https://github.com/Syosset/syosset"}
+          = fa_brand_icon 'github'
+      .col.d-flex.justify-content-end
+        .translate{'data-turbolinks-permanent': true}
+          .btn-loader#translate_trigger
+            = fa_brand_icon 'google'
+            Translate
+          #google_translate_element

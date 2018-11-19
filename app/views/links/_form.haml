@@ -2,17 +2,15 @@
   = hidden_field_tag "#{@linkable.class.to_s.downcase}_id", "#{@linkable.id}"
   .form-group
     = f.label :name
-    = f.text_field :name, placeholder: "Name", class: "form-control"
+    = f.text_field :name, placeholder: 'Name', class: 'form-control'
   - if Current.user.admin_enabled?
     .form-group
-      = f.label :icon, "Font Awesome Icon Name"
-      = f.text_field :icon, placeholder: "book", class: "form-control fontawesome-picker"
+      = f.label :icon, 'Font Awesome Icon Name'
+      = f.text_field :icon, placeholder: 'book', class: 'form-control fontawesome-picker'
   .form-group
     = f.label :target
-    = f.text_field :target, placeholder: "URL", rows: 10, class: "form-control"
-  = f.submit "Save", class: "btn btn-success pull-right", id: "submit-button"
+    = f.text_field :target, placeholder: 'URL', rows: 10, class: 'form-control'
+  = f.submit 'Save', class: 'btn btn-success'
 
 :javascript
-  $(document).on('turbolinks:load', function() {
-    $('.fontawesome-picker').iconpicker();
-  });
+  $('.fontawesome-picker').iconpicker();

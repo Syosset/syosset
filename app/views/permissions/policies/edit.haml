@@ -1,7 +1,6 @@
 %ol.breadcrumb
-  %li= link_to 'Policies', policies_path
-  %li.active= link_to @policy.name, @policy
-
+  %li.breadcrumb-item= link_to 'Policies', policies_path
+  %li.breadcrumb-item.active= link_to @policy.name, @policy
 
 %br
 .panel.panel-default

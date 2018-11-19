@@ -1,4 +1,4 @@
-.admin-stats
+.admin-stats.pt-5.pb-3
   - if Current.user&.can? :index, User
     %h1
       = User.count
@@ -34,12 +34,12 @@
 
 - if Current.user&.can? :index, Badge
   = link_to badges_path, class: "btn btn-admin" do
-    = fa_icon "shield"
+    = fa_icon "shield-alt"
     Manage Badges
 
 - if Current.user&.can? :edit, Closure
   = link_to closures_path, class: "btn btn-admin" do
-    = fa_icon "snowflake-o"
+    = fa_icon "snowflake"
     Manage Closures
 
 - if Current.user&.can? :edit, Day

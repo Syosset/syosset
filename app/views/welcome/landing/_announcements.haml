@@ -1,9 +1,0 @@
-- @announcements.first(2).each do |announcement|
-  .panel.panel-sosset
-    .panel-heading= link_to announcement.name, announcement
-    .panel-body
-      = announcement.summary || truncate(strip_tags(@markdown.render(announcement.markdown)), length: 300) do
-        = link_to " " + t('announcements.show'), announcement
-.panel.panel-default
-  .panel-body
-    = link_to t('announcements.see_more'), announcements_path

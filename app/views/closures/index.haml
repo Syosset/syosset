@@ -1,16 +1,14 @@
-.page-wrapper
-  %header.page-heading
-    %h1.heading-title Closures
-    = link_to "Create", new_closure_path, class: "btn btn-primary pull-right"
-  .page-content
-    .table-responsive
-      %table.table
-        %thead
-          %tr
-            %th Start Date
-            %th Type
-        %tbody
-          - @closures.each do |closure|
-            = content_tag_for(:tr, closure) do
-              %td= link_to closure.start_date, closure
-              %td= closure.type
+.d-flex.justify-content-between
+  %h1 Closures
+  = render partial: 'partials/modtools', locals: {actions: @actions}
+
+%table.table
+  %thead
+    %tr
+      %th Start Date
+      %th Type
+  %tbody
+    - @closures.each do |closure|
+      = content_tag_for(:tr, closure) do
+        %td= link_to closure.start_date, closure
+        %td= closure.type

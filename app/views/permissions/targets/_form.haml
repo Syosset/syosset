@@ -27,7 +27,7 @@
           - next unless value
           = render partial: 'permissions/targets/condition', locals: {comparator: comparator, attribute: attribute, value: value}
 
-  = f.submit 'Save', class: 'btn btn-success pull-right', id: 'submit-button'
+  = f.submit 'Save', class: 'btn btn-success pull-right'
 
 :javascript
   $('#actions_tags').tagsInput({

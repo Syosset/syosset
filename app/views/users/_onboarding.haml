@@ -1,22 +1,23 @@
-.onboarding
-  %h1 Hi #{@user.name}, let's get your profile set up.
-  %p Profiles make it easier for students to contact you and check your schedule.
+.card
+  .card-body.onboarding
+    %h1 Hi #{@user.name}, let's get your profile set up.
+    %p Profiles make it easier for students to contact you and check your schedule.
 
-  = link_to edit_user_path do
-    - if @onboarding.include? :picture
-      .step
-        = fa_icon 'cloud-upload'
-        .prompt Upload a profile picture.
-    - else
-      .step.complete
-        = fa_icon 'check'
-        .prompt You've uploaded a profile picture. Looking great!
+    = link_to edit_user_path, class: 'step-link' do
+      - if @onboarding.include? :picture
+        .step
+          = fa_icon 'upload'
+          .prompt Upload a profile picture.
+      - else
+        .step.complete
+          = fa_icon 'check'
+          .prompt You've uploaded a profile picture. Looking great!
 
-    - if @onboarding.include? :bio
-      .step
-        = fa_icon 'pencil-square-o'
-        .prompt Tell us about yourself! Write a bio.
-    - else
-      .step.complete
-        = fa_icon 'check'
-        .prompt You've written a bio.
+      - if @onboarding.include? :bio
+        .step
+          = fa_icon 'pencil-alt'
+          .prompt Tell us about yourself! Write a bio.
+      - else
+        .step.complete
+          = fa_icon 'check'
+          .prompt You've written a bio.

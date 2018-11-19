@@ -1,12 +1,11 @@
-.page-wrapper
-  %header.page-heading.clearfix
-    %h1.heading-title.pull-left
-      Day Color
-      %small
-        for
-        = @day.date.strftime("%A %d %B, %Y")
-  = form_tag day_path, method: :patch do
-    = label_tag :color
+%h1
+  Day Color
+  %small
+    for
+    = @day.date.strftime("%A %d %B, %Y")
+
+= form_tag day_path, method: :patch do
+  .form-group
     - value = @day.color.nil? ? 'No Color' : @day.color
-    = select_tag(:color, options_for_select(['Red Day', 'White Day', 'No Color'], value))
-    = submit_tag 'Update Color'
+    = select_tag :color, options_for_select(['Red Day', 'White Day', 'No Color'], value), class: 'form-control'
+  = submit_tag 'Update Color', class: 'btn btn-success'

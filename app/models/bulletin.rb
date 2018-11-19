@@ -11,6 +11,6 @@ class Bulletin
   validates :date, uniqueness: true
 
   def pretty_date
-    date.strftime('%A %e %B, %Y')
+    date.strftime("%A #{date.day.ordinalize} %B, %Y")
   end
 end

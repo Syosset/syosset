@@ -1,20 +1,19 @@
 = content_for :model_name, Activity.name.underscore.to_sym
-= javascript_include_tag "markdown"
-
-= errors_for(@activity)
+= javascript_include_tag 'markdown'
 
 = form_for @activity do |f|
-  .form-group
-    = f.label :name
-    = f.text_field :name, placeholder: "Name", class: "form-control"
-  .form-group
-    = f.label :type
-    = f.select :type, ['club', 'sport', 'group']
+  .form-row
+    .form-group.col-sm-10
+      = f.label :name
+      = f.text_field :name, placeholder: 'Name', class: 'form-control'
+    .form-group.col-sm-2
+      = f.label :type
+      = f.select :type, [['Club', 'club'], ['Sport', 'sport'], ['Group', 'group']], {}, class: 'form-control'
   .form-group
     = f.label :summary
-    = f.text_field :summary, placeholder: "Short Description", class: "form-control"
+    = f.text_field :summary, placeholder: 'Summary', class: 'form-control'
   .form-group
     = f.label :markdown
-    ~ f.text_area :markdown, placeholder: "Content", rows: 10, class: "form-control markdown"
+    ~ f.text_area :markdown, placeholder: 'Page Content', rows: 10, class: 'form-control markdown'
 
-  = f.submit "Save", class: "btn btn-success pull-right", id: "submit-button"
+  = f.submit 'Save', class: 'btn btn-success'

@@ -1,94 +1,73 @@
-%header.header
-  - unless params[:action] == 'landing' || Current.user&.admin_enabled?
-    .header-main.container.hidden-xs
-      .container
-        %h1.logo.pull-left
-          = link_to root_path do
-            = svg 'logo'
-            .full-name.pull-right.visible-lg
-              SYOSSET HIGH SCHOOL
-        .info.col-md-4-col-sm-4.pull-right
-          %br
-          %br
-          .contact
-            %p.phone
-              = fa_icon 'phone'
-              = t('contact.phone')
-
-%nav.main-nav{role: :navigation, class: Current.user&.admin_enabled? ? 'dark' : ''}
+%nav.navbar.navbar-expand-md.navbar-dark{role: :navigation, class: Current.user&.admin_enabled? ? 'bg-dark' : 'bg-syosset'}
   .container
-    .navbar-header
-      = link_to root_path do
-        .logo-mobile.visible-xs
+    .d-flex.flex-grow-1.justify-content-between.d-md-none
+      = link_to root_path, class: 'navbar-brand' do
+        .logo-mobile
           = svg 'icon'
-      .day-indicator-container.visible-xs
+      .day-indicator
         - if @active_closure.nil?
           = render "partials/nav/day_indicator"
         - else
           = render "partials/nav/closure_indicator"
-      %button.navbar-toggle{"data-target" => "#navbar-collapse", "data-toggle" => "collapse", :type => "button"}
-        %span.sr-only Toggle navigation
-        %span.icon-bar
-        %span.icon-bar
-        %span.icon-bar
-    #navbar-collapse.navbar-collapse.collapse
-      %ul.nav.navbar-nav
-        %li.nav-item{class: active_controller('welcome', 'index')}
-          = link_to t('nav.home'), root_path
-        %li.nav-item{class: active_controller('welcome', 'about')}
-          = link_to t('nav.about'), about_path
-        %li.nav-item.dropdown
-          %a.dropdown-toggle{"data-close-others" => "false", "data-delay" => "0", "data-hover" => "dropdown", "data-toggle" => "dropdown", :href => "#"}
+    %btn.navbar-toggler{'data-toggle': 'collapse', 'data-target': '#navbarSupportedContent'}
+      %span.navbar-toggler-icon
+    .collapse.navbar-collapse#navbarSupportedContent
+      %ul.navbar-nav.mr-auto
+        %li.nav-item{class: active_controller('welcome/home')}
+          = link_to t('nav.home'), root_path, class: 'nav-link'
+        %li.nav-item{class: active_controller('welcome/about')}
+          = link_to t('nav.about'), about_path, class: 'nav-link'
+        %li.nav-item.dropdown{class: active_controller('departments')}
+          %a.dropdown-toggle.nav-link{"data-close-others" => "false", "data-delay" => "0", "data-hover" => "dropdown", "data-toggle" => "dropdown", :href => "#"}
             = t('nav.departments')
-            = fa_icon 'angle-down'
           %ul.dropdown-menu
             - @departments_summary.each do |department|
-              %li= link_to department.name, department
-            %li= link_to "#{t('nav.departments_all')}", departments_path
-        %li.nav-item
-          = link_to t('nav.extracurriculars'), activities_path
+              %li= link_to department.name, department, class: 'dropdown-item'
+            .dropdown-divider
+            %li= link_to "#{t('nav.departments_all')}", departments_path, class: 'dropdown-item'
+        %li.nav-item{class: active_controller('activities')}
+          = link_to t('nav.extracurriculars'), activities_path, class: 'nav-link'
 
         - if Current.user&.can? :show, :admin_panel
-          %li.nav-item{class: active_controller('admin', 'index')}
-            = link_to t('nav.admin'), administration_path
-      %ul.nav.navbar-nav.pull-right
-        %li.nav-item.hidden-xs
+          %li.nav-item{class: active_controller('admin')}
+            = link_to t('nav.admin'), administration_path, class: 'nav-link'
+      %ul.navbar-nav
+        %li.nav-item
           - if @active_closure.nil?
             = render "partials/nav/day_indicator"
           - else
             = render "partials/nav/closure_indicator"
         - if Current.user
           %li.nav-item
-            = link_to user_path(Current.user) do
+            = link_to user_path(Current.user), class: 'nav-link' do
               - unless Current.user.onboarding_steps.empty?
-                %span.label.label-info.onboarding-alert
-                  = fa_icon 'pencil-square'
+                %span.badge.badge-light.onboarding-alert
                   NEW
                 &nbsp;
-              - if Current.user.admin_enabled?
-                = fa_icon 'shield'
+              - if Current.user.super_admin?
+                = fa_icon 'shield-alt'
               = Current.user.name
           %li.nav-item
-            = link_to t('sessions.destroy'), logout_path, :method => :delete
+            = link_to logout_path, :method => :delete, class: 'nav-link' do
+              = fa_icon 'sign-out-alt'
+              = t('sessions.destroy')
         - else
           %li.nav-item
-            = link_to '/auth/google_oauth2', class: 'btn-loader' do
+            = link_to '/auth/google_oauth2', class: 'nav-link btn-loader' do
+              = fa_brand_icon 'google-plus-square'
               = t('sessions.new')
-              = fa_icon 'google-plus-square'
           - if Rails.env.development?
             %li.nav-item
-              = link_to '/auth/developer', class: 'btn-loader' do
-                Authorize
+              = link_to '/auth/developer', class: 'nav-link btn-loader' do
                 = fa_icon 'cog'
-        - if Current.user
+                Authorize
+        - if Current.user and @alert_count > 0
           %li.nav-item.dropdown
-            %a.dropdown-toggle{"data-close-others" => "false", "data-delay" => "0", "data-hover" => "dropdown", "data-toggle" => "dropdown", :href => "#"}
-              %span.badge.visible-md-inline.visible-lg-inline{class: @alert_count > 0 ? "badge-warning" : ""}= @alert_count
-              .visible-xs.visible-sm
-                = fa_icon 'exclamation-circle'
-                Alerts
-                %b.caret
-            %ul.dropdown-menu.dropdown-menu-right
+            %a.btn.btn-info.dropdown-toggle.nav-link{"data-close-others" => "false", "data-delay" => "0", "data-hover" => "dropdown", "data-toggle" => "dropdown", :href => "#"}
+              Alerts
+              %span.badge.badge-light= @alert_count
+              %b.caret
+            %ul.dropdown-menu
               %li= link_to "Click to see all alerts", alerts_path
               - @alerts.each do |alert|
                 %li= render partial: 'partials/alerts/alert', object: alert
@@ -98,4 +77,3 @@
               - if @alert_count == 0
                 %li
                   %a{href: ""} No unread alerts!
-  = render 'peek/bar'

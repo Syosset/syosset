@@ -1,4 +1,5 @@
 en:
+  missing_content: "This page has no content."
   sessions:
     new: "Sign In"
     destroy: "Sign Out"
@@ -10,9 +11,9 @@ en:
     home: "Home"
     about: "About"
     contact: "Contact"
-    departments: "Departments/Courses"
+    departments: "Departments"
     departments_all: "View all departments..."
-    extracurriculars: "Extra-Curricular Activities"
+    extracurriculars: "Extra-Curriculars"
     admin: "Admin"
   welcome:
     landing:
