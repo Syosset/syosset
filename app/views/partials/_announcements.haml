@@ -4,7 +4,7 @@
       = fa_icon 'bell'
       Announcements
     %ul.rankable.list-group.list-group-flush
-      - announcements.by_priority.limit(5).each do |announcement|
+      - announcements.by_priority.each do |announcement|
         = content_tag_for(:li, announcement, class: 'list-group-item') do
           - if current_holder.can?(:edit, announcement)
             %i.handle.fa.fa-sort{"aria-hidden" => "true"}

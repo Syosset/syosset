@@ -4,7 +4,7 @@
       = fa_icon 'link'
       Links
     %ul.rankable.list-group.list-group-flush
-      - links.by_priority.limit(5).each do |link|
+      - links.by_priority.each do |link|
         = content_tag_for(:li, link, class: 'list-group-item') do
           - if current_holder.can?(:edit, link)
             %i.handle.fa.fa-sort{"aria-hidden" => "true"}
