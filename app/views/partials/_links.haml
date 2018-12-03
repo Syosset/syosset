@@ -5,14 +5,24 @@
       Links
     %ul.rankable.list-group.list-group-flush
       - links.by_priority.each do |link|
-        = content_tag_for(:li, link, class: 'list-group-item') do
+        = content_tag_for(:li, link, class: 'list-group-item d-flex flex-column') do
+          %span
+            - if current_holder.can?(:edit, link)
+              %i.handle.fa.fa-sort{"aria-hidden" => "true"}
+
+            = link_to link.name, link.target
+
           - if current_holder.can?(:edit, link)
-            %i.handle.fa.fa-sort{"aria-hidden" => "true"}
-            = link_to link_path(link), method: :delete, data: { confirm: 'Are you sure?' } do
-              = fa_icon 'times'
-            = link_to new_escalation_request_path(link_id: link) do
-              - if link.escalated?
-                = fa_icon 'star'
+            .btn-group.mt-1
+              - unless link.escalated?
+                = link_to new_escalation_request_path(link_id: link), class: 'btn btn-sm btn-primary' do
+                  = fa_icon 'arrow-circle-up'
+                  Escalate
               - else
-                = fa_icon 'star-o'
-          = link_to link.name, link.target
+                = link_to '#', class: 'btn btn-sm btn-outline-primary disabled' do
+                  = fa_icon 'arrow-up'
+                  Escalated
+
+              = link_to link_path(link), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' do
+                = fa_icon 'times'
+                Delete
