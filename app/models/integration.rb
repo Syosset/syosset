@@ -2,7 +2,7 @@ class Integration
   include Mongoid::Document
 
   def self.providers
-    [Syosset::Integrations::Slack, Syosset::Integrations::Spagett].index_by(&:id)
+    [Syosset::Integrations::Slack].index_by(&:id)
   end
 
   def self.notify_all(event, parameters)

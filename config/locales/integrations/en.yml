@@ -27,10 +27,3 @@ en:
           name: "Channel"
           description: "The channel to post messages to. Defaults to #general."
           placeholder: "#general"
-    spagett:
-      description: "Allows support threads to be handled in messaging channels."
-      options:
-        host:
-          name: "Host"
-          description: "The URL pointing to a Spagett instance."
-          placeholder: "https://spagett.syosseths.com"
